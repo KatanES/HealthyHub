@@ -1,8 +1,8 @@
 import { Route, Switch } from 'react-router-dom';
-import Breakfast from './Breakfast';
-import Lunch from './Lunch';
-import Dinner from './Dinner';
-import Snack from './Snack';
+import Breakfast from '../../../components/AuthorizedUser/DiaryPage/Breakfast';
+import Lunch from '../../../components/AuthorizedUser/DiaryPage/Lunch';
+import Dinner from '../../../components/AuthorizedUser/DiaryPage/Dinner';
+import Snack from '../../../components/AuthorizedUser/DiaryPage/Snack';
 
 const DiaryPage = () => {
   return (

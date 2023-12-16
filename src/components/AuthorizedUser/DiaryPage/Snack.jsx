@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addMeal } from 'redux/diarySlice';
+import { addMeal } from '../../../redux/slice/diarySlice.jsx';
 import style from './DiaryPage.styled.jsx';
 
-const Dinner = () => {
+const Snack = () => {
   const dispatch = useDispatch();
   const meals = useSelector((state) => state.diary.meals);
   const [modalOpen, setModalOpen] = useState(false);
@@ -39,12 +39,12 @@ const Dinner = () => {
 
   return (
     <div className={style.section}>
-      <h2>Dinner</h2>
+      <h2>Snack</h2>
       <button onClick={openModal}>+ Record your meal</button>
 
       {modalOpen && (
         <div className={style.modal}>
-          <h2>Dinner</h2>
+          <h2>Snack</h2>
           <form onSubmit={handleSubmit}>
             <label htmlFor="mealName">The name of the product or dish</label>
             <input
@@ -106,4 +106,4 @@ const Dinner = () => {
   );
 };
 
-export default Dinner;
+export default Snack;
