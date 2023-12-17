@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-
 import { signup, signin } from './operations';
 
 const initialState = {
@@ -10,38 +9,37 @@ const initialState = {
   token: null,
   isSignedIn: false,
   isRefreshing: false,
+  error: null,
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  extraReducers: {
-    [signup.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isSignedIn = true;
-    },
-    [signin.fulfilled](state, action) {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.isSignedIn = true;
-    },
-    [logOut.fulfilled](state) {
-      state.user = { name: null, email: null };
-      state.token = null;
-      state.isSignedIn = false;
-    },
-    [refreshUser.pending](state) {
-      state.isRefreshing = true;
-    },
-    [refreshUser.fulfilled](state, action) {
-      state.user = action.payload;
-      state.isSignedIn = true;
-      state.isRefreshing = false;
-    },
-    [refreshUser.rejected](state) {
-      state.isRefreshing = false;
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(signup.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isSignedIn = true;
+        state.error = null;
+      })
+      .addCase(signin.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isSignedIn = true;
+        state.error = null;
+      })
+      .addCase(signup.rejected, (state, action) => {
+        state.isSignedIn = false;
+        state.error = action.payload.error;
+      })
+      .addCase(signin.rejected, (state, action) => {
+        state.isSignedIn = false;
+        state.error = action.payload.error;
+      });
   },
 });
+
+export const { clearError } = authSlice.actions;
 export const authReducer = authSlice.reducer;
