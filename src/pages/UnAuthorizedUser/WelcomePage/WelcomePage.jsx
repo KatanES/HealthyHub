@@ -1,4 +1,3 @@
-import React from 'react';
 import symbol from '../../../assets/Welcome/symbol.svg'
 import IllustrationDesctop from '../../../assets/Welcome/IllustrationDesctop.png'
 import { HeroImg, HeroText, HeroTitle, WelcomeContainer, Wrapper, Button, WrapperButtons, HeroList, HeroItem, HeroItemText, SVG, WrapperImg } from './WelcomePage.styled';

@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addMeal } from '../../../redux/slice/diarySlice.jsx';
+import SnackPng from '../../../assets/Diary/Snack.png';
 // import style from './DiaryPage.styled.jsx';
 
-const Snack = () => {
+ const Snack = () => {
   const dispatch = useDispatch();
   const meals = useSelector((state) => state.diary.meals);
   const [modalOpen, setModalOpen] = useState(false);
@@ -38,13 +39,14 @@ const Snack = () => {
   };
 
   return (
-    <div className={style.section}>
+    <div>
+      <img src={SnackPng} alt="Snack"></img>
       <h2>Snack</h2>
       <button onClick={openModal}>+ Record your meal</button>
 
       {modalOpen && (
-        <div className={style.modal}>
-          <h2>Snack</h2>
+        <div>
+          <TitelMeal>Snack</TitelMeal>
           <form onSubmit={handleSubmit}>
             <label htmlFor="mealName">The name of the product or dish</label>
             <input
