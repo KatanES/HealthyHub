@@ -1,31 +1,49 @@
-// export default function MobileMenu() {
-//   return (
-//     <div>
-//       <MenuButton type="button" onClick={closeMobileMenu}>
-//         <MobileIconWrapper>
-//           <use href={sprite + '#icon-close-circle'} />
-//         </MobileIconWrapper>
-//         <div>
-//           {/* <img src={GOAL} alt="" /> */}
-//           <div>
-//             <h3>Goal</h3>
-//             {/* <p>{GOAL}</p> */}
-//             <svg>
-//               <use href={sprite + '#icon-arrow-right'} />
-//             </svg>
-//           </div>
-//         </div>
-//         <div>
-//           {/* <img src={WEIGHT} alt="" /> */}
-//           <div>
-//             <h3>Weight</h3>
-//             {/* <p>{WEIGHT} <span>kg</span></p> */}
-//             <svg>
-//               <use href={sprite + '#icon-edit-2'} />
-//             </svg>
-//           </div>
-//         </div>
-//       </MenuButton>
-//     </div>
-//   );
-// }
+import Modal from 'react-modal';
+
+import sprite from '../../../../assets/sprite.svg';
+import { Goals } from '../Goals';
+import { Weight } from '../Weight';
+
+// Встановлюємо кореневий елемент для модального вікна
+Modal.setAppElement('#root');
+
+import { MenuButton, SvgWrapper } from '../ControlPanel.styled';
+
+export default function MobileMenu({
+  closeMobileMenu,
+  isOpen,
+  openGoalMenu,
+  currentGoalIcon,
+  goal,
+  showMobileMenu,
+  openWeightMenu,
+  weightIcon,
+  weight,
+}) {
+  return (
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={closeMobileMenu}
+      contentLabel="Example Modal"
+    >
+      <MenuButton type="button" onClick={closeMobileMenu}>
+        <SvgWrapper>
+          <use href={sprite + '#icon-close-circle'} />
+        </SvgWrapper>
+      </MenuButton>
+
+      <Goals
+        openGoalMenu={openGoalMenu}
+        currentGoalIcon={currentGoalIcon}
+        goal={goal}
+        showMobileMenu={showMobileMenu}
+      />
+
+      <Weight
+        openWeightMenu={openWeightMenu}
+        weightIcon={weightIcon}
+        weight={weight}
+      />
+    </Modal>
+  );
+}

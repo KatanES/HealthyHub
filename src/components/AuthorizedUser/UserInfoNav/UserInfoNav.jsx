@@ -2,8 +2,9 @@ import { useState } from 'react'; //don`t need
 // import { useSelector } from 'react-redux';
 //import selectUser from selector;
 
+import UserInfoModal from '../UserInfoModal/UserInfoModal';
+
 import {
-  WrapperUserInfoNav,
   Text,
   ImageHolder,
   IconAvatarWrapper,
@@ -20,20 +21,50 @@ export const UserInfoNav = () => {
   }); //don`t need
   //   const user = useSelector(selectUser);
 
+  const [isActive, setIsActive] = useState(false);
   const [userInfoModal, setUserInfoModal] = useState(false);
 
   const openUserInfoModal = () => {
-    setUserInfoModal(true);
+    if (!userInfoModal) {
+      setUserInfoModal(true);
+      setIsActive(true);
+    }
   };
 
   const closeUserInfoModal = () => {
     setUserInfoModal(false);
+    setIsActive(false);
   };
 
   const { name, imgURL } = user;
 
+  
   return (
-    <WrapperUserInfoNav>
+    // <WrapperUserInfoNav>
+    //   <Text>{name}</Text>
+
+    //   {imgURL ? (
+    //     <ImageHolder>
+    //       <img src={imgURL} alt={name} />
+    //     </ImageHolder>
+    //   ) : (
+    //     <IconAvatarWrapper>
+    //       <use href={sprite + '#icon-profile-circle'} />
+    //     </IconAvatarWrapper>
+    //   )}
+
+    //   <UserInfoNavButton type="button" onClick={openUserInfoModal}>
+    //     <IconArrowWrapper className={isActive ? 'active' : ''}>
+    //       <use href={sprite + '#icon-arrow-down'} />
+    //     </IconArrowWrapper>
+    //   </UserInfoNavButton>
+
+    //   {userInfoModal && (
+    //     <UserInfoModal isOpen={userInfoModal} closeModal={closeUserInfoModal} />
+    //   )}
+    // </WrapperUserInfoNav>
+
+    <UserInfoNavButton type="button" onMouseDown={openUserInfoModal}>
       <Text>{name}</Text>
 
       {imgURL ? (
@@ -46,18 +77,13 @@ export const UserInfoNav = () => {
         </IconAvatarWrapper>
       )}
 
-      <UserInfoNavButton type="button" onClick={openUserInfoModal}>
-        <IconArrowWrapper>
-          <use href={sprite + '#icon-arrow-down'} />
-        </IconArrowWrapper>
-      </UserInfoNavButton>
+      <IconArrowWrapper className={isActive ? 'active' : ''}>
+        <use href={sprite + '#icon-arrow-down'} />
+      </IconArrowWrapper>
 
       {userInfoModal && (
-        <>
-          <div>component UserInfoModal OR popup mui</div>
-          <button onClick={closeUserInfoModal}> </button>
-        </>
+        <UserInfoModal isOpen={userInfoModal} closeModal={closeUserInfoModal} />
       )}
-    </WrapperUserInfoNav>
+    </UserInfoNavButton>
   );
 };
