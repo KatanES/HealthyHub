@@ -2,50 +2,52 @@ import styled from 'styled-components';
 import { device } from '../../../Device';
 
 export const WelcomeContainer = styled.div`
-border: 2px solid red;
-padding: 10px;
-@media ${device.tablet} { 
-  max-width: 1200px;
-  padding: 20px;
-}
+  border: 2px solid red;
+  padding: 10px;
+  @media ${device.tablet} {
+    max-width: 794px;
+    padding: 20px;
+  }
 
-@media ${device.desktop} {
-  max-width: 1376px;
-  padding: 32px;
-}
-
+  @media ${device.desktop} {
+    max-width: 1376px;
+    padding: 32px;
+    display: flex;
+    gap: 104px;
+  }
 `;
 
 export const HeroImg = styled.img`
   width: 100%;
   height: auto;
-  margin: 0;
 `;
 
 export const Wrapper = styled.div`
   width: 100%;
+  margin: 24px 0 0 0;
+  // @media ${device.mobileS} {
+  //     min-width: 300px;
+  //   }
+
+  @media ${device.tablet} {
+   
+    width: 444px;
+    margin: 80px auto 0 auto;
+    align-items: center;
+  }
+
+  @media ${device.desktop} {
+   width: 444px;
+   
+  }
+
   text-align: start;
   display: flex;
   flex-direction: column;
   margin-top: 24px;
   margin-bottom: 40px;
-  //   box-sizing: border-box;
   max-width: 300px;
   border: 2px solid red;
-  
-//   @media ${device.mobileS} { 
-//   min-width: 300px;
-  
-// }
-
-
-// @media ${device.tablet} { 
-//  max-width: 1200px;
-// }
-
-// @media ${device.desktop} {
-//   max-width: 1440px;
-// }
 `;
 
 export const HeroTitle = styled.h1`
@@ -53,7 +55,15 @@ export const HeroTitle = styled.h1`
 
   margin: 0;
   line-height: 1.25;
-  letter-spacing: -0.02em;
+  
+
+  @media ${device.tablet} {
+    font-size: 30px;
+    font-style: normal;
+    // font-weight: 500;
+    line-height: 1.2;
+   
+  }
 `;
 
 export const HeroText = styled.p`
@@ -63,6 +73,13 @@ export const HeroText = styled.p`
   letter-spacing: -0.02em;
   color: #b6b6b6;
   margin-top: 16px;
+
+  @media ${device.tablet} {
+    font-size: 22px;
+    line-height: 1.45;
+    text-align: center;
+    margin: 16px 45px 0 45px;
+  }
 `;
 
 export const WrapperButtons = styled.div`
@@ -79,7 +96,7 @@ export const Button = styled.button`
   border-radius: 12px;
   background-color: #e3ffa8;
   font-family: 'Roboto', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 1.42;
@@ -98,12 +115,23 @@ export const Button = styled.button`
 
     color: #ffffff;
   }
+
+  @media ${device.tablet} {
+    width: 212px;
+  }
 `;
 
 export const HeroList = styled.ul`
   display: flex;
   flex-direction: column;
   margin-top: 40px;
+
+  @media ${device.tablet} {
+    margin: 80px 10px 0 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 `;
 
 export const HeroItem = styled.li`
@@ -123,6 +151,16 @@ export const HeroItemText = styled.p`
 `;
 
 export const WrapperImg = styled.div`
-  max-width: 300px;
+  width: 100%;
+  margin: 0 0 24px 0;
   border: 2px solid red;
+
+  @media ${device.tablet} {
+    width: 380px;
+    margin: 0 auto;
+  }
+
+  @media ${device.desktop} {
+    width: 592px;
+  }
 `;
