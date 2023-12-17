@@ -16,7 +16,7 @@ export const Header = () => {
   // const [isLogin] = useState(false);
 
   return (
-    <HeaderContainer>
+    <HeaderContainer >
       <HeaderContent>
         {isLogin ? (
           <>

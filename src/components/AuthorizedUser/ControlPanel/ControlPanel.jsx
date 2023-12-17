@@ -10,19 +10,16 @@ import {
 } from '../../../assets/Header/headerImage';
 import sprite from '../../../assets/sprite.svg';
 
+import { Goals } from './Goals';
+import { Weight } from './Weight';
+
 import {
   WrapperControlPanel,
-  IconSelectWrapper,
-  Goals,
-  //   MenuButton,
-  Weight,
+  MenuButton,
   SvgWrapper,
-  Title,
-  Text,
-  ControlPanelButton,
-  TextWrapperGoal,
-  TextWrapperWeight,
 } from './ControlPanel.styled';
+import MobileMenu from './MobileMenu/MobileMenu';
+import { useMediaQuery } from '@mui/material';
 
 export const ControlPanel = () => {
   const [user] = useState({
@@ -32,17 +29,22 @@ export const ControlPanel = () => {
   }); //don`t need
   //   const user = useSelector(selectUser);
 
-  //   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showGoalMenu, setShowGoalMenu] = useState(false);
   const [showWeightMenu, setShowWeightMenu] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
-  //   const openMobileMenu = () => {
-  //     setShowMobileMenu(true);
-  //   };
+   const isMobile = useMediaQuery('(max-width:834px)');
 
-  //   const closeMobileMenu = () => {
-  //     setShowMobileMenu(false);
-  //   };
+  const openMobileMenu = () => {
+    setShowMobileMenu(true);
+    setIsActive(true);
+  };
+
+  const closeMobileMenu = () => {
+    setShowMobileMenu(false);
+    setIsActive(false);
+  };
 
   const openGoalMenu = () => {
     setShowGoalMenu(true);
@@ -104,64 +106,56 @@ export const ControlPanel = () => {
 
   return (
     <WrapperControlPanel>
-      {/* <MenuButton type="button" onClick={openMobileMenu}>
-          <IconWrapper>
+      {isMobile ? (
+        <MenuButton type="button" onClick={openMobileMenu}>
+          <SvgWrapper className={isActive ? 'active' : ''}>
             <use href={sprite + '#icon-menu'} />
-          </IconWrapper>
-        </MenuButton> */}
-      {/* {showMobileMenu ? <MobileMenu> :  (<Goals /> and  <Weight />) */}
+          </SvgWrapper>
+        </MenuButton>
+      ) : (
+        <>
+          <Goals
+            openGoalMenu={openGoalMenu}
+            currentGoalIcon={currentGoalIcon}
+            goal={goal}
+            showMobileMenu={showMobileMenu}
+          />
 
-      <Goals>
-        <IconSelectWrapper>
-          <img src={currentGoalIcon} alt="current user`s goal" />
-        </IconSelectWrapper>
-        <div>
-          <Title>Goal</Title>
+          <Weight
+            openWeightMenu={openWeightMenu}
+            weightIcon={weightIcon}
+            weight={weight}
+          />
+        </>
+      )}
 
-          <TextWrapperGoal>
-            <Text>{goal}</Text>
-            <ControlPanelButton onClick={openGoalMenu}>
-              <SvgWrapper>
-                <use href={sprite + '#icon-arrow-down'} />
-              </SvgWrapper>
-            </ControlPanelButton>
-          </TextWrapperGoal>
-        </div>
+      {showMobileMenu && (
+        <MobileMenu
+          isOpen={showMobileMenu}
+          closeMobileMenu={closeMobileMenu}
+          openGoalMenu={openGoalMenu}
+          currentGoalIcon={currentGoalIcon}
+          goal={goal}
+          showMobileMenu={showMobileMenu}
+          openWeightMenu={openWeightMenu}
+          weightIcon={weightIcon}
+          weight={weight}
+        />
+      )}
 
-        {showGoalMenu && (
-          <>
-            <div>component TargetSelectionModal, OR popup mui</div>
-            <button onClick={closeGoalMenu}> </button>
-          </>
-        )}
-      </Goals>
-      <Weight>
-        <IconSelectWrapper>
-          <img src={weightIcon} alt="current user`s weight" />
-        </IconSelectWrapper>
-        <div>
-          <Title>Weight</Title>
+      {showGoalMenu && (
+        <>
+          <div>component TargetSelectionModal, OR popup mui</div>
+          <button onClick={closeGoalMenu}> </button>
+        </>
+      )}
 
-          <TextWrapperWeight>
-            <Text>
-              {weight}
-              <span> kg</span>
-            </Text>
-            <ControlPanelButton onClick={openWeightMenu}>
-              <SvgWrapper>
-                <use href={sprite + '#icon-edit-2'} />
-              </SvgWrapper>
-            </ControlPanelButton>
-          </TextWrapperWeight>
-        </div>
-
-        {showWeightMenu && (
-          <>
-            <div>component СurrentWeightModal OR popup mui</div>
-            <button onClick={closeWeightMenu}> </button>
-          </>
-        )}
-      </Weight>
+      {showWeightMenu && (
+        <>
+          <div>component СurrentWeightModal OR popup mui</div>
+          <button onClick={closeWeightMenu}> </button>
+        </>
+      )}
     </WrapperControlPanel>
   );
 };
