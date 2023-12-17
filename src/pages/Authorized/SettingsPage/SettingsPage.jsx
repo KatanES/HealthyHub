@@ -1,7 +1,11 @@
+import UserInformation from '../../../components/AuthorizedUser/UserInformation';
+
 const SettingsPage = () => {
   return (
     <div>
-      <h1>Settings Page!</h1>
+      <h2>Profile Settings</h2>
+      <img />
+      <UserInformation />
     </div>
   );
 };
