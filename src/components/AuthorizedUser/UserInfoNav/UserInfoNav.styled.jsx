@@ -6,6 +6,7 @@ export const WrapperUserInfoNav = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
 `;
 
 export const Text = styled.p`
@@ -32,6 +33,7 @@ export const ImageHolder = styled.div`
 `;
 
 export const IconAvatarWrapper = styled.svg`
+  margin: 0;
   width: 24px;
   height: 24px;
   stroke: ${globalColor.colorPrimaryWhite};
@@ -44,6 +46,7 @@ export const IconAvatarWrapper = styled.svg`
 
 export const UserInfoNavButton = styled.button`
   border: none;
+  display: block;
   padding: 0;
   background: transparent;
 `;

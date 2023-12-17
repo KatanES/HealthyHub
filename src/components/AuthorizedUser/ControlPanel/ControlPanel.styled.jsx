@@ -8,9 +8,12 @@ export const WrapperControlPanel = styled.div`
 
   @media (min-width: 834px) {
     flex-direction: row;
+    /* margin-left: 127px; */
   }
+
   @media (min-width: 1440px) {
     gap: 80px;
+    /* margin-left: 127px; */
   }
 `;
 

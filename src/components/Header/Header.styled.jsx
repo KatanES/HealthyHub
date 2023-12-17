@@ -15,20 +15,18 @@ export const HeaderContent = styled.div`
   height: 60px;
 
   @media screen and (min-width: 320px) {
-    width: 320px;
+    width: 300px;
     padding: 0 10px;
   }
 
   @media screen and (min-width: 834px) {
-    width: 834px;
+    width: 780px;
     padding: 0 27px;
     height: 100px;
   }
 
-  @media screen and (min-width: 1140px) {
-    width: 1440px;
+  @media screen and (min-width: 1440px) {
+    width: 1372px;
     padding: 0 34px;
   }
 `;
-
-
