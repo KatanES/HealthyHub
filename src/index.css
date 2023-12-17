@@ -1,4 +1,5 @@
 /* @import 'node_modules/modern-normalize/modern-normalize.css'; */
+@import-normalize;
 
 body {
   background-color: #000;
@@ -35,34 +36,4 @@ img {
 }
 button {
   cursor: pointer;
-}
-
-.container {
-  max-width: 100%;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-@media screen and (min-width: 320px) {
-  .container {
-    max-width: 300px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 768px;
-    padding-left: 32px;
-    padding-right: 32px;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .container {
-    max-width: 1200px;
-  }
 }
