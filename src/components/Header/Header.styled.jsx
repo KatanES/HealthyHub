@@ -14,21 +14,19 @@ export const HeaderContent = styled.div`
   width: 100%;
   height: 60px;
 
-  @media screen and (min-width: 320px) {
-    width: 320px;
+  @media screen and (min-width: 300px) {
+    max-width: 320px;
     padding: 0 10px;
   }
 
-  @media screen and (min-width: 834px) {
-    width: 834px;
+  @media screen and (min-width: 780px) {
+    max-width: 834px;
     padding: 0 27px;
     height: 100px;
   }
 
-  @media screen and (min-width: 1140px) {
-    width: 1440px;
+  @media screen and (min-width: 1372px) {
+    max-width: 1440px;
     padding: 0 34px;
   }
 `;
-
-

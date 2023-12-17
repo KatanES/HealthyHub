@@ -5,12 +5,14 @@ import { Container } from './SharedLayout.styled';
 
 const SharedLayout = () => {
   return (
-    <Container>
+    <>
       <Header />
-      <Suspense fallback={null}>
-        <Outlet />
-      </Suspense>
-    </Container>
+      <Container>
+        <Suspense fallback={null}>
+          <Outlet />
+        </Suspense>
+      </Container>
+    </>
   );
 };
 

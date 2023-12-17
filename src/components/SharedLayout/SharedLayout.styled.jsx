@@ -9,13 +9,13 @@ export const Container = styled.div`
     padding: 0 10px;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 780px) {
     max-width: 834px;
-    padding: 0 32px;
-    padding: 32px;
+    padding: 0 27px;
   }
-  @media screen and (min-width: 1200px) {
+  
+  @media screen and (min-width: 1372px) {
     max-width: 1440px;
-    padding: 0 10px;
+    padding: 0 34px;
   }
 `;
