@@ -30,7 +30,7 @@ function App() {
           ></Route>
           <Route path="/main" element={<MainPage />}></Route>
           <Route path="/dashboard" element={<DashboardPage />}></Route>
-          <Route path="/diary" element={<DiaryPage />}></Route>
+          <Route path="/diary/*" element={<DiaryPage />}></Route>
           <Route
             path="/recommended-food"
             element={<RecommendedFoodPage />}

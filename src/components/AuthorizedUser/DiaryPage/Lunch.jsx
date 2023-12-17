@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addMeal } from '../../../redux/slice/diarySlice.jsx';
-import style from './DiaryPage.styled.jsx';
+// import style from './DiaryPage.styled.jsx';
 
 const Lunch = () => {
   const dispatch = useDispatch();
