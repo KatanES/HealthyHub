@@ -5,11 +5,13 @@ export const WrapperControlPanel = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+  margin-left: 127px;
 
-  @media (min-width: 834px) {
+  @media (min-width: 768px) {
     flex-direction: row;
+    margin-left: 626px;
   }
-  @media (min-width: 1440px) {
+  @media (min-width: 1200px) {
     gap: 80px;
   }
 `;
