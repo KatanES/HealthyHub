@@ -128,4 +128,6 @@ const Breakfast = () => {
   );
 };
 
+console.log();
+
 export default Breakfast;

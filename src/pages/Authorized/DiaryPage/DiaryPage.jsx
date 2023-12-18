@@ -5,7 +5,6 @@ import Snack from '../../../components/AuthorizedUser/DiaryPage/Snack';
 import symbol from '../../../assets/Welcome/symbol.svg';
 import { Container } from './DiaryPage.styled';
 
-
 const DiaryPage = () => {
   return (
     <Container>

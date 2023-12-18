@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { device } from '../../../Device';
 
 export const Container = styled.div`
-  border: 2px color white;
+  /* border: 2px color white;
   max-width: 320px;
   padding: 10px;
   display: flex;
@@ -15,5 +15,5 @@ export const Container = styled.div`
   @media ${device.desktop} {
     max-width: 1376px;
     padding: 32px;
-  }
+  } */
 `;
