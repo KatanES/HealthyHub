@@ -66,7 +66,7 @@ export const MobileMenu = ({
       />
 
       <Weight
-        openWeightMenu={openСurrentWeightModal}
+        openСurrentWeightModal={openСurrentWeightModal}
         weightIcon={weightIcon}
         weight={weight}
       />
