@@ -95,7 +95,7 @@ export const Button = styled.button`
   padding: 8px 10px;
   border-radius: 12px;
   background-color: #e3ffa8;
-  font-family: 'Roboto', sans-serif;
+  font-family: Poppins, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -140,11 +140,6 @@ export const HeroItem = styled.li`
   margin-top: 16px;
 `;
 
-export const SVG = styled.svg`
-  width: 8px;
-  height: 8px;
-  margin-top: 4px;
-`;
 
 export const HeroItemText = styled.p`
   margin: 0 0 0 8px;

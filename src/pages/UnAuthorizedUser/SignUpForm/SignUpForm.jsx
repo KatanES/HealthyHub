@@ -1,35 +1,34 @@
-import { Formik, Field } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { signup } from '../../../redux/auth/operations';
 import { ImEyeBlocked, ImEye } from 'react-icons/im';
-import { TextField, Button, InputAdornment, IconButton } from '@mui/material';
-import { styled } from '@mui/material/styles';
-
-const StyledButton = styled(Button)({
-  backgroundColor: ' #e3ffa8',
- 
-  transition: 'background-color 0.3s ease',
-  '&:hover': {
-    backgroundColor: '#1E3535',
-    color: '#ffffff',
-  },
-  '&:active': {
-    backgroundColor: '#1E3535',
-    color: '#ffffff',
-  },
-});
+import {
+  FormWrapper,
+  StyledField,
+  StyledForm,
+  ErrorMessageStyled,
+  StyledButton,
+  SVG,
+} from './SignUpForm.styled';
+import { StyleSheetManager } from 'styled-components';
+import sprite from '../../../assets/Welcome/symbol.svg';
 
 const RegisterSchema = Yup.object({
   name: Yup.string()
+    .matches(
+      /^[a-zA-Za-яА-Я]+(([' -][a-zA-Za-яА-Я ])?[a-zA-Za-яА-Я]*)*$/,
+      'Invalid name format'
+    )
+    .required('Name is required!')
     .min(2, 'Too Short!')
-    .max(50, 'Too Long!')
-    .required('Name is required!'),
+    .max(50, 'Too Long!'),
+
   email: Yup.string('Enter your email')
     .email('Enter a valid email')
     .required('Email is required!'),
-  password: Yup.string('Enter your password')
+  password: Yup.string('Enter a valid Password*')
     .min(8, 'Password should be of minimum 8 characters length')
     .required('Password is required'),
 });
@@ -41,97 +40,74 @@ export const SignUpForm = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
+
   return (
-    <Formik
-      initialValues={{
-        name: '',
-        email: '',
-        password: '',
-      }}
-      validationSchema={RegisterSchema}
-      onSubmit={({ ...values }, actions) => {
-        dispatch(signup({ ...values }));
-        actions.resetForm();
-      }}
-    >
-      {({ handleSubmit }) => (
-        <form
-          style={{ width: '300px', margin: '0 auto', textAlign: 'center' }}
-          onSubmit={handleSubmit}
-        >
-          <Field name="name">
-            {({ field, form: { touched, errors } }) => (
-              <TextField
-                style={{
-                  boxShadow: '6px 6px 6px 0px rgba(0,0,0,0.55)',
-                }}
-                {...field}
-                label="Name"
-                variant="outlined"
-                error={touched.name && Boolean(errors.name)}
-                helperText={touched.name && errors.name}
-                fullWidth
-                margin="normal"
-                autoComplete="off"
-                size="small"
-              />
-            )}
-          </Field>
+    <FormWrapper>
+      <Formik
+        initialValues={{
+          name: '',
+          email: '',
+          password: '',
+        }}
+        validationSchema={RegisterSchema}
+        onSubmit={({ ...values }, actions) => {
+          dispatch(signup({ ...values }));
+          actions.resetForm();
+        }}
+      >
+        {({ handleChange, handleBlur, handleSubmit, isValid, values }) => (
+          <StyledForm onSubmit={handleSubmit}>
+            <StyledField
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Name"
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
 
-          <Field name="email">
-            {({ field, form: { touched, errors } }) => (
-              <TextField
-                style={{
-                  boxShadow: '6px 6px 6px 0px rgba(0,0,0,0.55)',
-                }}
-                {...field}
-                label="Email"
-                variant="outlined"
-                error={touched.email && Boolean(errors.email)}
-                helperText={touched.email && errors.email}
-                fullWidth
-                margin="normal"
-                autoComplete="off"
-                size="small"
-              />
-            )}
-          </Field>
+            <ErrorMessage name="name" component={ErrorMessageStyled} />
+            <StyledField
+              name="email"
+              type="email"
+              id="email"
+              placeholder="E-mail"
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+            <ErrorMessage name="email" component={ErrorMessageStyled} />
+            <StyleSheetManager shouldForwardProp={(prop) => prop !== 'success'}>
+              <div style={{ position: 'relative' }}>
+                <StyledField
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                  success={isValid}
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                <span
+                  style={{
+                    position: 'absolute',
+                    top: '-10%',
+                    right: '10px',
+                    transform: 'translateY(80%)',
+                    cursor: 'pointer',
+                  }}
+                  onClick={handlePasswordVisibility}
+                >
+                  {showPassword ? <ImEye /> : <ImEyeBlocked />}
+                </span>
+              </div>
+              <ErrorMessage name="password" component={ErrorMessageStyled} />
+            </StyleSheetManager>
 
-          <Field name="password">
-            {({ field, form: { touched, errors } }) => (
-              <TextField
-                style={{
-                  boxShadow: '6px 6px 6px 0px rgba(0,0,0,0.55)',
-                }}
-                {...field}
-                type={showPassword ? 'text' : 'password'}
-                label="Password"
-                variant="outlined"
-                error={touched.password && Boolean(errors.password)}
-                helperText={touched.password && errors.password}
-                fullWidth
-                margin="normal"
-                size="small"
-                autoComplete="off"
-                sx={{ mb: 2 }}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton onClick={handlePasswordVisibility}>
-                        {showPassword ? <ImEye /> : <ImEyeBlocked />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            )}
-          </Field>
-
-          <StyledButton type="submit" variant="contained" fullWidth>
-            Next
-          </StyledButton>
-        </form>
-      )}
-    </Formik>
+            <StyledButton type="submit">Next</StyledButton>
+          </StyledForm>
+        )}
+      </Formik>
+    </FormWrapper>
   );
 };
