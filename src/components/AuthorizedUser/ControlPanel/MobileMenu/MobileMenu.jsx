@@ -17,8 +17,7 @@ export const MobileMenu = ({
   openTargetSelectionModal,
   currentGoalIcon,
   goal,
-  showMobileMenu,
-  openСurrentWeightModal,
+   openСurrentWeightModal,
   weightIcon,
   weight,
 }) => {
@@ -62,7 +61,6 @@ export const MobileMenu = ({
         openTargetSelectionModal={openTargetSelectionModal}
         currentGoalIcon={currentGoalIcon}
         goal={goal}
-        showMobileMenu={showMobileMenu}
       />
 
       <Weight
