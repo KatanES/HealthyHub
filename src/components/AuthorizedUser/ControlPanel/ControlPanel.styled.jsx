@@ -29,6 +29,24 @@ export const MenuButton = styled.button`
   }
 `;
 
+export const MenuButtonCloseModal = styled.button`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 16px;
+  height: 16px;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+`;
+
+export const SvgWrapperCloseModal = styled.svg`
+  width: 16px;
+  height: 16px;
+  stroke: ${globalColor.colorPrimaryGrey};
+`;
+
 export const ControlPanelButton = styled.button`
   display: flex;
   align-items: center;

@@ -1,49 +1,75 @@
-import Modal from 'react-modal';
+import { Popover } from '@mui/material';
 
-import sprite from '../../../../assets/sprite.svg';
 import { Goals } from '../Goals';
 import { Weight } from '../Weight';
+import sprite from '../../../../assets/sprite.svg';
 
-// Встановлюємо кореневий елемент для модального вікна
-Modal.setAppElement('#root');
+import { globalColor } from '../../../Header/root';
+import {
+  MenuButtonCloseModal,
+  SvgWrapperCloseModal,
+} from '../ControlPanel.styled';
 
-import { MenuButton, SvgWrapper } from '../ControlPanel.styled';
-
-export default function MobileMenu({
+export const MobileMenu = ({
   closeMobileMenu,
   isOpen,
-  openGoalMenu,
+  anchorEl,
+  openTargetSelectionModal,
   currentGoalIcon,
   goal,
   showMobileMenu,
-  openWeightMenu,
+  openСurrentWeightModal,
   weightIcon,
   weight,
-}) {
+}) => {
   return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={closeMobileMenu}
-      contentLabel="Example Modal"
+    <Popover
+      open={isOpen}
+      anchorEl={anchorEl}
+      onClose={closeMobileMenu}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'center',
+      }}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'center',
+      }}
+      PaperProps={{
+        sx: {
+          position: 'relative',
+          boxSizing: 'border-box',
+          boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.2)',
+          borderRadius: '12px',
+          backgroundColor: globalColor.colorPrimaryBlack2,
+          padding: '24px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          gap: '40px',
+          width: '300px',
+          height: 'auto',
+        },
+      }}
     >
-      <MenuButton type="button" onClick={closeMobileMenu}>
-        <SvgWrapper>
+      <MenuButtonCloseModal type="button" onClick={closeMobileMenu}>
+        <SvgWrapperCloseModal>
           <use href={sprite + '#icon-close-circle'} />
-        </SvgWrapper>
-      </MenuButton>
+        </SvgWrapperCloseModal>
+      </MenuButtonCloseModal>
 
       <Goals
-        openGoalMenu={openGoalMenu}
+        openTargetSelectionModal={openTargetSelectionModal}
         currentGoalIcon={currentGoalIcon}
         goal={goal}
         showMobileMenu={showMobileMenu}
       />
 
       <Weight
-        openWeightMenu={openWeightMenu}
+        openWeightMenu={openСurrentWeightModal}
         weightIcon={weightIcon}
         weight={weight}
       />
-    </Modal>
+    </Popover>
   );
-}
+};

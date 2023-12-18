@@ -10,9 +10,14 @@ import {
   ButtonTextContainer,
 } from './ControlPanel.styled';
 
-export const Goals = ({openGoalMenu, currentGoalIcon, goal, showMobileMenu}) => {
+export const Goals = ({
+  openTargetSelectionModal,
+  currentGoalIcon,
+  goal,
+  showMobileMenu,
+}) => {
   return (
-    <ControlPanelButton onClick={openGoalMenu}>
+    <ControlPanelButton onClick={openTargetSelectionModal}>
       <IconSelectWrapper>
         <img src={currentGoalIcon} alt="current user`s goal" />
       </IconSelectWrapper>

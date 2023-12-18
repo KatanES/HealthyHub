@@ -10,9 +10,9 @@ import {
   ButtonTextContainer,
 } from './ControlPanel.styled';
 
-export const Weight = ({ openWeightMenu, weightIcon, weight }) => {
+export const Weight = ({ openСurrentWeightModal, weightIcon, weight }) => {
   return (
-    <ControlPanelButton onClick={openWeightMenu}>
+    <ControlPanelButton onClick={openСurrentWeightModal}>
       <IconSelectWrapper>
         <img src={weightIcon} alt="current user`s weight" />
       </IconSelectWrapper>
