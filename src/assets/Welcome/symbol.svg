@@ -3,5 +3,9 @@
 <symbol id="icon-Ellipse-15" viewBox="0 0 32 32">
 <path fill="#e3ffa8" style="fill: var(--color1, #e3ffa8)" d="M32 16c0 8.837-7.163 16-16 16s-16-7.163-16-16c0-8.837 7.163-16 16-16s16 7.163 16 16z"></path>
 </symbol>
+<symbol id="icon-arrow-right" viewBox="0 0 32 32">
+<path fill="none" stroke="#b6b6b6" style="stroke: var(--color1, #b6b6b6)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1.3333" d="M12.76 7.907l-8.093 8.093 8.093 8.093"></path>
+<path fill="none" stroke="#b6b6b6" style="stroke: var(--color1, #b6b6b6)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1.3333" d="M27.333 16h-22.44"></path>
+</symbol>
 </defs>
 </svg>
