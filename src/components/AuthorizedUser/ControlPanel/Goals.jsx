@@ -1,3 +1,4 @@
+import { useMediaQuery } from '@mui/material';
 import sprite from '../../../assets/sprite.svg';
 
 import {
@@ -10,9 +11,13 @@ import {
   ButtonTextContainer,
 } from './ControlPanel.styled';
 
-export const Goals = ({openGoalMenu, currentGoalIcon, goal, showMobileMenu}) => {
+export const Goals = ({ openTargetSelectionModal, currentGoalIcon, goal }) => {
+  const screenWidth = useMediaQuery('(min-width: 835px)')
+    ? 'desktop'
+    : 'mobile';
+
   return (
-    <ControlPanelButton onClick={openGoalMenu}>
+    <ControlPanelButton onClick={openTargetSelectionModal}>
       <IconSelectWrapper>
         <img src={currentGoalIcon} alt="current user`s goal" />
       </IconSelectWrapper>
@@ -22,7 +27,7 @@ export const Goals = ({openGoalMenu, currentGoalIcon, goal, showMobileMenu}) => 
         <TextWrapperGoal>
           <Text>{goal}</Text>
 
-          {showMobileMenu ? (
+          {screenWidth === 'mobile' ? (
             <SvgWrapper>
               <use href={sprite + '#icon-arrow-right'} />
             </SvgWrapper>

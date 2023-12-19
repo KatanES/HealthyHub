@@ -44,3 +44,4 @@ const RecommendedFoodOnMain = () => {
 };
 
 export default RecommendedFoodOnMain;
+

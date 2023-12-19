@@ -51,4 +51,6 @@ export const SeeMoreButton = styled(Link)`
     font-size: ${props => props.theme.fontSizes.s};
     line-height: 22px;
   }
+
 `;
+
