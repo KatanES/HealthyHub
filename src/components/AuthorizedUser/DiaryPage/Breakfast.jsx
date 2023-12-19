@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addMeal } from '../../../redux/slice/diarySlice.jsx';
-// import style from './DiaryPage.styled.jsx';
+import BreakfastImage from '../../../assets/Diary/Breakfast.png';
+import { TitelMeal } from './DiaryPage.styled.jsx';
 
 const Breakfast = () => {
   const dispatch = useDispatch();
@@ -34,17 +35,38 @@ const Breakfast = () => {
         fat,
       })
     );
+
+    setTotalNutrients((prev) => ({
+      carbonohidrates: prev.carbonohidrates + parseFloat(carbonohidrates),
+      protein: prev.protein + parseFloat(protein),
+      fat: prev.fat + parseFloat(fat),
+    }));
+
     closeModal();
   };
 
+  const [totalNutrients, setTotalNutrients] = useState({
+    carbonohidrates: 0,
+    protein: 0,
+    fat: 0,
+  });
+
   return (
-    <div className={style.section}>
+    <div>
+      <img src={BreakfastImage} alt="Breakfast"></img>
       <h2>Breakfast</h2>
       <button onClick={openModal}>+ Record your meal</button>
 
+      <div>
+        <p>Carbonohidrates: {totalNutrients.carbonohidrates}</p>
+        <p>Protein: {totalNutrients.protein}</p>
+        <p>Fat: {totalNutrients.fat}</p>
+      </div>
+
       {modalOpen && (
-        <div className={style.modal}>
-          <h2>Breakfast</h2>
+        <div>
+          <img src={Breakfast} alt="Breakfast"></img>
+          <TitelMeal>Breakfast</TitelMeal>
           <form onSubmit={handleSubmit}>
             <label htmlFor="mealName">The name of the product or dish</label>
             <input
@@ -81,10 +103,10 @@ const Breakfast = () => {
               onChange={(e) => setFat(e.target.value)}
               required
             />
-            <button type="submit" onSubmit={handleSubmit}>
+            <button type="submit" onClick={handleSubmit}>
               delete
             </button>
-            <button type="submit" onSubmit={handleSubmit}>
+            <button type="submit" onClick={handleSubmit}>
               + Add more
             </button>
             <button type="submit">Save</button>
@@ -105,5 +127,7 @@ const Breakfast = () => {
     </div>
   );
 };
+
+console.log();
 
 export default Breakfast;

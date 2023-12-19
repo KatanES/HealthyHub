@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addMeal } from '../../../redux/slice/diarySlice.jsx';
-// import style from './DiaryPage.styled.jsx';
+import LunchImage from '../../../assets/Diary/Lunch.png';
+import { TitelMeal } from './DiaryPage.styled.jsx';
 
 const Lunch = () => {
   const dispatch = useDispatch();
@@ -34,16 +35,36 @@ const Lunch = () => {
         fat,
       })
     );
+
+    setTotalNutrients((prev) => ({
+      carbonohidrates: prev.carbonohidrates + parseFloat(carbonohidrates),
+      protein: prev.protein + parseFloat(protein),
+      fat: prev.fat + parseFloat(fat),
+    }));
+
     closeModal();
   };
 
+  const [totalNutrients, setTotalNutrients] = useState({
+    carbonohidrates: 0,
+    protein: 0,
+    fat: 0,
+  });
+
   return (
-    <div className={style.section}>
-      <h2>Lunch</h2>
+    <div>
+      <img src={LunchImage} alt="Lunch"></img>
+      <TitelMeal>Lunch</TitelMeal>
       <button onClick={openModal}>+ Record your meal</button>
 
+      <div>
+        <p>Carbonohidrates: {totalNutrients.carbonohidrates}</p>
+        <p>Protein: {totalNutrients.protein}</p>
+        <p>Fat: {totalNutrients.fat}</p>
+      </div>
+      
       {modalOpen && (
-        <div className={style.modal}>
+        <div>
           <h2>Lunch</h2>
           <form onSubmit={handleSubmit}>
             <label htmlFor="mealName">The name of the product or dish</label>
@@ -81,10 +102,10 @@ const Lunch = () => {
               onChange={(e) => setFat(e.target.value)}
               required
             />
-            <button type="submit" onSubmit={handleSubmit}>
+            <button type="submit" onClick={handleSubmit}>
               delete
             </button>
-            <button type="submit" onSubmit={handleSubmit}>
+            <button type="submit" onClick={handleSubmit}>
               + Add more
             </button>
             <button type="submit">Save</button>

@@ -1,11 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
-import { PrivateRoute } from './PrivateRoute';
-import { useDispatch } from 'react-redux';
-import { useEffect, lazy } from 'react';
-import { RestrictedRoute } from './ResctrictedRoute';
+// import { PrivateRoute } from './PrivateRoute';
+// import { useDispatch } from 'react-redux';
+// import { useEffect } from 'react';
+// import { RestrictedRoute } from './ResctrictedRoute';
 import { AppWrapper } from './App.styled';
-import { refreshUser } from './redux/auth/operations';
-import { useAuth } from './components/hooks/useAuth';
+// import { refreshUser } from './redux/auth/operations';
+// import { useAuth } from './components/hooks/useAuth';
 
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 import WelcomePage from './pages/UnAuthorizedUser/WelcomePage/WelcomePage';
@@ -20,82 +20,29 @@ import RecommendedFoodPage from './pages/Authorized/RecommendedFoodPage/Recommen
 import SettingsPage from './pages/Authorized/SettingsPage/SettingsPage';
 
 function App() {
-  const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
-  return isRefreshing ? (
-    <b>Refreshing user...</b>
-  ) : (
+  return (
     <AppWrapper>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route path="/welcome" element={<WelcomePage />} />
-          <Route
-            path="/signup"
-            element={
-              <RestrictedRoute
-                redirectTo="/signin"
-                component={<SignUpPage />}
-              />
-            }
-          >
+          <Route path="/signup" element={<SignUpPage />}>
             Sign Up!
           </Route>
-          <Route
-            path="/signin"
-            element={
-              <RestrictedRoute redirectTo="/main" component={<SignInPage />} />
-            }
-          >
+          <Route path="/signin" element={<SignInPage />}>
             Login
           </Route>
           <Route
             path="/forgot-password"
-            element={
-              <RestrictedRoute
-                redirectTo="/signin"
-                component={<ForgotPasswordPage />}
-              />
-            }
+            element={<ForgotPasswordPage />}
           ></Route>
-          <Route
-            path="/main"
-            element={
-              <PrivateRoute redirectTo="/signin" component={<MainPage />} />
-            }
-          ></Route>
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute
-                redirectTo="/signin"
-                component={<DashboardPage />}
-              />
-            }
-          ></Route>
-          <Route
-            path="/diary/*"
-            element={
-              <PrivateRoute redirectTo="/signin" component={<DiaryPage />} />
-            }
-          ></Route>
+          <Route path="/main" element={<MainPage />}></Route>
+          <Route path="/dashboard" element={<DashboardPage />}></Route>
+          <Route path="/diary" element={<DiaryPage />}></Route>
           <Route
             path="/recommended-food"
-            element={
-              <PrivateRoute
-                redirectTo="/signin"
-                component={<RecommendedFoodPage />}
-              />
-            }
+            element={<RecommendedFoodPage />}
           ></Route>
-          <Route
-            path="/settings"
-            element={
-              <PrivateRoute redirectTo="/signin" component={<SettingsPage />} />
-            }
-          ></Route>
+          <Route path="/settings" element={<SettingsPage />}></Route>
 
           <Route path="*" element={<ErrorPage />} />
         </Route>

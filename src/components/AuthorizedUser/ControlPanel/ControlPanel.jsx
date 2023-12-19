@@ -1,4 +1,11 @@
 import { useState } from 'react';
+import { useMediaQuery } from '@mui/material';
+
+import { Goals } from './Goals';
+import { Weight } from './Weight';
+import { MobileMenu } from './MobileMenu/MobileMenu';
+import { TargetSelectionModal } from '../TargetSelectionModal/TargetSelectionModal';
+import { СurrentWeightModal } from '../СurrentWeightModal/СurrentWeightModal';
 
 import {
   gainMuscle,
@@ -10,16 +17,11 @@ import {
 } from '../../../assets/Header/headerImage';
 import sprite from '../../../assets/sprite.svg';
 
-import { Goals } from './Goals';
-import { Weight } from './Weight';
-
 import {
   WrapperControlPanel,
   MenuButton,
   SvgWrapper,
 } from './ControlPanel.styled';
-import MobileMenu from './MobileMenu/MobileMenu';
-import { useMediaQuery } from '@mui/material';
 
 export const ControlPanel = () => {
   const [user] = useState({
@@ -29,37 +31,46 @@ export const ControlPanel = () => {
   }); //don`t need
   //   const user = useSelector(selectUser);
 
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [showGoalMenu, setShowGoalMenu] = useState(false);
-  const [showWeightMenu, setShowWeightMenu] = useState(false);
   const [isActive, setIsActive] = useState(false);
 
-   const isMobile = useMediaQuery('(max-width:834px)');
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showTargetSelectionModal, setShowTargetSelectionModal] =
+    useState(false);
+  const [showСurrentWeightModal, setShowСurrentWeightModal] = useState(false);
 
-  const openMobileMenu = () => {
-    setShowMobileMenu(true);
+  const isMobile = useMediaQuery('(max-width:834px)');
+
+  const openMobileMenu = (event) => {
+    setAnchorEl(event.currentTarget);
     setIsActive(true);
+    setShowMobileMenu(true);
   };
 
   const closeMobileMenu = () => {
-    setShowMobileMenu(false);
+    setAnchorEl(null);
     setIsActive(false);
+    setShowMobileMenu(false);
   };
 
-  const openGoalMenu = () => {
-    setShowGoalMenu(true);
+  const openTargetSelectionModal = (event) => {
+    setAnchorEl(event.currentTarget);
+    setShowTargetSelectionModal(true);
   };
 
-  const closeGoalMenu = () => {
-    setShowGoalMenu(false);
+  const closeTargetSelectionModal = () => {
+    setAnchorEl(null);
+    setShowTargetSelectionModal(false);
   };
 
-  const openWeightMenu = () => {
-    setShowWeightMenu(true);
+  const openСurrentWeightModal = (event) => {
+    setAnchorEl(event.currentTarget);
+    setShowСurrentWeightModal(true);
   };
 
-  const closeWeightMenu = () => {
-    setShowWeightMenu(false);
+  const closeСurrentWeightModal = () => {
+    setAnchorEl(null);
+    setShowСurrentWeightModal(false);
   };
 
   const { gender, goal, weight } = user;
@@ -115,14 +126,12 @@ export const ControlPanel = () => {
       ) : (
         <>
           <Goals
-            openGoalMenu={openGoalMenu}
+            openTargetSelectionModal={openTargetSelectionModal}
             currentGoalIcon={currentGoalIcon}
             goal={goal}
-            showMobileMenu={showMobileMenu}
           />
-
           <Weight
-            openWeightMenu={openWeightMenu}
+            openСurrentWeightModal={openСurrentWeightModal}
             weightIcon={weightIcon}
             weight={weight}
           />
@@ -131,30 +140,36 @@ export const ControlPanel = () => {
 
       {showMobileMenu && (
         <MobileMenu
-          isOpen={showMobileMenu}
+          isOpen={Boolean(anchorEl)}
+          anchorEl={anchorEl}
           closeMobileMenu={closeMobileMenu}
-          openGoalMenu={openGoalMenu}
+          openTargetSelectionModal={openTargetSelectionModal}
           currentGoalIcon={currentGoalIcon}
           goal={goal}
           showMobileMenu={showMobileMenu}
-          openWeightMenu={openWeightMenu}
+          openСurrentWeightModal={openСurrentWeightModal}
           weightIcon={weightIcon}
           weight={weight}
         />
       )}
 
-      {showGoalMenu && (
-        <>
-          <div>component TargetSelectionModal, OR popup mui</div>
-          <button onClick={closeGoalMenu}> </button>
-        </>
+      {showTargetSelectionModal && (
+        <TargetSelectionModal
+          isOpen={Boolean(anchorEl)}
+          anchorEl={anchorEl}
+          closeTargetSelectionModal={closeTargetSelectionModal}
+          currentGoalIcon={currentGoalIcon}
+          goal={goal}
+          showTargetSelectionModal={showTargetSelectionModal}
+        />
       )}
 
-      {showWeightMenu && (
-        <>
-          <div>component СurrentWeightModal OR popup mui</div>
-          <button onClick={closeWeightMenu}> </button>
-        </>
+      {showСurrentWeightModal && (
+        <СurrentWeightModal
+          isOpen={Boolean(anchorEl)}
+          anchorEl={anchorEl}
+          closeСurrentWeightModal={closeСurrentWeightModal}
+        />
       )}
     </WrapperControlPanel>
   );
