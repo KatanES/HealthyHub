@@ -3,21 +3,23 @@ import Lunch from '../../../components/AuthorizedUser/DiaryPage/Lunch';
 import Dinner from '../../../components/AuthorizedUser/DiaryPage/Dinner';
 import Snack from '../../../components/AuthorizedUser/DiaryPage/Snack';
 import symbol from '../../../assets/Welcome/symbol.svg';
-import { Container } from './DiaryPage.styled';
+import { Container, TitelPage, SVG, Section } from './DiaryPage.styled';
 
 const DiaryPage = () => {
   return (
     <Container>
-      <svg>
-        <use href={symbol + '#icon-arrow-right'} />
-      </svg>
-      <h2>Diary</h2>
-      <div>
+      <TitelPage>
+        <SVG>
+          <use href={symbol + '#icon-arrow-right'} />
+        </SVG>
+        <h2>Diary</h2>
+      </TitelPage>
+      <Section>
         <Breakfast />
         <Lunch />
         <Dinner />
         <Snack />
-      </div>
+      </Section>
     </Container>
   );
 };
