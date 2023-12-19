@@ -160,7 +160,8 @@ export const ControlPanel = () => {
           closeTargetSelectionModal={closeTargetSelectionModal}
           currentGoalIcon={currentGoalIcon}
           goal={goal}
-          />
+          showTargetSelectionModal={showTargetSelectionModal}
+        />
       )}
 
       {showСurrentWeightModal && (

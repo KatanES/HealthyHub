@@ -57,7 +57,6 @@ export const MobileMenu = ({
         </SvgWrapperCloseModal>
       </MenuButtonCloseModal>
 
-
       <Goals
         openTargetSelectionModal={openTargetSelectionModal}
         currentGoalIcon={currentGoalIcon}
