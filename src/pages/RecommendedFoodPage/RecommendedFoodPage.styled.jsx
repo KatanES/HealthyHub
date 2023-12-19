@@ -117,4 +117,6 @@ export const RecommendedFoodList = styled.ul`
   @media screen and (${props => props.theme.mq.desktop}) {    
     width: calc((100% - 44px) / 2);
   }
+
 `;
+
