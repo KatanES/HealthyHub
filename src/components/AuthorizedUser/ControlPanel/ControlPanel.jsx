@@ -30,9 +30,7 @@ export const ControlPanel = () => {
     weight: 65,
   }); //don`t need
   //   const user = useSelector(selectUser);
-
   const [isActive, setIsActive] = useState(false);
-
   const [anchorEl, setAnchorEl] = useState(null);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showTargetSelectionModal, setShowTargetSelectionModal] =
@@ -76,45 +74,39 @@ export const ControlPanel = () => {
   const { gender, goal, weight } = user;
 
   let currentGoalIcon;
-
   switch (gender) {
     case 'Male':
       switch (goal) {
         case 'Lose fat':
           currentGoalIcon = loseFatMen;
           break;
-
         case 'Maintain':
           currentGoalIcon = maintakeMen;
           break;
-
         default:
           currentGoalIcon = gainMuscle;
           break;
       }
       break;
-
+    
     case 'Female':
       switch (goal) {
         case 'Lose fat':
           currentGoalIcon = loseFatGirl;
           break;
-
         case 'Maintain':
           currentGoalIcon = maintakeGirl;
           break;
-
         default:
           currentGoalIcon = gainMuscle;
           break;
       }
       break;
-
     default:
       currentGoalIcon = gainMuscle;
       break;
   }
-
+  
   return (
     <WrapperControlPanel>
       {isMobile ? (
@@ -137,7 +129,6 @@ export const ControlPanel = () => {
           />
         </>
       )}
-
       {showMobileMenu && (
         <MobileMenu
           isOpen={Boolean(anchorEl)}
@@ -152,7 +143,6 @@ export const ControlPanel = () => {
           weight={weight}
         />
       )}
-
       {showTargetSelectionModal && (
         <TargetSelectionModal
           isOpen={Boolean(anchorEl)}
@@ -160,7 +150,6 @@ export const ControlPanel = () => {
           closeTargetSelectionModal={closeTargetSelectionModal}
           currentGoalIcon={currentGoalIcon}
           goal={goal}
-          showTargetSelectionModal={showTargetSelectionModal}
         />
       )}
 
