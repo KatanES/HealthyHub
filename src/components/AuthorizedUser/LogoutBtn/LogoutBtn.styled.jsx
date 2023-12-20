@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-
 import { globalColor } from '../../Header/root';
-
 export const LogoutBtnButton = styled.button`
   border: none;
   display: flex;
@@ -11,7 +9,6 @@ export const LogoutBtnButton = styled.button`
   padding: 0;
   background: transparent;
 `;
-
 export const Text = styled.p`
   color: ${globalColor.colorPrimaryWhite};
   margin: 0;
@@ -19,7 +16,6 @@ export const Text = styled.p`
   font-weight: 500;
   line-height: 1.42857;
 `;
-
 export const IconWrapper = styled.svg`
   width: 16px;
   height: 16px;
@@ -50,7 +46,6 @@ export const CancelModalConfirmButton = styled.button`
   font-family: inherit;
   color: ${globalColor.colorPrimaryBlack};
   transition: font-size 0.3s ease;
-
   &:focus,
   &:hover,
   &:active {
@@ -71,7 +66,6 @@ export const LogoutModalConfirmButton = styled.button`
   font-size: 14px;
   font-family: inherit;
   transition: font-size 0.3s ease;
-
   &:focus,
   &:hover,
   &:active {

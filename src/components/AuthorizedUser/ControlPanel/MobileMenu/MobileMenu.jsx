@@ -1,15 +1,12 @@
 import { Popover } from '@mui/material';
-
 import { Goals } from '../Goals';
 import { Weight } from '../Weight';
 import sprite from '../../../../assets/sprite.svg';
-
 import { globalColor } from '../../../Header/root';
 import {
   MenuButtonCloseModal,
   SvgWrapperCloseModal,
 } from '../ControlPanel.styled';
-
 export const MobileMenu = ({
   closeMobileMenu,
   isOpen,
@@ -17,7 +14,7 @@ export const MobileMenu = ({
   openTargetSelectionModal,
   currentGoalIcon,
   goal,
-   openСurrentWeightModal,
+  openСurrentWeightModal,
   weightIcon,
   weight,
 }) => {
@@ -57,13 +54,13 @@ export const MobileMenu = ({
         </SvgWrapperCloseModal>
       </MenuButtonCloseModal>
 
-
       <Goals
         openTargetSelectionModal={openTargetSelectionModal}
         currentGoalIcon={currentGoalIcon}
+        Expand
+        Down
         goal={goal}
       />
-
       <Weight
         openСurrentWeightModal={openСurrentWeightModal}
         weightIcon={weightIcon}

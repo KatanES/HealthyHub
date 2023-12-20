@@ -41,7 +41,6 @@ export const WeightForm = styled.form`
   gap: 12px;
   width: 100%;
   margin-bottom: 24px;
-
   @media (min-width: 834px) {
     flex-direction: row;
     justify-content: space-between;
@@ -59,7 +58,6 @@ export const InputStyled = styled.input`
   color: ${globalColor.colorPrimaryWhite};
   font-family: inherit;
   line-height: 1.42857;
-
   @media (min-width: 834px) {
     width: 166px;
   }
@@ -79,7 +77,6 @@ export const ConfirmWeightModalButton = styled.button`
   font-style: normal;
   font-weight: 500;
   line-height: 1.42857;
-
   @media (min-width: 834px) {
     width: 166px;
   }

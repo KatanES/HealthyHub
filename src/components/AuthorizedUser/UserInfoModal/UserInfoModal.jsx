@@ -3,9 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { LogoutBtn } from '../LogoutBtn/LogoutBtn';
 import { globalColor } from '../../Header/root';
-
 import { IconWrapper, Text, UserInfoModalButton } from './UserInfoModal.styled';
-
 import sprite from '../../../assets/sprite.svg';
 
 export const UserInfoModal = ({ isOpen, onClose, anchorEl }) => {
@@ -42,7 +40,6 @@ export const UserInfoModal = ({ isOpen, onClose, anchorEl }) => {
           gap: '24px',
           width: '158px',
           height: '112px',
-
           '@media (min-width: 834px)': {
             gap: '16px',
             height: '104px',
