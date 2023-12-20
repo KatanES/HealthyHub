@@ -38,12 +38,17 @@ export const Section = styled.div`
   @media (min-width: 768px) {
     max-width: 768px;
     padding: 27px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
   }
 
   @media (min-width: 1200px) {
     max-width: 1480px;
     padding: 34px;
     display: flex;
-    gap: 12px;
+    flex-wrap: wrap;
+    gap: 20px;
+    flex-basis: calc((100% - 20px) / 2);
   }
 `;

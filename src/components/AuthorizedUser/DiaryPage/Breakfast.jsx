@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addMeal } from '../../../redux/slice/diarySlice.jsx';
-import symbol from '../../../assets/Welcome/symbol.svg';
+// import symbol from '../../../assets/Welcome/symbol.svg';
+import MealForm from './MealForm';
 import BreakfastImage from '../../../assets/Diary/Breakfast.png';
 import {
+  DeviceFlex,
   TitelSection,
   IconMeal,
   TitelMeal,
@@ -11,15 +13,8 @@ import {
   NutrientsSection,
   ButtonRecord,
   TitelRecord,
-  InputMeal,
-  SVG,
-  InputFlex,
   ModalRecord,
-  ButtonDelete,
-  ButtonAdd,
-  ButtonSolution,
-  ButtonFlex,
-  Section,
+  Section
 } from './DiaryPage.styled.jsx';
 
 const Breakfast = () => {
@@ -71,18 +66,20 @@ const Breakfast = () => {
 
   return (
     <Section>
-      <TitelSection>
-        <IconMeal src={BreakfastImage} alt="Breakfast"></IconMeal>
-        <TitelMeal>Breakfast</TitelMeal>
-      </TitelSection>
+      <DeviceFlex>
+        <TitelSection>
+          <IconMeal src={BreakfastImage} alt="Breakfast"></IconMeal>
+          <TitelMeal>Breakfast</TitelMeal>
+        </TitelSection>
 
-      <NutrientsSection>
-        <TitelNutrients>
-          Carbonohidrates: {totalNutrients.carbonohidrates}
-        </TitelNutrients>
-        <TitelNutrients>Protein: {totalNutrients.protein}</TitelNutrients>
-        <TitelNutrients>Fat: {totalNutrients.fat}</TitelNutrients>
-      </NutrientsSection>
+        <NutrientsSection>
+          <TitelNutrients>
+            Carbonohidrates: {totalNutrients.carbonohidrates}
+          </TitelNutrients>
+          <TitelNutrients>Protein: {totalNutrients.protein}</TitelNutrients>
+          <TitelNutrients>Fat: {totalNutrients.fat}</TitelNutrients>
+        </NutrientsSection>
+      </DeviceFlex>
 
       <ButtonRecord onClick={openModal}>+ Record your meal</ButtonRecord>
 
@@ -93,69 +90,18 @@ const Breakfast = () => {
             <IconMeal src={BreakfastImage} alt="Breakfast"></IconMeal>
             <TitelMeal>Breakfast</TitelMeal>
           </TitelSection>
-          <form onSubmit={handleSubmit}>
-            <InputFlex>
-              {/* <label htmlFor="mealName"></label> */}
-              <InputMeal
-                type="text"
-                id="mealName"
-                value={mealName}
-                onChange={(e) => setMealName(e.target.value)}
-                required
-                placeholder="The name of the product or dish"
-                size="35"
-              />
-
-              {/* <label htmlFor="carbonohidrates">Carbonohidrates</label> */}
-              <InputMeal
-                type="text"
-                id="carbonohidrates"
-                value={carbonohidrates}
-                placeholder="Carbonohidrates"
-                onChange={(e) => setCarbonohidrates(e.target.value)}
-                required
-                size="35"
-              />
-
-              {/* <label htmlFor="protein">Protein</label> */}
-              <InputMeal
-                type="text"
-                id="protein"
-                value={protein}
-                placeholder="Protein"
-                onChange={(e) => setProtein(e.target.value)}
-                required
-                size="8"
-              />
-
-              {/* <label htmlFor="fat">Fat</label> */}
-              <InputMeal
-                type="text"
-                id="fat"
-                value={fat}
-                placeholder="Fat"
-                onChange={(e) => setFat(e.target.value)}
-                required
-                size="8"
-              />
-              <ButtonDelete type="submit" onClick={handleSubmit}>
-                <SVG>
-                  <use href={symbol + '#icon-trash-03'} />
-                </SVG>
-              </ButtonDelete>
-            </InputFlex>
-
-            <ButtonAdd type="submit" onClick={handleSubmit}>
-              + Add more
-            </ButtonAdd>
-
-            <ButtonFlex>
-              <ButtonSolution type="submit">Save</ButtonSolution>
-              <ButtonSolution type="button" onClick={closeModal}>
-                Cancel
-              </ButtonSolution>
-            </ButtonFlex>
-          </form>
+          <MealForm
+            handleSubmit={handleSubmit}
+            mealName={mealName}
+            setMealName={setMealName}
+            carbonohidrates={carbonohidrates}
+            setCarbonohidrates={setCarbonohidrates}
+            protein={protein}
+            setProtein={setProtein}
+            fat={fat}
+            setFat={setFat}
+            closeModal={closeModal}
+          />
         </ModalRecord>
       )}
       {meals.map((meal) => (

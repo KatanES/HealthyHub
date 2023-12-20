@@ -1,7 +1,18 @@
 import styled from 'styled-components';
 
+export const DeviceFlex = styled.div`
+  @media (min-width: 768px) {
+    display: flex;
+  gap: 159px;
+  }
+`;
+
 export const Section = styled.div`
   margin-bottom: 27px;
+`;
+
+export const FormStyle = styled.form`
+  /* outline: none; */
 `;
 
 export const TitelMeal = styled.h2`
@@ -19,11 +30,7 @@ export const TitelSection = styled.div`
   align-items: center;
   margin: 0;
   margin-bottom: 15px;
-
-  media(min-width: 768px) {
-    max-width: 768px;
-    padding: 27px;
-  }
+  width:148px;
 `;
 
 export const IconMeal = styled.img`
@@ -36,6 +43,7 @@ export const TitelNutrients = styled.p`
   font-style: normal;
   font-weight: 400;
   color: ${(totalNutrients) => (totalNutrients ? 'white' : '##B6B6B6')};
+  margin: 0;
 `;
 
 export const NutrientsSection = styled.div`
@@ -56,17 +64,16 @@ export const ButtonRecord = styled.button`
   color: #e3ffa8;
   border: none;
   margin: 0;
+  border-radius:12px;
 
   &:hover {
     background-color: #e3ffa8;
     color: black;
-    border-radius: 25%;
   }
 
   &:active {
     background-color: #e3ffa8;
     color: black;
-    border-radius: 25%;
   }
 `;
 
@@ -106,7 +113,6 @@ export const InputFlex = styled.div`
   }
 
   @media (min-width: 1200px) {
-    
   }
 `;
 
@@ -147,20 +153,18 @@ export const ButtonAdd = styled.button`
   background-color: inherit;
   color: #e3ffa8;
   border: none;
-  margin: 0;
   margin-bottom: 72px;
 `;
 
-export const ButtonFlex = styled.button`
+export const ButtonFlex = styled.div`
   display: flex:
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 10px;
   justify-content: end;
   background-color: inherit;
   border: none;
-  /* flex-direction: column; */
-  /* align-items: flex-start; */
-  gap: 10px;
+  flex-direction: column; 
+  align-items: flex-start;
 `;
 
 export const ButtonSolution = styled.button`

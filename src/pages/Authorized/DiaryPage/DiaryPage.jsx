@@ -10,7 +10,7 @@ const DiaryPage = () => {
     <Container>
       <TitelPage>
         <SVG>
-          <use href={symbol + '#icon-arrow-right'} />
+          <use href={symbol + '#icon-arrow-left'} />
         </SVG>
         <h2>Diary</h2>
       </TitelPage>
