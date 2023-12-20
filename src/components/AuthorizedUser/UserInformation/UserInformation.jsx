@@ -4,23 +4,23 @@ import axios from 'axios';
 
 const activities = [
   {
-    value: 1,
+    value: '1',
     label: '1.2 - If you do not have physical activity and sedentary work',
   },
   {
-    value: 2,
+    value: '2',
     label: '1.375 - If you do short runs or light gymnastics 1-3 times a week',
   },
   {
-    value: 3,
+    value: '3',
     label: '1.55 - If you play sports with average loads 3-5 times a week',
   },
   {
-    value: 4,
+    value: '4',
     label: '1.725 - If you train fully 6-7 times a week',
   },
   {
-    value: 5,
+    value: '5',
     label:
       '1.9 - If your work is related to physical labor, you train 2 times a day and include strength exercises in your training program',
   },
@@ -49,12 +49,12 @@ const SettingsPage = () => {
   const formik = useFormik({
     initialValues: {
       name: userData.name || '',
+      avatar: null,
       age: userData.age || '',
       gender: userData.gender || 'male',
       height: userData.height || '',
       weight: userData.weight || '',
-      activity: userData.activity || '1.2',
-      avatar: null,
+      activity: userData.activity || '1',
     },
     onSubmit: async (values) => {
       const formData = new FormData();
@@ -148,20 +148,18 @@ const SettingsPage = () => {
         />
 
         <label>Your activity</label>
-        <div>
-          {activities.map((activity) => (
-            <div key={activity.value}>
-              <input
-                type="radio"
-                name="activity"
-                value={activity.value}
-                checked={formik.values.activity === activity.value}
-                onChange={formik.handleChange}
-              />
-              {activity.label}
-            </div>
-          ))}
-        </div>
+        {activities.map((activity) => (
+          <div key={activity.value}>
+            <input
+              type="radio"
+              name="activity"
+              value={activity.value}
+              checked={formik.values.activity === activity.value}
+              onChange={formik.handleChange}
+            />
+            {activity.label}
+          </div>
+        ))}
 
         <button type="submit">Save</button>
         <button type="button" onClick={formik.handleReset}>
