@@ -15,7 +15,7 @@ export const WrapperControlPanel = styled.div`
   @media (min-width: 1440px) {
     gap: 80px;
     margin-left: 626px;
-    margin-left: 124px;
+    margin-right: 124px;
   }
 `;
 
