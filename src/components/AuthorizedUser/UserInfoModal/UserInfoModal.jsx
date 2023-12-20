@@ -1,20 +1,18 @@
 import { Popover } from '@mui/material';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { LogoutBtn } from '../LogoutBtn/LogoutBtn';
 import { globalColor } from '../../Header/root';
-
 import { IconWrapper, Text, UserInfoModalButton } from './UserInfoModal.styled';
-
 import sprite from '../../../assets/sprite.svg';
 
 export const UserInfoModal = ({ isOpen, onClose, anchorEl }) => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  //  const handleSettings = () => {
-  //    navigate('/settings');
-  //    closeModal();
-  //  };
+  const handleSettings = () => {
+    navigate('/settings');
+    onClose();
+  };
 
   return (
     <Popover
@@ -42,7 +40,6 @@ export const UserInfoModal = ({ isOpen, onClose, anchorEl }) => {
           gap: '24px',
           width: '158px',
           height: '112px',
-
           '@media (min-width: 834px)': {
             gap: '16px',
             height: '104px',
@@ -50,17 +47,14 @@ export const UserInfoModal = ({ isOpen, onClose, anchorEl }) => {
         },
       }}
     >
-      <UserInfoModalButton
-        type="button"
-        // onClick={handleSettings}
-      >
+      <UserInfoModalButton type="button" onClick={handleSettings}>
         <IconWrapper>
           <use href={sprite + '#icon-setting-2'} />
         </IconWrapper>
 
         <Text>Setting</Text>
       </UserInfoModalButton>
-      <LogoutBtn />
+      <LogoutBtn onClose={onClose} />
     </Popover>
   );
 };
