@@ -36,6 +36,6 @@ export const BodyParamsSchema = Yup.object({
     .required('Weight is required'),
 });
 
-export const YuorActivitySchema = Yup.object({
+export const YourActivitySchema = Yup.object({
   activity: Yup.string().required('Choose one of these fields'),
 });
