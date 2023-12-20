@@ -1,5 +1,5 @@
 import { useMediaQuery } from '@mui/material';
-import sprite from '../../../assets/sprite.svg';
+import sprite from '../../../../assets/sprite.svg';
 
 import {
   IconSelectWrapper,
@@ -9,7 +9,7 @@ import {
   ControlPanelButton,
   TextWrapperGoal,
   ButtonTextContainer,
-} from './ControlPanel.styled';
+} from '../ControlPanel.styled';
 
 export const Goals = ({ openTargetSelectionModal, currentGoalIcon, goal }) => {
   const screenWidth = useMediaQuery('(min-width: 835px)')

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useMediaQuery } from '@mui/material';
 
-import { Goals } from './Goals';
-import { Weight } from './Weight';
-import { MobileMenu } from './MobileMenu/MobileMenu';
+import { Goals } from './ComponetsControlPanel/Goals';
+import { Weight } from './ComponetsControlPanel/Weight';
+import { MobileMenu } from './ComponetsControlPanel/MobileMenu';
 import { TargetSelectionModal } from '../TargetSelectionModal/TargetSelectionModal';
 import { СurrentWeightModal } from '../СurrentWeightModal/СurrentWeightModal';
 
@@ -88,7 +88,7 @@ export const ControlPanel = () => {
           break;
       }
       break;
-    
+
     case 'Female':
       switch (goal) {
         case 'Lose fat':
@@ -106,7 +106,7 @@ export const ControlPanel = () => {
       currentGoalIcon = gainMuscle;
       break;
   }
-  
+
   return (
     <WrapperControlPanel>
       {isMobile ? (

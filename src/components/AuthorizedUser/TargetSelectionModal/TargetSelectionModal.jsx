@@ -35,10 +35,12 @@ export const TargetSelectionModal = ({
           gap: '16px',
           width: '100%',
           height: '100%',
+          marginTop: '40px',
 
           '@media (min-width: 834px)': {
             width: '392px',
             height: 'auto',
+            margin: '26px',
             borderRadius: '12px',
             backgroundColor: globalColor.colorPrimaryBlack2,
             boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.2)',
@@ -47,19 +49,21 @@ export const TargetSelectionModal = ({
       }}
     >
       <div>
-        <h2>Target selection</h2>
-        <p>The service will adjust your calorie intake to your goal</p>
+        <div>
+          <h2>Target selection</h2>
+          <p>The service will adjust your calorie intake to your goal</p>
+        </div>
+
+        <div>
+          <button>
+            {currentGoalIcon} {goal}
+          </button>
+
+          <button onClick={closeTargetSelectionModal}>Confirm</button>
+        </div>
+
+        <button onClick={closeTargetSelectionModal}>Close</button>
       </div>
-
-      <div>
-        <button>
-          {currentGoalIcon} {goal}
-        </button>
-
-        <button onClick={closeTargetSelectionModal}>Confirm</button>
-      </div>
-
-      <button onClick={closeTargetSelectionModal}>Close</button>
     </Popover>
   );
 };

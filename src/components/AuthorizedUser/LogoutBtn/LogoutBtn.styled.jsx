@@ -45,13 +45,13 @@ export const CancelModalConfirmButton = styled.button`
   min-height: 40px;
   font-family: inherit;
   color: ${globalColor.colorPrimaryBlack};
-  transition: font-size 0.3s ease;
+  transition: background-color 0.3s ease;
+
   &:focus,
   &:hover,
   &:active {
     background-color: ${globalColor.colorPrimaryGreen};
     color: ${globalColor.colorPrimaryBlack2};
-    font-size: 16px;
   }
 `;
 
@@ -65,11 +65,11 @@ export const LogoutModalConfirmButton = styled.button`
   color: ${globalColor.colorPrimaryWhite};
   font-size: 14px;
   font-family: inherit;
-  transition: font-size 0.3s ease;
+  transition: border 0.3s ease;
+
   &:focus,
   &:hover,
   &:active {
     border: 1px solid ${globalColor.colorPrimaryGreen};
-    font-size: 16px;
   }
 `;

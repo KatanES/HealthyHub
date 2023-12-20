@@ -1,6 +1,6 @@
 import { useState } from 'react'; //don`t need
-// import { useSelector } from 'react-redux';
-// import { selectUser } from '../../../redux/auth/selectors';
+
+// import { useAuth } from '../../hooks/useAuth';
 
 import { UserInfoModal } from '../UserInfoModal/UserInfoModal';
 
@@ -19,7 +19,8 @@ export const UserInfoNav = () => {
     name: 'Konstantin',
     imgURL: 'https://walldeco.ua/img/for_page/mona-liza.jpg',
   }); //don`t need
-  // const user = useSelector(selectUser);
+
+  // const { user } = useAuth();
 
   const [anchorEl, setAnchorEl] = useState(null);
 

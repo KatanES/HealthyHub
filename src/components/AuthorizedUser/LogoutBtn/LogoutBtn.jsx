@@ -28,6 +28,7 @@ export const LogoutBtn = ({ onClose }) => {
 
   const closeModalConfirm = () => {
     setIsModalConfirmOpen(false);
+    onClose();
   };
 
   const handleLogOut = async () => {

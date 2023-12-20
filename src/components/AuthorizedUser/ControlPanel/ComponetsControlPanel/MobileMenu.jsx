@@ -1,7 +1,7 @@
 import { Popover } from '@mui/material';
 
-import { Goals } from '../Goals';
-import { Weight } from '../Weight';
+import { Goals } from './Goals';
+import { Weight } from './Weight';
 import sprite from '../../../../assets/sprite.svg';
 
 import { globalColor } from '../../../Header/root';
@@ -41,6 +41,7 @@ export const MobileMenu = ({
           boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.2)',
           borderRadius: '12px',
           backgroundColor: globalColor.colorPrimaryBlack2,
+          margin: '22px',
           padding: '24px',
           display: 'flex',
           flexDirection: 'column',

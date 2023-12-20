@@ -1,4 +1,4 @@
-import sprite from '../../../assets/sprite.svg';
+import sprite from '../../../../assets/sprite.svg';
 
 import {
   IconSelectWrapper,
@@ -8,7 +8,7 @@ import {
   ControlPanelButton,
   TextWrapperWeight,
   ButtonTextContainer,
-} from './ControlPanel.styled';
+} from '../ControlPanel.styled';
 
 export const Weight = ({ openСurrentWeightModal, weightIcon, weight }) => {
   return (
