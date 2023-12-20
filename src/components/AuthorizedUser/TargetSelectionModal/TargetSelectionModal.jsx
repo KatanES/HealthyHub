@@ -1,7 +1,17 @@
-import { Popover } from '@mui/material';
+import { Popover, useMediaQuery } from '@mui/material';
 
-// import sprite from '../../../assets/sprite.svg';
+import sprite from '../../../assets/sprite.svg';
 import { globalColor } from '../../Header/root';
+import {
+  Wrapper,
+  CloseTargetSelectionModalButton,
+  MenuButtonCloseModal,
+  SvgWrapper,
+  TextWrapper,
+  Title,
+  Text,
+  ConfirmTargetSelectionModalButton,
+} from './TargetSelectionModal.styled';
 
 export const TargetSelectionModal = ({
   closeTargetSelectionModal,
@@ -10,6 +20,10 @@ export const TargetSelectionModal = ({
   currentGoalIcon,
   goal,
 }) => {
+  const screenWidth = useMediaQuery('(min-width: 835px)')
+    ? 'desktop'
+    : 'mobile';
+
   return (
     <Popover
       open={isOpen}
@@ -32,7 +46,6 @@ export const TargetSelectionModal = ({
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
-          gap: '16px',
           width: '100%',
           height: '100%',
           marginTop: '40px',
@@ -40,6 +53,7 @@ export const TargetSelectionModal = ({
           '@media (min-width: 834px)': {
             width: '392px',
             height: 'auto',
+            padding: '20px 24px',
             margin: '26px',
             borderRadius: '12px',
             backgroundColor: globalColor.colorPrimaryBlack2,
@@ -48,22 +62,38 @@ export const TargetSelectionModal = ({
         },
       }}
     >
-      <div>
-        <div>
-          <h2>Target selection</h2>
-          <p>The service will adjust your calorie intake to your goal</p>
-        </div>
+      <Wrapper>
+        <TextWrapper>
+          <Title>Target selection</Title>
+          <Text>The service will adjust your calorie intake to your goal</Text>
+        </TextWrapper>
 
-        <div>
-          <button>
-            {currentGoalIcon} {goal}
-          </button>
-
-          <button onClick={closeTargetSelectionModal}>Confirm</button>
-        </div>
-
-        <button onClick={closeTargetSelectionModal}>Close</button>
-      </div>
+        {/* форма з селектами які скалаються з
+        радіо-кнопок: - іконки та підпису "Lose fat" - іконки та підпису
+        "Maintain" - іконки та підпису "Gain Muscle" Компонент містить кнопку
+        Confirm (для відправки інформації на бекенд по обраній цілі)
+         */}
+        <button>
+          {currentGoalIcon} {goal}
+        </button>
+        <ConfirmTargetSelectionModalButton onClick={closeTargetSelectionModal}>
+          Confirm
+        </ConfirmTargetSelectionModalButton>
+        {screenWidth === 'mobile' ? (
+          <CloseTargetSelectionModalButton onClick={closeTargetSelectionModal}>
+            Close
+          </CloseTargetSelectionModalButton>
+        ) : (
+          <MenuButtonCloseModal
+            type="button"
+            onClick={closeTargetSelectionModal}
+          >
+            <SvgWrapper>
+              <use href={sprite + '#icon-close-circle'} />
+            </SvgWrapper>
+          </MenuButtonCloseModal>
+        )}
+      </Wrapper>
     </Popover>
   );
 };

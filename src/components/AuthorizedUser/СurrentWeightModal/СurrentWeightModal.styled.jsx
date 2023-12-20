@@ -93,7 +93,7 @@ export const ConfirmWeightModalButton = styled.button`
 export const CloseWeightModalButton = styled.button`
   border: none;
   background: transparent;
-  padding: 10px;
+  padding: 0;
   width: 100%;
   color: ${globalColor.colorPrimaryGrey};
   font-size: 14px;
