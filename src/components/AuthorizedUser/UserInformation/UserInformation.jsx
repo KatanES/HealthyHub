@@ -2,6 +2,30 @@ import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
 
+const activities = [
+  {
+    value: 1,
+    label: '1.2 - If you do not have physical activity and sedentary work',
+  },
+  {
+    value: 2,
+    label: '1.375 - If you do short runs or light gymnastics 1-3 times a week',
+  },
+  {
+    value: 3,
+    label: '1.55 - If you play sports with average loads 3-5 times a week',
+  },
+  {
+    value: 4,
+    label: '1.725 - If you train fully 6-7 times a week',
+  },
+  {
+    value: 5,
+    label:
+      '1.9 - If your work is related to physical labor, you train 2 times a day and include strength exercises in your training program',
+  },
+];
+
 const SettingsPage = () => {
   const [userData, setUserData] = useState({});
   const [avatarUrl, setAvatarUrl] = useState(null);
@@ -33,23 +57,18 @@ const SettingsPage = () => {
       avatar: null,
     },
     onSubmit: async (values) => {
-      // Створення об'єкту FormData для відправлення на бек-енд
       const formData = new FormData();
       formData.append('name', values.name);
+      formData.append('avatar', values.avatar);
       formData.append('age', values.age);
       formData.append('gender', values.gender);
       formData.append('height', values.height);
       formData.append('weight', values.weight);
       formData.append('activity', values.activity);
-      if (values.avatar) {
-        formData.append('avatar', values.avatar);
-      }
 
       try {
-        // Відправка запиту на бек-енд для оновлення інформації про користувача
         const response = await axios.put('/api/user/update', formData);
         console.log('User data updated:', response.data);
-        // Оновлення стану користувача та URL аватарки
         setUserData(response.data);
         if (response.data.avatar) {
           setAvatarUrl(URL.createObjectURL(response.data.avatar));
@@ -67,10 +86,7 @@ const SettingsPage = () => {
 
   return (
     <div>
-      <h1>Profile Settings</h1>
-      {/* <img src={heroSvg} alt="Hero Image" /> */}
       <form onSubmit={formik.handleSubmit}>
-        {/* User Information Component */}
         <label>Your name</label>
         <input
           type="text"
@@ -93,7 +109,6 @@ const SettingsPage = () => {
           value={formik.values.age}
         />
 
-        {/* Gender radio buttons */}
         <label>Gender</label>
         <div>
           <input
@@ -114,7 +129,6 @@ const SettingsPage = () => {
           Female
         </div>
 
-        {/* Height and Weight inputs */}
         <label>Height</label>
         <input
           type="text"
@@ -133,11 +147,22 @@ const SettingsPage = () => {
           value={formik.values.weight}
         />
 
-        {/* Activity radio buttons */}
         <label>Your activity</label>
-        <div>{/* Render radio buttons for activity levels */}</div>
+        <div>
+          {activities.map((activity) => (
+            <div key={activity.value}>
+              <input
+                type="radio"
+                name="activity"
+                value={activity.value}
+                checked={formik.values.activity === activity.value}
+                onChange={formik.handleChange}
+              />
+              {activity.label}
+            </div>
+          ))}
+        </div>
 
-        {/* Save and Cancel buttons */}
         <button type="submit">Save</button>
         <button type="button" onClick={formik.handleReset}>
           Cancel
