@@ -1,31 +1,72 @@
-// export default function MobileMenu() {
-//   return (
-//     <div>
-//       <MenuButton type="button" onClick={closeMobileMenu}>
-//         <MobileIconWrapper>
-//           <use href={sprite + '#icon-close-circle'} />
-//         </MobileIconWrapper>
-//         <div>
-//           {/* <img src={GOAL} alt="" /> */}
-//           <div>
-//             <h3>Goal</h3>
-//             {/* <p>{GOAL}</p> */}
-//             <svg>
-//               <use href={sprite + '#icon-arrow-right'} />
-//             </svg>
-//           </div>
-//         </div>
-//         <div>
-//           {/* <img src={WEIGHT} alt="" /> */}
-//           <div>
-//             <h3>Weight</h3>
-//             {/* <p>{WEIGHT} <span>kg</span></p> */}
-//             <svg>
-//               <use href={sprite + '#icon-edit-2'} />
-//             </svg>
-//           </div>
-//         </div>
-//       </MenuButton>
-//     </div>
-//   );
-// }
+import { Popover } from '@mui/material';
+
+import { Goals } from '../Goals';
+import { Weight } from '../Weight';
+import sprite from '../../../../assets/sprite.svg';
+
+import { globalColor } from '../../../Header/root';
+import {
+  MenuButtonCloseModal,
+  SvgWrapperCloseModal,
+} from '../ControlPanel.styled';
+
+export const MobileMenu = ({
+  closeMobileMenu,
+  isOpen,
+  anchorEl,
+  openTargetSelectionModal,
+  currentGoalIcon,
+  goal,
+  openСurrentWeightModal,
+  weightIcon,
+  weight,
+}) => {
+  return (
+    <Popover
+      open={isOpen}
+      anchorEl={anchorEl}
+      onClose={closeMobileMenu}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'center',
+      }}
+      transformOrigin={{
+        vertical: 'top',
+        horizontal: 'center',
+      }}
+      PaperProps={{
+        sx: {
+          position: 'relative',
+          boxSizing: 'border-box',
+          boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.2)',
+          borderRadius: '12px',
+          backgroundColor: globalColor.colorPrimaryBlack2,
+          padding: '24px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          gap: '40px',
+          width: '300px',
+          height: 'auto',
+        },
+      }}
+    >
+      <MenuButtonCloseModal type="button" onClick={closeMobileMenu}>
+        <SvgWrapperCloseModal>
+          <use href={sprite + '#icon-close-circle'} />
+        </SvgWrapperCloseModal>
+      </MenuButtonCloseModal>
+
+      <Goals
+        openTargetSelectionModal={openTargetSelectionModal}
+        currentGoalIcon={currentGoalIcon}
+        goal={goal}
+      />
+      <Weight
+        openСurrentWeightModal={openСurrentWeightModal}
+        weightIcon={weightIcon}
+        weight={weight}
+      />
+    </Popover>
+  );
+};

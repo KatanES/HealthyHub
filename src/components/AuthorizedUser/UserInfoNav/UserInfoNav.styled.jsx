@@ -2,15 +2,23 @@ import styled from 'styled-components';
 
 import { globalColor } from '../../Header/root';
 
-export const WrapperUserInfoNav = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
+import { Button } from '@mui/material';
 
 export const Text = styled.p`
   display: block;
   margin: 0 6px 0 0;
+  color: ${globalColor.colorPrimaryWhite};
+  line-height: 1.33;
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  font-family: inherit;
+  text-transform: none;
+
+  @media (min-width: 834px) {
+    line-height: 1.42857;
+  }
 `;
 
 export const ImageHolder = styled.div`
@@ -32,6 +40,7 @@ export const ImageHolder = styled.div`
 `;
 
 export const IconAvatarWrapper = styled.svg`
+  margin: 0;
   width: 24px;
   height: 24px;
   stroke: ${globalColor.colorPrimaryWhite};
@@ -42,14 +51,24 @@ export const IconAvatarWrapper = styled.svg`
   }
 `;
 
-export const UserInfoNavButton = styled.button`
+export const UserInfoNavButton = styled(Button)`
   border: none;
+  display: block;
   padding: 0;
   background: transparent;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const IconArrowWrapper = styled.svg`
   width: 14px;
   height: 14px;
   stroke: ${globalColor.colorPrimaryGreenLite};
+  transition: transform 0.3s ease-in-out;
+
+  &.active {
+    transform: rotate(180deg);
+  }
 `;

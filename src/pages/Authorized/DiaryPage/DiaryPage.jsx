@@ -1,20 +1,26 @@
-import { Route, Routes } from 'react-router-dom';
 import Breakfast from '../../../components/AuthorizedUser/DiaryPage/Breakfast';
 import Lunch from '../../../components/AuthorizedUser/DiaryPage/Lunch';
 import Dinner from '../../../components/AuthorizedUser/DiaryPage/Dinner';
 import Snack from '../../../components/AuthorizedUser/DiaryPage/Snack';
+import symbol from '../../../assets/Welcome/symbol.svg';
+import { Container, TitelPage, SVG, Section } from './DiaryPage.styled';
 
 const DiaryPage = () => {
   return (
-    <div>
-      <h1>Diary Page</h1>
-      <Routes>
-        <Route path="/diary/breakfast" component={Breakfast} />
-        <Route path="/diary/lunch" component={Lunch} />
-        <Route path="/diary/dinner" component={Dinner} />
-        <Route path="/diary/snack" component={Snack} />
-      </Routes>
-    </div>
+    <Container>
+      <TitelPage>
+        <SVG>
+          <use href={symbol + '#icon-arrow-left'} />
+        </SVG>
+        <h2>Diary</h2>
+      </TitelPage>
+      <Section>
+        <Breakfast />
+        <Lunch />
+        <Dinner />
+        <Snack />
+      </Section>
+    </Container>
   );
 };
 
