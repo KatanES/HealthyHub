@@ -7,15 +7,11 @@ const setAuthHeader = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-// const clearAuthHeader = () => {
-//   axios.defaults.headers.common.Authorization = '';
-// };
-
 export const signup = createAsyncThunk(
-  'api/auth/signup',
+  'auth/signup',
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post('/users/signup', credentials);
+      const res = await axios.post('/api/auth/signup', credentials);
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
@@ -25,10 +21,10 @@ export const signup = createAsyncThunk(
 );
 
 export const signin = createAsyncThunk(
-  'api/auth/signin',
+  'auth/signin',
   async (credentials, thunkAPI) => {
     try {
-      const res = await axios.post('/users/signin', credentials);
+      const res = await axios.post('/api/auth/signin', credentials);
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
@@ -36,7 +32,6 @@ export const signin = createAsyncThunk(
     }
   }
 );
-
 export const refreshUser = createAsyncThunk(
   'api/auth/refresh',
   async (_, thunkAPI) => {
@@ -49,6 +44,29 @@ export const refreshUser = createAsyncThunk(
       setAuthHeader(persistedToken);
       const response = await axios.get('/users/current');
       return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const updateGoal = createAsyncThunk(
+  'auth/goal',
+  async (credentials, thunkAPI) => {
+    try {
+      const res = await axios.put('/api/users/goal', credentials);
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateWeight = createAsyncThunk(
+  'auth/weight',
+  async (credentials, thunkAPI) => {
+    try {
+      const res = await axios.post('/api/users/weight', credentials);
+      return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

@@ -95,7 +95,7 @@ export const Button = styled.button`
   padding: 8px 10px;
   border-radius: 12px;
   background-color: #e3ffa8;
-  font-family: 'Roboto', sans-serif;
+  font-family: Poppins, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
