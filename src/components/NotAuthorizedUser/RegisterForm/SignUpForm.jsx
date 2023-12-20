@@ -1,7 +1,8 @@
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { signup } from '../../../redux/auth/operations';
 import { ImEyeBlocked, ImEye } from 'react-icons/im';
 import {
@@ -10,10 +11,10 @@ import {
   StyledForm,
   ErrorMessageStyled,
   StyledButton,
-  SVG,
+  
 } from './SignUpForm.styled';
 import { StyleSheetManager } from 'styled-components';
-import sprite from '../../../assets/Welcome/symbol.svg';
+
 
 const RegisterSchema = Yup.object({
   name: Yup.string()
@@ -34,12 +35,16 @@ const RegisterSchema = Yup.object({
 });
 export const SignUpForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
+  const handleNextClick = () => {
+    navigate('/yourgoal');
+  };
 
   return (
     <FormWrapper>
@@ -104,7 +109,7 @@ export const SignUpForm = () => {
               <ErrorMessage name="password" component={ErrorMessageStyled} />
             </StyleSheetManager>
 
-            <StyledButton type="submit">Next</StyledButton>
+            <StyledButton type="submit" noClick={handleNextClick} disabled={!isValid}>Next</StyledButton>
           </StyledForm>
         )}
       </Formik>

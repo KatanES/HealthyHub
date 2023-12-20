@@ -28,8 +28,8 @@ export const StyledField = ({ name, ...rest }) => {
     <>
       <StyledInput
         {...formik.getFieldProps(name)}
-        hasError={formik.errors[name] && formik.touched[name]}
-        isSuccess={formik.touched[name] && formik.errors[name] === undefined}
+        $hasError={formik.errors[name] && formik.touched[name]}
+        $isSuccess={formik.touched[name] && formik.errors[name] === undefined}
         {...rest}
       />
       <PasswordNotification
@@ -40,12 +40,12 @@ export const StyledField = ({ name, ...rest }) => {
 };
 
 const StyledInput = styled.input`
- width: -webkit-fill-available;
+  width: -webkit-fill-available;
   padding: 8px 10px;
   margin-bottom: 20px;
   border: 1px solid
-    ${({ hasError, isSuccess }) =>
-      hasError ? '#E74A3B' : isSuccess ? '#3CBC81' : '#e3ffa8'};
+    ${({ $hasError, $isSuccess }) =>
+      $hasError ? '#E74A3B' : $isSuccess ? '#3CBC81' : '#e3ffa8'};
   border-radius: 12px;
   background: transparent;
   font-size: 14px;
@@ -63,6 +63,7 @@ const StyledInput = styled.input`
     color: #b6b6b6;
   }
 `;
+
 
 export const ErrorMessageStyled = styled.p`
   font-size: 12px;
@@ -96,8 +97,3 @@ font-family: Poppins, sans-serif;
   };
 `;
 
-export const SVG = styled.svg`
-  width: 8px;
-  height: 8px;
-  margin-top: 4px;
-`;

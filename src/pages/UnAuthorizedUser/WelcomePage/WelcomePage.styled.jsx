@@ -140,6 +140,11 @@ export const HeroItem = styled.li`
   margin-top: 16px;
 `;
 
+export const SVG = styled.svg`
+  width: 8px;
+  height: 8px;
+  margin-top: 4px;
+`;
 
 export const HeroItemText = styled.p`
   margin: 0 0 0 8px;
