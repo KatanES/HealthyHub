@@ -74,7 +74,7 @@ const YourActivity = ({ goNext, setActivity, dataActivity, goBack }) => {
                 </label>
               </div>
 
-              <button type="submit">Next</button>
+              <button type="submit">Sign Up</button>
               <button type="button" onClick={handleBack}>
                 Back
               </button>

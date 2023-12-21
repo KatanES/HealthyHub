@@ -1,9 +1,7 @@
 import { Formik, ErrorMessage } from 'formik';
 
-import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-import { signup } from '../../../redux/auth/operations';
 import { SignUpSchema } from '../YupSchemas/YupSchemas';
 import symbol from '../../../assets/Welcome/symbol.svg';
 import {
@@ -26,8 +24,18 @@ import {
 } from './SignUp.styled';
 import IllstrationDesctop from '../../../assets/Welcome/IllustrationDesctop.png';
 
-const SignUp = ({ goNext }) => {
-  const dispatch = useDispatch();
+
+  const SignUp = ({ goNext, handleSubmit }) => {
+    const onSubmit = async (values, { setSubmitting }) => {
+      try {
+        await handleSubmit(values);
+        goNext();
+      } catch (error) {
+        console.error('Registration error:', error);
+      }
+  
+      setSubmitting(false);
+    };
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePasswordVisibility = () => {
@@ -68,17 +76,7 @@ const SignUp = ({ goNext }) => {
               password: '',
             }}
             validationSchema={SignUpSchema}
-            onSubmit={(values, actions) => {
-              const { errors, isValid } = validateForm(values);
-
-              if (isValid) {
-                dispatch(signup(values));
-                actions.resetForm();
-                goNext();
-              } else {
-                console.log('Form validation errors:', errors);
-              }
-            }}
+            onSubmit={onSubmit}
           >
             {({
               errors,
@@ -114,6 +112,7 @@ const SignUp = ({ goNext }) => {
                           : '#3CBC81'
                         : '',
                     }}
+                    aria-label="Name Input"
                   />
                   <IconTextPosition
                     style={{
@@ -161,6 +160,7 @@ const SignUp = ({ goNext }) => {
                           : '#3CBC81'
                         : '',
                     }}
+                    aria-label="Email Input"
                   />
                   <IconTextPosition
                     style={{
@@ -209,6 +209,7 @@ const SignUp = ({ goNext }) => {
                           : '#3CBC81'
                         : '',
                     }}
+                    aria-label="Password Input"
                   />
 
                   <IconTextPosition

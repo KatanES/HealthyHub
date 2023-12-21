@@ -33,6 +33,8 @@ const SelectAgeAndGender = ({
     goNext();
   };
 
+
+
   return (
     <div>
       <div>
@@ -48,10 +50,7 @@ const SelectAgeAndGender = ({
               age: dataAge,
             }}
             validationSchema={AgeAndGenderSchema}
-            onSubmit={(values, actions) => {
-              console.log(values);
-              actions.resetForm();
-            }}
+            onSubmit={ handleSubmit}
           >
             {({
               errors,
@@ -60,7 +59,7 @@ const SelectAgeAndGender = ({
               handleBlur,
               values,
             }) => (
-              <Form onSubmit={handleSubmit} autoComplete="off">
+              <Form autoComplete="off">
                 <div id="ageAndGenderGroup">Gender</div>
                 <div role="group" aria-labelledby="ageAndGenderGroup">
                   <label>
@@ -97,6 +96,7 @@ const SelectAgeAndGender = ({
                           : '#3CBC81'
                         : '',
                     }}
+                    aria-label="Age Input"
                   />
                   <div
                     style={{
@@ -121,9 +121,7 @@ const SelectAgeAndGender = ({
                 <ErrorMessage name="name" component={ErrorMessageStyled} />
 
                 <button type="submit">Next</button>
-                <button type="button" onClick={goBack}>
-                  Back
-                </button>
+                <button type="button" onClick={goBack}>Back</button>
               </Form>
             )}
           </Formik>
