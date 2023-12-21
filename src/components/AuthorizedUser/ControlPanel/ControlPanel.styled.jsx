@@ -40,6 +40,7 @@ export const SvgWrapperCloseModal = styled.svg`
   height: 16px;
   stroke: ${globalColor.colorPrimaryGrey};
 `;
+
 export const ControlPanelButton = styled.button`
   display: flex;
   align-items: center;
@@ -48,12 +49,14 @@ export const ControlPanelButton = styled.button`
   background: transparent;
   padding: 0;
 `;
+
 export const ButtonTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 2px;
 `;
+
 export const Title = styled.p`
   color: ${globalColor.colorPrimaryWhite};
   font-size: 14px;
@@ -61,6 +64,7 @@ export const Title = styled.p`
   line-height: 1.42857;
   margin: 0;
 `;
+
 export const TextWrapperGoal = styled.div`
   display: flex;
   gap: 12px;
@@ -69,6 +73,7 @@ export const TextWrapperGoal = styled.div`
   font-weight: 500;
   line-height: 1.43;
 `;
+
 export const IconSelectWrapper = styled.div`
   width: 28px;
   height: 28px;
@@ -77,6 +82,7 @@ export const IconSelectWrapper = styled.div`
   border: 1px solid ${globalColor.colorSecondaryGrey1};
   background: rgba(255, 255, 255, 0.01);
 `;
+
 export const SvgWrapper = styled.svg`
   width: 16px;
   height: 16px;
@@ -85,6 +91,18 @@ export const SvgWrapper = styled.svg`
     stroke: ${globalColor.colorPrimaryGrey};
   }
 `;
+
+export const IconArrowWrapper = styled.svg`
+  width: 16px;
+  height: 16px;
+  stroke: ${globalColor.colorPrimaryGreenLite};
+  transition: transform 0.3s ease-in-out;
+
+  &.active {
+    transform: rotate(180deg);
+  }
+`;
+
 export const TextWrapperWeight = styled.div`
   display: flex;
   gap: 6px;
@@ -93,6 +111,7 @@ export const TextWrapperWeight = styled.div`
   font-weight: 500;
   line-height: 1.43;
 `;
+
 export const Text = styled.p`
   color: ${globalColor.colorPrimaryWhite};
   font-weight: 500;

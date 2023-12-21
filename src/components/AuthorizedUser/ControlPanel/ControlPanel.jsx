@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useMediaQuery } from '@mui/material';
 
+// import { useAuth } from '../hooks/useAuth';
+
 import { Goals } from './ComponetsControlPanel/Goals';
 import { Weight } from './ComponetsControlPanel/Weight';
 import { MobileMenu } from './ComponetsControlPanel/MobileMenu';
@@ -11,8 +13,8 @@ import {
   gainMuscle,
   loseFatGirl,
   loseFatMen,
-  maintakeGirl,
-  maintakeMen,
+  maintainGirl,
+  maintainMen,
   weightIcon,
 } from '../../../assets/Header/headerImage';
 import sprite from '../../../assets/sprite.svg';
@@ -25,11 +27,13 @@ import {
 
 export const ControlPanel = () => {
   const [user] = useState({
-    gender: 'Male',
+    gender: 'Female',
     goal: 'Lose fat',
     weight: 65,
   }); //don`t need
-  //   const user = useSelector(selectUser);
+
+  // const { user } = useAuth();
+
   const [isActive, setIsActive] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
@@ -54,16 +58,20 @@ export const ControlPanel = () => {
   const openTargetSelectionModal = (event) => {
     setAnchorEl(event.currentTarget);
     setShowTargetSelectionModal(true);
+    setIsActive(true);
+    setShowMobileMenu(false);
   };
 
   const closeTargetSelectionModal = () => {
     setAnchorEl(null);
     setShowTargetSelectionModal(false);
+    setIsActive(false);
   };
 
   const openСurrentWeightModal = (event) => {
     setAnchorEl(event.currentTarget);
     setShowСurrentWeightModal(true);
+    setShowMobileMenu(false);
   };
 
   const closeСurrentWeightModal = () => {
@@ -81,7 +89,7 @@ export const ControlPanel = () => {
           currentGoalIcon = loseFatMen;
           break;
         case 'Maintain':
-          currentGoalIcon = maintakeMen;
+          currentGoalIcon = maintainMen;
           break;
         default:
           currentGoalIcon = gainMuscle;
@@ -95,7 +103,7 @@ export const ControlPanel = () => {
           currentGoalIcon = loseFatGirl;
           break;
         case 'Maintain':
-          currentGoalIcon = maintakeGirl;
+          currentGoalIcon = maintainGirl;
           break;
         default:
           currentGoalIcon = gainMuscle;
@@ -121,6 +129,7 @@ export const ControlPanel = () => {
             openTargetSelectionModal={openTargetSelectionModal}
             currentGoalIcon={currentGoalIcon}
             goal={goal}
+            isActive={isActive}
           />
           <Weight
             openСurrentWeightModal={openСurrentWeightModal}
@@ -148,8 +157,8 @@ export const ControlPanel = () => {
           isOpen={Boolean(anchorEl)}
           anchorEl={anchorEl}
           closeTargetSelectionModal={closeTargetSelectionModal}
-          currentGoalIcon={currentGoalIcon}
-          goal={goal}
+          // goal={goal}
+          gender={gender}
         />
       )}
 

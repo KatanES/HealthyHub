@@ -9,9 +9,15 @@ import {
   ControlPanelButton,
   TextWrapperGoal,
   ButtonTextContainer,
+  IconArrowWrapper,
 } from '../ControlPanel.styled';
 
-export const Goals = ({ openTargetSelectionModal, currentGoalIcon, goal }) => {
+export const Goals = ({
+  openTargetSelectionModal,
+  currentGoalIcon,
+  goal,
+  isActive,
+}) => {
   const screenWidth = useMediaQuery('(min-width: 835px)')
     ? 'desktop'
     : 'mobile';
@@ -32,9 +38,9 @@ export const Goals = ({ openTargetSelectionModal, currentGoalIcon, goal }) => {
               <use href={sprite + '#icon-arrow-right'} />
             </SvgWrapper>
           ) : (
-            <SvgWrapper>
+            <IconArrowWrapper className={isActive ? 'active' : ''}>
               <use href={sprite + '#icon-arrow-down'} />
-            </SvgWrapper>
+            </IconArrowWrapper>
           )}
         </TextWrapperGoal>
       </ButtonTextContainer>

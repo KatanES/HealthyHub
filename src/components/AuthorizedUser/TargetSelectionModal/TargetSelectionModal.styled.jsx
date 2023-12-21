@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   gap: 16px;
   max-width: 284px;
-  
+
   @media (max-width: 833px) {
     margin: 0 auto;
     max-width: 300px;
@@ -35,6 +35,53 @@ export const Text = styled.p`
   font-size: 14px;
   font-family: inherit;
   margin: 0;
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (min-width: 834px) {
+    align-items: flex-start;
+  }
+`;
+
+export const RadioContainer = styled.div`
+  display: flex;
+  gap: 12px;
+  align-items: center;
+`;
+
+export const ImageWrapper = styled.div`
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid
+    ${({ isChecked }) =>
+      isChecked
+        ? globalColor.colorPrimaryViolet
+        : globalColor.colorSecondaryGrey1};
+  background: transparent;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid ${globalColor.colorPrimaryViolet};
+  }
+`;
+
+export const Input = styled.input`
+  display: none;
+`;
+
+export const Label = styled.label`
+  color: ${({ isChecked }) =>
+    isChecked ? globalColor.colorPrimaryViolet : globalColor.colorPrimaryWhite};
+  line-height: 1.42857;
+  cursor: pointer;
+
+  &:hover {
+    color: ${globalColor.colorPrimaryViolet};
+  }
 `;
 
 export const ConfirmTargetSelectionModalButton = styled.button`
@@ -89,3 +136,10 @@ export const SvgWrapper = styled.svg`
   height: 16px;
   stroke: ${globalColor.colorPrimaryGrey};
 `;
+
+
+
+        
+
+        
+
