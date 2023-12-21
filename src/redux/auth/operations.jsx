@@ -16,7 +16,8 @@ export const signup = createAsyncThunk(
       thunkAPI.dispatch(authenticate(res.data.user)); 
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      console.error('Signup error:', error.response?.data || error.message);
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
   }
 );

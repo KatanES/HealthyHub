@@ -24,18 +24,7 @@ import {
 } from './SignUp.styled';
 import IllstrationDesctop from '../../../assets/Welcome/IllustrationDesctop.png';
 
-
-  const SignUp = ({ goNext, handleSubmit }) => {
-    const onSubmit = async (values, { setSubmitting }) => {
-      try {
-        await handleSubmit(values);
-        goNext();
-      } catch (error) {
-        console.error('Registration error:', error);
-      }
-  
-      setSubmitting(false);
-    };
+const SignUp = ({ goNext, setName, setEmail, setPassword }) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePasswordVisibility = () => {
@@ -76,7 +65,18 @@ import IllstrationDesctop from '../../../assets/Welcome/IllustrationDesctop.png'
               password: '',
             }}
             validationSchema={SignUpSchema}
-            onSubmit={onSubmit}
+            onSubmit={(values) => {
+              const { errors, isValid } = validateForm(values);
+
+              if (isValid) {
+                setName(name);
+                setEmail(email.toLowerCase());
+                setPassword(password);
+                goNext();
+              } else {
+                console.log('Form validation errors:', errors);
+              }
+            }}
           >
             {({
               errors,
@@ -209,7 +209,7 @@ import IllstrationDesctop from '../../../assets/Welcome/IllustrationDesctop.png'
                           : '#3CBC81'
                         : '',
                     }}
-                    aria-label="Password Input"
+                    aria-label="Height Input"
                   />
 
                   <IconTextPosition
