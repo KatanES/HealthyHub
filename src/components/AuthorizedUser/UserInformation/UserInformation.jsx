@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
+import { FormStyle } from './UserInformation.styled';
 
 const settingsSchema = Yup.object().shape({
   name: Yup.string()
@@ -100,7 +101,7 @@ const SettingsPage = () => {
 
   return (
     <div>
-      <form onSubmit={formik.handleSubmit}>
+      <FormStyle onSubmit={formik.handleSubmit}>
         <label>Your name</label>
         <input
           type="text"
@@ -179,7 +180,7 @@ const SettingsPage = () => {
         <button type="button" onClick={formik.handleReset}>
           Cancel
         </button>
-      </form>
+      </FormStyle>
     </div>
   );
 };
