@@ -13,7 +13,7 @@ export const signup = createAsyncThunk(
     try {
       const res = await axios.post('/api/auth/signup', credentials);
       setAuthHeader(res.data.token);
-      thunkAPI.dispatch(authenticate(res.data.user)); 
+      thunkAPI.dispatch(authenticate(res.data.user));
       return res.data;
     } catch (error) {
       console.error('Signup error:', error.response?.data || error.message);
@@ -51,6 +51,3 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
-
-
-

@@ -33,8 +33,6 @@ const SelectAgeAndGender = ({
     goNext();
   };
 
-
-
   return (
     <div>
       <div>
@@ -50,20 +48,14 @@ const SelectAgeAndGender = ({
               age: dataAge,
             }}
             validationSchema={AgeAndGenderSchema}
-            onSubmit={ handleSubmit}
+            onSubmit={handleSubmit}
           >
-            {({
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              values,
-            }) => (
+            {({ errors, touched, handleChange, handleBlur, values }) => (
               <Form autoComplete="off">
                 <div id="ageAndGenderGroup">Gender</div>
                 <div role="group" aria-labelledby="ageAndGenderGroup">
                   <label>
-                    <Field type="radio" name="gender" value=" Male" required />
+                    <Field type="radio" name="gender" value="Male" required />
                     Male
                   </label>
                   <label>
@@ -121,7 +113,9 @@ const SelectAgeAndGender = ({
                 <ErrorMessage name="name" component={ErrorMessageStyled} />
 
                 <button type="submit">Next</button>
-                <button type="button" onClick={goBack}>Back</button>
+                <button type="button" onClick={goBack}>
+                  Back
+                </button>
               </Form>
             )}
           </Formik>

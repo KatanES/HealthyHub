@@ -9,7 +9,6 @@ import IllustrutonGoals from '../../../assets/Welcome/IllustrationGoals.png';
 import SignUp from '../SignUp';
 
 const YourGoal = ({ goNext, setGoal, dataGoal, goBack }) => {
-
   useEffect(() => {
     const selectorString = 'input[type="radio"][value="' + dataGoal + '"]';
     const checkedButton = document.querySelector(selectorString);
@@ -34,7 +33,6 @@ const YourGoal = ({ goNext, setGoal, dataGoal, goBack }) => {
           <Formik
             initialValues={{
               goal: dataGoal,
-              
             }}
             validationSchema={YourGoalSchema}
             onSubmit={handleSubmit}
@@ -42,7 +40,7 @@ const YourGoal = ({ goNext, setGoal, dataGoal, goBack }) => {
             <Form>
               <div role="group" aria-labelledby="goalGroup">
                 <label>
-                  <Field type="radio" name="goal" value=" Lose Fat" required />
+                  <Field type="radio" name="goal" value="Lose Fat" required />
                   Lose Fat
                 </label>
                 <label>

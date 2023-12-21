@@ -17,7 +17,7 @@ const YourActivity = ({ goNext, setActivity, dataActivity, goBack }) => {
     }
   }, [dataActivity]);
 
-  const handleSubmit = (activity) => {
+  const handleSubmit = ({ activity }) => {
     setActivity(Number(activity));
     goNext();
   };
