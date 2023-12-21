@@ -48,23 +48,14 @@ const SelectAgeAndGender = ({
               age: dataAge,
             }}
             validationSchema={AgeAndGenderSchema}
-            onSubmit={(values, actions) => {
-              console.log(values);
-              actions.resetForm();
-            }}
+            onSubmit={handleSubmit}
           >
-            {({
-              errors,
-              touched,
-              handleChange,
-              handleBlur,
-              values,
-            }) => (
-              <Form onSubmit={handleSubmit} autoComplete="off">
+            {({ errors, touched, handleChange, handleBlur, values }) => (
+              <Form autoComplete="off">
                 <div id="ageAndGenderGroup">Gender</div>
                 <div role="group" aria-labelledby="ageAndGenderGroup">
                   <label>
-                    <Field type="radio" name="gender" value=" Male" required />
+                    <Field type="radio" name="gender" value="Male" required />
                     Male
                   </label>
                   <label>
@@ -97,6 +88,7 @@ const SelectAgeAndGender = ({
                           : '#3CBC81'
                         : '',
                     }}
+                    aria-label="Age Input"
                   />
                   <div
                     style={{

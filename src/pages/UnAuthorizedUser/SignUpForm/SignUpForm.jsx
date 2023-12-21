@@ -53,6 +53,7 @@ export const SignUpForm = () => {
         dispatch(signup({ ...values }));
         actions.resetForm();
       }}
+      validateOnChange={true}
     >
       {({ handleSubmit }) => (
         <form
@@ -74,6 +75,7 @@ export const SignUpForm = () => {
                 margin="normal"
                 autoComplete="off"
                 size="small"
+                onChange="SignUpForm.handleChange"
               />
             )}
           </Field>
@@ -93,6 +95,7 @@ export const SignUpForm = () => {
                 margin="normal"
                 autoComplete="off"
                 size="small"
+                onChange="SignUpForm.handleChange"
               />
             )}
           </Field>
@@ -114,6 +117,7 @@ export const SignUpForm = () => {
                 size="small"
                 autoComplete="off"
                 sx={{ mb: 2 }}
+                onChange="SignUpForm.handleChange"
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">

@@ -1,118 +1,123 @@
-import { Formik, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+
 import { signup } from '../../../redux/auth/operations';
-import { ImEyeBlocked, ImEye } from 'react-icons/im';
-import {
-  FormWrapper,
-  StyledField,
-  StyledForm,
-  ErrorMessageStyled,
-  StyledButton,
-  
-} from './SignUpForm.styled';
-import { StyleSheetManager } from 'styled-components';
+import SignUp from '../SignUp';
+import YourGoal from '../YourGoal/YourGoal';
+import SelectAgeAndGender from '../SelectAgeAndGender/SelectAgeAndGender';
+import BodyParams from '../BodyParams/BodyParams';
+import YourActivity from '../YourActivity/YourActivity';
 
+const initialValues = {
+  name: '',
+  email: '',
+  password: '',
+  goal: 'lose fat',
+  gender: 'male',
+  height: '',
+  weight: '',
+  age: '',
+  activity: 1.2,
+};
 
-const RegisterSchema = Yup.object({
-  name: Yup.string()
-    .matches(
-      /^[a-zA-Za-яА-Я]+(([' -][a-zA-Za-яА-Я ])?[a-zA-Za-яА-Я]*)*$/,
-      'Invalid name format'
-    )
-    .required('Name is required!')
-    .min(2, 'Too Short!')
-    .max(50, 'Too Long!'),
-
-  email: Yup.string('Enter your email')
-    .email('Enter a valid email')
-    .required('Email is required!'),
-  password: Yup.string('Enter a valid Password*')
-    .min(8, 'Password should be of minimum 8 characters length')
-    .required('Password is required'),
-});
 export const SignUpForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
 
-  const handlePasswordVisibility = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
+  const [step, setStep] = useState(1);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [goal, setGoal] = useState('lose fat');
+  const [gender, setGender] = useState('male');
+  const [height, setHeight] = useState('');
+  const [weight, setWeight] = useState('');
+  const [age, setAge] = useState('');
+  const [activity, setActivity] = useState(1.2);
+
+  const userRegister = () => {
+    const userData = {
+      name,
+      email,
+      password,
+      goal,
+      gender,
+      height: Number(height),
+      weight: Number(weight),
+      age: Number(age),
+      activity: Number(activity),
+    };
+    try {
+      dispatch(signup(userData));
+      setStep(1);
+      setName('');
+      setEmail('');
+      setPassword('');
+      setGoal('lose fat');
+      setGender('male');
+      setHeight('');
+      setWeight('');
+      setAge('');
+      setActivity(1.2);
+    } catch (error) {
+      setErrorsMessage(error);
+      setIsOpenModal(true);
+    }
   };
 
-  const handleNextClick = () => {
-    navigate('/yourgoal');
+  const handleNextStep = () => {
+    setStep((prev) => prev + 1);
+  };
+
+  const handlePrevStep = () => {
+    setStep((prev) => prev - 1);
   };
 
   return (
-    <FormWrapper>
-      <Formik
-        initialValues={{
-          name: '',
-          email: '',
-          password: '',
-        }}
-        validationSchema={RegisterSchema}
-        onSubmit={({ ...values }, actions) => {
-          dispatch(signup({ ...values }));
-          actions.resetForm();
-        }}
-      >
-        {({ handleChange, handleBlur, handleSubmit, isValid, values }) => (
-          <StyledForm onSubmit={handleSubmit}>
-            <StyledField
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Name"
-              onChange={handleChange}
-              onBlur={handleBlur}
+   < Formik initialValues={initialValues} onSubmit={userRegister}>
+   
+        <div>
+          {step === 1 && (
+            <div>
+              <SignUp goNext={handleNextStep}  setName={setName}
+            setEmail={setEmail}
+            setPassword={setPassword}  />
+            </div>
+          )}
+          {step === 2 && (
+            <div>
+              <YourGoal goNext={handleNextStep}  goBack={handlePrevStep}
+               setGoal={setGoal}
+               dataGoal={goal}/>
+            </div>
+          )}
+          {step === 3 && (
+            <SelectAgeAndGender goNext={handleNextStep}  goBack={handlePrevStep}
+            setAge={setAge}
+            setGender={setGender}
+            dataGender={gender}
+            dataAge={age}
             />
-
-            <ErrorMessage name="name" component={ErrorMessageStyled} />
-            <StyledField
-              name="email"
-              type="email"
-              id="email"
-              placeholder="E-mail"
-              onChange={handleChange}
-              onBlur={handleBlur}
-            />
-            <ErrorMessage name="email" component={ErrorMessageStyled} />
-            <StyleSheetManager shouldForwardProp={(prop) => prop !== 'success'}>
-              <div style={{ position: 'relative' }}>
-                <StyledField
-                  type={showPassword ? 'text' : 'password'}
-                  id="password"
-                  name="password"
-                  placeholder="Password"
-                  success={isValid}
-                  value={values.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                <span
-                  style={{
-                    position: 'absolute',
-                    top: '-10%',
-                    right: '10px',
-                    transform: 'translateY(80%)',
-                    cursor: 'pointer',
-                  }}
-                  onClick={handlePasswordVisibility}
-                >
-                  {showPassword ? <ImEye /> : <ImEyeBlocked />}
-                </span>
-              </div>
-              <ErrorMessage name="password" component={ErrorMessageStyled} />
-            </StyleSheetManager>
-
-            <StyledButton type="submit" noClick={handleNextClick} disabled={!isValid}>Next</StyledButton>
-          </StyledForm>
-        )}
-      </Formik>
-    </FormWrapper>
+          )}
+          {step === 4 && (
+            <BodyParams goNext={handleNextStep}  goBack={handlePrevStep}
+            setHeight={setHeight}
+            setWeight={setWeight}
+            dataHeight={height}
+            dataWeight={weight}/>
+          )}
+          {step === 5 && (
+            <YourActivity goNext={handleNextStep}  goBack={handlePrevStep}
+            setActivity={setActivity}
+            dataActivity={activity}/>
+          )}
+          {step >= 6 && (
+            <button type="submit" onClick={userRegister}>
+              Submit
+            </button>
+          )}
+        </div>
+    
+    </Formik>
   );
 };

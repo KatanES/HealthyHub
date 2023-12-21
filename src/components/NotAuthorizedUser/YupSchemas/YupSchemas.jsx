@@ -9,6 +9,14 @@ export const SignUpSchema = Yup.object().shape({
     .min(8, 'Password must be at least 8 characters')
     .required('Password is required'),
 });
+export const SignInSchema = Yup.object().shape({
+  email: Yup.string()
+    .email('Invalid email address')
+    .required('Email is required'),
+  password: Yup.string()
+    .min(8, 'Password must be at least 8 characters')
+    .required('Password is required'),
+});
 
 export const YourGoalSchema = Yup.object({
   goal: Yup.string().required('Choose one of these fields'),
@@ -31,11 +39,11 @@ export const BodyParamsSchema = Yup.object({
     .required('Height is required'),
   weight: Yup.number()
     .label('Weight')
-    .min(1, 'Must be a number from 1 to 500') 
-    .max(500, 'Must be a number from 1 to 500') 
+    .min(1, 'Must be a number from 1 to 500')
+    .max(500, 'Must be a number from 1 to 500')
     .required('Weight is required'),
 });
 
-export const YuorActivitySchema = Yup.object({
+export const YourActivitySchema = Yup.object({
   activity: Yup.string().required('Choose one of these fields'),
 });

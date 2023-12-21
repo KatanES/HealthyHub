@@ -1,23 +1,12 @@
 import React from 'react';
-import BodyParams from '../../../components/NotAuthorizedUser/BodyParams/BodyParams';
-
-// import SignUp from '../../../components/NotAuthorizedUser/SignUp';
-import YourGoal from '../../../components/NotAuthorizedUser/YourGoal/YourGoal';
-// import SelectAgeAndGender from '../../../components/NotAuthorizedUser/SelectAgeAndGender';
-
-
-
-
-
-
+import { SignUpForm } from '../../../components/NotAuthorizedUser/RegisterForm/SignUpForm';
 
 const SignUpPage = () => {
   return (
-
-      <section>
-        < YourGoal/>
-      </section>
-    );
+    <section>
+      <SignUpForm />
+    </section>
+  );
 };
 
 export default SignUpPage;

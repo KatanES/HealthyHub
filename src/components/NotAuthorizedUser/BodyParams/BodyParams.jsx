@@ -1,9 +1,9 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { Formik,  Form, ErrorMessage } from 'formik';
+
+import { Formik, Form, ErrorMessage } from 'formik';
 
 import { BodyParamsSchema } from '../YupSchemas/YupSchemas';
-import {updateWeight} from '../../../redux/auth/operations.jsx'
+
 import IllustrutonBody from '../../../assets/Welcome/IllustrationGender.png';
 import symbol from '../../../assets/Welcome/symbol.svg';
 import { ErrorMessageStyled } from './BodyParams.styled';
@@ -16,14 +16,14 @@ const BodyParams = ({
   dataHeight,
   dataWeight,
 }) => {
-    const dispatch = useDispatch();
-
-  const handleSubmit = values => {
+  const handleSubmit = (values) => {
     const { height, weight } = values;
     setHeight(height);
     setWeight(weight);
     goNext();
   };
+
+
 
   return (
     <div>
@@ -40,14 +40,10 @@ const BodyParams = ({
               weight: dataWeight ?? '',
             }}
             validationSchema={BodyParamsSchema}
-            onSubmit={({...values}, actions) => {
-                dispatch(updateWeight({ ...values }));
-           
-              actions.resetForm();
-            }}
+            onSubmit={handleSubmit}
           >
             {({ errors, touched, handleChange, handleBlur, values }) => (
-              <Form onSubmit={handleSubmit} autoComplete="off">
+              <Form autoComplete="off">
                 <p>Height</p>
                 <div
                   style={{
@@ -73,6 +69,7 @@ const BodyParams = ({
                           : '#3CBC81'
                         : '',
                     }}
+                    aria-label="Height Input"
                   />
                   <div
                     style={{
@@ -121,6 +118,7 @@ const BodyParams = ({
                           : '#3CBC81'
                         : '',
                     }}
+                    aria-label="Weight Input"
                   />
                   <div
                     style={{

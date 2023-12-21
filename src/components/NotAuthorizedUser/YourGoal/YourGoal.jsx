@@ -1,17 +1,14 @@
 import React from 'react';
 import { Formik, Field, Form } from 'formik';
 
-import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 import { YourGoalSchema } from '../YupSchemas/YupSchemas';
 
 import IllustrutonGoals from '../../../assets/Welcome/IllustrationGoals.png';
-import { updateGoal } from '../../../redux/auth/operations';
+import SignUp from '../SignUp';
 
- const YourGoal = ({ goNext, setGoal, dataGoal }) => {
-  const dispatch = useDispatch();
-
+const YourGoal = ({ goNext, setGoal, dataGoal, goBack }) => {
   useEffect(() => {
     const selectorString = 'input[type="radio"][value="' + dataGoal + '"]';
     const checkedButton = document.querySelector(selectorString);
@@ -20,13 +17,10 @@ import { updateGoal } from '../../../redux/auth/operations';
     }
     checkedButton.checked = true;
   }, [dataGoal]);
-
-  const handleSubmit = (values) => {
-    const { goal } = values;
+  const handleSubmit = ({ goal }) => {
     setGoal(goal);
     goNext();
   };
-
   return (
     <div>
       <div>
@@ -41,15 +35,12 @@ import { updateGoal } from '../../../redux/auth/operations';
               goal: dataGoal,
             }}
             validationSchema={YourGoalSchema}
-            onSubmit={({ ...values }, actions) => {
-              dispatch(updateGoal({ ...values }));
-              actions.resetForm();
-            }}
+            onSubmit={handleSubmit}
           >
-            <Form onSubmit={handleSubmit}>
+            <Form>
               <div role="group" aria-labelledby="goalGroup">
                 <label>
-                  <Field type="radio" name="goal" value=" Lose Fat" required />
+                  <Field type="radio" name="goal" value="Lose Fat" required />
                   Lose Fat
                 </label>
                 <label>
@@ -67,7 +58,10 @@ import { updateGoal } from '../../../redux/auth/operations';
                 </label>
               </div>
 
-              <button type="submit">Submit</button>
+              <button type="submit">Next</button>
+              <button type="button" onClick={goBack}>
+                Back
+              </button>
             </Form>
           </Formik>
         </div>
