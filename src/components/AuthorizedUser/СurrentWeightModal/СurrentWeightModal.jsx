@@ -64,7 +64,10 @@ export const СurrentWeightModal = ({
     event.preventDefault();
     // dispatch(updateWeight(newWeight));
 
-    if (!newWeight.trim()) {
+    if (newWeight < 1 && newWeight) {
+      setError('Weight can`t be less 1 kg');
+      setIsError(true);
+    } else if (!newWeight) {
       setError('Enter your weight*');
       setIsError(true);
     } else {
@@ -75,15 +78,7 @@ export const СurrentWeightModal = ({
   };
 
   const handleInputChange = (event) => {
-    setNewWeight(event.target.value);
-
-    if (!event.target.value.trim()) {
-      setError('Enter your weight*');
-      setIsError(true);
-    } else {
-      setError('');
-      setIsError(false);
-    }
+    setNewWeight(Number(event.target.value));
   };
 
   return (
@@ -135,7 +130,7 @@ export const СurrentWeightModal = ({
           Today <span>{formattedDate}</span>
         </Text2>
 
-        {/*    THESE MUST BE
+        {/*    THERE MUST BE
         {lastDate === date ?  <Text2>You already recorded your weight today</Text2> : <WeightForm onSubmit={handleNewWeight} noValidate>
           <WrapperInput>
             <InputStyled

@@ -65,6 +65,22 @@ export const InputStyled = styled.input`
   font-family: inherit;
   line-height: 1.42857;
 
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &[type='number'] {
+    appearance: textfield;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    border: 1px solid ${globalColor.colorPrimaryGreenLite};
+  }
+
   @media (min-width: 834px) {
     width: 166px;
   }
