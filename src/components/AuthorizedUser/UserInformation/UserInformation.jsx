@@ -1,6 +1,19 @@
 import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
+import * as Yup from 'yup';
+
+const settingsSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  age: Yup.string().max(3, 'Too Long!').required('Required'),
+  gender: Yup.string(),
+  height: Yup.string(),
+  weight: Yup.string(),
+  activity: Yup.string(),
+});
 
 const activities = [
   {
@@ -56,6 +69,7 @@ const SettingsPage = () => {
       weight: userData.weight || '',
       activity: userData.activity || '1',
     },
+    validationSchema: settingsSchema,
     onSubmit: async (values) => {
       const formData = new FormData();
       formData.append('name', values.name);
