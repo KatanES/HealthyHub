@@ -31,21 +31,34 @@ const SignUp = ({ goNext, setName, setEmail, setPassword }) => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  const validateForm = (formData) => {
-    const errors = {};
-
+  const handleSubmit = async (values) => {
     try {
-      SignUpSchema.validateSync(formData, { abortEarly: false });
+      await SignUpSchema.validate(values, { abortEarly: false });
+      setName(values.name);
+      setEmail(values.email.toLowerCase());
+      setPassword(values.password);
+      goNext();
     } catch (validationErrors) {
-      validationErrors.inner.forEach((error) => {
-        errors[error.path] = error.message;
-      });
+      console.log('Form validation errors:', validationErrors);
     }
-
-    const isValid = Object.keys(errors).length === 0;
-
-    return { errors, isValid };
   };
+
+
+  // const validateForm = (formData) => {
+  //   const errors = {};
+
+  //   try {
+  //     SignUpSchema.validateSync(formData, { abortEarly: false });
+  //   } catch (validationErrors) {
+  //     validationErrors.inner.forEach((error) => {
+  //       errors[error.path] = error.message;
+  //     });
+  //   }
+
+  //   const isValid = Object.keys(errors).length === 0;
+
+  //   return { errors, isValid };
+  // };
   return (
     <SignUpContainer>
       <WrapperImg>
@@ -65,29 +78,19 @@ const SignUp = ({ goNext, setName, setEmail, setPassword }) => {
               password: '',
             }}
             validationSchema={SignUpSchema}
-            onSubmit={(values) => {
-              const { errors, isValid } = validateForm(values);
-
-              if (isValid) {
-                setName(name);
-                setEmail(email.toLowerCase());
-                setPassword(password);
-                goNext();
-              } else {
-                console.log('Form validation errors:', errors);
-              }
-            }}
+            onSubmit={handleSubmit}
+            
           >
             {({
               errors,
               touched,
               handleChange,
               handleBlur,
-              handleSubmit,
+       
               isValid,
               values,
             }) => (
-              <StyledForm onSubmit={handleSubmit} autoComplete="off">
+              <StyledForm autoComplete="off">
                 <InputContainer
                   style={{
                     borderColor: touched.name
