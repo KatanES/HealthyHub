@@ -1,27 +1,30 @@
-import Breakfast from '../../DiaryPage/Breakfast';
-import Lunch from '../../DiaryPage/Lunch';
-import Dinner from '../../DiaryPage/Dinner';
-import Snack from '../../DiaryPage/Snack';
+import { Link } from 'react-router-dom';
+import Breakfast from '../../../AuthorizedUser/DiaryPage/Breakfast.jsx';
+import Lunch from '../../../AuthorizedUser/DiaryPage/Lunch';
+import Dinner from '../../../AuthorizedUser/DiaryPage/Dinner';
+import Snack from '../../../AuthorizedUser/DiaryPage/Snack';
 import {
   SectionDiary,
   ItemTitelDiary,
   TextDiary,
   TitelDiary,
-  ItemDiary,
-} from './Diary.styled';
+    ItemDiary
+} from '../Diary/Diary.styled';
 
 const Diary = () => {
   return (
     <SectionDiary>
       <ItemTitelDiary>
         <TitelDiary>Diary</TitelDiary>
-        <TextDiary>See more</TextDiary>
+        <Link to="/diary">
+          <TextDiary>See more</TextDiary>
+        </Link>
       </ItemTitelDiary>
       <ItemDiary>
-        <Breakfast />
-        <Lunch />
-        <Dinner />
-        <Snack />
+          <Breakfast />
+          <Lunch />
+          <Dinner />
+          <Snack />
       </ItemDiary>
     </SectionDiary>
   );

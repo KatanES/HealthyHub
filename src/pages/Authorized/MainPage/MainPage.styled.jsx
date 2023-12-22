@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  border: 2px solid white;
+  /* border: 2px solid white; */
   max-width: 320px;
   padding: 10px;
   /* display: flex;
@@ -37,24 +37,21 @@ export const TitelFlex = styled.div`
 `;
 
 export const SectionDiary = styled.div`
-  border: 2px solid white;
+  /* border: 2px solid white; */
   max-width: 320px;
 
   @media (min-width: 768px) {
-    max-width: 768px;
-    padding: 27px;
+    max-width: 558px;
+    padding: 10;
     display: flex;
-    flex-wrap: wrap;
     gap: 20px;
   }
 
   @media (min-width: 1200px) {
-    max-width: 1480px;
-    padding: 34px;
+    max-width: 558px;
+    padding: 10px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    flex-basis: calc((100% - 20px) / 2);
+    
   }
 `;
 

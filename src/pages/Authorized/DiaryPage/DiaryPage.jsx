@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Breakfast from '../../../components/AuthorizedUser/DiaryPage/Breakfast';
 import Lunch from '../../../components/AuthorizedUser/DiaryPage/Lunch';
 import Dinner from '../../../components/AuthorizedUser/DiaryPage/Dinner';
@@ -9,9 +10,11 @@ const DiaryPage = () => {
   return (
     <Container>
       <TitelPage>
-        <SVG>
-          <use href={symbol + '#icon-arrow-left'} />
-        </SVG>
+        <Link to="/main">
+          <SVG>
+            <use href={symbol + '#icon-arrow-left'} />
+          </SVG>
+        </Link>
         <h2>Diary</h2>
       </TitelPage>
       <Section>
