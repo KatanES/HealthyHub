@@ -7,7 +7,7 @@ import { AgeAndGenderSchema } from '../YupSchemas/YupSchemas';
 
 import IllustrutonGender from '../../../assets/Welcome/IllustrationGender.png';
 import symbol from '../../../assets/Welcome/symbol.svg';
-import { ErrorMessageStyled } from './SelectAgeAndGender.styled';
+import { AgeAndGenderlImg, AgeContainer, AgeText, AgeTitle, AgeWrapper, WrapperImg, ErrorMessageStyled } from './SelectAgeAndGender.styled';
 
 const SelectAgeAndGender = ({
   goNext,
@@ -34,13 +34,13 @@ const SelectAgeAndGender = ({
   };
 
   return (
-    <div>
-      <div>
-        <img src={IllustrutonGender} alt="Healthy life style" />
-      </div>
-      <div>
-        <h2>Select gender, Age</h2>
-        <p>Choose a goal so that we can help you effectively</p>
+    <AgeContainer>
+      <WrapperImg>
+        <AgeAndGenderlImg src={IllustrutonGender} alt="Healthy life style" />
+      </WrapperImg>
+      <AgeWrapper>
+        <AgeTitle>Select gender, Age</AgeTitle>
+        <AgeText>Choose a goal so that we can help you effectively</AgeText>
         <div>
           <Formik
             initialValues={{
@@ -120,8 +120,8 @@ const SelectAgeAndGender = ({
             )}
           </Formik>
         </div>
-      </div>
-    </div>
+      </AgeWrapper>
+    </AgeContainer>
   );
 };
 export default SelectAgeAndGender;
