@@ -2,20 +2,23 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Container = styled.main`
-  background-color: ${props => props.theme.colors.black};
-  color: ${props => props.theme.colors.white};
-  font-family: ${props => props.theme.fontFamily.poppins};
+   background-color: ${props => (props.theme?.colors?.black) || 'defaultColor'};
+   color: ${props => props.theme && props.theme.colors && props.theme.colors.white || 'defaultColor'};
+   font-family: ${props => props.theme && props.theme.fontFamily && props.theme.fontFamily.poppins || 'defaultFont'};
+
 
   padding-top: 16px;
   padding-bottom: 40px;
 
-  @media screen and (${props => props.theme.mq.tablet}) {
+  @media screen and (${props => props.theme?.mq?.tablet}) {
     padding-top: 24px;
   }
+  
 
-  @media screen and (${props => props.theme.mq.desktop}) {
+  @media screen and (${props => props.theme?.mq?.desktop}) {
     padding-top: 20px;
   }
+  
 `;
 
 export const Content = styled.div`
@@ -23,12 +26,12 @@ export const Content = styled.div`
   width: 320px;
   padding: 0 10px;
 
-  @media screen and (${props => props.theme.mq.tablet}) {
+  @media screen and (${props => (props.theme && props.theme.mq && props.theme.mq.tablet) || 'default-value'}) {
     width: 834px;
     padding: 0 27px;
   }
 
-  @media screen and (${props => props.theme.mq.desktop}) {
+  @media screen and (${props => (props.theme && props.theme.mq && props.theme.mq.desktop) || 'default-value'}) {
     width: 1440px;
     padding: 0 34px;
   }
@@ -43,7 +46,7 @@ export const BackLink = styled(NavLink)`
     display: flex;  
     margin-right: 8px;
  
-  @media screen and (${props => props.theme.mq.tablet}) {
+  @media screen and (${props => props.theme && props.theme.mq && props.theme.mq.tablet}) {
     margin-right: 12px;
   }
 `;
