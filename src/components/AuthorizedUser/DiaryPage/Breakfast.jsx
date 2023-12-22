@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addMeal } from '../../../redux/slice/diarySlice.jsx';
-// import symbol from '../../../assets/Welcome/symbol.svg';
 import MealForm from './MealForm';
 import BreakfastImage from '../../../assets/Diary/Breakfast.png';
 import {
@@ -14,7 +13,7 @@ import {
   ButtonRecord,
   TitelRecord,
   ModalRecord,
-  Section
+  Section,
 } from './DiaryPage.styled.jsx';
 
 const Breakfast = () => {
@@ -25,6 +24,7 @@ const Breakfast = () => {
   const [carbonohidrates, setCarbonohidrates] = useState('');
   const [protein, setProtein] = useState('');
   const [fat, setFat] = useState('');
+  const [setSelectedMeal] = useState(null); 
 
   const openModal = () => {
     setModalOpen(true);
@@ -36,6 +36,7 @@ const Breakfast = () => {
     setCarbonohidrates('');
     setProtein('');
     setFat('');
+    setSelectedMeal(null);
   };
 
   const handleSubmit = (event) => {
@@ -63,6 +64,29 @@ const Breakfast = () => {
     protein: 0,
     fat: 0,
   });
+
+  // // Додано функцію для генерації порожніх елементів
+  // const generateEmptyMeals = () => {
+  //   const emptyMeals = [];
+  //   for (let i = 0; i < 4; i++) {
+  //     emptyMeals.push({
+  //       id: `empty_${i + 1}`,
+  //       name: `Empty Meal ${i + 1}`,
+  //       carbonohidrates: 0,
+  //       protein: 0,
+  //       fat: 0,
+  //     });
+  //   }
+  //   return emptyMeals;
+  // };
+
+  // // Використано useEffect для ініціалізації порожніх елементів при завантаженні компонента
+  // useEffect(() => {
+  //   if (meals.length === 0) {
+  //     const emptyMeals = generateEmptyMeals();
+  //     dispatch(addEmptyMeals(emptyMeals));
+  //   }
+  // }, [dispatch, meals]);
 
   return (
     <Section>

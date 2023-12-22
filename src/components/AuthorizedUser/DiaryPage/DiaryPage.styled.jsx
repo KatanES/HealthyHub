@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const DeviceFlex = styled.div`
   @media (min-width: 768px) {
     display: flex;
-  gap: 159px;
+    justify-content: space-around;
+    /* gap: 159px; */
   }
 `;
 
@@ -108,6 +109,16 @@ export const InputFlex = styled.div`
   flex-wrap: wrap;
   gap: 8px;
 
+  &:hover {
+    outline: none;
+    border: none;
+  }
+
+  &:active {
+    outline: none;
+    border: none;
+  }
+
   @media (min-width: 768px) {
     flex-wrap: nowrap;
   }
@@ -125,6 +136,16 @@ export const ModalRecord = styled.div`
   left: 10px;
   background: black;
   z-index: 1000;
+
+  &:hover {
+    outline: none;
+    border: none;
+  }
+
+  &:active {
+    outline: none;
+    border: none;
+  }
 
   @media (min-width: 768px) {
     max-width: 708px;
@@ -189,4 +210,8 @@ export const ButtonSolution = styled.button`
     background-color: #e3ffa8;
     color: black;
   }
+`;
+
+export const ButtonEdit = styled.button`
+  
 `;

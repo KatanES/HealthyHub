@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 
 export const Container = styled.div`
-  border: 2px solid white;
+  /* border: 2px solid white; */
   max-width: 320px;
   padding: 10px;
   /* display: flex;
@@ -32,7 +32,7 @@ export const TitelPage = styled.div`
 `;
 
 export const Section = styled.div`
-  border: 2px solid white;
+  /* border: 2px solid white; */
   max-width: 320px;
 
   @media (min-width: 768px) {

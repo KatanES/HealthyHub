@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Diary from '../../../components/AuthorizedUser/MainPage/Diary/Diary';
 import symbol from '../../../assets/Welcome/symbol.svg';
 import {
@@ -15,12 +16,14 @@ const MainPage = () => {
     <Container>
       <TitelPage>
         <Titel>Today</Titel>
-        <TitelFlex>
-          <Text>On the way to the goal</Text>
-          <SVG>
-            <use href={symbol + '#icon-arrow-right'} />
-          </SVG>
-        </TitelFlex>
+        <Link to="/dashboard">
+          <TitelFlex>
+            <Text>On the way to the goal</Text>
+            <SVG>
+              <use href={symbol + '#icon-arrow-right'} />
+            </SVG>
+          </TitelFlex>
+        </Link>
       </TitelPage>
       <SectionDiary>
         <Diary />
