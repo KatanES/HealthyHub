@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  signUp,
-  signIn,
+  signup,
+  signin,
   signOut,
   updateWeight,
   updateGoal,
@@ -120,12 +120,12 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(signUp.pending, handlePending)
-      .addCase(signUp.fulfilled, handleSignUpFulfilled)
-      .addCase(signUp.rejected, handleSignUpRejected)
-      .addCase(signIn.pending, handlePending)
-      .addCase(signIn.fulfilled, handleSignInFulfilled)
-      .addCase(signIn.rejected, handleSignInRejected)
+      .addCase(signup.pending, handlePending)
+      .addCase(signup.fulfilled, handleSignUpFulfilled)
+      .addCase(signup.rejected, handleSignUpRejected)
+      .addCase(signin.pending, handlePending)
+      .addCase(signin.fulfilled, handleSignInFulfilled)
+      .addCase(signin.rejected, handleSignInRejected)
       .addCase(signOut.pending, handlePending)
       .addCase(signOut.fulfilled, handleSignOutFulfilled)
       .addCase(signOut.rejected, handleSignOutRejected)
