@@ -14,8 +14,9 @@ import {
   AgeTitle,
   AgeWrapper,
   WrapperImg,
-  ErrorMessageStyled,
 } from './SelectAgeAndGender.styled';
+
+import { ErrorMessageStyled } from '../SignUp/SignUp.styled';
 
 const SelectAgeAndGender = ({
   goNext,
