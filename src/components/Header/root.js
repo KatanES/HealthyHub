@@ -10,4 +10,6 @@ export const globalColor = {
   colorSecondaryGrey1: '#292928',
   colorSecondaryPink: '#FFC4F7',
   colorSecondaryYellow: '#FFF3B7',
+  colorSecondaryGreen: '#3CBC81',
+  colorSecondaryRed: '#E74A3B',
 };

@@ -1,15 +1,39 @@
-import { Field, Form,  } from 'formik';
+import {  Form } from 'formik';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { globalColor } from '../../Header/root';
 
 export const SignUpContainer = styled.div`
   width: 300px;
+  @media (min-width: 834px) {
+    width: 780px;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  @media (min-width: 1440px) {
+    width: 1372px;
+    display: flex;
+
+    flex-direction: row;
+    align-items: flex-start;
+  }
 `;
 
 export const WrapperImg = styled.div`
   width: 300px;
-  margin: 0 0 24px 0;
-  // border: 2px solid red;
+  margin: 40px 0 0 0;
+  @media (min-width: 834px) {
+    width: 380px;
+    height: 376px;
+    margin: 40px auto 0 auto;
+  }
+  @media (min-width: 1440px) {
+    width: 592px;
+    height: 588px;
+    margin-left: 116px;
+  }
 `;
 
 export const SignUpImg = styled.img`
@@ -19,70 +43,99 @@ export const SignUpImg = styled.img`
 
 export const SignUpWrapper = styled.div`
   width: 300px;
+  margin: 24px auto 0 auto;
+  @media (min-width: 834px) {
+    width: 380px;
+    margin: 60px auto 0 auto;
+  }
+  @media (min-width: 1440px) {
+    width: 444px;
+    margin: 120px auto 0 auto;
+  }
 `;
 
-
 export const SignUpHeroTitle = styled.h2`
-margin: 0;
-font-size: 24px;
-font-style: normal;
-font-weight: 500;
-  line-height: 1.25;`;
+  margin: 0;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.25;
+  @media (min-width: 834px) {
+    font-size: 30px;
+    line-height: 1.2;
+    text-align: center;
+    margin-bottom: 16px;
+   
+  }
+   @media (min-width: 1440px) {
+      text-align: left;
+    }
+`;
 
-  export const SignUpText = styled.p`
+export const SignUpText = styled.p`
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
-  color: #b6b6b6;
+  color: ${globalColor.colorPrimaryGrey};
   margin: 16px 0 0 0;
-  `;
-
-  export const SignUpFormWrapper = styled.div`
-margin: 24px 0 0 0;
+  @media (min-width: 834px) {
+    font-size: 22px;
+    line-height: 1.45;
+    text-align: center;
+  }
+  @media (min-width: 1440px) {
+      text-align: left;
+    }
 `;
 
 export const StyledNotification = styled.p`
   font-size: 12px;
-  color: #3cbc81;
+  color: ${globalColor.colorSecondaryGreen};
   margin: 0 10px 0 0;
 `;
 
 export const StyledForm = styled(Form)`
-display: flex;
-gap: 20px;
-flex-direction: column;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  margin: 24px 0 0 0;
+  @media (min-width: 834px) {
+    width: 380px;
+
+    margin: 60px auto 0 auto;
+  }
+  @media (min-width: 1440px) {
+    width: 212px;
+    margin: 24px 0 0 0;
+  }
 `;
 
 export const InputContainer = styled.div`
-background: transparent;
-position: relative;
-
-
+  background: transparent;
+  position: relative;
 `;
 
 export const InputText = styled.input`
-width: -webkit-fill-available;
+  width: -webkit-fill-available;
   padding: 8px 10px;
- 
- 
-  border: 1px solid #E3FFA8;
+
+  border: 1px solid ${globalColor. colorPrimaryGreenLite};
   border-radius: 12px;
   border-radius: 12px;
   background: transparent;
   font-size: 14px;
-  color: #ffffff;
+  color: ${globalColor.colorPrimaryWhite};
 
   &:focus,
   &:hover,
   &:active {
     background: transparent;
-    outline:  none;
-    
+    outline: none;
   }
 
   &::placeholder {
     font-size: 14px;
-    color: #b6b6b6;
+    color: ${globalColor.colorPrimaryGrey};
   }
 `;
 
@@ -93,16 +146,15 @@ export const IconTextPosition = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-
 export const ErrorMessageStyled = styled.p`
   font-size: 12px;
   font-weight: 400;
   margin: 0px 10px 0 0;
-  color: #e74a3b;
+  color: ${globalColor.colorSecondaryRed};
 `;
 
 export const StyledButton = styled.button`
-font-family: Poppins, sans-serif;
+  font-family: Poppins, sans-serif;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -112,37 +164,60 @@ font-family: Poppins, sans-serif;
   width: 100%;
   text-transform: none;
   padding: 8px 10px;
-  background-color: #e3ffa8;
-  color: #0f0f0f;
+  margin: 20px 0 0 0;
+  background-color: ${globalColor.colorPrimaryGreenLite};
+  color: ${globalColor.colorPrimaryBlack2};
   cursor: pointer;
   transition: background-color 0.3s ease;
-  &:hover: {
-    backgroundColor: transparent,
-    color: #ffffff,
-  };
-  &:active: {
-    backgroundColor: transparent,
-    color: #ffffff,
-  };
+  &:hover {
+    background-color: transparent;
+    color:  ${globalColor.colorPrimaryWhite};
+  }
+
+  &:active {
+    background-color: transparent;
+    color: ${globalColor.colorPrimaryWhite};
+  }
+`;
+
+export const SignUpNavigateWrapper = styled.div`
+display: flex;
+gap: 16px;
+flex-direction: column;
+margin: 48px 0 0 0;
+@media (min-width: 834px) {
+  width: 380px;
+  flex-direction: row;
+  margin: 206px 0 60px 0;
+}
+
+@media (min-width: 1440px) {
+  text-align: left;
+  flex-direction: column;
+}
 `;
 export const SignUpQuestion = styled.p`
-font-size: 14px;
-line-height: 1.42;
-color: #B6B6B6;
-margin: 48px 0 0 0;
+  font-size: 14px;
+  line-height: 1.42;
+  color: ${globalColor.colorPrimaryGrey};
+ margin: 0;
+ 
 `;
 
 export const SignUpNavLink = styled(NavLink)`
-font-family: Poppins;
-font-size: 14px;
-font-style: normal;
-font-weight: 500;
-line-height: 1.42;
-color: #ffffff;
-margin: 16px 0 0 0;
+  font-family: Poppins;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.42;
+  color: ${globalColor.colorPrimaryWhite};
+  margin: 0 0 40px 0;
+  @media (min-width: 834px) {
+    margin: 0;
+  }
 `;
 export const SVG = styled.svg`
   width: 16px;
   height: 16px;
-  margin:0 4px 0 0;
+  margin: 0 4px 0 0;
 `;

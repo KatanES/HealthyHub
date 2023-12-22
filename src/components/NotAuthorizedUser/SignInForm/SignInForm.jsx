@@ -16,7 +16,7 @@ import {
   SignUpImg,
   SignUpText,
   SignUpNavLink,
-  SignUpFormWrapper,
+  // SignUpFormWrapper,
   SignUpHeroTitle,
   SignUpWrapper,
   InputContainer,

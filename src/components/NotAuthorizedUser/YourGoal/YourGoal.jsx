@@ -1,12 +1,26 @@
 import React from 'react';
-import { Formik, Field, Form } from 'formik';
+import { Formik } from 'formik';
 
 import { useEffect } from 'react';
 
 import { YourGoalSchema } from '../YupSchemas/YupSchemas';
 
 import IllustrutonGoals from '../../../assets/Welcome/IllustrationGoals.png';
-import SignUp from '../SignUp';
+
+import {
+  GoalContainer,
+  GoalTitle,
+  GoalText,
+  GoalWrapper,
+  WrapperImg,
+  YourGoalImg,
+  GaolRadioForm,
+  GaolRadio,
+  GoalLabel,
+  GoalField,
+  StyledButton,
+  ButtonWrapper,
+} from './YourGoal.styled';
 
 const YourGoal = ({ goNext, setGoal, dataGoal, goBack }) => {
   useEffect(() => {
@@ -22,51 +36,57 @@ const YourGoal = ({ goNext, setGoal, dataGoal, goBack }) => {
     goNext();
   };
   return (
-    <div>
-      <div>
-        <img src={IllustrutonGoals} alt="Hiking" />
-      </div>
-      <div>
-        <h2>Your goal</h2>
-        <p>Choose a goal so that we can help you effectively</p>
-        <div>
-          <Formik
-            initialValues={{
-              goal: dataGoal,
-            }}
-            validationSchema={YourGoalSchema}
-            onSubmit={handleSubmit}
-          >
-            <Form>
-              <div role="group" aria-labelledby="goalGroup">
-                <label>
-                  <Field type="radio" name="goal" value="Lose Fat" required />
-                  Lose Fat
-                </label>
-                <label>
-                  <Field type="radio" name="goal" value="Maintain" required />
-                  Maintain
-                </label>
-                <label>
-                  <Field
-                    type="radio"
-                    name="goal"
-                    value=" Gain Muscle"
-                    required
-                  />
-                  Gain Muscle
-                </label>
-              </div>
+    <GoalContainer>
+      <WrapperImg>
+        <YourGoalImg src={IllustrutonGoals} alt="Hiking" />
+      </WrapperImg>
+      <GoalWrapper>
+        <GoalTitle>Your goal</GoalTitle>
+        <GoalText>Choose a goal so that we can help you effectively</GoalText>
 
-              <button type="submit">Next</button>
-              <button type="button" onClick={goBack}>
+        <Formik
+          initialValues={{
+            goal: dataGoal,
+          }}
+          validationSchema={YourGoalSchema}
+          onSubmit={handleSubmit}
+        >
+          <GaolRadioForm>
+            <GaolRadio role="group" aria-labelledby="goalGroup">
+              <GoalLabel>
+                <GoalField
+                  type="radio"
+                  name="goal"
+                  value=" Lose Fat"
+                  required
+                />
+                Lose Fat
+              </GoalLabel>
+              <GoalLabel>
+                <GoalField type="radio" name="goal" value="Maintain" required />
+                Maintain
+              </GoalLabel>
+              <GoalLabel>
+                <GoalField
+                  type="radio"
+                  name="goal"
+                  value=" Gain Muscle"
+                  required
+                />
+                Gain Muscle
+              </GoalLabel>
+            </GaolRadio>
+            <ButtonWrapper>
+              <StyledButton type="submit">Next</StyledButton>
+              <StyledButton type="button" onClick={goBack}>
                 Back
-              </button>
-            </Form>
-          </Formik>
-        </div>
-      </div>
-    </div>
+              </StyledButton>
+            </ButtonWrapper>
+          </GaolRadioForm>
+        </Formik>
+        {/* </div> */}
+      </GoalWrapper>
+    </GoalContainer>
   );
 };
 export default YourGoal;
