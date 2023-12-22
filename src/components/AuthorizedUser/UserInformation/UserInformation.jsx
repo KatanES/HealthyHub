@@ -2,7 +2,16 @@ import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import * as Yup from 'yup';
-import { FormStyle } from './UserInformation.styled';
+import {
+  FormStyle,
+  FormLabel,
+  FormInput,
+  FormInputRadio,
+  SettingsContainer,
+  FormSaveBtn,
+  FromCancelBtn,
+} from './UserInformation.styled';
+import HeroImg from '../../../assets/Settings/settings-hero.svg';
 
 const settingsSchema = Yup.object().shape({
   name: Yup.string()
@@ -101,86 +110,114 @@ const SettingsPage = () => {
 
   return (
     <div>
-      <FormStyle onSubmit={formik.handleSubmit}>
-        <label>Your name</label>
-        <input
-          type="text"
-          name="name"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.name}
-        />
-
-        <label>Your photo</label>
-        <input type="file" accept="image/*" onChange={handleAvatarChange} />
-        {avatarUrl && <img src={avatarUrl} alt="Avatar" />}
-
-        <label>Your age</label>
-        <input
-          type="text"
-          name="age"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.age}
-        />
-
-        <label>Gender</label>
-        <div>
-          <input
-            type="radio"
-            name="gender"
-            value="male"
-            checked={formik.values.gender === 'male'}
-            onChange={formik.handleChange}
-          />
-          Male
-          <input
-            type="radio"
-            name="gender"
-            value="female"
-            checked={formik.values.gender === 'female'}
-            onChange={formik.handleChange}
-          />
-          Female
-        </div>
-
-        <label>Height</label>
-        <input
-          type="text"
-          name="height"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.height}
-        />
-
-        <label>Weight</label>
-        <input
-          type="text"
-          name="weight"
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.weight}
-        />
-
-        <label>Your activity</label>
-        {activities.map((activity) => (
-          <div key={activity.value}>
-            <input
-              type="radio"
-              name="activity"
-              value={activity.value}
-              checked={formik.values.activity === activity.value}
+      <h2>Profile Settings</h2>
+      <SettingsContainer>
+        <img src={HeroImg} alt="Hero Image" />
+        <FormStyle onSubmit={formik.handleSubmit}>
+          <FormLabel>
+            Your name
+            <FormInput
+              type="text"
+              name="name"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.name}
             />
-            {activity.label}
-          </div>
-        ))}
+          </FormLabel>
 
-        <button type="submit">Save</button>
-        <button type="button" onClick={formik.handleReset}>
-          Cancel
-        </button>
-      </FormStyle>
+          <FormLabel>
+            Your photo
+            <div>
+              <img src={avatarUrl} alt="Avatar" />
+              {/* {avatarUrl && <img src={avatarUrl} alt="Avatar" />} */}
+              {/* {avatarUrl ? <img src={avatarUrl} alt="Avatar" /> : defaultAvatar } */}
+              <FormInput
+                type="file"
+                accept="image/*"
+                onChange={handleAvatarChange}
+              />
+            </div>
+          </FormLabel>
+
+          <FormLabel>
+            Your age
+            <FormInput
+              type="text"
+              name="age"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.age}
+            />
+          </FormLabel>
+
+          <FormLabel>
+            Gender
+            <div>
+              <FormInputRadio
+                type="radio"
+                name="gender"
+                value="male"
+                checked={formik.values.gender === 'male'}
+                onChange={formik.handleChange}
+              />
+              Male
+              <FormInputRadio
+                type="radio"
+                name="gender"
+                value="female"
+                checked={formik.values.gender === 'female'}
+                onChange={formik.handleChange}
+              />
+              Female
+            </div>
+          </FormLabel>
+
+          <FormLabel>
+            Height
+            <FormInput
+              type="text"
+              name="height"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.height}
+            />
+          </FormLabel>
+
+          <FormLabel>
+            Weight
+            <FormInput
+              type="text"
+              name="weight"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.weight}
+            />
+          </FormLabel>
+
+          <FormLabel>
+            Your activity
+            {activities.map((activity) => (
+              <div key={activity.value}>
+                <FormInputRadio
+                  type="radio"
+                  name="activity"
+                  value={activity.value}
+                  checked={formik.values.activity === activity.value}
+                  onChange={formik.handleChange}
+                />
+                {activity.label}
+              </div>
+            ))}
+          </FormLabel>
+
+          <div>
+            <FormSaveBtn type="submit">Save</FormSaveBtn>
+            <FromCancelBtn type="button" onClick={formik.handleReset}>
+              Cancel
+            </FromCancelBtn>
+          </div>
+        </FormStyle>
+      </SettingsContainer>
     </div>
   );
 };
