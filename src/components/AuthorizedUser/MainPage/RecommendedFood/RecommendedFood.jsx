@@ -1,34 +1,33 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
-import CardRecommendedProduct from 'components/CardRecommendedProduct';
+import CardRecommendedProduct from '../../../CardRecommendedProduct.styled.jsx/CardRecommendedProduct';
 import {
   RecommendedFoodSection,
   TitleSection,
   RecommendedFoodList,
   SeeMoreButton,
-} from './RecommendedFood.styled';
+} from '../../../AuthorizedUser/MainPage/RecommendedFood/RecommendedFood.styled.jsx';
 
-import { getRecommentedFood } from "helpers/getRecommentedFood";
-import { randomizeFood } from 'helpers/randomizeFood'
+import { getRecommentedFood } from '../../../../helpers/getRecommentedFood.js';
+import { randomizeFood } from '../../../../helpers/randomizeFood.js';
 
 const RecommendedFoodOnMain = () => {
-  
   const [arrayForRender, setArrayForRender] = useState([]);
-  
+
   useEffect(() => {
     getRecommentedFood()
-      .then(responce => {
-        setArrayForRender(randomizeFood(responce))
+      .then((responce) => {
+        setArrayForRender(randomizeFood(responce));
       })
-      .catch(err => console.log(err))
-  }, [])
-  
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <RecommendedFoodSection>
       <TitleSection>Recommended food</TitleSection>
       <RecommendedFoodList>
         {arrayForRender.map(({ _id, img, name, amount, calories }) => (
-          <CardRecommendedProduct              
+          <CardRecommendedProduct
             key={_id}
             id={_id}
             img={img}
@@ -44,4 +43,3 @@ const RecommendedFoodOnMain = () => {
 };
 
 export default RecommendedFoodOnMain;
-
