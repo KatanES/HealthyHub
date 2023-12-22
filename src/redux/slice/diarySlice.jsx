@@ -47,6 +47,27 @@ export const deleteMeal = createAsyncThunk(
   }
 );
 
+// // Додайте нову функцію для створення порожнього запису
+// export const addEmptyMeals = createAsyncThunk(
+//   'meals/addEmptyMeals',
+//   async () => {
+  // const response = await fetch(
+  //     `/https://65140b928e505cebc2ea9bcc.mockapi.io/contacts/${mealId}`,
+  //     {
+  //       method: 'POST',
+  //     }
+  //   );
+  //   if (!response.ok) {
+  //     throw new Error('Network response was not ok');
+  //   }
+//     // Ваш код для створення порожнього запису
+//     // Можливо, вам слід зробити запит на сервер або виконати локальну дію
+//     return {/* результат створення порожнього запису */};
+//   }
+// );
+
+// // інші імпорти...
+
 const initialState = {
   meals: [],
   err: null, 
@@ -75,6 +96,12 @@ const diarySlice = createSlice({
         state.err = null;
         state.meals = state.meals.filter((meal) => meal.id !== action.payload);
       });
+    // .addCase(addEmptyMeals.fulfilled, (state, action) => {
+    //     // Обробка результату створення порожнього запису
+    //     // Додайте новий порожній запис до стейту
+    //     state.err = null;
+    //     state.meals.push(action.payload);
+    //   });
   },
 });
 

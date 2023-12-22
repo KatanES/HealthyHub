@@ -30,7 +30,9 @@ export const NavLinkStyled = styled(NavLink)`
 export const IconWrapper = styled.svg`
   width: 26px;
   height: 26px;
-  padding: 0;
+
+  margin: 0;
+
   stroke: ${globalColor.colorPrimaryWhite};
 
   @media (min-width: 834px) {

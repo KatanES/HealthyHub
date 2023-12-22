@@ -1,80 +1,96 @@
 import { useState } from 'react';
+import { useMediaQuery } from '@mui/material';
+
+// import { useAuth } from '../hooks/useAuth';
+
+import { Goals } from './ComponetsControlPanel/Goals';
+import { Weight } from './ComponetsControlPanel/Weight';
+import { MobileMenu } from './ComponetsControlPanel/MobileMenu';
+import { TargetSelectionModal } from '../TargetSelectionModal/TargetSelectionModal';
+import { СurrentWeightModal } from '../СurrentWeightModal/СurrentWeightModal';
 
 import {
   gainMuscle,
   loseFatGirl,
   loseFatMen,
-  maintakeGirl,
-  maintakeMen,
+  maintainGirl,
+  maintainMen,
   weightIcon,
 } from '../../../assets/Header/headerImage';
 import sprite from '../../../assets/sprite.svg';
 
 import {
   WrapperControlPanel,
-  IconSelectWrapper,
-  Goals,
-  //   MenuButton,
-  Weight,
+  MenuButton,
   SvgWrapper,
-  Title,
-  Text,
-  ControlPanelButton,
-  TextWrapperGoal,
-  TextWrapperWeight,
 } from './ControlPanel.styled';
 
 export const ControlPanel = () => {
   const [user] = useState({
-    gender: 'Male',
+    gender: 'Female',
     goal: 'Lose fat',
     weight: 65,
   }); //don`t need
-  //   const user = useSelector(selectUser);
 
-  //   const [showMobileMenu, setShowMobileMenu] = useState(false);
-  const [showGoalMenu, setShowGoalMenu] = useState(false);
-  const [showWeightMenu, setShowWeightMenu] = useState(false);
+  // const { user } = useAuth();
 
-  //   const openMobileMenu = () => {
-  //     setShowMobileMenu(true);
-  //   };
+  const [isActive, setIsActive] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [showTargetSelectionModal, setShowTargetSelectionModal] =
+    useState(false);
+  const [showСurrentWeightModal, setShowСurrentWeightModal] = useState(false);
 
-  //   const closeMobileMenu = () => {
-  //     setShowMobileMenu(false);
-  //   };
+  const isMobile = useMediaQuery('(max-width:834px)');
 
-  const openGoalMenu = () => {
-    setShowGoalMenu(true);
+  const openMobileMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+    setIsActive(true);
+    setShowMobileMenu(true);
   };
 
-  const closeGoalMenu = () => {
-    setShowGoalMenu(false);
+  const closeMobileMenu = () => {
+    setAnchorEl(null);
+    setIsActive(false);
+    setShowMobileMenu(false);
   };
 
-  const openWeightMenu = () => {
-    setShowWeightMenu(true);
+  const openTargetSelectionModal = (event) => {
+    setAnchorEl(event.currentTarget);
+    setShowTargetSelectionModal(true);
+    setIsActive(true);
+    setShowMobileMenu(false);
   };
 
-  const closeWeightMenu = () => {
-    setShowWeightMenu(false);
+  const closeTargetSelectionModal = () => {
+    setAnchorEl(null);
+    setShowTargetSelectionModal(false);
+    setIsActive(false);
+  };
+
+  const openСurrentWeightModal = (event) => {
+    setAnchorEl(event.currentTarget);
+    setShowСurrentWeightModal(true);
+    setShowMobileMenu(false);
+  };
+
+  const closeСurrentWeightModal = () => {
+    setAnchorEl(null);
+    setShowСurrentWeightModal(false);
   };
 
   const { gender, goal, weight } = user;
 
   let currentGoalIcon;
-
   switch (gender) {
     case 'Male':
       switch (goal) {
         case 'Lose fat':
           currentGoalIcon = loseFatMen;
           break;
-
         case 'Maintain':
-          currentGoalIcon = maintakeMen;
+          currentGoalIcon = maintainMen;
           break;
-
         default:
           currentGoalIcon = gainMuscle;
           break;
@@ -86,17 +102,14 @@ export const ControlPanel = () => {
         case 'Lose fat':
           currentGoalIcon = loseFatGirl;
           break;
-
         case 'Maintain':
-          currentGoalIcon = maintakeGirl;
+          currentGoalIcon = maintainGirl;
           break;
-
         default:
           currentGoalIcon = gainMuscle;
           break;
       }
       break;
-
     default:
       currentGoalIcon = gainMuscle;
       break;
@@ -104,64 +117,58 @@ export const ControlPanel = () => {
 
   return (
     <WrapperControlPanel>
-      {/* <MenuButton type="button" onClick={openMobileMenu}>
-          <IconWrapper>
+      {isMobile ? (
+        <MenuButton type="button" onClick={openMobileMenu}>
+          <SvgWrapper className={isActive ? 'active' : ''}>
             <use href={sprite + '#icon-menu'} />
-          </IconWrapper>
-        </MenuButton> */}
-      {/* {showMobileMenu ? <MobileMenu> :  (<Goals /> and  <Weight />) */}
+          </SvgWrapper>
+        </MenuButton>
+      ) : (
+        <>
+          <Goals
+            openTargetSelectionModal={openTargetSelectionModal}
+            currentGoalIcon={currentGoalIcon}
+            goal={goal}
+            isActive={isActive}
+          />
+          <Weight
+            openСurrentWeightModal={openСurrentWeightModal}
+            weightIcon={weightIcon}
+            weight={weight}
+          />
+        </>
+      )}
+      {showMobileMenu && (
+        <MobileMenu
+          isOpen={Boolean(anchorEl)}
+          anchorEl={anchorEl}
+          closeMobileMenu={closeMobileMenu}
+          openTargetSelectionModal={openTargetSelectionModal}
+          currentGoalIcon={currentGoalIcon}
+          goal={goal}
+          showMobileMenu={showMobileMenu}
+          openСurrentWeightModal={openСurrentWeightModal}
+          weightIcon={weightIcon}
+          weight={weight}
+        />
+      )}
+      {showTargetSelectionModal && (
+        <TargetSelectionModal
+          isOpen={Boolean(anchorEl)}
+          anchorEl={anchorEl}
+          closeTargetSelectionModal={closeTargetSelectionModal}
+          // goal={goal}
+          gender={gender}
+        />
+      )}
 
-      <Goals>
-        <IconSelectWrapper>
-          <img src={currentGoalIcon} alt="current user`s goal" />
-        </IconSelectWrapper>
-        <div>
-          <Title>Goal</Title>
-
-          <TextWrapperGoal>
-            <Text>{goal}</Text>
-            <ControlPanelButton onClick={openGoalMenu}>
-              <SvgWrapper>
-                <use href={sprite + '#icon-arrow-down'} />
-              </SvgWrapper>
-            </ControlPanelButton>
-          </TextWrapperGoal>
-        </div>
-
-        {showGoalMenu && (
-          <>
-            <div>component TargetSelectionModal, OR popup mui</div>
-            <button onClick={closeGoalMenu}> </button>
-          </>
-        )}
-      </Goals>
-      <Weight>
-        <IconSelectWrapper>
-          <img src={weightIcon} alt="current user`s weight" />
-        </IconSelectWrapper>
-        <div>
-          <Title>Weight</Title>
-
-          <TextWrapperWeight>
-            <Text>
-              {weight}
-              <span> kg</span>
-            </Text>
-            <ControlPanelButton onClick={openWeightMenu}>
-              <SvgWrapper>
-                <use href={sprite + '#icon-edit-2'} />
-              </SvgWrapper>
-            </ControlPanelButton>
-          </TextWrapperWeight>
-        </div>
-
-        {showWeightMenu && (
-          <>
-            <div>component СurrentWeightModal OR popup mui</div>
-            <button onClick={closeWeightMenu}> </button>
-          </>
-        )}
-      </Weight>
+      {showСurrentWeightModal && (
+        <СurrentWeightModal
+          isOpen={Boolean(anchorEl)}
+          anchorEl={anchorEl}
+          closeСurrentWeightModal={closeСurrentWeightModal}
+        />
+      )}
     </WrapperControlPanel>
   );
 };

@@ -9,7 +9,7 @@ import { styled } from '@mui/material/styles';
 
 const StyledButton = styled(Button)({
   backgroundColor: ' #e3ffa8',
- 
+
   transition: 'background-color 0.3s ease',
   '&:hover': {
     backgroundColor: '#1E3535',
@@ -53,6 +53,7 @@ export const SignUpForm = () => {
         dispatch(signup({ ...values }));
         actions.resetForm();
       }}
+      validateOnChange={true}
     >
       {({ handleSubmit }) => (
         <form
@@ -74,6 +75,7 @@ export const SignUpForm = () => {
                 margin="normal"
                 autoComplete="off"
                 size="small"
+                onChange="SignUpForm.handleChange"
               />
             )}
           </Field>
@@ -93,6 +95,7 @@ export const SignUpForm = () => {
                 margin="normal"
                 autoComplete="off"
                 size="small"
+                onChange="SignUpForm.handleChange"
               />
             )}
           </Field>
@@ -114,6 +117,7 @@ export const SignUpForm = () => {
                 size="small"
                 autoComplete="off"
                 sx={{ mb: 2 }}
+                onChange="SignUpForm.handleChange"
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
