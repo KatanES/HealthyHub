@@ -1,15 +1,76 @@
-import { Popover } from '@mui/material';
+import { Popover, useMediaQuery } from '@mui/material';
 
-// import sprite from '../../../assets/sprite.svg';
+// import { useDispatch } from 'react-redux';
+
+// import { updateGoal } from '../../../redux/auth/operations';
+
+// export const updateGoal = createAsyncThunk(
+//   'auth/api/updateGoal',
+//   async (credentials, thunkAPI) => {
+//     try {
+//       const response = await axios.put('api/user/goal', credentials);
+//       return response.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+import sprite from '../../../assets/sprite.svg';
+
+import {
+  gainMuscle,
+  loseFatGirl,
+  loseFatMen,
+  maintainGirl,
+  maintainMen,
+} from '../../../assets/Header/headerImage';
+
 import { globalColor } from '../../Header/root';
+import {
+  Wrapper,
+  CloseTargetSelectionModalButton,
+  MenuButtonCloseModal,
+  SvgWrapper,
+  TextWrapper,
+  Title,
+  Text,
+  Form,
+  RadioContainer,
+  ImageWrapper,
+  Input,
+  Label,
+  ConfirmTargetSelectionModalButton,
+} from './TargetSelectionModal.styled';
+import { useState } from 'react';
 
 export const TargetSelectionModal = ({
   closeTargetSelectionModal,
   isOpen,
   anchorEl,
-  currentGoalIcon,
-  goal,
+  // goal,
+  gender,
 }) => {
+  // const dispatch = useDispatch();
+  // const [newGoal, setNewGoal] = useState(goal);
+  const [newGoal, setNewGoal] = useState(null);
+
+  const screenWidth = useMediaQuery('(min-width: 835px)')
+    ? 'desktop'
+    : 'mobile';
+
+  const handleGoalSelection = (goal) => {
+    setNewGoal(goal);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // dispatch(updateGoal({ goal: event.currentTarget.goal.value }));
+    // dispatch(updateGoal({ goal:newGoal}));
+
+    closeTargetSelectionModal();
+  };
+
   return (
     <Popover
       open={isOpen}
@@ -32,13 +93,15 @@ export const TargetSelectionModal = ({
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
-          gap: '16px',
           width: '100%',
           height: '100%',
+          marginTop: '40px',
 
           '@media (min-width: 834px)': {
             width: '392px',
             height: 'auto',
+            padding: '20px 84px 40px 24px',
+            marginTop: '26px',
             borderRadius: '12px',
             backgroundColor: globalColor.colorPrimaryBlack2,
             boxShadow: '0px 4px 14px 0px rgba(227, 255, 168, 0.2)',
@@ -46,20 +109,95 @@ export const TargetSelectionModal = ({
         },
       }}
     >
-      <div>
-        <h2>Target selection</h2>
-        <p>The service will adjust your calorie intake to your goal</p>
-      </div>
+      <Wrapper>
+        <TextWrapper>
+          <Title>Target selection</Title>
+          <Text>The service will adjust your calorie intake to your goal</Text>
+        </TextWrapper>
 
-      <div>
-        <button>
-          {currentGoalIcon} {goal}
-        </button>
+        <Form onSubmit={handleSubmit}>
+          <RadioContainer>
+            <ImageWrapper
+              isChecked={newGoal === 'loseFat'}
+              onClick={() => handleGoalSelection('loseFat')}
+            >
+              {gender === 'Female' ? (
+                <img src={loseFatGirl} alt="Lose fat goal" />
+              ) : (
+                <img src={loseFatMen} alt="Lose fat goal" />
+              )}
+            </ImageWrapper>
+            <Input
+              type="radio"
+              id="loseFat"
+              name="goal"
+              value="Lose fat"
+              onChange={() => handleGoalSelection('loseFat')}
+            />
+            <Label htmlFor="loseFat" isChecked={newGoal === 'loseFat'}>
+              Lose fat
+            </Label>
+          </RadioContainer>
+          <RadioContainer>
+            <ImageWrapper
+              isChecked={newGoal === 'maintain'}
+              onClick={() => handleGoalSelection('maintain')}
+            >
+              {gender === 'Female' ? (
+                <img src={maintainGirl} alt="Maintain goal" />
+              ) : (
+                <img src={maintainMen} alt="Maintain goal" />
+              )}
+            </ImageWrapper>
+            <Input
+              type="radio"
+              id="maintain"
+              name="goal"
+              value="Maintain"
+              onChange={() => handleGoalSelection('maintain')}
+            />
+            <Label htmlFor="maintain" isChecked={newGoal === 'maintain'}>
+              Maintain
+            </Label>
+          </RadioContainer>
+          <RadioContainer>
+            <ImageWrapper
+              isChecked={newGoal === 'gainMuscle'}
+              onClick={() => handleGoalSelection('gainMuscle')}
+            >
+              <img src={gainMuscle} alt="Gain Muscle goal" />
+            </ImageWrapper>
+            <Input
+              type="radio"
+              id="gainMuscle"
+              name="goal"
+              value="Gain Muscle"
+              onChange={() => handleGoalSelection('gainMuscle')}
+            />
+            <Label htmlFor="gainMuscle" isChecked={newGoal === 'gainMuscle'}>
+              Gain Muscle
+            </Label>
+          </RadioContainer>
+          <ConfirmTargetSelectionModalButton type="submit">
+            Confirm
+          </ConfirmTargetSelectionModalButton>
+        </Form>
 
-        <button onClick={closeTargetSelectionModal}>Confirm</button>
-      </div>
-
-      <button onClick={closeTargetSelectionModal}>Close</button>
+        {screenWidth === 'mobile' ? (
+          <CloseTargetSelectionModalButton onClick={closeTargetSelectionModal}>
+            Close
+          </CloseTargetSelectionModalButton>
+        ) : (
+          <MenuButtonCloseModal
+            type="button"
+            onClick={closeTargetSelectionModal}
+          >
+            <SvgWrapper>
+              <use href={sprite + '#icon-close-circle'} />
+            </SvgWrapper>
+          </MenuButtonCloseModal>
+        )}
+      </Wrapper>
     </Popover>
   );
 };

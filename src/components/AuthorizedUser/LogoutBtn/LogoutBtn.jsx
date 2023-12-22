@@ -3,7 +3,21 @@ import { useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import { globalColor } from '../../Header/root';
 
-// import { logOut } from /'../../redux/auth/selectors';
+// import { logOut } from '../../../redux/auth/operations';
+
+// export const logOut = createAsyncThunk(
+//   'auth/api/logOut',
+//   async (_, thunkAPI) => {
+//     try {
+//       await axios.post('/user/logout');
+//       clearAuthHeader();
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+// сюди ж треба додати в стейт редьюсери по очистці (поверненя до інішиал стейту) компонентів на сторінці (і екшени винести) , в код прописати виклик цих функцій з екшенів / стейту
 
 import sprite from '../../../assets/sprite.svg';
 
@@ -28,10 +42,13 @@ export const LogoutBtn = ({ onClose }) => {
 
   const closeModalConfirm = () => {
     setIsModalConfirmOpen(false);
+    onClose();
   };
 
   const handleLogOut = async () => {
     //   dispatch(logOut());
+    //сюди!!!!
+    localStorage.clear();
     onClose();
   };
 

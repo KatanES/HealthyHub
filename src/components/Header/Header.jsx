@@ -1,6 +1,6 @@
 import { useState } from 'react';
-// import { useSelector } from 'react-redux';
-// import { selectIsSignedIn } from '../../redux/auth/selectors';
+
+// import { useAuth } from '../hooks/useAuth';
 
 import { Navigation } from '../NotAuthorizedUser/Navigation/Navigation';
 import { UserInfoNav } from '../AuthorizedUser/UserInfoNav/UserInfoNav';
@@ -10,7 +10,7 @@ import { Logo } from '../AuthorizedUser/Logo/Logo';
 import { HeaderContainer, HeaderContent } from './Header.styled';
 
 export const Header = () => {
-  // const isSignedIn = useSelector(selectIsSignedIn);
+  // const { isSignedIn } = useAuth();
 
   const [isSignedIn] = useState(true);
   // const [isSignedIn] = useState(false);

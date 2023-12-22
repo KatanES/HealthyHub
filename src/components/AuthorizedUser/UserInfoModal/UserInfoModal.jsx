@@ -40,6 +40,8 @@ export const UserInfoModal = ({ isOpen, onClose, anchorEl }) => {
           gap: '24px',
           width: '158px',
           height: '112px',
+          margin: '16px',
+
           '@media (min-width: 834px)': {
             gap: '16px',
             height: '104px',
