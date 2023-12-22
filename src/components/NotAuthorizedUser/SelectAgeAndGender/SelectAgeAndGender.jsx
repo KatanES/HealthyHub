@@ -10,10 +10,21 @@ import symbol from '../../../assets/Welcome/symbol.svg';
 import {
   AgeAndGenderlImg,
   AgeContainer,
-  AgeText,
+  Text,
   AgeTitle,
   AgeWrapper,
+  GenderField,
+  GenderLabel,
+  GenderText,
+  GenderRadio,
   WrapperImg,
+  AgeText,
+  InputContainer,
+  InputText,
+  IconTextPosition,
+  SVG,
+  ButtonWrapper,
+  StyledButton,
 } from './SelectAgeAndGender.styled';
 
 import { ErrorMessageStyled } from '../SignUp/SignUp.styled';
@@ -49,8 +60,8 @@ const SelectAgeAndGender = ({
       </WrapperImg>
       <AgeWrapper>
         <AgeTitle>Select gender, Age</AgeTitle>
-        <AgeText>Choose a goal so that we can help you effectively</AgeText>
-        <div>
+        <Text>Choose a goal so that we can help you effectively</Text>
+    
           <Formik
             initialValues={{
               gender: dataGender,
@@ -61,19 +72,21 @@ const SelectAgeAndGender = ({
           >
             {({ errors, touched, handleChange, handleBlur, values }) => (
               <Form autoComplete="off">
-                <div id="ageAndGenderGroup">Gender</div>
-                <div role="group" aria-labelledby="ageAndGenderGroup">
-                  <label>
-                    <Field type="radio" name="gender" value="Male" required />
+                <GenderText id="ageAndGenderGroup">Gender</GenderText>
+                <GenderRadio role="group" aria-labelledby="ageAndGenderGroup">
+                  
+                  <GenderLabel>
+                    <GenderField type="radio" name="gender" value="Male" required />
                     Male
-                  </label>
-                  <label>
-                    <Field type="radio" name="gender" value="Female" required />
+                  </GenderLabel>
+                  <GenderLabel>
+                    <GenderField type="radio" name="gender" value="Female" required />
                     Female
-                  </label>
-                </div>
-                <p>Your age</p>
-                <div
+                  </GenderLabel>
+                </GenderRadio>
+                <div>
+                   <AgeText>Your age</AgeText>
+                <InputContainer
                   style={{
                     borderColor: touched.age
                       ? errors.age
@@ -82,7 +95,7 @@ const SelectAgeAndGender = ({
                       : '',
                   }}
                 >
-                  <input
+                  <InputText
                     type="number"
                     id="age"
                     name="age"
@@ -99,7 +112,7 @@ const SelectAgeAndGender = ({
                     }}
                     aria-label="Age Input"
                   />
-                  <div
+                  <IconTextPosition
                     style={{
                       display: values.age ? 'block' : 'none',
                       position: 'absolute',
@@ -109,26 +122,30 @@ const SelectAgeAndGender = ({
                     }}
                   >
                     {errors.age && touched.age ? (
-                      <svg>
+                      <SVG>
                         <use href={symbol + '#icon-error'} />
-                      </svg>
+                      </SVG>
                     ) : (
-                      <svg>
+                      <SVG>
                         <use href={symbol + '#icon-correct'} />
-                      </svg>
+                      </SVG>
                     )}
-                  </div>
-                </div>
+                  </IconTextPosition>
+                </InputContainer>
                 <ErrorMessage name="name" component={ErrorMessageStyled} />
-
-                <button type="submit">Next</button>
-                <button type="button" onClick={goBack}>
+                </div>
+               
+<ButtonWrapper>
+   <StyledButton type="submit">Next</StyledButton>
+                <StyledButton type="button" onClick={goBack}>
                   Back
-                </button>
+                </StyledButton>
+</ButtonWrapper>
+               
               </Form>
             )}
           </Formik>
-        </div>
+      
       </AgeWrapper>
     </AgeContainer>
   );

@@ -24,8 +24,9 @@ export const YourGoalSchema = Yup.object({
 
 export const AgeAndGenderSchema = Yup.object({
   gender: Yup.string().required('Choose one of these fields'),
-  age: Yup.string()
-    .matches(/^[0-9]+$/, 'Must be a number')
+  age: Yup
+    .number('Must be a number from 1 to 200')
+    .label('Age')
     .min(1, 'Must be a number from 1 to 200')
     .max(200, 'Must be a number from 1 to 200')
     .required('Age required'),
