@@ -118,7 +118,7 @@ export const TargetSelectionModal = ({
         <Form onSubmit={handleSubmit}>
           <RadioContainer>
             <ImageWrapper
-              isChecked={newGoal === 'loseFat'}
+              data-ischecked={newGoal === 'loseFat'}
               onClick={() => handleGoalSelection('loseFat')}
             >
               {gender === 'Female' ? (
@@ -134,13 +134,13 @@ export const TargetSelectionModal = ({
               value="Lose fat"
               onChange={() => handleGoalSelection('loseFat')}
             />
-            <Label htmlFor="loseFat" isChecked={newGoal === 'loseFat'}>
+            <Label htmlFor="loseFat" data-ischecked={newGoal === 'loseFat'}>
               Lose fat
             </Label>
           </RadioContainer>
           <RadioContainer>
             <ImageWrapper
-              isChecked={newGoal === 'maintain'}
+              data-ischecked={newGoal === 'maintain'}
               onClick={() => handleGoalSelection('maintain')}
             >
               {gender === 'Female' ? (
@@ -156,13 +156,13 @@ export const TargetSelectionModal = ({
               value="Maintain"
               onChange={() => handleGoalSelection('maintain')}
             />
-            <Label htmlFor="maintain" isChecked={newGoal === 'maintain'}>
+            <Label htmlFor="maintain" data-ischecked={newGoal === 'maintain'}>
               Maintain
             </Label>
           </RadioContainer>
           <RadioContainer>
             <ImageWrapper
-              isChecked={newGoal === 'gainMuscle'}
+              data-ischecked={newGoal === 'gainMuscle'}
               onClick={() => handleGoalSelection('gainMuscle')}
             >
               <img src={gainMuscle} alt="Gain Muscle goal" />
@@ -174,7 +174,10 @@ export const TargetSelectionModal = ({
               value="Gain Muscle"
               onChange={() => handleGoalSelection('gainMuscle')}
             />
-            <Label htmlFor="gainMuscle" isChecked={newGoal === 'gainMuscle'}>
+            <Label
+              htmlFor="gainMuscle"
+              data-ischecked={newGoal === 'gainMuscle'}
+            >
               Gain Muscle
             </Label>
           </RadioContainer>
