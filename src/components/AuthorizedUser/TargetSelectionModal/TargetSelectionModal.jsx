@@ -1,8 +1,7 @@
 import { Popover, useMediaQuery } from '@mui/material';
+import { useDispatch } from 'react-redux';
 
-// import { useDispatch } from 'react-redux';
-
-// import { updateGoal } from '../../../redux/auth/operations';
+import { updateGoal } from '../../../redux/auth/operations';
 
 // export const updateGoal = createAsyncThunk(
 //   'auth/api/updateGoal',
@@ -51,7 +50,7 @@ export const TargetSelectionModal = ({
   // goal,
   gender,
 }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const [newGoal, setNewGoal] = useState(goal);
   const [newGoal, setNewGoal] = useState(null);
 
@@ -66,7 +65,7 @@ export const TargetSelectionModal = ({
   const handleSubmit = (event) => {
     event.preventDefault();
     // dispatch(updateGoal({ goal: event.currentTarget.goal.value }));
-    // dispatch(updateGoal({ goal:newGoal}));
+    dispatch(updateGoal({ goal: newGoal }));
 
     closeTargetSelectionModal();
   };

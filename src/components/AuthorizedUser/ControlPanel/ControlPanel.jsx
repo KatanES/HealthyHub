@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useMediaQuery } from '@mui/material';
 
-// import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
 
 import { Goals } from './ComponetsControlPanel/Goals';
 import { Weight } from './ComponetsControlPanel/Weight';
@@ -26,13 +26,13 @@ import {
 } from './ControlPanel.styled';
 
 export const ControlPanel = () => {
-  const [user] = useState({
-    gender: 'Female',
-    goal: 'Lose fat',
-    weight: 65,
-  }); //don`t need
+  // const [user] = useState({
+  //   gender: 'Female',
+  //   goal: 'Lose fat',
+  //   weight: 65,
+  // }); //don`t need
 
-  // const { user } = useAuth();
+  const { user } = useAuth();
 
   const [isActive, setIsActive] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
