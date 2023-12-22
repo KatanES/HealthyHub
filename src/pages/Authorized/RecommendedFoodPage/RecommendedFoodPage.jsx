@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { getRecommentedFood } from 'helpers/getRecommentedFood';
+import { getRecommentedFood } from '../../../helpers/getRecommentedFood';
 
-import CardRecommendedProduct from 'components/CardRecommendedProduct/CardRecommendedProduct';
-import image from 'images/Ketogenic.png';
+import CardRecommendedProduct from '../../../components/CardRecommendedProduct.styled.jsx/CardRecommendedProduct';
+import image from '../../../images/Ketogenic.png';
 import {
   Container,
   Content,
@@ -16,11 +16,11 @@ import {
   BannerThumb,
   Img,
   RecommendedFoodList,
-} from './RecommendedFoodPage.styled';
+} from '../RecommendedFoodPage/RecommendedFoodPage.styled';
 
-import { randomizeFood } from 'helpers/randomizeFood';
+import { randomizeFood } from '../../../helpers/randomizeFood';
 
-import arrowRight from 'images/icons/arrow-right.svg';
+import arrowRight from '../../../images/icons/arrow-right.svg';
 // import { getStats } from 'redux/Statistics/statisticsOperations';
 
 export default function RecommendedFood() {

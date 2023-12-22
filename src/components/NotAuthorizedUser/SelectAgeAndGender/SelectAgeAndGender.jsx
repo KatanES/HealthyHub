@@ -7,7 +7,15 @@ import { AgeAndGenderSchema } from '../YupSchemas/YupSchemas';
 
 import IllustrutonGender from '../../../assets/Welcome/IllustrationGender.png';
 import symbol from '../../../assets/Welcome/symbol.svg';
-import { AgeAndGenderlImg, AgeContainer, AgeText, AgeTitle, AgeWrapper, WrapperImg, ErrorMessageStyled } from './SelectAgeAndGender.styled';
+import {
+  AgeAndGenderlImg,
+  AgeContainer,
+  AgeText,
+  AgeTitle,
+  AgeWrapper,
+  WrapperImg,
+  ErrorMessageStyled,
+} from './SelectAgeAndGender.styled';
 
 const SelectAgeAndGender = ({
   goNext,
