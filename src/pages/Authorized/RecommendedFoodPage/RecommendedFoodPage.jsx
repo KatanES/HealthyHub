@@ -2,9 +2,9 @@ import { useState, useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { getRecommentedFood } from '../../../helpers/getRecommentedFood';
-import { randomizeFood } from '../../../helpers/randomizeFood' ;
+import { randomizeFood } from '../../../helpers/randomizeFood';
 
-import CardRecommendedProduct from 'components/CardRecommendedProduct/CardRecommendedProduct';
+import CardRecommendedProduct from '../../../components/CardRecommendedProduct.styled.jsx/CardRecommendedProduct';
 import image from '../../../images/Ketogenic.png';
 import {
   Container,
@@ -33,10 +33,10 @@ export default function RecommendedFood() {
 
   useEffect(() => {
     getRecommentedFood()
-      .then(responce => {
-        setArrayForRender(randomizeFood(responce, 10))
+      .then((responce) => {
+        setArrayForRender(randomizeFood(responce, 10));
       })
-      .catch(err => console.error(err));
+      .catch((err) => console.error(err));
   }, []);
 
   return (
@@ -59,7 +59,7 @@ export default function RecommendedFood() {
 
           <RecommendedFoodList>
             {arrayForRender.map(({ _id, img, name, amount, calories }) => {
-              return (            
+              return (
                 <CardRecommendedProduct
                   key={_id}
                   id={_id}
@@ -75,6 +75,4 @@ export default function RecommendedFood() {
       </Content>
     </Container>
   );
-
 }
-
