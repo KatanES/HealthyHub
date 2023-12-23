@@ -1,4 +1,5 @@
-import React from 'react';
+import { AuthNav } from '../../../components/NotAuthorizedUser/AuthNav/AuthNav';
+
 import symbol from '../../../assets/Welcome/symbol.svg';
 import IllustrationDesctop from '../../../assets/Welcome/IllustrationDesctop.png';
 import {
@@ -7,27 +8,14 @@ import {
   HeroTitle,
   WelcomeContainer,
   Wrapper,
-  Button,
-  WrapperButtons,
   HeroList,
   HeroItem,
   HeroItemText,
-  SVG,
+  SvgWrapper,
   WrapperImg,
 } from './WelcomePage.styled';
-import { useNavigate } from 'react-router-dom';
 
 const WelcomePage = () => {
-  const navigate = useNavigate();
-
-  const handleSignUpClick = () => {
-    navigate('/signup');
-  };
-
-  const handleSignInClick = () => {
-    navigate('/signin');
-  };
-
   return (
     <WelcomeContainer>
       <WrapperImg>
@@ -36,43 +24,35 @@ const WelcomePage = () => {
           alt="The main picture a girl with a watch"
         />
       </WrapperImg>
-
       <Wrapper>
         <HeroTitle>Set goals and achieve them</HeroTitle>
         <HeroText>
           The service will help you set goals and follow them.
         </HeroText>
-        <WrapperButtons>
-          <Button type="button" onClick={handleSignInClick}>
-            Sign in
-          </Button>
-          <Button type="button" onClick={handleSignUpClick}>
-            Sign up
-          </Button>
-        </WrapperButtons>
+        <AuthNav />
         <HeroList>
           <HeroItem>
-            <SVG>
+            <SvgWrapper>
               <use href={symbol + '#icon-Ellipse-15'} />
-            </SVG>
+            </SvgWrapper>
             <HeroItemText>Set goals</HeroItemText>
           </HeroItem>
           <HeroItem>
-            <SVG>
+            <SvgWrapper>
               <use href={symbol + '#icon-Ellipse-15'} />
-            </SVG>
+            </SvgWrapper>
             <HeroItemText>Watch your calories</HeroItemText>
           </HeroItem>
           <HeroItem>
-            <SVG>
+            <SvgWrapper>
               <use href={symbol + '#icon-Ellipse-15'} />
-            </SVG>
+            </SvgWrapper>
             <HeroItemText>Keep track of your water intake</HeroItemText>
           </HeroItem>
           <HeroItem>
-            <SVG>
+            <SvgWrapper>
               <use href={symbol + '#icon-Ellipse-15'} />
-            </SVG>
+            </SvgWrapper>
             <HeroItemText>Control your weight</HeroItemText>
           </HeroItem>
         </HeroList>

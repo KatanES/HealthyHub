@@ -1,11 +1,9 @@
 import { Popover, useMediaQuery } from '@mui/material';
 import { useState } from 'react';
-// import { useDispatch , useSelector} from 'react-redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { updateWeight } from '../../../redux/auth/operations';
-// сюди ж треба додати в фулфілд (і в селектор винести) поточну дату, в код прописати перевірку, якщо поточна дата
-// збігається з датою останнього оновлення ваги - то треба видати помилку коористувачу, що він вже записував вагу.
+import { selectLastDate } from '../../../redux/auth/selectors';
 
 import { globalColor } from '../../Header/root';
 import {
@@ -23,6 +21,7 @@ import {
   SvgError,
   WrapperInput,
   Wrapper,
+  MenuButtonCloseError,
 } from './СurrentWeightModal.styled';
 
 import sprite from '../../../assets/sprite.svg';
@@ -36,7 +35,7 @@ export const СurrentWeightModal = ({
   const [newWeight, setNewWeight] = useState('');
   const [error, setError] = useState('');
   const [isError, setIsError] = useState(false);
-  // const lastDate = useSelector(selectLastDate)
+  const lastDate = useSelector(selectLastDate);
 
   const date = new Date();
 
@@ -70,6 +69,11 @@ export const СurrentWeightModal = ({
 
   const handleInputChange = (event) => {
     setNewWeight(Number(event.target.value));
+  };
+
+  const handleCloseError = () => {
+    setError('');
+    setIsError(false);
   };
 
   return (
@@ -121,67 +125,45 @@ export const СurrentWeightModal = ({
           Today <span>{formattedDate}</span>
         </Text2>
 
-        {/*    THERE MUST BE
-        {lastDate === date ?  <Text2>You already recorded your weight today</Text2> : <WeightForm onSubmit={handleNewWeight} noValidate>
-          <WrapperInput>
-            <InputStyled
-              type="number"
-              step="0.1"
-              min="1"
-              max="300"
-              name="weight"
-              placeholder="Enter your weight"
-              defaultValue={newWeight}
-              autoComplete="off"
-              onChange={handleInputChange}
-              required
-              autoFocus
-              style={{
-                borderColor: isError ? globalColor.colorSecondaryRed : '',
-              }}
-            />
+        {lastDate === date ? (
+          <Text2>You already recorded your weight today</Text2>
+        ) : (
+          <WeightForm onSubmit={handleNewWeight} noValidate>
+            <WrapperInput>
+              <InputStyled
+                type="number"
+                step="0.1"
+                min="1"
+                max="300"
+                name="weight"
+                placeholder="Enter your weight"
+                defaultValue={newWeight}
+                autoComplete="off"
+                onChange={handleInputChange}
+                required
+                autoFocus
+                style={{
+                  borderColor: isError ? globalColor.colorSecondaryRed : '',
+                }}
+              />
 
-            {isError && (
-              <>
-                <SvgError>
-                  <use href={sprite + '#icon-error'} />
-                </SvgError>
-                <ErrorMessage>{error}</ErrorMessage>
-              </>
-            )}
-          </WrapperInput>  } */}
-
-        <WeightForm onSubmit={handleNewWeight} noValidate>
-          <WrapperInput>
-            <InputStyled
-              type="number"
-              step="0.1"
-              min="1"
-              max="300"
-              name="weight"
-              placeholder="Enter your weight"
-              defaultValue={newWeight}
-              autoComplete="off"
-              onChange={handleInputChange}
-              required
-              autoFocus
-              style={{
-                borderColor: isError ? globalColor.colorSecondaryRed : '',
-              }}
-            />
-
-            {isError && (
-              <>
-                <SvgError>
-                  <use href={sprite + '#icon-error'} />
-                </SvgError>
-                <ErrorMessage>{error}</ErrorMessage>
-              </>
-            )}
-          </WrapperInput>
-
-          <ConfirmWeightModalButton>Confirm</ConfirmWeightModalButton>
-        </WeightForm>
+              {isError && (
+                <>
+                  <MenuButtonCloseError
+                    type="button"
+                    onClick={handleCloseError}
+                  >
+                    <SvgError>
+                      <use href={sprite + '#icon-error'} />
+                    </SvgError>
+                  </MenuButtonCloseError>
+                  <ErrorMessage>{error}</ErrorMessage>
+                </>
+              )}
+            </WrapperInput>
+            <ConfirmWeightModalButton>Confirm</ConfirmWeightModalButton>
+          </WeightForm>
+        )}
 
         {screenWidth === 'mobile' ? (
           <CloseWeightModalButton onClick={closeСurrentWeightModal}>
