@@ -39,6 +39,18 @@ export const signin = createAsyncThunk(
   }
 );
 
+export const forgotPassword = createAsyncThunk(
+  'auth/forgot-password',
+  async (email, thunkAPI) => {
+    try {
+      const res = await axios.post('/api/auth/forgot-password', { email });
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const refreshUser = createAsyncThunk(
   'api/auth/refresh',
   async (_, thunkAPI) => {

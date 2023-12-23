@@ -146,7 +146,7 @@ export const IconTextPosition = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-export const ErrorMessageStyled = styled.p`
+export const ErrorMessageStyled = styled.div`
   font-size: 12px;
   font-weight: 400;
   margin: 0px 10px 0 0;

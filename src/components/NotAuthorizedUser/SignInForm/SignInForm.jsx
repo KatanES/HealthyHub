@@ -1,10 +1,11 @@
 import { Formik, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
-
+import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import { signin } from '../../../redux/auth/operations';
 
+import { signin } from '../../../redux/auth/operations';
 import { SignInSchema } from '../YupSchemas/YupSchemas';
+import IllstrationDesctop from '../../../assets/Welcome/IllustrationDesctop.png';
 import symbol from '../../../assets/Welcome/symbol.svg';
 
 import {
@@ -12,42 +13,37 @@ import {
   StyledForm,
   ErrorMessageStyled,
   StyledButton,
-  SignUpContainer,
-  SignUpImg,
-  SignUpText,
-  SignUpNavLink,
-  // SignUpFormWrapper,
-  SignUpHeroTitle,
-  SignUpWrapper,
+ 
   InputContainer,
   IconTextPosition,
-  SignUpQuestion,
+  
   InputText,
   SVG,
-} from '../../NotAuthorizedUser/SignUp/SignUp.styled';
+  SignInContainer,
+  SignInWrapper,
+  SignInImg,
+  SignInTitle,
+  SignInText,
+  SignInNavigateWrapper,
+  SignInQuestion,
+  SignInNavLink,
+  ForgotNavLink,
+  QuestionWrapper,
+} from '../../../components/NotAuthorizedUser/SignInForm/SignInForm.styled';
 
-import IllstrationDesctop from '../../../assets/Welcome/IllustrationDesctop.png';
-import { redirect } from 'react-router-dom';
+
+
 
 const SignInForm = () => {
+    const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
   const handlePasswordVisibility = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     const form = e.currentTarget;
-  //     dispatch(
-  //       signin({
-  //         email: form.elements.email.value,
-  //         password: form.elements.password.value,
-  //       })
-  //     );
-  //     form.reset();
-  //   };
-  const dispatch = useDispatch();
+  
+
 
   const handleSubmit = async (values) => {
     try {
@@ -59,39 +55,25 @@ const SignInForm = () => {
         })
       );
       console.log('Form sent');
-      //TODO save user data and redirect to homepage
+   
     } catch (validationErrors) {
       console.log('Form validation errors:', validationErrors);
     }
   };
 
-  // const validateForm = (formData) => {
-  //   const errors = {};
-
-  //   try {
-  //     SignUpSchema.validateSync(formData, { abortEarly: false });
-  //   } catch (validationErrors) {
-  //     validationErrors.inner.forEach((error) => {
-  //       errors[error.path] = error.message;
-  //     });
-  //   }
-
-  //   const isValid = Object.keys(errors).length === 0;
-
-  //   return { errors, isValid };
-  // };
+ 
   return (
-    <SignUpContainer>
+    <SignInContainer>
       <WrapperImg>
-        <SignUpImg
+        <SignInImg
           src={IllstrationDesctop}
           alt="The main picture a girl with a watch"
         />
       </WrapperImg>
-      <SignUpWrapper>
-        <SignUpHeroTitle>Sign up</SignUpHeroTitle>
-        <SignUpText>You need to register to use the service</SignUpText>
-        <SignUpFormWrapper>
+      <SignInWrapper>
+        <SignInTitle>Sign in</SignInTitle>
+        <SignInText>You need to login to use the service</SignInText>
+      
           <Formik
             initialValues={{
               email: '',
@@ -105,15 +87,14 @@ const SignInForm = () => {
               touched,
               handleChange,
               handleBlur,
-
               isValid,
               values,
             }) => (
               <StyledForm autoComplete="off">
                 <InputContainer
                   style={{
-                    borderColor: touched.name
-                      ? errors.name
+                    borderColor: touched.email
+                      ? errors.email
                         ? '#E74A3B'
                         : '#3CBC81'
                       : '',
@@ -177,13 +158,13 @@ const SignInForm = () => {
                     onBlur={handleBlur}
                     value={values.password}
                     style={{
-                      borderColor: touched.email
-                        ? errors.email
+                      borderColor: touched.password
+                        ? errors.password
                           ? '#E74A3B'
                           : '#3CBC81'
                         : '',
                     }}
-                    aria-label="Height Input"
+                    aria-label="Password Input"
                   />
 
                   <IconTextPosition
@@ -225,16 +206,23 @@ const SignInForm = () => {
                 <ErrorMessage name="password" component={ErrorMessageStyled} />
 
                 <StyledButton type="submit" disabled={!isValid}>
-                  Next
+                 Sign in
                 </StyledButton>
               </StyledForm>
             )}
+            
           </Formik>
-        </SignUpFormWrapper>
-        <SignUpQuestion>Do you already have an account?</SignUpQuestion>
-        <SignUpNavLink to="/signin">Sign in</SignUpNavLink>
-      </SignUpWrapper>
-    </SignUpContainer>
+         <SignInNavigateWrapper>
+            <ForgotNavLink to='/forgot-password'>Forgot your password?</ForgotNavLink>   </SignInNavigateWrapper> 
+            <QuestionWrapper>
+              <SignInQuestion>If you don't have an account yet</SignInQuestion>
+        <SignInNavLink to="/signup">Sign up</SignInNavLink>
+            </QuestionWrapper>
+        
+       
+          
+      </SignInWrapper>
+    </SignInContainer>
   );
 };
 

@@ -36,12 +36,14 @@ const handleSignInFulfilled = (state, action) => {
   state.isAuthenticated = true;
   state.isLoading = false;
   state.error = null;
+  state.lastWeightDate = action.payload.lastWeightDate;
 };
 
 const handleSignInRejected = (state, action) => {
   state.isAuthenticated = false;
   state.error = action.error.message;
 };
+
 
 const handleSignOutFulfilled = (state) => {
   state.user = {
@@ -82,6 +84,7 @@ const handleUpdateWeightFulfilled = (state, action) => {
   state.isLoading = false;
   state.error = null;
   state.user.weight = action.payload.weight;
+  state.lastWeightDate = action.payload.data.date;
 };
 
 const handleUpdateGoalFulfilled = (state, action) => {
@@ -107,6 +110,7 @@ const initialState = {
   isRefreshing: false,
   isLoading: false,
   error: null,
+  lastWeightDate: null,
 };
 
 const authSlice = createSlice({
