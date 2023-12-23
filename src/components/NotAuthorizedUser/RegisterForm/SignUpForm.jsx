@@ -74,50 +74,57 @@ export const SignUpForm = () => {
   };
 
   return (
-   < Formik initialValues={initialValues} onSubmit={userRegister}>
-   
-        <div>
-          {step === 1 && (
-            <div>
-              <SignUp goNext={handleNextStep}  setName={setName}
-            setEmail={setEmail}
-            setPassword={setPassword}  />
-            </div>
-          )}
-          {step === 2 && (
-            <div>
-              <YourGoal goNext={handleNextStep}  goBack={handlePrevStep}
-               setGoal={setGoal}
-               dataGoal={goal}/>
-            </div>
-          )}
-          {step === 3 && (
-            <SelectAgeAndGender goNext={handleNextStep}  goBack={handlePrevStep}
+    <Formik initialValues={initialValues} onSubmit={userRegister}>
+      <div>
+        {step === 1 && (
+          <div>
+            <SignUp
+              goNext={handleNextStep}
+              setName={setName}
+              setEmail={setEmail}
+              setPassword={setPassword}
+            />
+          </div>
+        )}
+        {step === 2 && (
+          <div>
+            <YourGoal
+              goNext={handleNextStep}
+              goBack={handlePrevStep}
+              setGoal={setGoal}
+              dataGoal={goal}
+            />
+          </div>
+        )}
+        {step === 3 && (
+          <SelectAgeAndGender
+            goNext={handleNextStep}
+            goBack={handlePrevStep}
             setAge={setAge}
             setGender={setGender}
             dataGender={gender}
             dataAge={age}
-            />
-          )}
-          {step === 4 && (
-            <BodyParams goNext={handleNextStep}  goBack={handlePrevStep}
+          />
+        )}
+        {step === 4 && (
+          <BodyParams
+            goNext={handleNextStep}
+            goBack={handlePrevStep}
             setHeight={setHeight}
             setWeight={setWeight}
             dataHeight={height}
-            dataWeight={weight}/>
-          )}
-          {step === 5 && (
-            <YourActivity goNext={handleNextStep}  goBack={handlePrevStep}
+            dataWeight={weight}
+          />
+        )}
+        {step === 5 && (
+          <YourActivity
+            goNext={userRegister}
+            goBack={handlePrevStep}
             setActivity={setActivity}
-            dataActivity={activity}/>
-          )}
-          {step >= 6 && (
-            <button type="submit" onClick={userRegister}>
-              Submit
-            </button>
-          )}
-        </div>
-    
+            dataActivity={activity}
+          />
+        )}
+      </div>
     </Formik>
   );
 };

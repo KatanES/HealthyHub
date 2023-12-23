@@ -24,7 +24,7 @@ function App() {
     <AppWrapper>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
-          <Route path="/welcome" element={<WelcomePage />} />
+          <Route index element={<WelcomePage />} />
           <Route path="/signup" element={<SignUpPage />}>
             Sign Up!
           </Route>
