@@ -44,6 +44,7 @@ const handleSignInRejected = (state, action) => {
   state.error = action.error.message;
 };
 
+
 const handleSignOutFulfilled = (state) => {
   state.user = {
     name: null,
