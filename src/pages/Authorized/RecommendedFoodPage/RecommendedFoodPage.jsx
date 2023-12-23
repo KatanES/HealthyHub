@@ -6,7 +6,7 @@ RecommendedCard;
 import { randomArray } from '../../../utils/randomArray';
 import RecommendedFoodPhoto from '../../../assets/RecommendedFood/Ketogenic.png';
 
-const RecommendedFoodPage = () => {
+export const RecommendedFoodPage = () => {
   const dispatch = useDispatch();
   const recommendedFood = useSelector(getRecommendedFood);
 
@@ -34,5 +34,3 @@ const RecommendedFoodPage = () => {
     </div>
   );
 };
-
-export default RecommendedFoodPage;
