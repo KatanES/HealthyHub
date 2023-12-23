@@ -35,6 +35,7 @@ export const Text = styled.p`
   font-size: 14px;
   font-family: inherit;
   margin: 0;
+  max-width: 220px;
 `;
 
 export const Form = styled.form`
@@ -136,10 +137,3 @@ export const SvgWrapper = styled.svg`
   height: 16px;
   stroke: ${globalColor.colorPrimaryGrey};
 `;
-
-
-
-        
-
-        
-

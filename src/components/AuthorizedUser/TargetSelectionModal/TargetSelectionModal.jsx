@@ -3,18 +3,6 @@ import { useDispatch } from 'react-redux';
 
 import { updateGoal } from '../../../redux/auth/operations';
 
-// export const updateGoal = createAsyncThunk(
-//   'auth/api/updateGoal',
-//   async (credentials, thunkAPI) => {
-//     try {
-//       const response = await axios.put('api/user/goal', credentials);
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
 import sprite from '../../../assets/sprite.svg';
 
 import {
