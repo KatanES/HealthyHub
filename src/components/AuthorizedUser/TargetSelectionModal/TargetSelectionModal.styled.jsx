@@ -57,7 +57,7 @@ export const ImageWrapper = styled.div`
   padding: 10px;
   border-radius: 12px;
   border: 1px solid
-    ${({ isChecked }) =>
+    ${({ 'data-ischecked': isChecked }) =>
       isChecked
         ? globalColor.colorPrimaryViolet
         : globalColor.colorSecondaryGrey1};
@@ -74,7 +74,7 @@ export const Input = styled.input`
 `;
 
 export const Label = styled.label`
-  color: ${({ isChecked }) =>
+  color: ${({ 'data-ischecked': isChecked }) =>
     isChecked ? globalColor.colorPrimaryViolet : globalColor.colorPrimaryWhite};
   line-height: 1.42857;
   cursor: pointer;

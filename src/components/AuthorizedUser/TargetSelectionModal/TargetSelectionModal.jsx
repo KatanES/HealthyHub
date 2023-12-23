@@ -1,8 +1,7 @@
 import { Popover, useMediaQuery } from '@mui/material';
+import { useDispatch } from 'react-redux';
 
-// import { useDispatch } from 'react-redux';
-
-// import { updateGoal } from '../../../redux/auth/operations';
+import { updateGoal } from '../../../redux/auth/operations';
 
 // export const updateGoal = createAsyncThunk(
 //   'auth/api/updateGoal',
@@ -51,7 +50,7 @@ export const TargetSelectionModal = ({
   // goal,
   gender,
 }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   // const [newGoal, setNewGoal] = useState(goal);
   const [newGoal, setNewGoal] = useState(null);
 
@@ -66,7 +65,7 @@ export const TargetSelectionModal = ({
   const handleSubmit = (event) => {
     event.preventDefault();
     // dispatch(updateGoal({ goal: event.currentTarget.goal.value }));
-    // dispatch(updateGoal({ goal:newGoal}));
+    dispatch(updateGoal({ goal: newGoal }));
 
     closeTargetSelectionModal();
   };
@@ -118,7 +117,7 @@ export const TargetSelectionModal = ({
         <Form onSubmit={handleSubmit}>
           <RadioContainer>
             <ImageWrapper
-              isChecked={newGoal === 'loseFat'}
+              data-ischecked={newGoal === 'loseFat'}
               onClick={() => handleGoalSelection('loseFat')}
             >
               {gender === 'Female' ? (
@@ -134,13 +133,13 @@ export const TargetSelectionModal = ({
               value="Lose fat"
               onChange={() => handleGoalSelection('loseFat')}
             />
-            <Label htmlFor="loseFat" isChecked={newGoal === 'loseFat'}>
+            <Label htmlFor="loseFat" data-ischecked={newGoal === 'loseFat'}>
               Lose fat
             </Label>
           </RadioContainer>
           <RadioContainer>
             <ImageWrapper
-              isChecked={newGoal === 'maintain'}
+              data-ischecked={newGoal === 'maintain'}
               onClick={() => handleGoalSelection('maintain')}
             >
               {gender === 'Female' ? (
@@ -156,13 +155,13 @@ export const TargetSelectionModal = ({
               value="Maintain"
               onChange={() => handleGoalSelection('maintain')}
             />
-            <Label htmlFor="maintain" isChecked={newGoal === 'maintain'}>
+            <Label htmlFor="maintain" data-ischecked={newGoal === 'maintain'}>
               Maintain
             </Label>
           </RadioContainer>
           <RadioContainer>
             <ImageWrapper
-              isChecked={newGoal === 'gainMuscle'}
+              data-ischecked={newGoal === 'gainMuscle'}
               onClick={() => handleGoalSelection('gainMuscle')}
             >
               <img src={gainMuscle} alt="Gain Muscle goal" />
@@ -174,7 +173,10 @@ export const TargetSelectionModal = ({
               value="Gain Muscle"
               onChange={() => handleGoalSelection('gainMuscle')}
             />
-            <Label htmlFor="gainMuscle" isChecked={newGoal === 'gainMuscle'}>
+            <Label
+              htmlFor="gainMuscle"
+              data-ischecked={newGoal === 'gainMuscle'}
+            >
               Gain Muscle
             </Label>
           </RadioContainer>

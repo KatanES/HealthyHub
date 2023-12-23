@@ -1,7 +1,6 @@
-import { useState } from 'react'; //don`t need
+import { useState } from 'react';
 
-// import { useAuth } from '../../hooks/useAuth';
-
+import { useAuth } from '../../hooks/useAuth';
 import { UserInfoModal } from '../UserInfoModal/UserInfoModal';
 
 import {
@@ -15,15 +14,15 @@ import {
 import sprite from '../../../assets/sprite.svg';
 
 export const UserInfoNav = () => {
-  const [user] = useState({
-    name: 'Konstantin',
-    imgURL: 'https://walldeco.ua/img/for_page/mona-liza.jpg',
-  }); //don`t need
+  // const [user] = useState({
+  //   name: 'Konstantin',
+  //   avatarURL: 'https://walldeco.ua/img/for_page/mona-liza.jpg',
+  // }); //don`t need
 
-  // const { user } = useAuth();
+  const { user } = useAuth();
+  const { name, avatarURL } = user;
 
   const [anchorEl, setAnchorEl] = useState(null);
-
   const [isActive, setIsActive] = useState(false);
 
   const handleClick = (event) => {
@@ -36,16 +35,14 @@ export const UserInfoNav = () => {
     setIsActive(false);
   };
 
-  const { name, imgURL } = user;
-
   return (
     <>
       <UserInfoNavButton onClick={handleClick}>
         <Text>{name}</Text>
 
-        {imgURL ? (
+        {avatarURL ? (
           <ImageHolder>
-            <img src={imgURL} alt={name} />
+            <img src={avatarURL} alt={name} />
           </ImageHolder>
         ) : (
           <IconAvatarWrapper>

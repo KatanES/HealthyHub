@@ -1,23 +1,12 @@
-// import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import Dialog from '@mui/material/Dialog';
-import { globalColor } from '../../Header/root';
 
-// import { logOut } from '../../../redux/auth/operations';
+import { signOut } from '../../../redux/auth/operations';
 
-// export const logOut = createAsyncThunk(
-//   'auth/api/logOut',
-//   async (_, thunkAPI) => {
-//     try {
-//       await axios.post('/user/logout');
-//       clearAuthHeader();
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
-// сюди ж треба додати в стейт редьюсери по очистці (поверненя до інішиал стейту) компонентів на сторінці (і екшени винести) , в код прописати виклик цих функцій з екшенів / стейту
+// сюди ж треба додати в стейт редьюсери по очистці (поверненя до інішиал стейту)
+// компонентів на сторінці(і екшени винести), в код прописати виклик цих функцій з екшенів / стейту
 
 import sprite from '../../../assets/sprite.svg';
 
@@ -30,9 +19,10 @@ import {
   CancelModalConfirmButton,
   LogoutModalConfirmButton,
 } from './LogoutBtn.styled';
+import { globalColor } from '../../Header/root';
 
 export const LogoutBtn = ({ onClose }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [isModalConfirmOpen, setIsModalConfirmOpen] = useState(false);
 
@@ -46,7 +36,7 @@ export const LogoutBtn = ({ onClose }) => {
   };
 
   const handleLogOut = async () => {
-    //   dispatch(logOut());
+    dispatch(signOut());
     //сюди!!!!
     localStorage.clear();
     onClose();

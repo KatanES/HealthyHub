@@ -1,21 +1,11 @@
 import { Popover, useMediaQuery } from '@mui/material';
 import { useState } from 'react';
 // import { useDispatch , useSelector} from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-// import { updateWeight } from '../../../redux/auth/operations';
-// export const updateWeight = createAsyncThunk(
-//   'auth/api/updateWeight',
-//   async (credentials, thunkAPI) => {
-//     try {
-//       const response = await axios.put('api/user/weight', credentials);
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
-// сюди ж треба додати в фулфілд (і в селектор винести) поточну дату, в код прописати перевірку, якщо поточна дата збігається з датою останнього оновлення ваги - то треба видати помилку коористувачу, що він вже записував вагу.
+import { updateWeight } from '../../../redux/auth/operations';
+// сюди ж треба додати в фулфілд (і в селектор винести) поточну дату, в код прописати перевірку, якщо поточна дата
+// збігається з датою останнього оновлення ваги - то треба видати помилку коористувачу, що він вже записував вагу.
 
 import { globalColor } from '../../Header/root';
 import {
@@ -42,7 +32,7 @@ export const СurrentWeightModal = ({
   isOpen,
   anchorEl,
 }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [newWeight, setNewWeight] = useState('');
   const [error, setError] = useState('');
   const [isError, setIsError] = useState(false);
@@ -62,9 +52,8 @@ export const СurrentWeightModal = ({
 
   const handleNewWeight = (event) => {
     event.preventDefault();
-    // dispatch(updateWeight(newWeight));
 
-    if (newWeight < 1 && newWeight) {
+    if (0 === newWeight || (newWeight < 1 && newWeight)) {
       setError('Weight can`t be less 1 kg');
       setIsError(true);
     } else if (!newWeight) {
@@ -74,6 +63,8 @@ export const СurrentWeightModal = ({
       setError('');
       setIsError(false);
       closeСurrentWeightModal();
+      dispatch(updateWeight(newWeight));
+      //тут ще діспатч для усіх компонентів для оновлення ? чи рефреш???
     }
   };
 
@@ -146,7 +137,7 @@ export const СurrentWeightModal = ({
               required
               autoFocus
               style={{
-                borderColor: isError ? '#E74A3B' : '',
+                borderColor: isError ? globalColor.colorSecondaryRed : '',
               }}
             />
 
@@ -175,7 +166,7 @@ export const СurrentWeightModal = ({
               required
               autoFocus
               style={{
-                borderColor: isError ? '#E74A3B' : '',
+                borderColor: isError ? globalColor.colorSecondaryRed : '',
               }}
             />
 

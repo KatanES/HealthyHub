@@ -1,6 +1,6 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
-// import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../hooks/useAuth';
 
 import { Navigation } from '../NotAuthorizedUser/Navigation/Navigation';
 import { UserInfoNav } from '../AuthorizedUser/UserInfoNav/UserInfoNav';
@@ -10,9 +10,9 @@ import { Logo } from '../AuthorizedUser/Logo/Logo';
 import { HeaderContainer, HeaderContent } from './Header.styled';
 
 export const Header = () => {
-  // const { isSignedIn } = useAuth();
+  const { isSignedIn } = useAuth();
 
-  const [isSignedIn] = useState(true);
+  // const [isSignedIn] = useState(true);
   // const [isSignedIn] = useState(false);
 
   return (
