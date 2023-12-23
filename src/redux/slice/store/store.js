@@ -12,7 +12,8 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage';
 
-import { authReducer } from '../../auth/slice'
+import { authReducer } from '../../auth/slice';
+import { forgotPasswordReducer } from '../../auth/forgotPasswordSlice';
 
 
 
@@ -26,6 +27,7 @@ export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     diary: diaryReducer,
+    forgotPassword: forgotPasswordReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

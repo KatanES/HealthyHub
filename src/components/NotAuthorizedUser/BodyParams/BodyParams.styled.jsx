@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 import { Field } from 'formik';
 
@@ -87,24 +87,12 @@ export const Text = styled.p`
   }
 `;
 
-
 export const BodyText = styled.p`
   font-size: 14px;
   font-weight: 500;
   line-height: 1.42;
   margin: 24px 0 0 0;
 `;
-
-
-
-
-
-// export const AgeText = styled.p`
-//   font-size: 14px;
-//   font-weight: 500;
-//   line-height: 1.42;
-//   margin: 24px 0 0 0;
-// `;
 
 export const GenderField = styled(Field)`
   place-content: center;
@@ -217,11 +205,9 @@ export const StyledButton = styled.button`
   }
 `;
 
-export const ErrorMessageStyled = styled.p`
+export const ErrorMessageStyled = styled.div`
   font-size: 12px;
   font-weight: 400;
   margin: 0px 10px 0 0;
   color: ${globalColor.colorSecondaryRed};
 `;
-
-

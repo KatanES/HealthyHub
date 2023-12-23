@@ -24,6 +24,7 @@ import {
 } from './SignUp.styled';
 import IllstrationDesctop from '../../../assets/Welcome/IllustrationDesctop.png';
 
+
 const SignUp = ({ goNext, setName, setEmail, setPassword }) => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -64,15 +65,7 @@ const SignUp = ({ goNext, setName, setEmail, setPassword }) => {
           validationSchema={SignUpSchema}
           onSubmit={handleSubmit}
         >
-          {({
-            errors,
-            touched,
-            handleChange,
-            handleBlur,
-
-            isValid,
-            values,
-          }) => (
+          {({ errors, touched, handleChange, handleBlur, isValid, values }) => (
             <StyledForm autoComplete="off">
               <InputContainer
                 style={{
@@ -189,13 +182,13 @@ const SignUp = ({ goNext, setName, setEmail, setPassword }) => {
                   onBlur={handleBlur}
                   value={values.password}
                   style={{
-                    borderColor: touched.email
-                      ? errors.email
+                    borderColor: touched.password
+                      ? errors.password
                         ? '#E74A3B'
                         : '#3CBC81'
                       : '',
                   }}
-                  aria-label="Height Input"
+                  aria-label="Password Input"
                 />
 
                 <IconTextPosition
