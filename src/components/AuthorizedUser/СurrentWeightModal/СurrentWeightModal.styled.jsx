@@ -152,11 +152,22 @@ export const ErrorMessage = styled.p`
   left: 10px;
 `;
 
-export const SvgError = styled.svg`
+export const MenuButtonCloseError = styled.button`
   position: absolute;
   top: 10px;
   right: 10px;
+  left: auto;
+  bottom: auto;
   width: 16px;
   height: 16px;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+`;
+
+export const SvgError = styled.svg`
+  width: 100%;
+  height: 100%;
   fill: #e74a3b;
 `;
