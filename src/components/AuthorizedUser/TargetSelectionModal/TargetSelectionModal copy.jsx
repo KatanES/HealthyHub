@@ -41,12 +41,6 @@ export const TargetSelectionModal = ({
   const [newGoal, setNewGoal] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
-  const goalMapping = {
-    1: 'Lose fat',
-    2: 'Maintain',
-    3: 'Gain Muscle',
-  };
-
   const screenWidth = useMediaQuery('(min-width: 835px)')
     ? 'desktop'
     : 'mobile';
@@ -58,13 +52,7 @@ export const TargetSelectionModal = ({
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(
-      updateGoal({
-        goal: Object.keys(goalMapping).find(
-          (key) => goalMapping[key] === newGoal
-        ),
-      })
-    );
+    dispatch(updateGoal({ goal: newGoal }));
     closeTargetSelectionModal();
   };
 
@@ -160,7 +148,7 @@ export const TargetSelectionModal = ({
           <RadioContainer>
             <ImageWrapper
               data-ischecked={newGoal === 'Gain muscle'}
-              onClick={() => handleGoalSelection('Gain Muscle')}
+              onClick={() => handleGoalSelection('Gain muscle')}
             >
               <img src={gainMuscle} alt="Gain Muscle goal" />
             </ImageWrapper>
@@ -168,8 +156,8 @@ export const TargetSelectionModal = ({
               type="radio"
               id="gainMuscle"
               name="goal"
-              value="Gain muscle"
-              onChange={() => handleGoalSelection('Gain Muscle')}
+              value="Gain Muscle"
+              onChange={() => handleGoalSelection('Gain muscle')}
             />
             <Label
               htmlFor="gainMuscle"

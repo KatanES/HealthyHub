@@ -5,6 +5,7 @@ import {
   signOut,
   updateWeight,
   updateGoal,
+  refreshUser,
 } from './operations';
 
 const handlePending = (state) => {
@@ -43,7 +44,6 @@ const handleSignInRejected = (state, action) => {
   state.isAuthenticated = false;
   state.error = action.error.message;
 };
-
 
 const handleSignOutFulfilled = (state) => {
   state.user = {
@@ -84,7 +84,7 @@ const handleUpdateWeightFulfilled = (state, action) => {
   state.isLoading = false;
   state.error = null;
   state.user.weight = action.payload.weight;
-  state.lastWeightDate = action.payload.data.date;
+  state.lastWeightDate = action.payload.date;
 };
 
 const handleUpdateGoalFulfilled = (state, action) => {
@@ -138,7 +138,18 @@ const authSlice = createSlice({
       .addCase(updateWeight.rejected, handleRejected)
       .addCase(updateGoal.pending, handlePending)
       .addCase(updateGoal.fulfilled, handleUpdateGoalFulfilled)
-      .addCase(updateGoal.rejected, handleRejected);
+      .addCase(updateGoal.rejected, handleRejected)
+      .addCase(refreshUser.pending, (state) => {
+        state.isRefreshing = true;
+      })
+      .addCase(refreshUser.fulfilled, (state, action) => {
+        state.user = action.payload.user;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+      })
+      .addCase(refreshUser.rejected, (state) => {
+        state.isRefreshing = false;
+      });
   },
 });
 

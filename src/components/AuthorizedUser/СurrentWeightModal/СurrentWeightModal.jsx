@@ -63,7 +63,6 @@ export const СurrentWeightModal = ({
       setIsError(false);
       closeСurrentWeightModal();
       dispatch(updateWeight({ weight: newWeight }));
-
       //тут ще діспатч для усіх компонентів для оновлення ? чи рефреш???
     }
   };

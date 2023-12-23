@@ -26,7 +26,6 @@ import {
 } from './ControlPanel.styled';
 
 export const ControlPanel = () => {
-
   const { user } = useAuth();
 
   const [isActive, setIsActive] = useState(false);
@@ -152,7 +151,6 @@ export const ControlPanel = () => {
           isOpen={Boolean(anchorEl)}
           anchorEl={anchorEl}
           closeTargetSelectionModal={closeTargetSelectionModal}
-          goal={goal}
           gender={gender}
         />
       )}
