@@ -3,18 +3,6 @@ import { useDispatch } from 'react-redux';
 
 import { updateGoal } from '../../../redux/auth/operations';
 
-// export const updateGoal = createAsyncThunk(
-//   'auth/api/updateGoal',
-//   async (credentials, thunkAPI) => {
-//     try {
-//       const response = await axios.put('api/user/goal', credentials);
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
 import sprite from '../../../assets/sprite.svg';
 
 import {
@@ -53,6 +41,7 @@ export const TargetSelectionModal = ({
   const dispatch = useDispatch();
   // const [newGoal, setNewGoal] = useState(goal);
   const [newGoal, setNewGoal] = useState(null);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const screenWidth = useMediaQuery('(min-width: 835px)')
     ? 'desktop'
@@ -60,6 +49,7 @@ export const TargetSelectionModal = ({
 
   const handleGoalSelection = (goal) => {
     setNewGoal(goal);
+    setIsButtonDisabled(false);
   };
 
   const handleSubmit = (event) => {
@@ -180,7 +170,11 @@ export const TargetSelectionModal = ({
               Gain Muscle
             </Label>
           </RadioContainer>
-          <ConfirmTargetSelectionModalButton type="submit">
+          <ConfirmTargetSelectionModalButton
+            className={!isButtonDisabled ? 'disabled' : ''}
+            type="submit"
+            disabled={isButtonDisabled}
+          >
             Confirm
           </ConfirmTargetSelectionModalButton>
         </Form>

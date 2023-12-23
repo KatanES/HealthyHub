@@ -35,6 +35,7 @@ export const Text = styled.p`
   font-size: 14px;
   font-family: inherit;
   margin: 0;
+  max-width: 220px;
 `;
 
 export const Form = styled.form`
@@ -102,6 +103,12 @@ export const ConfirmTargetSelectionModalButton = styled.button`
   @media (min-width: 834px) {
     width: 166px;
   }
+
+  &:disabled {
+    background-color: ${globalColor.colorPrimaryGrey};
+    color: ${globalColor.colorPrimaryWhite};
+    cursor: not-allowed;
+  }
 `;
 
 export const CloseTargetSelectionModalButton = styled.button`
@@ -136,10 +143,3 @@ export const SvgWrapper = styled.svg`
   height: 16px;
   stroke: ${globalColor.colorPrimaryGrey};
 `;
-
-
-
-        
-
-        
-
