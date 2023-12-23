@@ -14,7 +14,6 @@ import storage from 'redux-persist/lib/storage';
 import { recommendedFoodReducer } from '../../recommendedFood/slice';
 import { authReducer } from '../../auth/slice';
 
-import { authReducer } from '../../auth/slice';
 import { forgotPasswordReducer } from '../../auth/forgotPasswordSlice';
 
 const authPersistConfig = {

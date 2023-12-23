@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { authenticate } from './slice';
 
 axios.defaults.baseURL = 'https://healthyhubserver.onrender.com';
 
@@ -17,7 +18,7 @@ export const signup = createAsyncThunk(
     try {
       const res = await axios.post('/api/auth/signup', credentials);
       setAuthHeader(res.data.token);
-      thunkAPI.dispatch(authenticate(res.data.user));
+      thunkAPI.dispatch(authenticate(res.data.token));
       return res.data;
     } catch (error) {
       console.error('Signup error:', error.response?.data || error.message);
@@ -61,7 +62,7 @@ export const refreshUser = createAsyncThunk(
     }
     try {
       setAuthHeader(persistedToken);
-      const response = await axios.get('/users/current');
+      const response = await axios.get('/auth/current');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
