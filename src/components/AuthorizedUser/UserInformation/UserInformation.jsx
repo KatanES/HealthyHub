@@ -8,6 +8,7 @@ import {
   FormInput,
   FormInputRadio,
   SettingsContainer,
+  ContainerBtn,
   FormSaveBtn,
   FromCancelBtn,
 } from './UserInformation.styled';
@@ -114,6 +115,7 @@ const SettingsPage = () => {
           Your name
           <FormInput
             type="text"
+            id="name"
             name="name"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -138,7 +140,8 @@ const SettingsPage = () => {
         <FormLabel>
           Your age
           <FormInput
-            type="text"
+            type="number"
+            id="age"
             name="age"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -171,7 +174,8 @@ const SettingsPage = () => {
         <FormLabel>
           Height
           <FormInput
-            type="text"
+            type="number"
+            id="height"
             name="height"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -182,7 +186,8 @@ const SettingsPage = () => {
         <FormLabel>
           Weight
           <FormInput
-            type="text"
+            type="number"
+            id="weight"
             name="weight"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -206,12 +211,12 @@ const SettingsPage = () => {
           ))}
         </FormLabel>
 
-        <div>
+        <ContainerBtn>
           <FormSaveBtn type="submit">Save</FormSaveBtn>
           <FromCancelBtn type="button" onClick={formik.handleReset}>
             Cancel
           </FromCancelBtn>
-        </div>
+        </ContainerBtn>
       </FormStyle>
     </SettingsContainer>
   );

@@ -1,11 +1,18 @@
 import UserInformation from '../../../components/AuthorizedUser/UserInformation';
 import HeroImg from '../../../assets/Settings/settings-hero.svg'
+import {
+  SettingsTitle,
+  ContainerImg,
+  SettingsImg,
+} from './SettingsPage.styled';
 
 const SettingsPage = () => {
   return (
     <div>
-      <h2>Profile setting</h2>
-      <img src={HeroImg} alt="Hero Image" />
+      <SettingsTitle>Profile setting</SettingsTitle>
+      <ContainerImg>
+        <SettingsImg src={HeroImg} alt="Settings Hero Image" />
+      </ContainerImg>
       <UserInformation />
     </div>
   );
