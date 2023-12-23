@@ -26,11 +26,6 @@ import {
 } from './ControlPanel.styled';
 
 export const ControlPanel = () => {
-  // const [user] = useState({
-  //   gender: 'Female',
-  //   goal: 'Lose fat',
-  //   weight: 65,
-  // }); //don`t need
 
   const { user } = useAuth();
 
@@ -157,7 +152,7 @@ export const ControlPanel = () => {
           isOpen={Boolean(anchorEl)}
           anchorEl={anchorEl}
           closeTargetSelectionModal={closeTargetSelectionModal}
-          // goal={goal}
+          goal={goal}
           gender={gender}
         />
       )}
