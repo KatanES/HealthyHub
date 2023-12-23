@@ -41,6 +41,7 @@ export const TargetSelectionModal = ({
   const dispatch = useDispatch();
   // const [newGoal, setNewGoal] = useState(goal);
   const [newGoal, setNewGoal] = useState(null);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const screenWidth = useMediaQuery('(min-width: 835px)')
     ? 'desktop'
@@ -48,6 +49,7 @@ export const TargetSelectionModal = ({
 
   const handleGoalSelection = (goal) => {
     setNewGoal(goal);
+    setIsButtonDisabled(false);
   };
 
   const handleSubmit = (event) => {
@@ -168,7 +170,11 @@ export const TargetSelectionModal = ({
               Gain Muscle
             </Label>
           </RadioContainer>
-          <ConfirmTargetSelectionModalButton type="submit">
+          <ConfirmTargetSelectionModalButton
+            className={!isButtonDisabled ? 'disabled' : ''}
+            type="submit"
+            disabled={isButtonDisabled}
+          >
             Confirm
           </ConfirmTargetSelectionModalButton>
         </Form>

@@ -103,6 +103,12 @@ export const ConfirmTargetSelectionModalButton = styled.button`
   @media (min-width: 834px) {
     width: 166px;
   }
+
+  &:disabled {
+    background-color: ${globalColor.colorPrimaryGrey};
+    color: ${globalColor.colorPrimaryWhite};
+    cursor: not-allowed;
+  }
 `;
 
 export const CloseTargetSelectionModalButton = styled.button`
