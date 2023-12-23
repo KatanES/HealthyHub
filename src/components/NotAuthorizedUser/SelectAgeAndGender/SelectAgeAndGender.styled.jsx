@@ -1,4 +1,4 @@
-import { Field, Form } from 'formik';
+import { Field } from 'formik';
 import styled from 'styled-components';
 import { globalColor } from '../../Header/root';
 
@@ -70,7 +70,7 @@ export const AgeTitle = styled.h2`
   }
 `;
 
-export const AgeText = styled.p`
+export const Text = styled.p`
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
@@ -85,39 +85,34 @@ export const AgeText = styled.p`
     text-align: left;
   }
 `;
-export const AgeRadioForm = styled(Form)`
-  display: flex;
-  gap: 20px;
-  flex-direction: column;
-  margin: 24px 0 0 0;
-  @media (min-width: 834px) {
-    width: 380px;
 
-    margin: 24px auto 0 auto;
-  }
-  @media (min-width: 1440px) {
-    width: 212px;
-    margin: 24px 0 0 0;
-  }
+
+export const GenderText = styled.p`
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.42;
+  margin: 24px 0 0 0;
 `;
 
-export const AgeRadio = styled.div`
+export const GenderRadio = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 24px;
+  flex-direction: row;
+  width: 230px;
+  margin: 12px 0 0 0;
+  justify-content: space-between;
   @media (min-width: 834px) {
-    width: 380px;
-    flex-direction: row;
-    justify-content: space-between;
+    width: 276px;
   }
 
   @media (min-width: 1440px) {
     text-align: left;
     flex-direction: column;
+    margin: 12px 0 0 0;
+    gap: 16px;
   }
 `;
 
-export const AgeLabel = styled.label`
+export const GenderLabel = styled.label`
   font-family: Poppins;
   font-size: 14px;
   font-weight: 400;
@@ -127,7 +122,14 @@ export const AgeLabel = styled.label`
   gap: 8px;
 `;
 
-export const AgeField = styled(Field)`
+export const AgeText = styled.p`
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.42;
+  margin: 24px 0 0 0;
+`;
+
+export const GenderField = styled(Field)`
   place-content: center;
   appearance: none;
   background-color: black;
@@ -144,6 +146,54 @@ export const AgeField = styled(Field)`
     background-color: rgba(227, 255, 168, 1);
     transform: scale(1);
   }
+  @media (min-width: 834px) {
+    margin-top: 0;
+  }
+`;
+
+export const InputContainer = styled.div`
+  background: transparent;
+  position: relative;
+  margin: 12px 0 0 0;
+  @media (min-width: 1440px) {
+    width: 212px;
+  }
+`;
+
+export const InputText = styled.input`
+  width: -webkit-fill-available;
+  padding: 8px 10px;
+
+  border: 1px solid ${globalColor.colorPrimaryGreenLite};
+  border-radius: 12px;
+  border-radius: 12px;
+  background: transparent;
+  font-size: 14px;
+  color: ${globalColor.colorPrimaryWhite};
+
+  &:focus,
+  &:hover,
+  &:active {
+    background: transparent;
+    outline: none;
+  }
+
+  &::placeholder {
+    font-size: 14px;
+    color: ${globalColor.colorPrimaryGrey};
+  }
+`;
+export const IconTextPosition = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translate(-50%, -50%);
+`;
+
+export const SVG = styled.svg`
+  width: 16px;
+  height: 16px;
+  margin: 0 4px 0 0;
 `;
 
 export const ButtonWrapper = styled.div`
@@ -159,7 +209,7 @@ export const ButtonWrapper = styled.div`
   @media (min-width: 1440px) {
     width: 212px;
     margin: 24px 0 0 0;
-    margin: 24px 0 228px 0;
+    margin: 24px 0 144px 0;
   }
 `;
 
@@ -188,4 +238,11 @@ export const StyledButton = styled.button`
     background-color: transparent;
     color: ${globalColor.colorPrimaryWhite};
   }
+`;
+
+export const ErrorMessageStyled = styled.p`
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0px 10px 0 0;
+  color: ${globalColor.colorSecondaryRed};
 `;

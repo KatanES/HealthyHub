@@ -4,9 +4,9 @@ import { Formik, Form, ErrorMessage } from 'formik';
 
 import { BodyParamsSchema } from '../YupSchemas/YupSchemas';
 
-import IllustrutonBody from '../../../assets/Welcome/IllustrationGender.png';
+import IllustrutonBody from '../../../assets/Welcome/IllustrationBody.png';
 import symbol from '../../../assets/Welcome/symbol.svg';
-import { ErrorMessageStyled } from './BodyParams.styled';
+import { BodyContainer, BodyParamslImg, BodyText, BodyTitle, BodyWrapper, ErrorMessageStyled, IconTextPosition, InputContainer, InputText, SVG, Text, WrapperImg, ButtonWrapper, StyledButton } from './BodyParams.styled';
 
 const BodyParams = ({
   goNext,
@@ -26,14 +26,14 @@ const BodyParams = ({
 
 
   return (
-    <div>
-      <div>
-        <img src={IllustrutonBody} alt="Body parameters" />
-      </div>
-      <div>
-        <h2>Body parameters</h2>
-        <p>Enter your parameters for correct performance tracking</p>
-        <div>
+    <BodyContainer>
+      <WrapperImg>
+        <BodyParamslImg src={IllustrutonBody} alt="Body parameters" />
+      </WrapperImg>
+      <BodyWrapper>
+        <BodyTitle>Body parameters</BodyTitle>
+        <Text>Enter your parameters for correct performance tracking</Text>
+    
           <Formik
             initialValues={{
               height: dataHeight ?? '',
@@ -44,8 +44,8 @@ const BodyParams = ({
           >
             {({ errors, touched, handleChange, handleBlur, values }) => (
               <Form autoComplete="off">
-                <p>Height</p>
-                <div
+                <BodyText>Height</BodyText>
+                <InputContainer
                   style={{
                     borderColor: touched.height
                       ? errors.height
@@ -54,7 +54,7 @@ const BodyParams = ({
                       : '',
                   }}
                 >
-                  <input
+                  <InputText
                     type="number"
                     id="height"
                     name="height"
@@ -71,7 +71,7 @@ const BodyParams = ({
                     }}
                     aria-label="Height Input"
                   />
-                  <div
+                  <IconTextPosition
                     style={{
                       display: values.height ? 'block' : 'none',
                       position: 'absolute',
@@ -81,20 +81,20 @@ const BodyParams = ({
                     }}
                   >
                     {errors.height && touched.height ? (
-                      <svg>
+                      <SVG>
                         <use href={symbol + '#icon-error'} />
-                      </svg>
+                      </SVG>
                     ) : (
-                      <svg>
+                      <SVG>
                         <use href={symbol + '#icon-correct'} />
-                      </svg>
+                      </SVG>
                     )}
-                  </div>
-                </div>
+                  </IconTextPosition>
+                </InputContainer>
                 <ErrorMessage name="name" component={ErrorMessageStyled} />
 
-                <p>Weight</p>
-                <div
+                <BodyText>Weight</BodyText>
+                <InputContainer
                   style={{
                     borderColor: touched.weight
                       ? errors.weight
@@ -103,7 +103,7 @@ const BodyParams = ({
                       : '',
                   }}
                 >
-                  <input
+                  <InputText
                     type="number"
                     id="weight"
                     name="weight"
@@ -120,7 +120,7 @@ const BodyParams = ({
                     }}
                     aria-label="Weight Input"
                   />
-                  <div
+                  <IconTextPosition
                     style={{
                       display: values.weight ? 'block' : 'none',
                       position: 'absolute',
@@ -130,28 +130,30 @@ const BodyParams = ({
                     }}
                   >
                     {errors.weight && touched.weight ? (
-                      <svg>
+                      <SVG>
                         <use href={symbol + '#icon-error'} />
-                      </svg>
+                      </SVG>
                     ) : (
-                      <svg>
+                      <SVG>
                         <use href={symbol + '#icon-correct'} />
-                      </svg>
+                      </SVG>
                     )}
-                  </div>
-                </div>
+                  </IconTextPosition>
+                </InputContainer>
                 <ErrorMessage name="name" component={ErrorMessageStyled} />
-
-                <button type="submit">Next</button>
-                <button type="button" onClick={goBack}>
+<ButtonWrapper>
+  <StyledButton type="submit">Next</StyledButton>
+                <StyledButton type="button" onClick={goBack}>
                   Back
-                </button>
+                </StyledButton>
+</ButtonWrapper>
+                
               </Form>
             )}
           </Formik>
-        </div>
-      </div>
-    </div>
+      
+      </BodyWrapper>
+    </BodyContainer>
   );
 };
 export default BodyParams;
