@@ -25,6 +25,8 @@ function App() {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<WelcomePage />} />
+          <Route path="/welcome" element={<WelcomePage />} />
+
           <Route path="/signup" element={<SignUpPage />}>
             Sign Up!
           </Route>
