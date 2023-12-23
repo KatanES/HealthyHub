@@ -10,10 +10,19 @@ import {
   TitelFlex,
   Text,
 } from './MainPage.styled';
+//
+import { DailyGoalInfo } from './DailyGoal/DailyGoal';
+// import { useSelector } from 'react-redux';
+// import { getCaloriesGoal } from '../../../redux/dailyGoalsCalories/selectors';
+
+//
 
 const MainPage = () => {
+  // const dailyCalories = useSelector(getCaloriesGoal);
+  const dailyCalories = 2500; //чисто замінити пустоту, треба зробити частину редаксу
   return (
     <Container>
+      <DailyGoalInfo dailyCalories={dailyCalories} />
       <TitelPage>
         <Titel>Today</Titel>
         <Link to="/dashboard">
