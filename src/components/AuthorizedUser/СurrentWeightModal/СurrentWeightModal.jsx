@@ -30,6 +30,7 @@ export const СurrentWeightModal = ({
   closeСurrentWeightModal,
   isOpen,
   anchorEl,
+  
 }) => {
   const dispatch = useDispatch();
   const [newWeight, setNewWeight] = useState('');

@@ -36,6 +36,7 @@ export const TargetSelectionModal = ({
   isOpen,
   anchorEl,
   gender,
+  currentGoal,
 }) => {
   const dispatch = useDispatch();
   const [newGoal, setNewGoal] = useState('');
@@ -46,6 +47,10 @@ export const TargetSelectionModal = ({
     : 'mobile';
 
   const handleGoalSelection = (goal) => {
+    if (currentGoal === goal) {
+      setIsButtonDisabled(true);
+    }
+
     setNewGoal(goal);
     setIsButtonDisabled(false);
   };
@@ -103,8 +108,8 @@ export const TargetSelectionModal = ({
         <Form onSubmit={handleSubmit}>
           <RadioContainer>
             <ImageWrapper
-              data-ischecked={newGoal === 'Lose fat'}
-              onClick={() => handleGoalSelection('Lose fat')}
+              data-ischecked={newGoal === 'Lose Fat'}
+              onClick={() => handleGoalSelection('Lose Fat')}
             >
               {gender === 'Female' ? (
                 <img src={loseFatGirl} alt="Lose fat goal" />
@@ -116,10 +121,10 @@ export const TargetSelectionModal = ({
               type="radio"
               id="loseFat"
               name="goal"
-              value="Lose fat"
-              onChange={() => handleGoalSelection('Lose fat')}
+              value="Lose Fat"
+              onChange={() => handleGoalSelection('Lose Fat')}
             />
-            <Label htmlFor="loseFat" data-ischecked={newGoal === 'Lose fat'}>
+            <Label htmlFor="loseFat" data-ischecked={newGoal === 'Lose Fat'}>
               Lose fat
             </Label>
           </RadioContainer>
@@ -147,8 +152,8 @@ export const TargetSelectionModal = ({
           </RadioContainer>
           <RadioContainer>
             <ImageWrapper
-              data-ischecked={newGoal === 'Gain muscle'}
-              onClick={() => handleGoalSelection('Gain muscle')}
+              data-ischecked={newGoal === 'Gain Muscle'}
+              onClick={() => handleGoalSelection('Gain Muscle')}
             >
               <img src={gainMuscle} alt="Gain Muscle goal" />
             </ImageWrapper>
@@ -157,11 +162,11 @@ export const TargetSelectionModal = ({
               id="gainMuscle"
               name="goal"
               value="Gain Muscle"
-              onChange={() => handleGoalSelection('Gain muscle')}
+              onChange={() => handleGoalSelection('Gain Muscle')}
             />
             <Label
               htmlFor="gainMuscle"
-              data-ischecked={newGoal === 'Gain muscle'}
+              data-ischecked={newGoal === 'Gain Muscle'}
             >
               Gain Muscle
             </Label>

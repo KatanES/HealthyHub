@@ -73,17 +73,18 @@ export const ControlPanel = () => {
     setShowСurrentWeightModal(false);
   };
 
-  const { gender, goal, weight } = user;
-
   let currentGoalIcon;
-  switch (gender) {
-    case 'Male':
-      switch (goal) {
-        case 'Lose fat':
+  switch (user.gender) {
+    case 'male':
+      switch (user.goal) {
+        case 'Lose Fat':
           currentGoalIcon = loseFatMen;
           break;
         case 'Maintain':
           currentGoalIcon = maintainMen;
+          break;
+        case 'Gain Muscle':
+          currentGoalIcon = gainMuscle;
           break;
         default:
           currentGoalIcon = gainMuscle;
@@ -91,13 +92,16 @@ export const ControlPanel = () => {
       }
       break;
 
-    case 'Female':
-      switch (goal) {
-        case 'Lose fat':
+    case 'female':
+      switch (user.goal) {
+        case 'Lose Fat':
           currentGoalIcon = loseFatGirl;
           break;
         case 'Maintain':
           currentGoalIcon = maintainGirl;
+          break;
+        case 'Gain Muscle':
+          currentGoalIcon = gainMuscle;
           break;
         default:
           currentGoalIcon = gainMuscle;
@@ -122,13 +126,13 @@ export const ControlPanel = () => {
           <Goals
             openTargetSelectionModal={openTargetSelectionModal}
             currentGoalIcon={currentGoalIcon}
-            goal={goal}
+            goal={user.goal}
             isActive={isActive}
           />
           <Weight
             openСurrentWeightModal={openСurrentWeightModal}
             weightIcon={weightIcon}
-            weight={weight}
+            weight={user.weight}
           />
         </>
       )}
@@ -139,11 +143,11 @@ export const ControlPanel = () => {
           closeMobileMenu={closeMobileMenu}
           openTargetSelectionModal={openTargetSelectionModal}
           currentGoalIcon={currentGoalIcon}
-          goal={goal}
+          goal={user.goal}
           showMobileMenu={showMobileMenu}
           openСurrentWeightModal={openСurrentWeightModal}
           weightIcon={weightIcon}
-          weight={weight}
+          weight={user.weight}
         />
       )}
       {showTargetSelectionModal && (
@@ -151,7 +155,8 @@ export const ControlPanel = () => {
           isOpen={Boolean(anchorEl)}
           anchorEl={anchorEl}
           closeTargetSelectionModal={closeTargetSelectionModal}
-          gender={gender}
+          gender={user.gender}
+          currentGoal={user.goal}
         />
       )}
 
