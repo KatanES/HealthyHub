@@ -1,14 +1,13 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { useEffect, lazy } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
+import { useDispatch } from 'react-redux';
+import { useEffect, lazy } from 'react';
 import { RestrictedRoute } from './ResctrictedRoute';
 import { AppWrapper } from './App.styled';
 import { refreshUser } from './redux/auth/operations';
 import { useAuth } from './components/hooks/useAuth';
-// import { Loader } from './components/Loader/Loader';
-
 import SharedLayout from 'components/SharedLayout/SharedLayout';
+
 const WelcomePage = lazy(() =>
   import('./pages/UnAuthorizedUser/WelcomePage/WelcomePage')
 );
@@ -41,7 +40,6 @@ function App() {
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
-
   return isRefreshing ? (
     <b>Refreshing user...</b>
   ) : (
@@ -49,8 +47,8 @@ function App() {
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<WelcomePage />} />
-          <Route path="/welcome" element={<WelcomePage />} />
 
+          <Route path="/welcome" element={<WelcomePage />} />
           <Route
             path="/signup"
             element={
@@ -62,7 +60,7 @@ function App() {
           <Route
             path="/signin"
             element={
-              <RestrictedRoute redirectTo="/main" component={<SignInPage />} />
+              <RestrictedRoute redirectTo="/" component={<SignInPage />} />
             }
           >
             Login
@@ -76,14 +74,42 @@ function App() {
               />
             }
           ></Route>
-          <Route path="/main" element={<MainPage />}></Route>
-          <Route path="/dashboard" element={<DashboardPage />}></Route>
-          <Route path="/diary" element={<DiaryPage />}></Route>
+          <Route
+            path="/main"
+            element={
+              <PrivateRoute redirectTo="/signin" component={<MainPage />} />
+            }
+          ></Route>
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute
+                redirectTo="/signin"
+                component={<DashboardPage />}
+              />
+            }
+          ></Route>
+          <Route
+            path="/diary"
+            element={
+              <PrivateRoute redirectTo="/signin" element={<DiaryPage />} />
+            }
+          ></Route>
           <Route
             path="/recommended-food"
-            element={<RecommendedFoodPage />}
+            element={
+              <PrivateRoute
+                redirectTo="/signin"
+                component={<RecommendedFoodPage />}
+              />
+            }
           ></Route>
-          <Route path="/settings" element={<SettingsPage />}></Route>
+          <Route
+            path="/settings"
+            element={
+              <PrivateRoute redirectTo="/signin" component={<SettingsPage />} />
+            }
+          ></Route>
 
           <Route path="*" element={<ErrorPage />} />
         </Route>
