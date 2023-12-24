@@ -1,42 +1,62 @@
 import styled from 'styled-components';
 
+export const ContainerSetting = styled.div`
+  @media (min-width: 834px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 160px;
+
+    width: 1181px;
+  }
+`;
+
 export const SettingsTitle = styled.h2`
-  margin-top: 16px;
-  margin-bottom: 0;
+  margin: 16px 0;
 
   font-size: 24px;
   font-weight: 500;
   line-height: 1.25;
 
   @media (min-width: 834px) {
-    margin-bottom: 16px;
+    margin-top: 24px;
+    margin-bottom: 20px;
+
+    width: 200px;
 
     font-size: 30px;
+    font-weight: 500;
     line-height: 1.2;
     text-align: center;
   }
+
   @media (min-width: 1440px) {
-    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 24px;
   }
 `;
 
 export const ContainerImg = styled.div`
-  margin-top: 16px;
-
   width: 300px;
 
   @media (min-width: 834px) {
-    margin: 40px auto 0 auto;
+    margin: 0 auto;
 
     width: 380px;
-    height: 376px;
+    height: 374px;
   }
 
   @media (min-width: 1440px) {
     margin-left: 116px;
 
-    width: 592px;
-    height: 588px;
+    width: 536px;
+    height: 528px;
   }
 `;
 

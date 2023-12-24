@@ -3,24 +3,43 @@ import styled from 'styled-components';
 import { globalColor } from '../../Header/root';
 
 export const SettingsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-top: 24px;
 
   width: 300px;
 
   @media (min-width: 834px) {
-    width: 780px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-top: 0;
+    width: 491px;
   }
 
   @media (min-width: 1440px) {
-    width: 1372px;
+    width: 491px;
 
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+  }
+`;
+
+export const WrapperContainerBigScreen = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  gap: 40px;
+`;
+
+export const ContainerBigScreen = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  gap: 40px;
+
+  @media (min-width: 834px) {
+    flex-direction: row;
+    gap: 60px;
   }
 `;
 
@@ -33,13 +52,7 @@ export const FormStyle = styled.form`
   @media (min-width: 834px) {
     margin: 24px auto 0 auto;
 
-    width: 438px;
-  }
-
-  @media (min-width: 1440px) {
-    margin-top: 24px;
-
-    width: 212px;
+    width: 491px;
   }
 `;
 
@@ -49,19 +62,23 @@ export const FormLabel = styled.label`
   align-items: flex-start;
   gap: 12px;
 
-  width: 100%;
+  width: 280px;
 
   color: ${globalColor.colorPrimaryWhite};
 
   font-size: 14px;
   font-weight: 500;
   line-height: 1.43;
+  
+  @media (min-width: 834px) {
+    width: 212px;
+  }
 `;
 
 export const FormInput = styled.input`
   padding: 8px 10px;
 
-  width: 280px;
+  width: 100%;
 
   color: ${globalColor.colorPrimaryWhite};
 
@@ -80,6 +97,62 @@ export const FormInput = styled.input`
     background: transparent;
     outline: none;
   }
+
+  @media (min-width: 834px) {
+    max-width: 212px;
+  }
+`;
+
+export const WrapperSection = styled.div`
+  @media (min-width: 834px) {
+    width: 219px;
+  }
+`;
+
+export const ContainerAvatar = styled.div`
+  display: flex;
+  align-items: center;
+
+  margin-top: 12px;
+
+  @media (min-width: 834px) {
+    width: 219px;
+  }
+`;
+
+export const Avatar = styled.img`
+  border-radius: 50%;
+  margin-right: 10px;
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+`;
+
+export const AvatarUpload = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const InputFile = styled.input`
+  display: none;
+`;
+
+export const SvgUpload = styled.svg`
+  width: 16px;
+  height: 16px;
+
+  stroke: ${globalColor.colorPrimaryGreenLite};
+
+  cursor: pointer;
+`;
+
+export const SpanUpload = styled.span`
+  color: ${globalColor.colorPrimaryWhite};
+
+  font-size: 14px;
+  line-height: 1.43;
+
+  cursor: pointer;
 `;
 
 export const TitleRadio = styled.p`
