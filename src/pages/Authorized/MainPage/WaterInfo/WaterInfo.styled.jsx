@@ -14,7 +14,7 @@ const animate = keyframes`
   `;
 
 export const WaterTitle = styled.h2`
-  color: var(--text-color-primary-white);
+  color: rgba(255, 255, 255, 1);
   font-family: Poppins;
   font-size: 18px;
   font-style: normal;
@@ -36,7 +36,7 @@ export const WaterInfoCard = styled.div`
   width: 300px;
   height: 224px;
   border-radius: 12px;
-  background-color: var(--bg-secondary);
+  background-color: rgba(15, 15, 15, 1);
   margin-bottom: 20px;
 
   @media screen and (min-width: 834px) {
@@ -60,7 +60,7 @@ export const Level = styled.div`
   height: 192px;
   border-radius: 20px;
   border: 1px solid rgba(41, 41, 40, 1);
-  background-color: var(--bg-primary);
+  background-color: rgba(5, 5, 5, 1);
   padding: 7px;
 `;
 
@@ -89,7 +89,7 @@ export const WaterBar = styled.div`
     bottom: 15px;
     border-radius: 50%;
     pointer-events: none;
-    box-shadow: inset 0 0 3px var(--carbonohidrates-donut-color);
+    box-shadow: inset 0 0 3px rgba(255, 196, 247, 1);
     animation: ${animate} 4s linear infinite;
 
     &::before {
@@ -115,7 +115,7 @@ export const InfoWrapper = styled.div`
 `;
 
 export const InfoTitle = styled.p`
-  color: var(--text-color-primary-white);
+  color: rgba(255, 255, 255, 1);
   font-family: Poppins;
   font-size: 16px;
   font-style: normal;
@@ -141,7 +141,7 @@ export const ValueWrap = styled.div`
 export const InfoNumber = styled.p`
   display: flex;
   align-items: center;
-  color: var(--text-color-primary-white);
+  color: rgba(255, 255, 255, 1);
   font-family: Poppins;
   font-size: 28px;
   font-style: normal;
@@ -157,7 +157,7 @@ export const InfoNumber = styled.p`
 `;
 
 export const Unit = styled.span`
-  color: var(--text-color-secondary-grey);
+  color: rgba(182, 182, 182, 1);
   font-family: Poppins;
   font-size: 14px;
   font-style: normal;
@@ -167,7 +167,7 @@ export const Unit = styled.span`
 `;
 
 export const LeftInfo = styled.p`
-  color: var(--text-color-primary-white);
+  color: rgba(255, 255, 255, 1);
   font-family: Poppins;
   font-size: 14px;
   font-style: normal;
@@ -181,7 +181,7 @@ export const LeftInfo = styled.p`
 `;
 
 export const LeftNumber = styled.span`
-  color: var(--text-color-secondary-grey);
+  color: rgba(182, 182, 182, 1);
   font-weight: 500;
   margin-left: 4px;
 `;
@@ -195,9 +195,9 @@ export const Button = styled.button`
   border-radius: 12px;
   border: none;
   padding: 8px 10px;
-  background-color: var(--input-border-color-normal);
+  background-color: rgba(227, 255, 168, 1);
 
-  color: var(--bg-secondary);
+  color: rgba(15, 15, 15, 1);
   font-family: Poppins;
   font-size: 14px;
   font-style: normal;
@@ -206,5 +206,5 @@ export const Button = styled.button`
 `;
 
 export const AddIcon = styled(Icon)`
-  stroke: var(--text-color-button-black);
+  stroke: rgba(15, 15, 15, 1);
 `;
