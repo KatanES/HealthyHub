@@ -6,7 +6,7 @@ export const RecommendedCard = ({ info }) => {
 
   return (
     <div>
-      <img src={image} alt="name" onError={(e = onError(e))}></img>
+      <img src={image} alt="name"></img>
       <div>
         <h2>{name}</h2>
         <div>
