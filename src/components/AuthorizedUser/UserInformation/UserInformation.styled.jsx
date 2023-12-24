@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { globalColor } from '../../Header/root';
 
 export const SettingsContainer = styled.div`
+  margin-top: 24px;
+
   width: 300px;
 
   @media (min-width: 834px) {
@@ -26,7 +28,7 @@ export const FormStyle = styled.form`
   display: flex;
   flex-direction: column;
 
-  margin-top: 24px;
+  gap: 40px;
 
   @media (min-width: 834px) {
     margin: 24px auto 0 auto;
@@ -48,7 +50,6 @@ export const FormLabel = styled.label`
   gap: 12px;
 
   width: 100%;
-  margin-bottom: 40px;
 
   color: ${globalColor.colorPrimaryWhite};
 
@@ -65,6 +66,7 @@ export const FormInput = styled.input`
   color: ${globalColor.colorPrimaryWhite};
 
   font-size: 14px;
+  font-style: normal;
   line-height: 1.43;
 
   border-radius: 12px;
@@ -80,14 +82,116 @@ export const FormInput = styled.input`
   }
 `;
 
-export const FormInputRadio = styled.input``;
+export const TitleRadio = styled.p`
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.42;
+`;
+
+export const ContainerGender = styled.div`
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  margin-top: 12px;
+
+  width: 230px;
+
+  @media (min-width: 834px) {
+    width: 276px;
+  }
+
+  @media (min-width: 1440px) {
+    margin-top: 12px;
+
+    gap: 16px;
+
+    text-align: left;
+  }
+`;
+
+export const GenderLabel = styled.label`
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  font-size: 14px;
+  line-height: 1.43;
+`;
+
+export const RadioBtn = styled.input`
+  appearance: none;
+
+  min-width: 12px;
+  min-height: 12px;
+
+  font: inherit;
+  color: ${globalColor.colorPrimaryGreenLite};
+  background-color: black;
+
+  border: 0.11em solid ${globalColor.colorPrimaryGrey};
+  border-radius: 50%;
+
+  &:checked {
+    background: radial-gradient(
+      circle,
+      ${globalColor.colorPrimaryGreenLite} 40%,
+      transparent 50%
+    );
+  }
+
+  @media (min-width: 834px) {
+    margin-top: 0;
+  }
+`;
+
+export const ContainerActivity = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 24px;
+
+  margin-top: 12px;
+
+  width: 300px;
+
+  @media (min-width: 834px) {
+    width: 276px;
+  }
+
+  @media (min-width: 1440px) {
+    margin-top: 12px;
+
+    gap: 16px;
+
+    text-align: left;
+  }
+`;
+
+export const ActivityLabel = styled.label`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+
+  width: 300px;
+
+  font-size: 14px;
+  line-height: 1.43;
+
+  color: ${globalColor.colorPrimaryWhite};
+
+  @media (min-width: 834px) {
+  }
+`;
 
 export const ContainerBtn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  margin-top: 40px;
 
   weidth: 100%;
 

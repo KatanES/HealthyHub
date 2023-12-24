@@ -6,8 +6,13 @@ import {
   FormStyle,
   FormLabel,
   FormInput,
-  FormInputRadio,
   SettingsContainer,
+  TitleRadio,
+  ContainerGender,
+  GenderLabel,
+  RadioBtn,
+  ContainerActivity,
+  ActivityLabel,
   ContainerBtn,
   FormSaveBtn,
   FromCancelBtn,
@@ -25,29 +30,29 @@ const settingsSchema = Yup.object().shape({
   activity: Yup.string(),
 });
 
-const activities = [
-  {
-    value: '1',
-    label: '1.2 - If you do not have physical activity and sedentary work',
-  },
-  {
-    value: '2',
-    label: '1.375 - If you do short runs or light gymnastics 1-3 times a week',
-  },
-  {
-    value: '3',
-    label: '1.55 - If you play sports with average loads 3-5 times a week',
-  },
-  {
-    value: '4',
-    label: '1.725 - If you train fully 6-7 times a week',
-  },
-  {
-    value: '5',
-    label:
-      '1.9 - If your work is related to physical labor, you train 2 times a day and include strength exercises in your training program',
-  },
-];
+// const activities = [
+//   {
+//     value: '1',
+//     label: '1.2 - If you do not have physical activity and sedentary work',
+//   },
+//   {
+//     value: '2',
+//     label: '1.375 - If you do short runs or light gymnastics 1-3 times a week',
+//   },
+//   {
+//     value: '3',
+//     label: '1.55 - If you play sports with average loads 3-5 times a week',
+//   },
+//   {
+//     value: '4',
+//     label: '1.725 - If you train fully 6-7 times a week',
+//   },
+//   {
+//     value: '5',
+//     label:
+//       '1.9 - If your work is related to physical labor, you train 2 times a day and include strength exercises in your training program',
+//   },
+// ];
 
 const SettingsPage = () => {
   const [userData, setUserData] = useState({});
@@ -149,27 +154,31 @@ const SettingsPage = () => {
           />
         </FormLabel>
 
-        <FormLabel>
-          Gender
-          <div>
-            <FormInputRadio
-              type="radio"
-              name="gender"
-              value="male"
-              checked={formik.values.gender === 'male'}
-              onChange={formik.handleChange}
-            />
-            Male
-            <FormInputRadio
-              type="radio"
-              name="gender"
-              value="female"
-              checked={formik.values.gender === 'female'}
-              onChange={formik.handleChange}
-            />
-            Female
-          </div>
-        </FormLabel>
+        <div>
+          <TitleRadio>Gender</TitleRadio>
+          <ContainerGender>
+            <GenderLabel>
+              <RadioBtn
+                type="radio"
+                name="gender"
+                value="male"
+                checked={formik.values.gender === 'male'}
+                onChange={formik.handleChange}
+              />
+              Male
+            </GenderLabel>
+            <GenderLabel>
+              <RadioBtn
+                type="radio"
+                name="gender"
+                value="female"
+                checked={formik.values.gender === 'female'}
+                onChange={formik.handleChange}
+              />
+              Female
+            </GenderLabel>
+          </ContainerGender>
+        </div>
 
         <FormLabel>
           Height
@@ -195,11 +204,68 @@ const SettingsPage = () => {
           />
         </FormLabel>
 
-        <FormLabel>
+        <div>
+          <TitleRadio>Your activity</TitleRadio>
+          <ContainerActivity>
+            <ActivityLabel>
+              <RadioBtn
+                type="radio"
+                name="activity"
+                value="1"
+                checked={formik.values.activity === '1'}
+                onChange={formik.handleChange}
+              />
+              1.2 - if you do not have physical activity and sedentary work
+            </ActivityLabel>
+            <ActivityLabel>
+              <RadioBtn
+                type="radio"
+                name="activity"
+                value="2"
+                checked={formik.values.activity === '2'}
+                onChange={formik.handleChange}
+              />
+              1.375 - if you do short runs or light gymnastics 1-3 times a week
+            </ActivityLabel>
+            <ActivityLabel>
+              <RadioBtn
+                type="radio"
+                name="activity"
+                value="3"
+                checked={formik.values.activity === '3'}
+                onChange={formik.handleChange}
+              />
+              1.55 - if you play sports with average loads 3-5 times a week
+            </ActivityLabel>
+            <ActivityLabel>
+              <RadioBtn
+                type="radio"
+                name="activity"
+                value="4"
+                checked={formik.values.activity === '4'}
+                onChange={formik.handleChange}
+              />
+              1.725 - if you train fully 6-7 times a week
+            </ActivityLabel>
+            <ActivityLabel>
+              <RadioBtn
+                type="radio"
+                name="activity"
+                value="5"
+                checked={formik.values.activity === '5'}
+                onChange={formik.handleChange}
+              />
+              1.9 - if your work is related to physical labor, you train 2 times
+              a day and include strength exercises in your training program
+            </ActivityLabel>
+          </ContainerActivity>
+        </div>
+
+        {/* <FormLabel>
           Your activity
           {activities.map((activity) => (
             <div key={activity.value}>
-              <FormInputRadio
+              <RadioBtn
                 type="radio"
                 name="activity"
                 value={activity.value}
@@ -209,7 +275,7 @@ const SettingsPage = () => {
               {activity.label}
             </div>
           ))}
-        </FormLabel>
+        </FormLabel> */}
 
         <ContainerBtn>
           <FormSaveBtn type="submit">Save</FormSaveBtn>
