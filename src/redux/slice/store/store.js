@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit';
 import diaryReducer from '/src/redux/slice/diarySlice.jsx';
 import {
   persistStore,
@@ -9,15 +9,14 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from 'redux-persist'
+} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-
+import { recommendedFoodReducer } from '../../recommendedFood/slice';
 import { authReducer } from '../../auth/slice';
+
 import { forgotPasswordReducer } from '../../auth/forgotPasswordSlice';
 
-
-
-const authPersistConfig  = {
+const authPersistConfig = {
   key: 'auth',
   storage,
   whitelist: ['token'],
@@ -28,6 +27,7 @@ export const store = configureStore({
     auth: persistReducer(authPersistConfig, authReducer),
     diary: diaryReducer,
     forgotPassword: forgotPasswordReducer,
+    recommendedFood: recommendedFoodReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

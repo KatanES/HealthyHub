@@ -1,77 +1,36 @@
-import { useState, useRef, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { getRecommentedFood } from '../../../helpers/getRecommentedFood';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { getRecommendedFood } from '../../../redux/recommendedFood/selectors';
+// import { fetchRecommendedFood } from '../../../redux/recommendedFood/operations';
+// import { RecommendedCard } from '../../../components/AuthorizedUser/RecommendedFood/RecommendedCard';
+// RecommendedCard;
+// import { randomArray } from '../../../utils/randomArray';
+// import RecommendedFoodPhoto from '../../../assets/RecommendedFood/Ketogenic.png';
 
-import CardRecommendedProduct from '../../../components/CardRecommendedProduct.styled.jsx/CardRecommendedProduct';
-import image from '../../../images/Ketogenic.png';
-import {
-  Container,
-  Content,
-  HeaderPage,
-  BackLink,
-  ArrowReturn,
-  TitlePage,
-  InfoBox,
-  BannerThumb,
-  Img,
-  RecommendedFoodList,
-} from '../RecommendedFoodPage/RecommendedFoodPage.styled';
+// export const RecommendedFoodPage = () => {
+//   const dispatch = useDispatch();
+//   const recommendedFood = useSelector(getRecommendedFood);
 
-import { randomizeFood } from '../../../helpers/randomizeFood';
+//   if (!recommendedFood) {
+//     dispatch(fetchRecommendedFood());
+//   }
 
-import arrowRight from '../../../images/icons/arrow-right.svg';
-// import { getStats } from 'redux/Statistics/statisticsOperations';
-
-export default function RecommendedFood() {
-  const [arrayForRender, setArrayForRender] = useState([]);
-
-  const dispatch = useDispatch();
-  const location = useLocation();
-  const backLinkLocationRef = useRef(location.state?.from ?? '/main');
-
-  useEffect(() => {
-    getRecommentedFood()
-      .then((responce) => {
-        setArrayForRender(randomizeFood(responce, 10));
-      })
-      .catch((err) => console.error(err));
-  }, []);
-
-  return (
-    <Container>
-      <Content>
-        <HeaderPage>
-          <BackLink
-            to={backLinkLocationRef.current}
-            onClick={() => dispatch(getStats('today'))}
-          >
-            <ArrowReturn src={arrowRight} alt="arrow right" />
-          </BackLink>
-          <TitlePage>Recommented food</TitlePage>
-        </HeaderPage>
-
-        <InfoBox>
-          <BannerThumb>
-            <Img src={image} alt="Banner recommended food" />
-          </BannerThumb>
-
-          <RecommendedFoodList>
-            {arrayForRender.map(({ _id, img, name, amount, calories }) => {
-              return (
-                <CardRecommendedProduct
-                  key={_id}
-                  id={_id}
-                  img={img}
-                  name={name}
-                  amount={amount}
-                  calories={calories}
-                />
-              );
-            })}
-          </RecommendedFoodList>
-        </InfoBox>
-      </Content>
-    </Container>
-  );
-}
+//   return (
+//     <div>
+//       <h1>Recommended Food</h1>
+//       <div>
+//         <img
+//           srcSet={`${RecommendedFoodPhoto} 1x`}
+//           src={RecommendedFoodPhoto}
+//           alt="Profile Setting Photo"
+//         ></img>
+//         {recommendedFood && (
+//           <ul>
+//             {randomArray(recommendedFood, 10).map((product) => (
+//               <RecommendedCard key={product.name} info={product} />
+//             ))}
+//           </ul>
+//         )}
+//       </div>
+//     </div>
+//   );
+// };

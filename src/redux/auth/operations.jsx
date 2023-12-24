@@ -1,5 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { authenticate } from './slice';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 axios.defaults.baseURL = 'https://healthyhubserver.onrender.com';
 
@@ -17,7 +19,7 @@ export const signup = createAsyncThunk(
     try {
       const res = await axios.post('/api/auth/signup', credentials);
       setAuthHeader(res.data.token);
-      thunkAPI.dispatch(authenticate(res.data.user));
+      thunkAPI.dispatch(authenticate(res.data.token));
       return res.data;
     } catch (error) {
       console.error('Signup error:', error.response?.data || error.message);
@@ -32,6 +34,7 @@ export const signin = createAsyncThunk(
     try {
       const res = await axios.post('/api/auth/signin', credentials);
       setAuthHeader(res.data.token);
+
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -52,7 +55,7 @@ export const forgotPassword = createAsyncThunk(
 );
 
 export const refreshUser = createAsyncThunk(
-  'api/auth/refresh',
+  '/auth/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
@@ -61,7 +64,7 @@ export const refreshUser = createAsyncThunk(
     }
     try {
       setAuthHeader(persistedToken);
-      const response = await axios.get('/users/current');
+      const response = await axios.get('api/user/current');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

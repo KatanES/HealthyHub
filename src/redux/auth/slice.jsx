@@ -92,7 +92,26 @@ const handleUpdateGoalFulfilled = (state, action) => {
   state.user.goal = action.payload.goal;
 };
 
-const initialState = {
+export const handleRefreshUserPending = (state) => {
+  state.isRefreshing = true;
+  
+};
+
+export const handleFulfilledRefresh = (state, action) => {
+  state.user = action.payload.user;
+        state.isLoggedIn = true;
+        state.isRefreshing = false;
+        state.lastWeightDate = action.payload.date; //THERE or
+        //  state.lastWeightDate = action.payload.lastWeightDate;
+};
+
+export const handleRejectedRefresh = (state, action) => {
+  state.token = null;
+state.isRefreshing = false;
+
+};
+
+export const initialState = {
   user: {
     name: null,
     email: null,
@@ -138,19 +157,10 @@ const authSlice = createSlice({
       .addCase(updateGoal.pending, handlePending)
       .addCase(updateGoal.fulfilled, handleUpdateGoalFulfilled)
       .addCase(updateGoal.rejected, handleRejected)
-      .addCase(refreshUser.pending, (state) => {
-        state.isRefreshing = true;
-      })
-      .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload.user;
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-        state.lastWeightDate = action.payload.date; //THERE or
-        //  state.lastWeightDate = action.payload.lastWeightDate;
-      })
-      .addCase(refreshUser.rejected, (state) => {
-        state.isRefreshing = false;
-      });
+      .addCase(refreshUser.fulfilled, handleFulfilledRefresh)
+      .addCase(refreshUser.rejected, handleRejectedRefresh)
+      .addCase(refreshUser.pending, handleRefreshUserPending);
+
   },
 });
 
