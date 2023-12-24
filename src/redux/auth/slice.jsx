@@ -37,7 +37,6 @@ const handleSignInFulfilled = (state, action) => {
   state.isAuthenticated = true;
   state.isLoading = false;
   state.error = null;
-  state.lastWeightDate = action.payload.lastWeightDate;
 };
 
 const handleSignInRejected = (state, action) => {
@@ -84,7 +83,7 @@ const handleUpdateWeightFulfilled = (state, action) => {
   state.isLoading = false;
   state.error = null;
   state.user.weight = action.payload.weight;
-  state.lastWeightDate = action.payload.data.date;
+  state.lastWeightDate = action.payload.date; //THERE
 };
 
 const handleUpdateGoalFulfilled = (state, action) => {
@@ -97,16 +96,11 @@ export const handleRefreshUserPending = (state) => {
   state.isRefreshing = true;
 };
 
-export const handleFulfilledRefresh = (state, action) => {
-  state.user = action.payload[0];
-  state.isAuthenticated = true;
-  state.isLoading = false;
-  state.error = null;
-  // state.dateLastWeight = action.payload.dateLastWeight;
-};
+export const handleFulfilledRefresh = (state, action) => {};
 
 export const handleRejectedRefresh = (state, action) => {
   state.token = null;
+  state.isRefreshing = false;
 };
 
 export const initialState = {

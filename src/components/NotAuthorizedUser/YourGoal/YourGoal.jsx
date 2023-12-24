@@ -54,12 +54,7 @@ const YourGoal = ({ goNext, setGoal, dataGoal, goBack }) => {
           <GaolRadioForm>
             <GaolRadio role="group" aria-labelledby="goalGroup">
               <GoalLabel>
-                <GoalField
-                  type="radio"
-                  name="goal"
-                  value=" Lose Fat"
-                  required
-                />
+                <GoalField type="radio" name="goal" value="Lose Fat" required />
                 Lose Fat
               </GoalLabel>
               <GoalLabel>
@@ -70,7 +65,7 @@ const YourGoal = ({ goNext, setGoal, dataGoal, goBack }) => {
                 <GoalField
                   type="radio"
                   name="goal"
-                  value=" Gain Muscle"
+                  value="Gain Muscle"
                   required
                 />
                 Gain Muscle

@@ -55,6 +55,9 @@ export const СurrentWeightModal = ({
     if (0 === newWeight || (newWeight < 1 && newWeight)) {
       setError('Weight can`t be less 1 kg');
       setIsError(true);
+    } else if (newWeight > 300 && newWeight) {
+      setError('Weight can`t be more 300 kg');
+      setIsError(true);
     } else if (!newWeight) {
       setError('Enter your weight*');
       setIsError(true);
@@ -62,8 +65,12 @@ export const СurrentWeightModal = ({
       setError('');
       setIsError(false);
       closeСurrentWeightModal();
-      dispatch(updateWeight(newWeight));
-      //тут ще діспатч для усіх компонентів для оновлення ? чи рефреш???
+      dispatch(updateWeight({ weight: newWeight }));
+
+      // setTimeout(() => {
+      //   dispatch(fetchCaloriesIntake());
+      // }, 150);
+      //тут ще має бути діспатч для усіх компонентів для оновлення з файлу Сергія!!!
     }
   };
 
