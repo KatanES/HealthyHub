@@ -1,19 +1,26 @@
 import noImage from '../../../assets/RecommendedFood/noimage.png';
+import {
+  Card,
+  CardImage,
+  InfoWrap,
+  Title,
+  ValueWrap,
+  Calories,
+} from './RecommendedCard.styled';
 
 export const RecommendedCard = ({ info }) => {
   const { name, amount, img: image, calories } = info;
-  const onError = (e) => (e.target.src = noImage);
 
   return (
-    <div>
-      <img src={image} alt="name"></img>
-      <div>
-        <h2>{name}</h2>
-        <div>
+    <Card>
+      <CardImage src={image} alt="name"></CardImage>
+      <InfoWrap>
+        <Title>{name}</Title>
+        <ValueWrap>
           <p>{amount}</p>
-          <p>{calories}</p>
-        </div>
-      </div>
-    </div>
+          <Calories>{calories} calories</Calories>
+        </ValueWrap>
+      </InfoWrap>
+    </Card>
   );
 };

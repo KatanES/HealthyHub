@@ -51,7 +51,6 @@ export const SectionDiary = styled.div`
     max-width: 558px;
     padding: 10px;
     display: flex;
-    
   }
 `;
 
@@ -67,4 +66,11 @@ export const Titel = styled.h2`
   font-size: 30px;
   font-style: normal;
   font-weight: 500;
+`;
+export const DiaryAndRecommendFoodWrap = styled.div`
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    column-gap: 138px;
+    margin-right: 0;
+  }
 `;
