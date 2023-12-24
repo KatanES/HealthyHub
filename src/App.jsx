@@ -41,7 +41,7 @@ function App() {
   const { isSignedIn } = useAuth();
   useEffect(() => {
     dispatch(refreshUser());
-  }, [dispatch]);
+  }, [dispatch, isSignedIn]);
   console.log(isSignedIn);
   return (
     <AppWrapper>

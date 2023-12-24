@@ -96,7 +96,12 @@ export const handleRefreshUserPending = (state) => {
   state.isRefreshing = true;
 };
 
-export const handleFulfilledRefresh = (state, action) => {};
+export const handleFulfilledRefresh = (state, action) => {
+  state.user = action.payload[0];
+  state.isAuthenticated = true;
+  state.isLoading = false;
+  state.error = null;
+};
 
 export const handleRejectedRefresh = (state, action) => {
   state.token = null;
