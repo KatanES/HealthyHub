@@ -1,6 +1,8 @@
 import { Popover, useMediaQuery } from '@mui/material';
 import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
+import { fetchCaloriesIntake } from '../../../redux/dailyGoalsCalories/operations';
 import { updateGoal } from '../../../redux/auth/operations';
 
 import sprite from '../../../assets/sprite.svg';
@@ -29,7 +31,6 @@ import {
   Label,
   ConfirmTargetSelectionModalButton,
 } from './TargetSelectionModal.styled';
-import { useState } from 'react';
 
 export const TargetSelectionModal = ({
   closeTargetSelectionModal,
@@ -74,9 +75,9 @@ export const TargetSelectionModal = ({
 
     // dispatch(updateGoal({ goal: newGoal }));
 
-    // setTimeout(() => {
-    //   dispatch(fetchCaloriesIntake());
-    // }, 150);
+    setTimeout(() => {
+      dispatch(fetchCaloriesIntake());
+    }, 150);
 
     //тут ще має бути діспатч для усіх компонентів для оновлення з файлу Сергія!!!
 
