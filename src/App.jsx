@@ -98,7 +98,7 @@ function App() {
           <Route
             path="diary"
             element={
-              <PrivateRoute redirectTo="/signin" element={<DiaryPage />} />
+              <PrivateRoute redirectTo="/signin" component={<DiaryPage />} />
             }
           ></Route>
           <Route
