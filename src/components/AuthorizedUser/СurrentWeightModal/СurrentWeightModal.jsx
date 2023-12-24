@@ -70,6 +70,7 @@ export const СurrentWeightModal = ({
       // setTimeout(() => {
       //   dispatch(fetchCaloriesIntake());
       // }, 150);
+
       //тут ще має бути діспатч для усіх компонентів для оновлення з файлу Сергія!!!
     }
   };
