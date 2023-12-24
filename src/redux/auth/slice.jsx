@@ -98,8 +98,11 @@ export const handleRefreshUserPending = (state) => {
 };
 
 export const handleFulfilledRefresh = (state, action) => {
-  state.user = action.payload.user;
-  state.dateLastWeight = action.payload.dateLastWeight;
+  state.user = action.payload[0];
+  state.isAuthenticated = true;
+  state.isLoading = false;
+  state.error = null;
+  // state.dateLastWeight = action.payload.dateLastWeight;
 };
 
 export const handleRejectedRefresh = (state, action) => {
