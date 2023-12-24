@@ -37,6 +37,10 @@ const MainPage = () => {
       <SectionDiary>
         <Diary />
       </SectionDiary>
+      <div>
+        <h2>Recommended Food</h2>
+        <Link to="/recommended-food">Recommended Food</Link>
+      </div>
     </Container>
   );
 };

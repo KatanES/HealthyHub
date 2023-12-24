@@ -60,6 +60,8 @@ const handleSignOutFulfilled = (state) => {
   state.isAuthenticated = false;
   state.isLoading = false;
   state.error = null;
+
+  state.isRefreshing = false;
 };
 
 const handleSignOutRejected = (state, action) => {

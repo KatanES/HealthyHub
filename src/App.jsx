@@ -56,15 +56,15 @@ function App() {
             }
           />
           <Route
-            path="/signup"
+            path="signup"
             element={
-              <RestrictedRoute redirectTo="/" component={<SignUpPage />} />
+              <RestrictedRoute redirectTo="/main" component={<SignUpPage />} />
             }
           >
             Sign Up!
           </Route>
           <Route
-            path="/signin"
+            path="signin"
             element={
               <RestrictedRoute redirectTo="/main" component={<SignInPage />} />
             }
@@ -72,7 +72,7 @@ function App() {
             Login
           </Route>
           <Route
-            path="/forgot-password"
+            path="forgot-password"
             element={
               <RestrictedRoute
                 redirectTo="/signin"
@@ -81,13 +81,13 @@ function App() {
             }
           ></Route>
           <Route
-            path="/main"
+            path="main"
             element={
               <PrivateRoute redirectTo="/signin" component={<MainPage />} />
             }
           ></Route>
           <Route
-            path="/dashboard"
+            path="dashboard"
             element={
               <PrivateRoute
                 redirectTo="/signin"
@@ -96,13 +96,13 @@ function App() {
             }
           ></Route>
           <Route
-            path="/diary"
+            path="diary"
             element={
               <PrivateRoute redirectTo="/signin" element={<DiaryPage />} />
             }
           ></Route>
           <Route
-            path="/recommended-food"
+            path="recommended-food"
             element={
               <PrivateRoute
                 redirectTo="/signin"
@@ -111,7 +111,7 @@ function App() {
             }
           ></Route>
           <Route
-            path="/settings"
+            path="settings"
             element={
               <PrivateRoute redirectTo="/signin" component={<SettingsPage />} />
             }
