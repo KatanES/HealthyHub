@@ -1,5 +1,3 @@
-// import { useState } from 'react';
-
 import { useAuth } from '../hooks/useAuth';
 
 import { Navigation } from '../NotAuthorizedUser/Navigation/Navigation';
@@ -11,9 +9,6 @@ import { HeaderContainer, HeaderContent } from './Header.styled';
 
 export const Header = () => {
   const { isSignedIn } = useAuth();
-
-  // const [isSignedIn] = useState(true);
-  // const [isSignedIn] = useState(false);
 
   return (
     <HeaderContainer>

@@ -84,8 +84,9 @@ const handleSignOutRejected = (state, action) => {
 const handleUpdateWeightFulfilled = (state, action) => {
   state.isLoading = false;
   state.error = null;
-  state.user.weight = action.payload.weight;
-  state.lastWeightDate = action.payload.date; //THERE
+  // state.user.weight = action.payload.weight; //THERE
+  // state.lastWeightDate = action.payload.date; //THERE
+  state.user.weight = action.meta.arg.weight;
 };
 
 const handleUpdateGoalFulfilled = (state, action) => {
@@ -105,7 +106,7 @@ export const handleFulfilledRefresh = (state, action) => {
   state.error = null;
 };
 
-export const handleRejectedRefresh = (state, action) => {
+export const handleRejectedRefresh = (state) => {
   state.token = null;
   state.isRefreshing = false;
 };

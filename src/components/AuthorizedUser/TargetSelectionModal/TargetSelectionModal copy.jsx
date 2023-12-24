@@ -46,12 +46,6 @@ export const TargetSelectionModal = ({
     ? 'desktop'
     : 'mobile';
 
-  const goalMapping = {
-    1: 'Lose Fat',
-    2: 'Maintain',
-    3: 'Gain Muscle',
-  };
-
   const handleGoalSelection = (goal) => {
     setNewGoal(goal);
     setIsButtonDisabled(false);
@@ -63,16 +57,7 @@ export const TargetSelectionModal = ({
       setIsButtonDisabled(true);
       return;
     }
-
-    dispatch(
-      updateGoal({
-        goal: Object.keys(goalMapping).find(
-          (key) => goalMapping[key] === newGoal
-        ),
-      })
-    );
-
-    // dispatch(updateGoal({ goal: newGoal }));
+    dispatch(updateGoal({ goal: newGoal }));
 
     // setTimeout(() => {
     //   dispatch(fetchCaloriesIntake());

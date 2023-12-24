@@ -15,7 +15,7 @@ import {
 export const Goals = ({
   openTargetSelectionModal,
   currentGoalIcon,
-  currentGoal,
+  goal,
   isActive,
 }) => {
   const screenWidth = useMediaQuery('(min-width: 835px)')
@@ -31,7 +31,7 @@ export const Goals = ({
         <Title>Goal</Title>
 
         <TextWrapperGoal>
-          <Text>{currentGoal}</Text>
+          <Text>{goal}</Text>
 
           {screenWidth === 'mobile' ? (
             <SvgWrapper>
