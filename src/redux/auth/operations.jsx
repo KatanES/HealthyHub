@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { authenticate } from './slice';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 axios.defaults.baseURL = 'https://healthyhubserver.onrender.com';
 
@@ -33,6 +34,7 @@ export const signin = createAsyncThunk(
     try {
       const res = await axios.post('/api/auth/signin', credentials);
       setAuthHeader(res.data.token);
+
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

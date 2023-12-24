@@ -5,6 +5,7 @@ import { useEffect, lazy } from 'react';
 import { RestrictedRoute } from './ResctrictedRoute';
 import { AppWrapper } from './App.styled';
 import { refreshUser } from './redux/auth/operations';
+
 import { useAuth } from './components/hooks/useAuth';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 
@@ -36,19 +37,24 @@ import ErrorPage from 'pages/ErrorPage/ErrorPage';
 
 function App() {
   const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
+
+  const { isSignedIn } = useAuth();
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
-  return isRefreshing ? (
-    <b>Refreshing user...</b>
-  ) : (
+  console.log(isSignedIn);
+  return (
     <AppWrapper>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<WelcomePage />} />
 
-          <Route path="/welcome" element={<WelcomePage />} />
+          <Route
+            path="welcome"
+            element={
+              <RestrictedRoute redirectTo="/main" component={<WelcomePage />} />
+            }
+          />
           <Route
             path="/signup"
             element={
@@ -60,7 +66,7 @@ function App() {
           <Route
             path="/signin"
             element={
-              <RestrictedRoute redirectTo="/" component={<SignInPage />} />
+              <RestrictedRoute redirectTo="/main" component={<SignInPage />} />
             }
           >
             Login
