@@ -83,7 +83,7 @@ const handleUpdateWeightFulfilled = (state, action) => {
   state.isLoading = false;
   state.error = null;
   state.user.weight = action.payload.weight;
-  state.lastWeightDate = action.payload.date;
+  state.lastWeightDate = action.payload.date; //THERE
 };
 
 const handleUpdateGoalFulfilled = (state, action) => {
@@ -145,7 +145,7 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.isLoggedIn = true;
         state.isRefreshing = false;
-
+        state.lastWeightDate = action.payload.date; //THERE or
         //  state.lastWeightDate = action.payload.lastWeightDate;
       })
       .addCase(refreshUser.rejected, (state) => {
