@@ -35,12 +35,11 @@ export const TargetSelectionModal = ({
   closeTargetSelectionModal,
   isOpen,
   anchorEl,
-  // goal,
   gender,
+  currentGoal,
 }) => {
   const dispatch = useDispatch();
-  // const [newGoal, setNewGoal] = useState(goal);
-  const [newGoal, setNewGoal] = useState(null);
+  const [newGoal, setNewGoal] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
   const screenWidth = useMediaQuery('(min-width: 835px)')
@@ -54,9 +53,11 @@ export const TargetSelectionModal = ({
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // dispatch(updateGoal({ goal: event.currentTarget.goal.value }));
+    if (currentGoal === newGoal) {
+      setIsButtonDisabled(true);
+      return;
+    }
     dispatch(updateGoal({ goal: newGoal }));
-
     closeTargetSelectionModal();
   };
 
@@ -107,10 +108,10 @@ export const TargetSelectionModal = ({
         <Form onSubmit={handleSubmit}>
           <RadioContainer>
             <ImageWrapper
-              data-ischecked={newGoal === 'loseFat'}
-              onClick={() => handleGoalSelection('loseFat')}
+              data-ischecked={newGoal === 'Lose Fat'}
+              onClick={() => handleGoalSelection('Lose Fat')}
             >
-              {gender === 'Female' ? (
+              {gender === 'female' ? (
                 <img src={loseFatGirl} alt="Lose fat goal" />
               ) : (
                 <img src={loseFatMen} alt="Lose fat goal" />
@@ -120,19 +121,19 @@ export const TargetSelectionModal = ({
               type="radio"
               id="loseFat"
               name="goal"
-              value="Lose fat"
-              onChange={() => handleGoalSelection('loseFat')}
+              value="Lose Fat"
+              onChange={() => handleGoalSelection('Lose Fat')}
             />
-            <Label htmlFor="loseFat" data-ischecked={newGoal === 'loseFat'}>
+            <Label htmlFor="loseFat" data-ischecked={newGoal === 'Lose Fat'}>
               Lose fat
             </Label>
           </RadioContainer>
           <RadioContainer>
             <ImageWrapper
-              data-ischecked={newGoal === 'maintain'}
-              onClick={() => handleGoalSelection('maintain')}
+              data-ischecked={newGoal === 'Maintain'}
+              onClick={() => handleGoalSelection('Maintain')}
             >
-              {gender === 'Female' ? (
+              {gender === 'female' ? (
                 <img src={maintainGirl} alt="Maintain goal" />
               ) : (
                 <img src={maintainMen} alt="Maintain goal" />
@@ -143,16 +144,16 @@ export const TargetSelectionModal = ({
               id="maintain"
               name="goal"
               value="Maintain"
-              onChange={() => handleGoalSelection('maintain')}
+              onChange={() => handleGoalSelection('Maintain')}
             />
-            <Label htmlFor="maintain" data-ischecked={newGoal === 'maintain'}>
+            <Label htmlFor="maintain" data-ischecked={newGoal === 'Maintain'}>
               Maintain
             </Label>
           </RadioContainer>
           <RadioContainer>
             <ImageWrapper
-              data-ischecked={newGoal === 'gainMuscle'}
-              onClick={() => handleGoalSelection('gainMuscle')}
+              data-ischecked={newGoal === 'Gain Muscle'}
+              onClick={() => handleGoalSelection('Gain Muscle')}
             >
               <img src={gainMuscle} alt="Gain Muscle goal" />
             </ImageWrapper>
@@ -161,11 +162,11 @@ export const TargetSelectionModal = ({
               id="gainMuscle"
               name="goal"
               value="Gain Muscle"
-              onChange={() => handleGoalSelection('gainMuscle')}
+              onChange={() => handleGoalSelection('Gain Muscle')}
             />
             <Label
               htmlFor="gainMuscle"
-              data-ischecked={newGoal === 'gainMuscle'}
+              data-ischecked={newGoal === 'Gain Muscle'}
             >
               Gain Muscle
             </Label>
