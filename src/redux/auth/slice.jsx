@@ -37,7 +37,6 @@ const handleSignInFulfilled = (state, action) => {
   state.isAuthenticated = true;
   state.isLoading = false;
   state.error = null;
-  state.lastWeightDate = action.payload.lastWeightDate;
 };
 
 const handleSignInRejected = (state, action) => {
@@ -146,6 +145,8 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.isLoggedIn = true;
         state.isRefreshing = false;
+
+        //  state.lastWeightDate = action.payload.lastWeightDate;
       })
       .addCase(refreshUser.rejected, (state) => {
         state.isRefreshing = false;

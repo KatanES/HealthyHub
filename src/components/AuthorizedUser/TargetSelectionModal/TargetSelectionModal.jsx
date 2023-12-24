@@ -36,17 +36,11 @@ export const TargetSelectionModal = ({
   isOpen,
   anchorEl,
   gender,
-  // currentGoal,
+  currentGoal,
 }) => {
   const dispatch = useDispatch();
   const [newGoal, setNewGoal] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-
-  const goalMapping = {
-    1: 'Lose Fat',
-    2: 'Maintain',
-    3: 'Gain Muscle',
-  };
 
   const screenWidth = useMediaQuery('(min-width: 835px)')
     ? 'desktop'
@@ -59,13 +53,11 @@ export const TargetSelectionModal = ({
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(
-      updateGoal({
-        goal: Object.keys(goalMapping).find(
-          (key) => goalMapping[key] === newGoal
-        ),
-      })
-    );
+    if (currentGoal === newGoal) {
+      setIsButtonDisabled(true);
+      return;
+    }
+    dispatch(updateGoal({ goal: newGoal }));
     closeTargetSelectionModal();
   };
 
@@ -119,7 +111,7 @@ export const TargetSelectionModal = ({
               data-ischecked={newGoal === 'Lose Fat'}
               onClick={() => handleGoalSelection('Lose Fat')}
             >
-              {gender === 'Female' ? (
+              {gender === 'female' ? (
                 <img src={loseFatGirl} alt="Lose fat goal" />
               ) : (
                 <img src={loseFatMen} alt="Lose fat goal" />
@@ -141,7 +133,7 @@ export const TargetSelectionModal = ({
               data-ischecked={newGoal === 'Maintain'}
               onClick={() => handleGoalSelection('Maintain')}
             >
-              {gender === 'Female' ? (
+              {gender === 'female' ? (
                 <img src={maintainGirl} alt="Maintain goal" />
               ) : (
                 <img src={maintainMen} alt="Maintain goal" />

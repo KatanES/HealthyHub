@@ -86,9 +86,10 @@ export const updateWeight = createAsyncThunk(
   'auth/api/updateWeight',
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.put('api/user/weight', credentials);
+      const response = await axios.post('/api/user/weight', credentials);
       return response.data;
     } catch (error) {
+      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -98,7 +99,7 @@ export const updateGoal = createAsyncThunk(
   'auth/api/updateGoal',
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.put('api/user/goal', credentials);
+      const response = await axios.put('/api/user/goal', credentials);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

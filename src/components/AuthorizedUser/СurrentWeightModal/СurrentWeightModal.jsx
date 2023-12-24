@@ -30,7 +30,6 @@ export const СurrentWeightModal = ({
   closeСurrentWeightModal,
   isOpen,
   anchorEl,
-  
 }) => {
   const dispatch = useDispatch();
   const [newWeight, setNewWeight] = useState('');
@@ -56,6 +55,9 @@ export const СurrentWeightModal = ({
     if (0 === newWeight || (newWeight < 1 && newWeight)) {
       setError('Weight can`t be less 1 kg');
       setIsError(true);
+    } else if (newWeight > 300 && newWeight) {
+      setError('Weight can`t be more 300 kg');
+      setIsError(true);
     } else if (!newWeight) {
       setError('Enter your weight*');
       setIsError(true);
@@ -64,6 +66,7 @@ export const СurrentWeightModal = ({
       setIsError(false);
       closeСurrentWeightModal();
       dispatch(updateWeight({ weight: newWeight }));
+
       //тут ще діспатч для усіх компонентів для оновлення ? чи рефреш???
     }
   };
