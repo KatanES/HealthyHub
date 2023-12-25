@@ -61,7 +61,7 @@ const YourActivity = ({ goNext, setActivity, dataActivity, goBack }) => {
                 <ActivField
                   type="radio"
                   name="activity"
-                  value=" 1"
+                  value="1"
                   required
                   checked
                 />
