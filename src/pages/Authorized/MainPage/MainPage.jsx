@@ -36,6 +36,8 @@ import { fetchFoodIntake } from '../../../redux/diary/operations.js';
 
 //
 
+// "concole"
+
 const MainPage = () => {
   const dailyCalories = useSelector(getCaloriesGoal);
   const waterConsumtion = useSelector(getWaterIntake);
