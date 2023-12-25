@@ -62,9 +62,10 @@ const SettingsPage = () => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get('/api/user/current');
-        setUserData(response.data);
-        if (response.data.avatar) {
-          setAvatarUrl(URL.createObjectURL(response.data.avatar));
+        setUserData(response.data[0]);
+
+        if (response.data.avatarURL) {
+          setAvatarUrl(URL.createObjectURL(response.data.avatarURL));
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -99,8 +100,8 @@ const SettingsPage = () => {
         const response = await axios.put('/api/user/update', formData);
         console.log('User data updated:', response.data);
         setUserData(response.data);
-        if (response.data.avatar) {
-          setAvatarUrl(URL.createObjectURL(response.data.avatar));
+        if (response.data.avatarUrl) {
+          setAvatarUrl(URL.createObjectURL(response.data.avatarUrl));
         }
       } catch (error) {
         console.error('Error updating user data:', error);
@@ -118,6 +119,8 @@ const SettingsPage = () => {
     formik.setFieldValue('avatar', event.currentTarget.files[0]);
     setAvatarUrl(URL.createObjectURL(event.currentTarget.files[0]));
   };
+  console.log(4);
+  console.log(userData);
 
   return (
     <SettingsContainer>
@@ -132,7 +135,7 @@ const SettingsPage = () => {
                 name="name"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.name}
+                value={userData.name}
               />
             </FormLabel>
 
@@ -175,7 +178,7 @@ const SettingsPage = () => {
                 name="age"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.age}
+                value={userData.age}
               />
             </FormLabel>
 
@@ -187,7 +190,7 @@ const SettingsPage = () => {
                     type="radio"
                     name="gender"
                     value="male"
-                    checked={formik.values.gender === 'male'}
+                    checked={userData.gender === 'male'}
                     onChange={formik.handleChange}
                   />
                   Male
@@ -197,7 +200,7 @@ const SettingsPage = () => {
                     type="radio"
                     name="gender"
                     value="female"
-                    checked={formik.values.gender === 'female'}
+                    checked={userData.gender === 'female'}
                     onChange={formik.handleChange}
                   />
                   Female
@@ -215,7 +218,7 @@ const SettingsPage = () => {
                 name="height"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.height}
+                value={userData.height}
               />
             </FormLabel>
 
@@ -227,7 +230,7 @@ const SettingsPage = () => {
                 name="weight"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.weight}
+                value={userData.weight}
               />
             </FormLabel>
           </ContainerBigScreen>
@@ -241,7 +244,7 @@ const SettingsPage = () => {
                 type="radio"
                 name="activity"
                 value="1"
-                checked={formik.values.activity === 1}
+                checked={userData.activity === 1}
                 onChange={formik.handleChange}
               />
               1.2 - if you do not have physical activity and sedentary work
@@ -251,7 +254,7 @@ const SettingsPage = () => {
                 type="radio"
                 name="activity"
                 value="2"
-                checked={formik.values.activity === 2}
+                checked={userData.activity === 2}
                 onChange={formik.handleChange}
               />
               1.375 - if you do short runs or light gymnastics 1-3 times a week
@@ -261,7 +264,7 @@ const SettingsPage = () => {
                 type="radio"
                 name="activity"
                 value="3"
-                checked={formik.values.activity === 3}
+                checked={userData.activity === 3}
                 onChange={formik.handleChange}
               />
               1.55 - if you play sports with average loads 3-5 times a week
@@ -271,7 +274,7 @@ const SettingsPage = () => {
                 type="radio"
                 name="activity"
                 value="4"
-                checked={formik.values.activity === 4}
+                checked={userData.activity === 4}
                 onChange={formik.handleChange}
               />
               1.725 - if you train fully 6-7 times a week
@@ -281,7 +284,7 @@ const SettingsPage = () => {
                 type="radio"
                 name="activity"
                 value="5"
-                checked={formik.values.activity === 5}
+                checked={userData.activity === 5}
                 onChange={formik.handleChange}
               />
               1.9 - if your work is related to physical labor, you train 2 times
