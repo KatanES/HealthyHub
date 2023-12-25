@@ -46,5 +46,5 @@ export const BodyParamsSchema = Yup.object({
 });
 
 export const YourActivitySchema = Yup.object({
-  activity: Yup.string().required('Choose one of these fields'),
+  activity: Yup.number().required('Choose one of these fields'),
 });

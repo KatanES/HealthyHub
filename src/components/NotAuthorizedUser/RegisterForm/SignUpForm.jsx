@@ -53,7 +53,7 @@ export const SignUpForm = () => {
       setName('');
       setEmail('');
       setPassword('');
-      setGoal('lose fat');
+      setGoal(1);
       setGender('male');
       setHeight('');
       setWeight('');
@@ -61,7 +61,6 @@ export const SignUpForm = () => {
       setActivity(1);
     } catch (error) {
       setErrorsMessage(error);
-      setIsOpenModal(true);
     }
   };
 

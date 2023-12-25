@@ -219,5 +219,5 @@ export const SignUpNavLink = styled(NavLink)`
 export const SVG = styled.svg`
   width: 16px;
   height: 16px;
-  margin: 0 4px 0 0;
+  margin: 0 20px 0 0;
 `;

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { authenticate } from './slice';
-import { Navigate, useNavigate } from 'react-router-dom';
+
 
 axios.defaults.baseURL = 'https://healthyhubserver.onrender.com';
 

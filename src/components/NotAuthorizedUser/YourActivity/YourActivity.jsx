@@ -48,6 +48,7 @@ const YourActivity = ({ goNext, setActivity, dataActivity, goBack }) => {
         <ActivTitle>Your Activity</ActivTitle>
         <Text>To correctly calculate calorie and water intake</Text>
 
+
         <Formik
           initialValues={{
             activity: dataActivity,
@@ -89,6 +90,7 @@ const YourActivity = ({ goNext, setActivity, dataActivity, goBack }) => {
             </ActivRadio>
             <ButtonWrapper>
               <StyledButton type="submit">Sign Up</StyledButton>
+
               <StyledButton type="button" onClick={handleBack}>
                 Back
               </StyledButton>
