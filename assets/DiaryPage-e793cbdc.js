@@ -1,9 +1,6 @@
-import{u as x,j as i,L as a}from"./index-2e7381ac.js";import{B as p,L as d,D as s,S as t}from"./Snack-24e5909a.js";import{s as e}from"./symbol-31b12b17.js";const n=x.div`
-  /* border: 2px solid white; */
+import{u as a,j as i,L as x}from"./index-db02ba74.js";import{B as p,L as s,D as d,S as t}from"./Snack-efcb5df3.js";import{s as n}from"./symbol-76a31eb2.js";const e=a.div`
   max-width: 320px;
   padding: 10px;
-  /* display: flex;
-  gap: 19px; */
 
   @media (min-width: 768px) {
     max-width: 768px;
@@ -14,16 +11,15 @@ import{u as x,j as i,L as a}from"./index-2e7381ac.js";import{B as p,L as d,D as 
     max-width: 1480px;
     padding: 34px;
   }
-`,r=x.svg`
+`,r=a.svg`
   width: 16px;
   height: 16px;
-`,m=x.div`
+`,m=a.div`
   display: flex;
   gap: 4px;
   margin-top: 16px;
   margin-bottom: 19px;
-`,o=x.div`
-  /* border: 2px solid white; */
+`,h=a.div`
   max-width: 320px;
 
   @media (min-width: 768px) {
@@ -42,4 +38,4 @@ import{u as x,j as i,L as a}from"./index-2e7381ac.js";import{B as p,L as d,D as 
     gap: 20px;
     flex-basis: calc((100% - 20px) / 2);
   }
-`,c=()=>i.jsxs(n,{children:[i.jsxs(m,{children:[i.jsx(a,{to:"/main",children:i.jsx(r,{children:i.jsx("use",{href:e+"#icon-arrow-left"})})}),i.jsx("h2",{children:"Diary"})]}),i.jsxs(o,{children:[i.jsx(p,{}),i.jsx(d,{}),i.jsx(s,{}),i.jsx(t,{})]})]});export{c as default};
+`,w=()=>i.jsxs(e,{children:[i.jsxs(m,{children:[i.jsx(x,{to:"/main",children:i.jsx(r,{children:i.jsx("use",{href:n+"#icon-arrow-left"})})}),i.jsx("h2",{children:"Diary"})]}),i.jsxs(h,{children:[i.jsx(p,{}),i.jsx(s,{}),i.jsx(d,{}),i.jsx(t,{})]})]});export{w as default};
