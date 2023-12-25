@@ -13,12 +13,12 @@ const initialValues = {
   name: '',
   email: '',
   password: '',
-  goal: 'lose fat',
+  goal: '1',
   gender: 'male',
   height: '',
   weight: '',
   age: '',
-  activity: 1.2,
+  activity: 1,
 };
 
 export const SignUpForm = () => {
@@ -28,12 +28,12 @@ export const SignUpForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [goal, setGoal] = useState('lose fat');
+  const [goal, setGoal] = useState('1');
   const [gender, setGender] = useState('male');
   const [height, setHeight] = useState('');
   const [weight, setWeight] = useState('');
   const [age, setAge] = useState('');
-  const [activity, setActivity] = useState(1.2);
+  const [activity, setActivity] = useState(1);
 
   const userRegister = () => {
     const userData = {
@@ -58,7 +58,7 @@ export const SignUpForm = () => {
       setHeight('');
       setWeight('');
       setAge('');
-      setActivity(1.2);
+      setActivity(1);
     } catch (error) {
       setErrorsMessage(error);
       setIsOpenModal(true);

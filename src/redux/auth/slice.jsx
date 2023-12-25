@@ -54,7 +54,7 @@ const handleSignOutFulfilled = (state) => {
     avatarURL: '',
     gender: 'male',
     weight: null,
-    activity: '1.2',
+    activity: '1',
   };
   state.token = null;
   state.isAuthenticated = false;
@@ -74,7 +74,7 @@ const handleSignOutRejected = (state, action) => {
     avatarURL: '',
     gender: 'male',
     weight: null,
-    activity: '1.2',
+    activity: '1',
   };
   state.token = null;
   state.isLoading = false;
@@ -121,7 +121,7 @@ export const initialState = {
     avatarURL: '',
     gender: 'male',
     weight: null,
-    activity: '1.2',
+    activity: '1',
   },
   token: null,
   isAuthenticated: false,
