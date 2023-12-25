@@ -1,4 +1,4 @@
-import{u as e,g as t,N as h,a as g,c as u,j as i,f}from"./index-aa8f16d2.js";import{F as w,c as y,d as b,a as P,E as j}from"./index.esm-7579a1c0.js";import{I as v}from"./IllustrationDesctop-3bd24af3.js";import{s as r}from"./symbol-cfd926a4.js";const k=e.div`
+import{u as e,g as t,N as h,a as g,c as u,j as i,f}from"./index-5fffccbc.js";import{F as w,c as y,d as b,a as P,E as j}from"./index.esm-ce3a0e46.js";import{I as v}from"./IllustrationDesctop-3bd24af3.js";import{s as r}from"./symbol-0e2d2fbe.js";const k=e.div`
   width: 300px;
   @media (min-width: 834px) {
     width: 780px;
@@ -178,5 +178,5 @@ import{u as e,g as t,N as h,a as g,c as u,j as i,f}from"./index-aa8f16d2.js";imp
 `,s=e.svg`
   width: 16px;
   height: 16px;
-  margin: 0 4px 0 0;
+  margin: 0 20px 0 0;
 `,q=y().shape({email:b().email("Invalid email").required("Email is required")}),Q=()=>{const l=g(),p=u(),m=o=>{console.log("Email sent to backend:",o.email),l(f({email:o.email})),p("/signin")};return i.jsxs(k,{children:[i.jsx($,{children:i.jsx(S,{src:v,alt:"The main picture a girl with a watch"})}),i.jsxs(C,{children:[i.jsx(z,{children:"Forgot your password"}),i.jsx(E,{children:"We will send you an email with recovery instructions"}),i.jsx(P,{initialValues:{email:""},validationSchema:q,onSubmit:m,children:({errors:o,touched:a,handleChange:d,handleBlur:x,isValid:c,values:n})=>i.jsxs(I,{autoComplete:"off",children:[i.jsxs(W,{style:{borderColor:a.email?o.email?"#E74A3B":"#3CBC81":""},children:[i.jsx(B,{type:"email",id:"email",name:"email",placeholder:"E-mail",onChange:d,onBlur:x,value:n.email,style:{borderColor:a.email?o.email?"#E74A3B":"#3CBC81":""},"aria-label":"Email Input"}),i.jsx(F,{style:{display:n.email?"block":"none",position:"absolute",top:"-5%",right:"10px",transform:"translateY(50%)"},children:o.email&&a.email?i.jsx(s,{children:i.jsx("use",{href:r+"#icon-error"})}):i.jsx(s,{children:i.jsx("use",{href:r+"#icon-correct"})})})]}),i.jsx(j,{name:"email",component:G}),i.jsx(N,{type:"submit",disabled:!c,children:"Send"})]})}),i.jsxs(T,{children:[i.jsx(L,{children:"Do you already have an account?"}),i.jsx(D,{to:"/signin",children:"Sign in"})]})]})]})};export{Q as default};
