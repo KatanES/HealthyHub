@@ -1,56 +1,55 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
-export const RecommendedFoodSection = styled.div`
-
-  @media screen and (${ p => p.theme.mq.desktop}) {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-  }
-`;
-
-export const TitleSection = styled.h2`
-  margin-bottom: 16px;
-  font-family: ${props => props.theme.fontFamily.poppins};
-  color: ${props => props.theme.colors.white};
-  font-size: ${props => props.theme.fontSizes.m};
-  font-weight: ${props => props.theme.fontWeights.regular};
-  line-height: 24px;
-
-  @media screen and (${props => props.theme.mq.tablet}) {
-    font-size: ${props => props.theme.fontSizes.l};
-    line-height: 32px;
-  }
-`;
-
-export const RecommendedFoodList = styled.ul`
+export const Card = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-
-  @media screen and (${props => props.theme.mq.tablet}) {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-`;
-
-export const SeeMoreButton = styled(Link)`
-  margin-top: 16px;
-  display: flex;
+  column-gap: 20px;
+  /* width: 300px; */
+  height: 86px;
+  border-radius: 12px;
+  padding: 20px 24px;
   align-items: center;
-  gap: 6px;
-  color: ${props => props.theme.colors.gray};
-  font-family: ${props => props.theme.fontFamily.poppins};
-  font-size: ${props => props.theme.fontSizes.xs};
-  font-weight: ${props => props.theme.fontWeights.medium};
-  line-height: 20px;
 
-  @media screen and (${props => props.theme.mq.tablet}) {
-    font-size: ${props => props.theme.fontSizes.s};
-    line-height: 22px;
-  }
+  background-color: rgba(15, 15, 15, 1);
+  /* 
+  @media screen and (min-width: 834px) {
+    width: 380px;
+  } */
 
+  /* @media screen and (min-width: 1440px) {
+    width: 328px;
+  } */
 `;
 
+export const CardImage = styled.img`
+  width: 46px;
+  height: 46px;
+`;
+
+export const InfoWrap = styled.div`
+  width: 186px;
+  height: 46px;
+  overflow: hidden;
+
+  font-family: Poppins;
+  font-style: normal;
+`;
+
+export const Title = styled.h3`
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  margin-bottom: 2px;
+`;
+
+export const ValueWrap = styled.div`
+  display: flex;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+`;
+
+export const Calories = styled.p`
+  font-weight: 500;
+  margin-left: 6px;
+  color: rgba(182, 182, 182, 1);
+`;

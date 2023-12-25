@@ -20,7 +20,7 @@ const handlePending = (state) => {
 const handleFulfild = (state, action) => {
   state.isLoading = false;
   state.error = null;
-  state.food = action.payload.data;
+  state.food = action.payload;
 };
 
 const recommendedFoodSlice = createSlice({

@@ -5,32 +5,42 @@ import { RecommendedCard } from '../../../components/AuthorizedUser/RecommendedF
 RecommendedCard;
 import { randomArray } from '../../../utils/randomArray';
 import RecommendedFoodPhoto from '../../../assets/RecommendedFood/Ketogenic.png';
+import { useEffect } from 'react';
 
-export const RecommendedFoodPage = () => {
+import {
+  RecommendedFood,
+  Title,
+  DesctopContainer,
+  StyledImg,
+  ProductsList,
+} from './RecommendedFoodPage.styled';
+
+const RecommendedFoodPage = () => {
   const dispatch = useDispatch();
   const recommendedFood = useSelector(getRecommendedFood);
 
-  if (!recommendedFood) {
+  useEffect(() => {
     dispatch(fetchRecommendedFood());
-  }
-
+  }, []);
   return (
-    <div>
-      <h1>Recommended Food</h1>
-      <div>
-        <img
+    <RecommendedFood>
+      <Title>Recommended Food</Title>
+      <DesctopContainer>
+        <StyledImg
           srcSet={`${RecommendedFoodPhoto} 1x`}
           src={RecommendedFoodPhoto}
           alt="Profile Setting Photo"
-        ></img>
+        ></StyledImg>
         {recommendedFood && (
-          <ul>
+          <ProductsList>
             {randomArray(recommendedFood, 10).map((product) => (
               <RecommendedCard key={product.name} info={product} />
             ))}
-          </ul>
+          </ProductsList>
         )}
-      </div>
-    </div>
+      </DesctopContainer>
+    </RecommendedFood>
   );
 };
+
+export default RecommendedFoodPage;

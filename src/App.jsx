@@ -1,14 +1,14 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
-import { useEffect, lazy } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
 import { PrivateRoute } from './PrivateRoute';
+import { useDispatch } from 'react-redux';
+import { useEffect, lazy } from 'react';
 import { RestrictedRoute } from './ResctrictedRoute';
 import { AppWrapper } from './App.styled';
 import { refreshUser } from './redux/auth/operations';
-import { useAuth } from './components/hooks/useAuth';
-// import { Loader } from './components/Loader/Loader';
 
+import { useAuth } from './components/hooks/useAuth';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
+
 const WelcomePage = lazy(() =>
   import('./pages/UnAuthorizedUser/WelcomePage/WelcomePage')
 );
@@ -37,30 +37,34 @@ import ErrorPage from 'pages/ErrorPage/ErrorPage';
 
 function App() {
   const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
+
+  const { isSignedIn } = useAuth();
   useEffect(() => {
     dispatch(refreshUser());
-  }, [dispatch]);
-
-  return isRefreshing ? (
-    <b>Refreshing user...</b>
-  ) : (
+  }, [dispatch, isSignedIn]);
+  console.log(isSignedIn);
+  return (
     <AppWrapper>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<WelcomePage />} />
-          <Route path="/welcome" element={<WelcomePage />} />
 
           <Route
-            path="/signup"
+            path="welcome"
             element={
-              <RestrictedRoute redirectTo="/" component={<SignUpPage />} />
+              <RestrictedRoute redirectTo="/main" component={<WelcomePage />} />
+            }
+          />
+          <Route
+            path="signup"
+            element={
+              <RestrictedRoute redirectTo="/main" component={<SignUpPage />} />
             }
           >
             Sign Up!
           </Route>
           <Route
-            path="/signin"
+            path="signin"
             element={
               <RestrictedRoute redirectTo="/main" component={<SignInPage />} />
             }
@@ -68,7 +72,7 @@ function App() {
             Login
           </Route>
           <Route
-            path="/forgot-password"
+            path="forgot-password"
             element={
               <RestrictedRoute
                 redirectTo="/signin"
@@ -76,14 +80,42 @@ function App() {
               />
             }
           ></Route>
-          <Route path="/main" element={<MainPage />}></Route>
-          <Route path="/dashboard" element={<DashboardPage />}></Route>
-          <Route path="/diary" element={<DiaryPage />}></Route>
           <Route
-            path="/recommended-food"
-            element={<RecommendedFoodPage />}
+            path="main"
+            element={
+              <PrivateRoute redirectTo="/signin" component={<MainPage />} />
+            }
           ></Route>
-          <Route path="/settings" element={<SettingsPage />}></Route>
+          <Route
+            path="dashboard"
+            element={
+              <PrivateRoute
+                redirectTo="/signin"
+                component={<DashboardPage />}
+              />
+            }
+          ></Route>
+          <Route
+            path="diary"
+            element={
+              <PrivateRoute redirectTo="/signin" component={<DiaryPage />} />
+            }
+          ></Route>
+          <Route
+            path="recommended-food"
+            element={
+              <PrivateRoute
+                redirectTo="/signin"
+                component={<RecommendedFoodPage />}
+              />
+            }
+          ></Route>
+          <Route
+            path="settings"
+            element={
+              <PrivateRoute redirectTo="/signin" component={<SettingsPage />} />
+            }
+          ></Route>
 
           <Route path="*" element={<ErrorPage />} />
         </Route>

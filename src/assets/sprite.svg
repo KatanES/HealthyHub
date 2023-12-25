@@ -16,3 +16,8 @@
 <path d="M20.5 12H3.67" stroke="#B6B6B6" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 </symbol>
+
+<svg id="add-svg" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 8H12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8 12V4"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

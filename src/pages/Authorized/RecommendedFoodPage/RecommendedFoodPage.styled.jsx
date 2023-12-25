@@ -1,122 +1,87 @@
-import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const Container = styled.main`
-  background-color: ${props => props.theme.colors.black};
-  color: ${props => props.theme.colors.white};
-  font-family: ${props => props.theme.fontFamily.poppins};
-
+export const RecommendedFood = styled.section`
+  background-color: rgba(5, 5, 5, 1);
+  color: rgba(255, 255, 255, 1);
   padding-top: 16px;
   padding-bottom: 40px;
 
-  @media screen and (${props => props.theme.mq.tablet}) {
+  @media (min-width: 834px) {
     padding-top: 24px;
+    padding-bottom: 290px;
+  }
+  @media (min-width: 1440px) {
+    padding-top: 20px;
+    padding-bottom: 60px;
+  }
+`;
+export const Title = styled.h3`
+  font-family: 'Poppins';
+  font-weight: 500;
+  font-style: sans-serif;
+  font-size: 24px;
+  line-height: 1.25;
+
+  @media (min-width: 834px) {
+    font-size: 30px;
+    line-height: 1.2;
   }
 
-  @media screen and (${props => props.theme.mq.desktop}) {
+  @media (min-width: 1440px) {
+    margin-bottom: 20px;
+  }
+`;
+
+export const DesctopContainer = styled.div`
+  padding-top: 16px;
+
+  @media (min-width: 834px) {
     padding-top: 20px;
   }
-`;
-
-export const Content = styled.div`
-  margin: 0 auto;
-  width: 320px;
-  padding: 0 10px;
-
-  @media screen and (${props => props.theme.mq.tablet}) {
-    width: 834px;
-    padding: 0 27px;
-  }
-
-  @media screen and (${props => props.theme.mq.desktop}) {
-    width: 1440px;
-    padding: 0 34px;
+  @media (min-width: 1440px) {
+    padding-top: 0;
+    display: flex;
+    gap: 44px;
   }
 `;
 
-export const HeaderPage = styled.header`
-  display: flex;
-  margin-bottom: 16px;
-`;
-
-export const BackLink = styled(NavLink)`
-    display: flex;  
-    margin-right: 8px;
- 
-  @media screen and (${props => props.theme.mq.tablet}) {
-    margin-right: 12px;
-  }
-`;
-
-export const ArrowReturn = styled.img`
-  width: 16px;  
-  @media screen and (${props => props.theme.mq.tablet}) {
-    width: 24px;
-  }
-`;
-
-export const TitlePage = styled.h1`
-  font-size: 24px;
-  font-weight: ${props => props.theme.fontWeights.medium};
-  line-height: 30px;
-  letter-spacing: 0em;
-
-  @media screen and (${props => props.theme.mq.tablet}) {
-    font-size: ${props => props.theme.fontSizes.xl};
-    line-height: 36px;
-  }
-`;
-
-export const InfoBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-   @media screen and (${props => props.theme.mq.desktop}) {
-    flex-direction: row;
-    align-items: start;
-    justify-content: space-between;
-  }
-`;
-
-export const BannerThumb = styled.div`
-  margin-bottom: 24px;
-  width: 300px;
+export const StyledImg = styled.img`
   height: 312px;
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 
-  @media screen and (${props => props.theme.mq.tablet}) {
+  @media (min-width: 834px) {
+    height: 396px;
     width: 380px;
-    height: 396px;   
   }
- 
-  @media screen and (${props => props.theme.mq.desktop}) {
-    width: 536px;
+  @media (min-width: 1440px) {
     height: 560px;
-    margin-bottom: 0;
+    width: 536px;
+    margin-right: 0;
+    margin-left: 110px;
   }
 `;
 
-export const Img = styled.img`
-  display: block;
-  max-width: 100%;
-  height: auto;
-`;
-
-export const RecommendedFoodList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-
-  @media screen and (${props => props.theme.mq.tablet}) {
-    flex-direction: row;
+export const ProductsList = styled.div`
+  @media (min-width: 320px) {
+    padding-top: 24px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+  @media (min-width: 834px) {
+    width: 780px;
     flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
   }
-
-  @media screen and (${props => props.theme.mq.desktop}) {    
-    width: calc((100% - 44px) / 2);
+  @media (min-width: 1440px) {
+    width: 680px;
+    width: 780px;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
   }
-
 `;
-

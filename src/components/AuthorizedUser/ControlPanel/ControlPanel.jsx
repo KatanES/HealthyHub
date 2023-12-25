@@ -26,12 +26,6 @@ import {
 } from './ControlPanel.styled';
 
 export const ControlPanel = () => {
-  // const [user] = useState({
-  //   gender: 'Female',
-  //   goal: 'Lose fat',
-  //   weight: 65,
-  // }); //don`t need
-
   const { user } = useAuth();
 
   const [isActive, setIsActive] = useState(false);
@@ -79,39 +73,90 @@ export const ControlPanel = () => {
     setShowСurrentWeightModal(false);
   };
 
-  const { gender, goal, weight } = user;
-
   let currentGoalIcon;
-  switch (gender) {
-    case 'Male':
-      switch (goal) {
-        case 'Lose fat':
+  switch (user.gender) {
+    case 'male':
+      switch (user.goal) {
+        case 'Lose Fat':
           currentGoalIcon = loseFatMen;
           break;
         case 'Maintain':
           currentGoalIcon = maintainMen;
           break;
+        case 'Gain Muscle':
+          currentGoalIcon = gainMuscle;
+          break;
+        case '1':
+          currentGoalIcon = loseFatMen;
+          break;
+        case '2':
+          currentGoalIcon = maintainMen;
+          break;
+        case '3':
+          currentGoalIcon = gainMuscle;
+          break;
+
         default:
           currentGoalIcon = gainMuscle;
           break;
       }
       break;
 
-    case 'Female':
-      switch (goal) {
-        case 'Lose fat':
+    case 'female':
+      switch (user.goal) {
+        case 'Lose Fat':
           currentGoalIcon = loseFatGirl;
           break;
         case 'Maintain':
           currentGoalIcon = maintainGirl;
           break;
+        case 'Gain Muscle':
+          currentGoalIcon = gainMuscle;
+          break;
+        case '1':
+          currentGoalIcon = loseFatGirl;
+          break;
+        case '2':
+          currentGoalIcon = maintainGirl;
+          break;
+        case '3':
+          currentGoalIcon = gainMuscle;
+          break;
+
         default:
           currentGoalIcon = gainMuscle;
           break;
       }
       break;
+
     default:
       currentGoalIcon = gainMuscle;
+      break;
+  }
+
+  let currentGoal;
+  switch (user.goal) {
+    case 'Lose Fat':
+      currentGoal = 'Lose fat';
+      break;
+    case 'Maintain':
+      currentGoal = 'Maintain';
+      break;
+    case 'Gain Muscle':
+      currentGoal = 'Gain Muscle';
+      break;
+    case '1':
+      currentGoal = 'Lose fat';
+      break;
+    case '2':
+      currentGoal = 'Maintain';
+      break;
+    case '3':
+      currentGoal = 'Gain Muscle';
+      break;
+
+    default:
+      currentGoal = 'Gain Muscle';
       break;
   }
 
@@ -128,13 +173,13 @@ export const ControlPanel = () => {
           <Goals
             openTargetSelectionModal={openTargetSelectionModal}
             currentGoalIcon={currentGoalIcon}
-            goal={goal}
+            currentGoal={currentGoal}
             isActive={isActive}
           />
           <Weight
             openСurrentWeightModal={openСurrentWeightModal}
             weightIcon={weightIcon}
-            weight={weight}
+            weight={user.weight}
           />
         </>
       )}
@@ -145,11 +190,11 @@ export const ControlPanel = () => {
           closeMobileMenu={closeMobileMenu}
           openTargetSelectionModal={openTargetSelectionModal}
           currentGoalIcon={currentGoalIcon}
-          goal={goal}
+          currentGoal={currentGoal}
           showMobileMenu={showMobileMenu}
           openСurrentWeightModal={openСurrentWeightModal}
           weightIcon={weightIcon}
-          weight={weight}
+          weight={user.weight}
         />
       )}
       {showTargetSelectionModal && (
@@ -157,8 +202,8 @@ export const ControlPanel = () => {
           isOpen={Boolean(anchorEl)}
           anchorEl={anchorEl}
           closeTargetSelectionModal={closeTargetSelectionModal}
-          // goal={goal}
-          gender={gender}
+          gender={user.gender}
+          currentGoal={currentGoal}
         />
       )}
 

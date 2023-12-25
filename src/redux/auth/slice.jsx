@@ -5,6 +5,7 @@ import {
   signOut,
   updateWeight,
   updateGoal,
+  refreshUser,
 } from './operations';
 
 const handlePending = (state) => {
@@ -36,14 +37,12 @@ const handleSignInFulfilled = (state, action) => {
   state.isAuthenticated = true;
   state.isLoading = false;
   state.error = null;
-  state.lastWeightDate = action.payload.lastWeightDate;
 };
 
 const handleSignInRejected = (state, action) => {
   state.isAuthenticated = false;
   state.error = action.error.message;
 };
-
 
 const handleSignOutFulfilled = (state) => {
   state.user = {
@@ -61,6 +60,8 @@ const handleSignOutFulfilled = (state) => {
   state.isAuthenticated = false;
   state.isLoading = false;
   state.error = null;
+
+  state.isRefreshing = false;
 };
 
 const handleSignOutRejected = (state, action) => {
@@ -83,8 +84,9 @@ const handleSignOutRejected = (state, action) => {
 const handleUpdateWeightFulfilled = (state, action) => {
   state.isLoading = false;
   state.error = null;
-  state.user.weight = action.payload.weight;
-  state.lastWeightDate = action.payload.data.date;
+  // state.user.weight = action.payload.weight; //THERE
+  // state.lastWeightDate = action.payload.date; //THERE
+  state.user.weight = action.meta.arg.weight;
 };
 
 const handleUpdateGoalFulfilled = (state, action) => {
@@ -93,7 +95,23 @@ const handleUpdateGoalFulfilled = (state, action) => {
   state.user.goal = action.payload.goal;
 };
 
-const initialState = {
+export const handleRefreshUserPending = (state) => {
+  state.isRefreshing = true;
+};
+
+export const handleFulfilledRefresh = (state, action) => {
+  state.user = action.payload[0];
+  state.isAuthenticated = true;
+  state.isLoading = false;
+  state.error = null;
+};
+
+export const handleRejectedRefresh = (state) => {
+  state.token = null;
+  state.isRefreshing = false;
+};
+
+export const initialState = {
   user: {
     name: null,
     email: null,
@@ -138,7 +156,10 @@ const authSlice = createSlice({
       .addCase(updateWeight.rejected, handleRejected)
       .addCase(updateGoal.pending, handlePending)
       .addCase(updateGoal.fulfilled, handleUpdateGoalFulfilled)
-      .addCase(updateGoal.rejected, handleRejected);
+      .addCase(updateGoal.rejected, handleRejected)
+      .addCase(refreshUser.fulfilled, handleFulfilledRefresh)
+      .addCase(refreshUser.rejected, handleRejectedRefresh)
+      .addCase(refreshUser.pending, handleRefreshUserPending);
   },
 });
 

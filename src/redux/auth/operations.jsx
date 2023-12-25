@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { authenticate } from './slice';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 axios.defaults.baseURL = 'https://healthyhubserver.onrender.com';
 
@@ -33,6 +34,7 @@ export const signin = createAsyncThunk(
     try {
       const res = await axios.post('/api/auth/signin', credentials);
       setAuthHeader(res.data.token);
+
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -53,7 +55,7 @@ export const forgotPassword = createAsyncThunk(
 );
 
 export const refreshUser = createAsyncThunk(
-  'api/auth/refresh',
+  '/auth/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
@@ -62,7 +64,7 @@ export const refreshUser = createAsyncThunk(
     }
     try {
       setAuthHeader(persistedToken);
-      const response = await axios.get('/auth/current');
+      const response = await axios.get('api/user/current');
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -87,9 +89,10 @@ export const updateWeight = createAsyncThunk(
   'auth/api/updateWeight',
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.put('api/user/weight', credentials);
+      const response = await axios.post('/api/user/weight', credentials);
       return response.data;
     } catch (error) {
+      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -99,7 +102,7 @@ export const updateGoal = createAsyncThunk(
   'auth/api/updateGoal',
   async (credentials, thunkAPI) => {
     try {
-      const response = await axios.put('api/user/goal', credentials);
+      const response = await axios.put('/api/user/goal', credentials);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
