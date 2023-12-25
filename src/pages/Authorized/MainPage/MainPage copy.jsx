@@ -21,28 +21,32 @@ import {
   DiaryAndRecommendFoodWrap,
 } from './MainPage.styled';
 
+import { getCaloriesGoal } from '../../../redux/dailyGoalsCalories/selectors.js';
 import { getRecommendedFood } from '../../../redux/recommendedFood/selectors';
 import { getWaterIntake } from '../../../redux/DailyWater/selectors.js';
+// import { getFoodIntake } from '../../../redux/diary/selectors.js';
 import { getFirstLoad } from '../../../redux/diary/selectors.js';
 
 import { fetchRecommendedFood } from '../../../redux/recommendedFood/operations.js';
 import { fetchCaloriesIntake } from '../../../redux/dailyGoalsCalories/operations.js';
 import { fetchWaterIntake } from '../../../redux/DailyWater/operations.js';
-import { selectUser } from '../../../redux/auth/selectors.jsx';
 import { fetchFoodIntake } from '../../../redux/diary/operations.js';
 
+// import { getCaloriesGoal } from '../../../redux/dailyGoalsCalories/selectors';
+
+//
+
+// "concole"
+
 const MainPage = () => {
-  const user = useSelector(selectUser);
-  const dailyCalories = user.BMR;
-  const dailyWaterIntake = user.rateWater * 1000;
-
+  const dailyCalories = useSelector(getCaloriesGoal);
   const waterConsumtion = useSelector(getWaterIntake);
-
   const firstLoad = useSelector(getFirstLoad);
   const recomendFood = useSelector(getRecommendedFood);
   const dispatch = useDispatch();
   const [isOpenModal, setIsOpenModal] = useState(false);
 
+  
   const toggleIsOpenModal = () => {
     setIsOpenModal((isOpenModal) => !isOpenModal);
   };
@@ -52,7 +56,6 @@ const MainPage = () => {
       dispatch(fetchFoodIntake());
     }
   }, [dispatch, firstLoad]);
-
   useEffect(() => {
     isOpenModal
       ? (document.body.style.overflow = 'hidden')
@@ -64,7 +67,7 @@ const MainPage = () => {
     !recomendFood && dispatch(fetchRecommendedFood());
     waterConsumtion === null && dispatch(fetchWaterIntake());
   }, [dispatch, dailyCalories, waterConsumtion, recomendFood]);
-
+  
   return (
     <MainContainer>
       <TitleWrapper>
@@ -80,14 +83,10 @@ const MainPage = () => {
       </TitleWrapper>
 
       <ElementsWrapper>
-        <DailyGoalInfo
-          dailyCalories={dailyCalories}
-          dailyWaterIntake={dailyWaterIntake}
-        />
+        <DailyGoalInfo dailyCalories={dailyCalories} />
         <WaterInfo
           handleModal={toggleIsOpenModal}
           waterConsumtion={waterConsumtion}
-          waterGoal={dailyWaterIntake}
         />
         <FoodInfo dailyCalories={dailyCalories} />
       </ElementsWrapper>

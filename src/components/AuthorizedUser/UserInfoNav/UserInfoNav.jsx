@@ -14,10 +14,6 @@ import {
 import sprite from '../../../assets/sprite.svg';
 
 export const UserInfoNav = () => {
-  // const [user] = useState({
-  //   name: 'Konstantin',
-  //   avatarURL: 'https://walldeco.ua/img/for_page/mona-liza.jpg',
-  // }); //don`t need
 
   const { user } = useAuth();
   const { name, avatarURL } = user;

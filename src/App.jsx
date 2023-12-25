@@ -42,7 +42,7 @@ function App() {
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch, isSignedIn]);
-  console.log(isSignedIn);
+
   return (
     <AppWrapper>
       <Routes>
