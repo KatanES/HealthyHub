@@ -49,7 +49,7 @@ export const WaterInfoCard = styled.div`
 
   @media screen and (min-width: 1440px) {
     width: 444px;
-    height: 240px;
+    height: 200px;
     padding: 24px 40px;
   }
 `;
@@ -83,6 +83,7 @@ export const WaterBar = styled.div`
   width: 64px;
   border-radius: 20px;
   overflow: hidden;
+  margin: 0 auto;
 
   span {
     position: absolute;
@@ -146,7 +147,7 @@ export const InfoNumber = styled.p`
   font-size: 28px;
   font-style: normal;
   font-weight: 500;
-  line-height: 34px; /* 121.429% */
+  line-height: 34px;
   margin-bottom: 8px;
 
   @media screen and (min-width: 834px) {

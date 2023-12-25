@@ -2,7 +2,6 @@ import { Popover, useMediaQuery } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-// import { fetchCaloriesIntake } from '../../../redux/dailyGoalsCalories/operations';
 import { currentUser, updateWeight } from '../../../redux/auth/operations';
 import { selectLastDate } from '../../../redux/auth/selectors';
 
@@ -78,7 +77,6 @@ export const СurrentWeightModal = ({
       setTimeout(() => {
         dispatch(currentUser());
       }, 150);
-
     }
   };
 

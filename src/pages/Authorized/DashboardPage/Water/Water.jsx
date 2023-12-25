@@ -82,12 +82,6 @@ const options = {
         style: 'normal',
       },
       footerColor: '#B6B6B6',
-      //   callbacks: {
-      //     title: titleTooltip,
-      //     footer: function (context) {
-      //       return 'milliliters';
-      //     },
-      //   },
     },
   },
   pointRadius: 0,

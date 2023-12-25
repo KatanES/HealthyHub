@@ -1,11 +1,8 @@
 import styled from 'styled-components';
 
 export const SectionDiary = styled.div`
-  /* border: 2px solid white; */
   max-width: 320px;
   padding: 10px;
-  /* display: flex;
-  gap: 19px; */
 
   @media (min-width: 768px) {
     max-width: 558px;
@@ -38,7 +35,6 @@ export const ItemTitelDiary = styled.div`
 `;
 
 export const ItemDiary = styled.div`
-  /* border: 2px solid white; */
   max-width: 320px;
 
   @media (min-width: 768px) {
@@ -55,10 +51,3 @@ export const ItemDiary = styled.div`
     row-gap: 28px;
   }
 `;
-
-// export const SVG = styled.svg`
-//   width: 20px;
-//   height: 20px;
-//   margin: 0;
-//   padding: 0;
-// `;

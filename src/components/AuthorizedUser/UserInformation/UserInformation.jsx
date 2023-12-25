@@ -119,8 +119,6 @@ const SettingsPage = () => {
     formik.setFieldValue('avatar', event.currentTarget.files[0]);
     setAvatarUrl(URL.createObjectURL(event.currentTarget.files[0]));
   };
-  console.log(4);
-  console.log(userData);
 
   return (
     <SettingsContainer>

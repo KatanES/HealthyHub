@@ -1,4 +1,3 @@
-// import { Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { globalColor } from '../../../components/Header/root';
 
@@ -21,8 +20,6 @@ export const Container = styled.div`
 `;
 
 export const GraphContainer = styled.div`
-  /* display: flex;
-  flex-direction: column; */
   gap: 27px;
   margin-bottom: 27px;
 
@@ -39,8 +36,7 @@ export const GraphContainer = styled.div`
 
 export const GraphicHeader = styled.div`
   display: flex;
-  /* flex-direction: row; */
-  /* justify-content: space-between; */
+
   align-items: center;
   margin-bottom: 6px;
 
