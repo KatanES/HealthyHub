@@ -16,6 +16,7 @@ export const Title = styled.h2`
 `;
 
 export const FoodInfoCard = styled.div`
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   row-gap: 12px;
