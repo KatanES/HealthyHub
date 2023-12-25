@@ -6,14 +6,16 @@ import { FoodInfo } from './FoodInfo/FoodInfo.jsx';
 import { DailyGoalInfo } from './DailyGoal/DailyGoal';
 import Diary from '../../../components/AuthorizedUser/MainPage/Diary/Diary';
 import { RecommendedFood } from './RecommendedFood/RecommendedFood';
+import { AddWaterIntakeModal } from '../../../components/AddWaterIntakeModal/AddWaterIntakeModal.jsx';
 
 import symbol from '../../../assets/Welcome/symbol.svg';
 import {
-  Container,
-  TitelPage,
+  ElementsWrapper,
+  MainContainer,
+  MainTitle,
+  TitleWrapper,
   SVG,
   SectionDiary,
-  Titel,
   TitelFlex,
   Text,
   DiaryAndRecommendFoodWrap,
@@ -34,19 +36,30 @@ import { fetchFoodIntake } from '../../../redux/diary/operations.js';
 
 //
 
+// "concole"
+
 const MainPage = () => {
   const dailyCalories = useSelector(getCaloriesGoal);
   const waterConsumtion = useSelector(getWaterIntake);
   const firstLoad = useSelector(getFirstLoad);
   const recomendFood = useSelector(getRecommendedFood);
   const dispatch = useDispatch();
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const toggleIsOpenModal = () => {
+    setIsOpenModal((isOpenModal) => !isOpenModal);
+  };
 
   useEffect(() => {
     if (!firstLoad) {
       dispatch(fetchFoodIntake());
     }
   }, [dispatch, firstLoad]);
-  // const dailyCalories = 2500; //чисто замінити пустоту, треба зробити частину редаксу
+  useEffect(() => {
+    isOpenModal
+      ? (document.body.style.overflow = 'hidden')
+      : (document.body.style.overflow = '');
+  }, [isOpenModal]);
 
   useEffect(() => {
     !dailyCalories && dispatch(fetchCaloriesIntake());
@@ -54,15 +67,9 @@ const MainPage = () => {
     waterConsumtion === null && dispatch(fetchWaterIntake());
   }, [dispatch, dailyCalories, waterConsumtion, recomendFood]);
   return (
-    <Container>
-      <DailyGoalInfo dailyCalories={dailyCalories} />
-      <WaterInfo
-        // handleModal={toggleIsOpenModal}
-        waterConsumtion={waterConsumtion}
-      />
-      <FoodInfo dailyCalories={dailyCalories} />
-      <TitelPage>
-        <Titel>Today</Titel>
+    <MainContainer>
+      <TitleWrapper>
+        <MainTitle>Today</MainTitle>
         <Link to="/dashboard">
           <TitelFlex>
             <Text>On the way to the goal</Text>
@@ -71,21 +78,26 @@ const MainPage = () => {
             </SVG>
           </TitelFlex>
         </Link>
-      </TitelPage>
+      </TitleWrapper>
+
+      <ElementsWrapper>
+        <DailyGoalInfo dailyCalories={dailyCalories} />
+        <WaterInfo
+          handleModal={toggleIsOpenModal}
+          waterConsumtion={waterConsumtion}
+        />
+        <FoodInfo dailyCalories={dailyCalories} />
+      </ElementsWrapper>
 
       <DiaryAndRecommendFoodWrap>
-        {' '}
         <SectionDiary>
           <Diary />
         </SectionDiary>
         <RecommendedFood />
       </DiaryAndRecommendFoodWrap>
 
-      {/* <div>
-        <h2>Recommended Food</h2>
-        <Link to="/recommended-food">Recommended Food</Link>
-      </div> */}
-    </Container>
+      {isOpenModal && <AddWaterIntakeModal handleModal={toggleIsOpenModal} />}
+    </MainContainer>
   );
 };
 

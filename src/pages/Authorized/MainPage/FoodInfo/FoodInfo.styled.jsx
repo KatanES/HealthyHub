@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Title = styled.h2`
-  color: var(--text-color-primary-white);
+  color: rgba(255, 255, 255, 1);
   font-family: Poppins;
   font-size: 18px;
   font-style: normal;
@@ -23,7 +23,7 @@ export const FoodInfoCard = styled.div`
   width: 300px;
   height: 380px;
   border-radius: 12px;
-  background-color: var(--bg-secondary);
+  background-color: rgba(15, 15, 15, 1);
   margin-bottom: 20px;
 
   font-family: Poppins;
@@ -54,7 +54,7 @@ export const CaloriesChart = styled.div`
   line-height: 38px;
 
   p:last-child {
-    color: var(--text-color-secondary-grey);
+    color: rgba(182, 182, 182, 1);
 
     font-size: 14px;
     font-weight: 400;

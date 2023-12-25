@@ -54,20 +54,17 @@ const YourGoal = ({ goNext, setGoal, dataGoal, goBack }) => {
           <GaolRadioForm>
             <GaolRadio role="group" aria-labelledby="goalGroup">
               <GoalLabel>
-                <GoalField type="radio" name="goal" value="Lose Fat" required />
+                <GoalField type="radio" name="goal" value="1" required />
                 Lose Fat
               </GoalLabel>
               <GoalLabel>
-                <GoalField type="radio" name="goal" value="Maintain" required />
+                <GoalField type="radio" name="goal" value="2" required />
                 Maintain
               </GoalLabel>
               <GoalLabel>
-                <GoalField
-                  type="radio"
-                  name="goal"
-                  value="Gain Muscle"
-                  required
-                />
+
+                <GoalField type="radio" name="goal" value="3" required />
+
                 Gain Muscle
               </GoalLabel>
             </GaolRadio>
@@ -79,9 +76,10 @@ const YourGoal = ({ goNext, setGoal, dataGoal, goBack }) => {
             </ButtonWrapper>
           </GaolRadioForm>
         </Formik>
-        {/* </div> */}
       </GoalWrapper>
     </GoalContainer>
   );
 };
 export default YourGoal;
+
+// "console.log"
