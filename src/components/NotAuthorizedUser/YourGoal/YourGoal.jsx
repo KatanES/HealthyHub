@@ -79,3 +79,5 @@ const YourGoal = ({ goNext, setGoal, dataGoal, goBack }) => {
   );
 };
 export default YourGoal;
+
+// "console.log"
