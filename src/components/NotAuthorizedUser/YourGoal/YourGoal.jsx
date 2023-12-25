@@ -62,12 +62,9 @@ const YourGoal = ({ goNext, setGoal, dataGoal, goBack }) => {
                 Maintain
               </GoalLabel>
               <GoalLabel>
-                <GoalField
-                  type="radio"
-                  name="goal"
-                  value="3"
-                  required
-                />
+
+                <GoalField type="radio" name="goal" value="3" required />
+
                 Gain Muscle
               </GoalLabel>
             </GaolRadio>
@@ -84,3 +81,5 @@ const YourGoal = ({ goNext, setGoal, dataGoal, goBack }) => {
   );
 };
 export default YourGoal;
+
+// "console.log"
