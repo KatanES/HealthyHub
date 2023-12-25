@@ -79,7 +79,6 @@ const YourGoal = ({ goNext, setGoal, dataGoal, goBack }) => {
             </ButtonWrapper>
           </GaolRadioForm>
         </Formik>
-        {/* </div> */}
       </GoalWrapper>
     </GoalContainer>
   );
