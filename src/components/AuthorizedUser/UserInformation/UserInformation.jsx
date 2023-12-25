@@ -33,11 +33,23 @@ const settingsSchema = Yup.object().shape({
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-  age: Yup.string().max(3, 'Too Long!').required('Required'),
-  gender: Yup.string(),
-  height: Yup.string(),
-  weight: Yup.string(),
-  activity: Yup.string(),
+  age: Yup.number('Must be a number from 1 to 200')
+    .label('Age')
+    .min(1, 'Must be a number from 1 to 200')
+    .max(200, 'Must be a number from 1 to 200')
+    .required('Age is required'),
+  gender: Yup.string().required('Choose one of these fields'),
+  height: Yup.number()
+    .label('Height')
+    .min(1, 'Must be a number from 1 to 300')
+    .max(300, 'Must be a number from 1 to 300')
+    .required('Height is required'),
+  weight: Yup.number()
+    .label('Weight')
+    .min(1, 'Must be a number from 1 to 500')
+    .max(500, 'Must be a number from 1 to 500')
+    .required('Weight is required'),
+  activity: Yup.number(),
 });
 
 const SettingsPage = () => {
@@ -70,7 +82,7 @@ const SettingsPage = () => {
       gender: userData.gender ?? 'male',
       height: userData.height ?? '',
       weight: userData.weight ?? '',
-      activity: userData.activity ?? '1',
+      activity: userData.activity ?? 1,
     },
     validationSchema: settingsSchema,
     onSubmit: async (values) => {
@@ -107,12 +119,6 @@ const SettingsPage = () => {
     setAvatarUrl(URL.createObjectURL(event.currentTarget.files[0]));
   };
 
-  const defaultAvatarSvg = (
-    <svg>
-      <use href={`${sprite}#icon-profile-circle`} />
-    </svg>
-  );
-
   return (
     <SettingsContainer>
       <FormStyle onSubmit={formik.handleSubmit}>
@@ -133,7 +139,7 @@ const SettingsPage = () => {
             <WrapperSection>
               <FormLabel>Your photo</FormLabel>
               <ContainerAvatar>
-                <Avatar src={avatarUrl || defaultAvatarSvg} alt="User Avatar" />
+                <Avatar src={avatarUrl} alt="User Avatar" />
                 <AvatarUpload>
                   <InputFile
                     type="file"
@@ -147,6 +153,7 @@ const SettingsPage = () => {
                       display: 'flex',
                       alignItems: 'center',
                       gap: '6px',
+                      cursor: 'pointer',
                     }}
                   >
                     <SvgUpload width="16" height="16">
@@ -234,7 +241,7 @@ const SettingsPage = () => {
                 type="radio"
                 name="activity"
                 value="1"
-                checked={formik.values.activity === '1'}
+                checked={formik.values.activity === 1}
                 onChange={formik.handleChange}
               />
               1.2 - if you do not have physical activity and sedentary work
@@ -244,7 +251,7 @@ const SettingsPage = () => {
                 type="radio"
                 name="activity"
                 value="2"
-                checked={formik.values.activity === '2'}
+                checked={formik.values.activity === 2}
                 onChange={formik.handleChange}
               />
               1.375 - if you do short runs or light gymnastics 1-3 times a week
@@ -254,7 +261,7 @@ const SettingsPage = () => {
                 type="radio"
                 name="activity"
                 value="3"
-                checked={formik.values.activity === '3'}
+                checked={formik.values.activity === 3}
                 onChange={formik.handleChange}
               />
               1.55 - if you play sports with average loads 3-5 times a week
@@ -264,7 +271,7 @@ const SettingsPage = () => {
                 type="radio"
                 name="activity"
                 value="4"
-                checked={formik.values.activity === '4'}
+                checked={formik.values.activity === 4}
                 onChange={formik.handleChange}
               />
               1.725 - if you train fully 6-7 times a week
@@ -274,7 +281,7 @@ const SettingsPage = () => {
                 type="radio"
                 name="activity"
                 value="5"
-                checked={formik.values.activity === '5'}
+                checked={formik.values.activity === 5}
                 onChange={formik.handleChange}
               />
               1.9 - if your work is related to physical labor, you train 2 times
