@@ -36,9 +36,16 @@ export const СurrentWeightModal = ({
   const [newWeight, setNewWeight] = useState('');
   const [error, setError] = useState('');
   const [isError, setIsError] = useState(false);
-  const lastDate = useSelector(selectLastDate);
+  const lastDateWeight = useSelector(selectLastDate);
 
   const date = new Date();
+
+  const formatted = new Date(lastDateWeight);
+
+  const isSameDay =
+    date.getFullYear() === formatted.getFullYear() &&
+    date.getMonth() === formatted.getMonth() &&
+    date.getDate() === formatted.getDate();
 
   const screenWidth = useMediaQuery('(min-width: 835px)')
     ? 'desktop'
@@ -46,7 +53,7 @@ export const СurrentWeightModal = ({
 
   const isWideDesktopScreen = useMediaQuery('(min-width:1440px)');
 
-  const formattedDate = `${date.getDate()}.${
+  const formattedCurrentDate = `${date.getDate()}.${
     date.getMonth() + 1
   }.${date.getFullYear()}`;
 
@@ -131,10 +138,10 @@ export const СurrentWeightModal = ({
         </TextWrapper>
 
         <Text2>
-          Today <span>{formattedDate}</span>
+          Today <span>{formattedCurrentDate}</span>
         </Text2>
 
-        {lastDate === date ? (
+        {isSameDay ? (
           <Text2>You already recorded your weight today</Text2>
         ) : (
           <WeightForm onSubmit={handleNewWeight} noValidate>
