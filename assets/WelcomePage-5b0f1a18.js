@@ -1,4 +1,4 @@
-import{u as e,g as t,N as l,j as i}from"./index-5337adf7.js";import{s as n}from"./symbol-ee8b70d4.js";import{I as s}from"./IllustrationDesctop-3bd24af3.js";const x=e.div`
+import{u as e,g as t,N as l,j as i}from"./index-e6dc2434.js";import{s as n}from"./symbol-4a936f39.js";import{I as s}from"./IllustrationDesctop-3bd24af3.js";const x=e.div`
   margin: 0 0 40px 0;
   display: flex;
   gap: 16px;
