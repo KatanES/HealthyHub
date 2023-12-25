@@ -77,7 +77,6 @@ export const СurrentWeightModal = ({
       setTimeout(() => {
         dispatch(currentUser());
       }, 150);
-
     }
   };
 
