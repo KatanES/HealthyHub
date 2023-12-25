@@ -119,13 +119,6 @@ const SettingsPage = () => {
     setAvatarUrl(URL.createObjectURL(event.currentTarget.files[0]));
   };
 
-  // avatarUrl || defaultAvatarSvg;
-  // const defaultAvatarSvg = (
-  //   <svg>
-  //     <use href={`${sprite}#icon-profile-circle`} />
-  //   </svg>
-  // );
-
   return (
     <SettingsContainer>
       <FormStyle onSubmit={formik.handleSubmit}>
