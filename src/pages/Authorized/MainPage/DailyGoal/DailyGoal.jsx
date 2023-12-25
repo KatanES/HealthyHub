@@ -10,7 +10,7 @@ import {
   InfoWrapper,
 } from './DailyGoal.styled';
 
-export const DailyGoalInfo = ({ dailyCalories }) => {
+export const DailyGoalInfo = ({ dailyCalories, dailyWaterIntake }) => {
   return (
     <div>
       <Title>Daily goal</Title>
@@ -25,7 +25,8 @@ export const DailyGoalInfo = ({ dailyCalories }) => {
           <InfoWrapper>
             <InfoTitle>Water</InfoTitle>
             <InfoNumber>
-              1500<Unit>ml</Unit>
+              {dailyWaterIntake} 
+              <Unit>ml</Unit>
             </InfoNumber>
           </InfoWrapper>
         </InfoCardWrapper>

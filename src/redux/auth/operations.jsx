@@ -109,3 +109,15 @@ export const updateGoal = createAsyncThunk(
     }
   }
 );
+
+export const currentUser = createAsyncThunk(
+  'auth/api/currentUser',
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get('/api/user/current');
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

@@ -16,7 +16,6 @@ export const MainContainer = styled.main`
 
 export const MainTitle = styled.h1`
   color: rgba(255, 255, 255, 1);
-  font-family: Poppins;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -32,7 +31,6 @@ export const GoalLink = styled(Link)`
   display: flex;
   align-items: center;
   color: rgba(182, 182, 182, 1);
-  font-family: Poppins;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;

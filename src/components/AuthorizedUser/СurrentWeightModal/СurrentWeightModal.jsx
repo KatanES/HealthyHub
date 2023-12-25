@@ -2,8 +2,8 @@ import { Popover, useMediaQuery } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchCaloriesIntake } from '../../../redux/dailyGoalsCalories/operations';
-import { updateWeight } from '../../../redux/auth/operations';
+// import { fetchCaloriesIntake } from '../../../redux/dailyGoalsCalories/operations';
+import { currentUser, updateWeight } from '../../../redux/auth/operations';
 import { selectLastDate } from '../../../redux/auth/selectors';
 
 import { globalColor } from '../../Header/root';
@@ -75,8 +75,11 @@ export const СurrentWeightModal = ({
       closeСurrentWeightModal();
       dispatch(updateWeight({ weight: newWeight }));
 
+      // setTimeout(() => {
+      //   dispatch(fetchCaloriesIntake());
+      // }, 150);
       setTimeout(() => {
-        dispatch(fetchCaloriesIntake());
+        dispatch(currentUser());
       }, 150);
 
       //тут ще має бути діспатч для усіх компонентів для оновлення з файлу Сергія!!!

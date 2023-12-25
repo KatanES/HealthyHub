@@ -6,6 +6,7 @@ import {
   updateWeight,
   updateGoal,
   refreshUser,
+  currentUser,
 } from './operations';
 
 const handlePending = (state) => {
@@ -32,7 +33,7 @@ const handleSignUpRejected = (state, action) => {
 };
 
 const handleSignInFulfilled = (state, action) => {
-  state.user = action.payload.user;
+  state.user = { ...state.user, ...action.payload.user };
   state.token = action.payload.token;
   state.isAuthenticated = true;
   state.isLoading = false;
@@ -60,7 +61,6 @@ const handleSignOutFulfilled = (state) => {
   state.isAuthenticated = false;
   state.isLoading = false;
   state.error = null;
-
   state.isRefreshing = false;
 };
 
@@ -101,6 +101,13 @@ const handleUpdateGoalFulfilled = (state, action) => {
 
 export const handleRefreshUserPending = (state) => {
   state.isRefreshing = true;
+};
+
+export const handleFulfilledCurrent = (state, action) => {
+  state.user = action.payload[0];
+  state.isAuthenticated = true;
+  state.isLoading = false;
+  state.error = null;
 };
 
 export const handleFulfilledRefresh = (state, action) => {
@@ -161,9 +168,12 @@ const authSlice = createSlice({
       .addCase(updateGoal.pending, handlePending)
       .addCase(updateGoal.fulfilled, handleUpdateGoalFulfilled)
       .addCase(updateGoal.rejected, handleRejected)
+      .addCase(refreshUser.pending, handleRefreshUserPending)
       .addCase(refreshUser.fulfilled, handleFulfilledRefresh)
       .addCase(refreshUser.rejected, handleRejectedRefresh)
-      .addCase(refreshUser.pending, handleRefreshUserPending);
+      .addCase(currentUser.pending, handleRefreshUserPending)
+      .addCase(currentUser.fulfilled, handleFulfilledCurrent)
+      .addCase(currentUser.rejected, handleRejectedRefresh);
   },
 });
 
