@@ -22,12 +22,12 @@ import {
 } from './MainPage.styled';
 
 import { getRecommendedFood } from '../../../redux/recommendedFood/selectors';
-import { getWaterIntake } from '../../../redux/DailyWater/selectors.js';
+import {  selectWaterIntake } from '../../../redux/DailyWater/selectors.jsx';
 import { getFirstLoad } from '../../../redux/diary/selectors.js';
 
 import { fetchRecommendedFood } from '../../../redux/recommendedFood/operations.js';
 import { fetchCaloriesIntake } from '../../../redux/dailyGoalsCalories/operations.js';
-import { fetchWaterIntake } from '../../../redux/DailyWater/operations.js';
+import { addWaterIntake } from '../../../redux/DailyWater/operations.jsx';
 import { selectUser } from '../../../redux/auth/selectors.jsx';
 import { fetchFoodIntake } from '../../../redux/diary/operations.js';
 
@@ -36,7 +36,7 @@ const MainPage = () => {
   const dailyCalories = user.BMR;
   const dailyWaterIntake = user.rateWater * 1000;
 
-  const waterConsumtion = useSelector(getWaterIntake);
+  const waterConsumtion = useSelector(selectWaterIntake);
 
   const firstLoad = useSelector(getFirstLoad);
   const recomendFood = useSelector(getRecommendedFood);
@@ -62,7 +62,7 @@ const MainPage = () => {
   useEffect(() => {
     !dailyCalories && dispatch(fetchCaloriesIntake());
     !recomendFood && dispatch(fetchRecommendedFood());
-    waterConsumtion === null && dispatch(fetchWaterIntake());
+    waterConsumtion === null && dispatch(addWaterIntake());
   }, [dispatch, dailyCalories, waterConsumtion, recomendFood]);
 
   return (
