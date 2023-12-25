@@ -89,7 +89,7 @@ const MainPage = () => {
           waterConsumtion={waterConsumtion}
           waterGoal={dailyWaterIntake}
         />
-        <FoodInfo dailyCalories={dailyCalories} />
+        <FoodInfo dailyCalories={dailyCalories} user={user} />
       </ElementsWrapper>
 
       <DiaryAndRecommendFoodWrap>
