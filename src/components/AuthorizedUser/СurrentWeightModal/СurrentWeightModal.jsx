@@ -75,14 +75,10 @@ export const СurrentWeightModal = ({
       closeСurrentWeightModal();
       dispatch(updateWeight({ weight: newWeight }));
 
-      // setTimeout(() => {
-      //   dispatch(fetchCaloriesIntake());
-      // }, 150);
       setTimeout(() => {
         dispatch(currentUser());
       }, 150);
 
-      //тут ще має бути діспатч для усіх компонентів для оновлення з файлу Сергія!!!
     }
   };
 
