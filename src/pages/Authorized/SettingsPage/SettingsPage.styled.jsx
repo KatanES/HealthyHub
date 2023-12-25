@@ -1,17 +1,24 @@
 import styled from 'styled-components';
 
 export const ContainerSetting = styled.div`
+  padding-bottom: 40px;
+
   @media (min-width: 834px) {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    padding-bottom: 174px;
   }
 
   @media (min-width: 1440px) {
     flex-direction: row;
     align-items: flex-start;
     gap: 160px;
+
+    margin-left: 116px;
+    padding-bottom: 72px;
 
     width: 1181px;
   }
@@ -53,8 +60,6 @@ export const ContainerImg = styled.div`
   }
 
   @media (min-width: 1440px) {
-    margin-left: 116px;
-
     width: 536px;
     height: 528px;
   }
