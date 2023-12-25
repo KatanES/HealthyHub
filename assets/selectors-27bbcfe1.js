@@ -1,4 +1,4 @@
-import{u as t,j as i}from"./index-6ab748ed.js";const s=t.div`
+import{u as t,j as i}from"./index-2e7381ac.js";const s=t.div`
   display: flex;
   column-gap: 20px;
   /* width: 300px; */

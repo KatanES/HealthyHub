@@ -1,4 +1,4 @@
-import{u as s,r as n,j as e,a as N,d as B,m as V}from"./index-6ab748ed.js";import{s as H}from"./symbol-b8a774a7.js";const k=s.div`
+import{u as s,r as n,j as e,a as N,d as B,o as V}from"./index-2e7381ac.js";import{s as H}from"./symbol-31b12b17.js";const k=s.div`
   @media (min-width: 768px) {
     display: flex;
     justify-content: space-around;
