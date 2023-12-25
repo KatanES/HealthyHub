@@ -33,10 +33,22 @@ const settingsSchema = Yup.object().shape({
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
-  age: Yup.string().max(3, 'Too Long!').required('Required'),
-  gender: Yup.string(),
-  height: Yup.string(),
-  weight: Yup.string(),
+  age: Yup.number('Must be a number from 1 to 200')
+    .label('Age')
+    .min(1, 'Must be a number from 1 to 200')
+    .max(200, 'Must be a number from 1 to 200')
+    .required('Age is required'),
+  gender: Yup.string().required('Choose one of these fields'),
+  height: Yup.number()
+    .label('Height')
+    .min(1, 'Must be a number from 1 to 300')
+    .max(300, 'Must be a number from 1 to 300')
+    .required('Height is required'),
+  weight: Yup.number()
+    .label('Weight')
+    .min(1, 'Must be a number from 1 to 500')
+    .max(500, 'Must be a number from 1 to 500')
+    .required('Weight is required'),
   activity: Yup.number(),
 });
 
