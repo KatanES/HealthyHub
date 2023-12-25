@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addMeal } from '../../../redux/slice/diarySlice.jsx';
+import {
+  fetchFoodIntake,
+  postFoodIntake,
+} from '../../../redux/diary/operations';
 import MealForm from './MealForm';
 import BreakfastImage from '../../../assets/Diary/Breakfast.png';
 import {
@@ -18,13 +21,16 @@ import {
 
 const Breakfast = () => {
   const dispatch = useDispatch();
-  const meals = useSelector((state) => state.diary.meals);
+  const foodIntake = useSelector((state) => state.diary.foodIntake);
   const [modalOpen, setModalOpen] = useState(false);
   const [mealName, setMealName] = useState('');
   const [carbonohidrates, setCarbonohidrates] = useState('');
   const [protein, setProtein] = useState('');
   const [fat, setFat] = useState('');
-  const [setSelectedMeal] = useState(null); 
+
+  useEffect(() => {
+    dispatch(fetchFoodIntake());
+  }, [dispatch]);
 
   const openModal = () => {
     setModalOpen(true);
@@ -36,27 +42,33 @@ const Breakfast = () => {
     setCarbonohidrates('');
     setProtein('');
     setFat('');
-    setSelectedMeal(null);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(
-      addMeal({
-        name: mealName,
-        carbonohidrates,
-        protein,
-        fat,
-      })
-    );
+    try {
+      await dispatch(
+        postFoodIntake({
+          name: mealName,
+          carbonohidrates,
+          protein,
+          fat,
+        })
+      );
 
-    setTotalNutrients((prev) => ({
-      carbonohidrates: prev.carbonohidrates + parseFloat(carbonohidrates),
-      protein: prev.protein + parseFloat(protein),
-      fat: prev.fat + parseFloat(fat),
-    }));
+      // Оновлюємо foodIntake за допомогою fetchFoodIntake
+      dispatch(fetchFoodIntake());
 
-    closeModal();
+      setTotalNutrients((prev) => ({
+        carbonohidrates: prev.carbonohidrates + parseFloat(carbonohidrates),
+        protein: prev.protein + parseFloat(protein),
+        fat: prev.fat + parseFloat(fat),
+      }));
+
+      closeModal();
+    } catch (error) {
+      console.error('Помилка при відправленні форми:', error);
+    }
   };
 
   const [totalNutrients, setTotalNutrients] = useState({
@@ -64,29 +76,6 @@ const Breakfast = () => {
     protein: 0,
     fat: 0,
   });
-
-  // // Додано функцію для генерації порожніх елементів
-  // const generateEmptyMeals = () => {
-  //   const emptyMeals = [];
-  //   for (let i = 0; i < 4; i++) {
-  //     emptyMeals.push({
-  //       id: `empty_${i + 1}`,
-  //       name: `Empty Meal ${i + 1}`,
-  //       carbonohidrates: 0,
-  //       protein: 0,
-  //       fat: 0,
-  //     });
-  //   }
-  //   return emptyMeals;
-  // };
-
-  // // Використано useEffect для ініціалізації порожніх елементів при завантаженні компонента
-  // useEffect(() => {
-  //   if (meals.length === 0) {
-  //     const emptyMeals = generateEmptyMeals();
-  //     dispatch(addEmptyMeals(emptyMeals));
-  //   }
-  // }, [dispatch, meals]);
 
   return (
     <Section>
@@ -104,9 +93,7 @@ const Breakfast = () => {
           <TitelNutrients>Fat: {totalNutrients.fat}</TitelNutrients>
         </NutrientsSection>
       </DeviceFlex>
-
       <ButtonRecord onClick={openModal}>+ Record your meal</ButtonRecord>
-
       {modalOpen && (
         <ModalRecord>
           <TitelRecord>Record your meal</TitelRecord>
@@ -128,18 +115,17 @@ const Breakfast = () => {
           />
         </ModalRecord>
       )}
-      {meals.map((meal) => (
-        <div key={meal.id}>
-          <p>{meal.name}</p>
-          <p>Carbonohidrates: {meal.carbonohidrates}</p>
-          <p>Protein: {meal.protein}</p>
-          <p>Fat: {meal.fat}</p>
-        </div>
-      ))}
+      {foodIntake &&
+        foodIntake.map((foodIntake) => (
+          <div key={foodIntake.id}>
+            <p>{foodIntake.name}</p>
+            <p>Carbonohidrates: {foodIntake.carbonohidrates}</p>
+            <p>Protein: {foodIntake.protein}</p>
+            <p>Fat: {foodIntake.fat}</p>
+          </div>
+        ))}
     </Section>
   );
 };
-
-console.log();
 
 export default Breakfast;
