@@ -88,6 +88,13 @@ export const updateWeight = createAsyncThunk(
   'auth/api/updateWeight',
   async (credentials, thunkAPI) => {
     try {
+      const state = thunkAPI.getState();
+      const persistedToken = state.auth.token;
+
+      if (persistedToken === null) {
+        return thunkAPI.rejectWithValue();
+      }
+      setAuthHeader(persistedToken);
       const response = await axios.post('/api/user/weight', credentials);
       const lastEntry =
         response.data.length > 0
@@ -98,8 +105,7 @@ export const updateWeight = createAsyncThunk(
         weight: credentials.weight,
         lastWeightDate: lastEntry ? lastEntry.date : null,
       };
-
-      // return response.data;
+      
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -110,6 +116,12 @@ export const updateGoal = createAsyncThunk(
   'auth/api/updateGoal',
   async (credentials, thunkAPI) => {
     try {
+      const state = thunkAPI.getState();
+      const persistedToken = state.auth.token;
+      if (persistedToken === null) {
+        return thunkAPI.rejectWithValue();
+      }
+      setAuthHeader(persistedToken);
       const response = await axios.put('/api/user/goal', credentials);
       return response.data;
     } catch (error) {

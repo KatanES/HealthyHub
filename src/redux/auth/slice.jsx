@@ -157,7 +157,7 @@ const authSlice = createSlice({
       .addCase(updateGoal.rejected, handleRejected)
       .addCase(refreshUser.pending, handleRefreshUserPending)
       .addCase(refreshUser.fulfilled, handleFulfilledRefresh)
-      .addCase(refreshUser.rejected, handleRejectedRefresh)
+      .addCase(refreshUser.rejected, handleRejectedRefresh);
   },
 });
 
