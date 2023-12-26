@@ -11,6 +11,7 @@ import {
 } from './DiaryPage.styled.jsx';
 import { postFoodIntake } from '../../../redux/diary/operations';
 import symbol from '../../../assets/Welcome/symbol.svg';
+import { useDispatch } from 'react-redux';
 
 const MealForm = ({
   mealName,
@@ -23,6 +24,7 @@ const MealForm = ({
   setFat,
   closeModal,
 }) => {
+  const dispatch = useDispatch();
   const [showNewForm, setShowNewForm] = useState(false);
 
   const [newMealName, setNewMealName] = useState('');
@@ -33,22 +35,20 @@ const MealForm = ({
   const handleMainFormSubmit = async () => {
     try {
       const formData = {
-        name: mealName,
-        carbonohidrates,
+        foodName: mealName,
+        carbohydrate: carbonohidrates,
         protein,
         fat,
+        calories: '0',
+        foodType: 'Breakfast',
       };
 
-      setMealName('');
-      setCarbonohidrates('');
-      setProtein('');
-      setFat('');
-      setShowNewForm(false);
-
-      await postFoodIntake(formData);
+      dispatch(postFoodIntake(formData));
     } catch (error) {
       console.error('Error submitting form:', error);
     }
+
+    closeModal(); 
   };
 
   const handleAddMore = () => {
@@ -57,13 +57,11 @@ const MealForm = ({
     setShowNewForm(true);
   };
 
- 
   const handleNewFormSubmit = async () => {
-    
     try {
       const formData = {
-        name: newMealName,
-        carbonohidrates: newCarbonohidrates,
+        foodName: newMealName,
+        carbohydrate: newCarbonohidrates,
         protein: newProtein,
         fat: newFat,
       };

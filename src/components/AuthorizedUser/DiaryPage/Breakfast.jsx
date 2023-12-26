@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import symbol from '../../../assets/Welcome/symbol.svg';
+import BreakfastImage from '../../../assets/Diary/Breakfast.png';
 import {
   fetchFoodIntake,
   postFoodIntake,
 } from '../../../redux/diary/operations';
-import MealForm from './MealForm';
-import BreakfastImage from '../../../assets/Diary/Breakfast.png';
 import {
   DeviceFlex,
   TitelSection,
@@ -17,16 +17,26 @@ import {
   TitelRecord,
   ModalRecord,
   Section,
+  InputFlex,
+  InputMeal,
+  ButtonDelete,
+  ButtonAdd,
+  SVG,
+  ButtonFlex,
+  ButtonSolution,
+  FormStyle,
 } from './DiaryPage.styled.jsx';
 
-const Breakfast = () => {
+const BreakfastWithForm = () => {
   const dispatch = useDispatch();
   const foodIntake = useSelector((state) => state.diary.foodIntake);
   const [modalOpen, setModalOpen] = useState(false);
-  const [mealName, setMealName] = useState('');
-  const [carbonohidrates, setCarbonohidrates] = useState('');
-  const [protein, setProtein] = useState('');
-  const [fat, setFat] = useState('');
+  const [inputValues, setInputValues] = useState({
+    mealName: '',
+    carbohydrate: '',
+    protein: '',
+    fat: '',
+  });
 
   useEffect(() => {
     dispatch(fetchFoodIntake());
@@ -38,44 +48,150 @@ const Breakfast = () => {
 
   const closeModal = () => {
     setModalOpen(false);
-    setMealName('');
-    setCarbonohidrates('');
-    setProtein('');
-    setFat('');
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      await dispatch(
-        postFoodIntake({
-          name: mealName,
-          carbonohidrates,
-          protein,
-          fat,
-        })
-      );
-
-      // Оновлюємо foodIntake за допомогою fetchFoodIntake
-      dispatch(fetchFoodIntake());
-
-      setTotalNutrients((prev) => ({
-        carbonohidrates: prev.carbonohidrates + parseFloat(carbonohidrates),
-        protein: prev.protein + parseFloat(protein),
-        fat: prev.fat + parseFloat(fat),
-      }));
-
-      closeModal();
-    } catch (error) {
-      console.error('Помилка при відправленні форми:', error);
-    }
+    setInputValues({
+      mealName: '',
+      carbohydrate: '',
+      protein: '',
+      fat: '',
+    });
   };
 
   const [totalNutrients, setTotalNutrients] = useState({
-    carbonohidrates: 0,
+    сarbonohidrates: 0,
     protein: 0,
     fat: 0,
   });
+
+  const MealForm = () => {
+    // const [setShowNewForm] = useState(false);
+
+    const handleMainFormSubmit = async () => {
+      try {
+        const calculatedCalories =
+          parseFloat(inputValues.carbonohidrates) * 4 +
+          parseFloat(inputValues.protein) * 3.88 +
+          parseFloat(inputValues.fat) * 9;
+
+        const data = {
+          foodName: inputValues.mealName,
+          carbohydrate: inputValues.carbonohidrates,
+          protein: inputValues.protein,
+          fat: inputValues.fat,
+          calories: calculatedCalories.toFixed(2),
+          foodType: 'Breakfast',
+        };
+
+        await dispatch(postFoodIntake(data));
+
+        closeModal();
+
+        // Оновити totalNutrients після успішного виклику
+        setTotalNutrients((prev) => ({
+          carbohydrate:
+            prev.carbonohidrates + parseFloat(inputValues.carbonohidrates),
+          protein: prev.protein + parseFloat(inputValues.protein),
+          fat: prev.fat + parseFloat(inputValues.fat),
+        }));
+      } catch (error) {
+        console.error('Error submitting form:', error);
+      }
+    };
+
+    // const handleAddMore = () => {
+    //   handleMainFormSubmit();
+    //   setShowNewForm(true);
+    // };
+
+    const handleAddMore = () => {
+      handleMainFormSubmit();
+      setInputValues({
+        mealName: '',
+        carbonohidrates: '',
+        protein: '',
+        fat: '',
+      });
+    };
+
+    return (
+      <FormStyle
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleMainFormSubmit();
+        }}
+      >
+        <InputFlex>
+          <InputMeal
+            type="text"
+            id="mealName"
+            value={inputValues.mealName}
+            onChange={(e) =>
+              setInputValues((prev) => ({ ...prev, mealName: e.target.value }))
+            }
+            required
+            placeholder="The name of the product or dish"
+            size="35"
+          />
+
+          <InputMeal
+            type="text"
+            id="carbonohidrates"
+            value={inputValues.carbonohidrates}
+            placeholder="Carbonohidrates"
+            onChange={(e) =>
+              setInputValues((prev) => ({
+                ...prev,
+                carbonohidrates: e.target.value,
+              }))
+            }
+            required
+            size="35"
+          />
+
+          <InputMeal
+            type="text"
+            id="protein"
+            value={inputValues.protein}
+            placeholder="Protein"
+            onChange={(e) =>
+              setInputValues((prev) => ({ ...prev, protein: e.target.value }))
+            }
+            required
+            size="8"
+          />
+
+          <InputMeal
+            type="text"
+            id="fat"
+            value={inputValues.fat}
+            placeholder="Fat"
+            onChange={(e) =>
+              setInputValues((prev) => ({ ...prev, fat: e.target.value }))
+            }
+            required
+            size="8"
+          />
+          <ButtonDelete type="submit" onClick={handleMainFormSubmit}>
+            <SVG>
+              <use href={symbol + '#icon-trash-03'} />
+            </SVG>
+          </ButtonDelete>
+        </InputFlex>
+
+        <ButtonAdd type="button" onClick={handleAddMore}>
+          + Add more
+        </ButtonAdd>
+
+        <ButtonFlex>
+          <ButtonSolution type="submit" onClick={handleMainFormSubmit}>
+            Save
+          </ButtonSolution>
+          <ButtonSolution type="button" onClick={closeModal}>
+            Cancel
+          </ButtonSolution>
+        </ButtonFlex>
+      </FormStyle>
+    );
+  };
 
   return (
     <Section>
@@ -87,7 +203,7 @@ const Breakfast = () => {
 
         <NutrientsSection>
           <TitelNutrients>
-            Carbonohidrates: {totalNutrients.carbonohidrates}
+            Carbonohidrates: {totalNutrients.сarbonohidrates}
           </TitelNutrients>
           <TitelNutrients>Protein: {totalNutrients.protein}</TitelNutrients>
           <TitelNutrients>Fat: {totalNutrients.fat}</TitelNutrients>
@@ -101,18 +217,7 @@ const Breakfast = () => {
             <IconMeal src={BreakfastImage} alt="Breakfast"></IconMeal>
             <TitelMeal>Breakfast</TitelMeal>
           </TitelSection>
-          <MealForm
-            handleSubmit={handleSubmit}
-            mealName={mealName}
-            setMealName={setMealName}
-            carbonohidrates={carbonohidrates}
-            setCarbonohidrates={setCarbonohidrates}
-            protein={protein}
-            setProtein={setProtein}
-            fat={fat}
-            setFat={setFat}
-            closeModal={closeModal}
-          />
+          <MealForm />
         </ModalRecord>
       )}
       {foodIntake &&
@@ -128,4 +233,4 @@ const Breakfast = () => {
   );
 };
 
-export default Breakfast;
+export default BreakfastWithForm;
