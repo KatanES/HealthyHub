@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-// import { ReactComponent as ArrowRigth } from '../../../assets/images/icons/arrow-right.svg';
 import { RecommendedCard } from '../../../../components/AuthorizedUser/RecommendedFood/RecommendedCard';
 import {
   FoodCardsWrap,

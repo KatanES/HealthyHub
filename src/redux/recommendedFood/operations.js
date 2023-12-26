@@ -22,7 +22,7 @@ export const fetchRecommendedFood = createAsyncThunk(
       const response = await instance('api/recommended-food');
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(eror.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

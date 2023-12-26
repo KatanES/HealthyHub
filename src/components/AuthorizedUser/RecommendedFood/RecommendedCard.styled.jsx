@@ -10,14 +10,6 @@ export const Card = styled.div`
   align-items: center;
 
   background-color: rgba(15, 15, 15, 1);
-  /* 
-  @media screen and (min-width: 834px) {
-    width: 380px;
-  } */
-
-  /* @media screen and (min-width: 1440px) {
-    width: 328px;
-  } */
 `;
 
 export const CardImage = styled.img`

@@ -52,7 +52,11 @@ export const FormStyle = styled.form`
   @media (min-width: 834px) {
     margin: 24px auto 0 auto;
 
-    width: 491px;
+    max-width: 491px;
+  }
+
+  @media (min-width: 1440px) {
+    margin: 0 auto;
   }
 `;
 
@@ -69,7 +73,7 @@ export const FormLabel = styled.label`
   font-size: 14px;
   font-weight: 500;
   line-height: 1.43;
-  
+
   @media (min-width: 834px) {
     width: 212px;
   }
@@ -99,7 +103,7 @@ export const FormInput = styled.input`
   }
 
   @media (min-width: 834px) {
-    max-width: 212px;
+    width: 192px;
   }
 `;
 
@@ -232,15 +236,8 @@ export const ContainerActivity = styled.div`
   width: 300px;
 
   @media (min-width: 834px) {
-    width: 276px;
-  }
-
-  @media (min-width: 1440px) {
-    margin-top: 12px;
-
-    gap: 16px;
-
-    text-align: left;
+    align-items: start;
+    width: 464px;
   }
 `;
 
@@ -258,6 +255,7 @@ export const ActivityLabel = styled.label`
   color: ${globalColor.colorPrimaryWhite};
 
   @media (min-width: 834px) {
+    width: 430px;
   }
 `;
 
@@ -266,21 +264,18 @@ export const ContainerBtn = styled.div`
   flex-direction: column;
   align-items: center;
 
-  weidth: 100%;
+  gap: 12px;
+
+  width: 100%;
 
   @media (min-width: 834px) {
-    width: 380px;
-    margin: 24px auto 196px auto;
-  }
-  @media (min-width: 1440px) {
-    width: 212px;
-    margin: 24px 0 0 0;
-    margin: 24px 0 164px 0;
+    flex-direction: row;
+
+    width: 416px;
   }
 `;
 
 export const FormSaveBtn = styled.button`
-  margin-bottom: 12px;
   padding: 8px 10px;
 
   width: 100%;
@@ -311,11 +306,13 @@ export const FormSaveBtn = styled.button`
     background-color: transparent;
     color: ${globalColor.colorPrimaryWhite};
   }
+
+  @media (min-width: 834px) {
+    width: 212px;
+  }
 `;
 
 export const FromCancelBtn = styled.button`
-  margin-bottom: 40px;
-
   width: 280px;
 
   font-family: Poppins, sans-serif;
@@ -341,5 +338,9 @@ export const FromCancelBtn = styled.button`
   &:active {
     background-color: transparent;
     color: ${globalColor.colorPrimaryWhite};
+  }
+
+  @media (min-width: 834px) {
+    width: 192px;
   }
 `;

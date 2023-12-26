@@ -129,19 +129,24 @@ export const ActivLabel = styled.label`
 `;
 
 export const ActivField = styled(Field)`
-  place-content: center;
   appearance: none;
-  background-color: black;
+
+  min-width: 12px;
+  min-height: 12px;
+
+  font: inherit;
   color: ${globalColor.colorPrimaryGreenLite};
-  width: 12px;
-  height: 12px;
-  border: 0.15em solid ${globalColor.colorPrimaryGrey};
+  background-color: black;
+
+  border: 0.11em solid ${globalColor.colorPrimaryGrey};
   border-radius: 50%;
-  transform: translateY(-0.075em);
 
   &:checked {
-    background-color: rgba(227, 255, 168, 1);
-    transform: scale(1);
+    background: radial-gradient(
+      circle,
+      ${globalColor.colorPrimaryGreenLite} 40%,
+      transparent 50%
+    );
   }
 `;
 

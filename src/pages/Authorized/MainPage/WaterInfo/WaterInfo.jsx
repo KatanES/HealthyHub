@@ -1,5 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { WaterChart } from '../../../../components/WaterChart/WaterChart';
+import { selectUser } from '../../../../redux/auth/selectors';
+import { useSelector, useDispatch } from 'react-redux';
+import { addWaterIntake } from '../../../../redux/DailyWater/operations';
+import { deletedWaterIntake } from '../../../../redux/DailyWater/operations';
+import { selectWaterIntake } from '../../../../redux/DailyWater/selectors';
+
 import {
   InfoTitle,
   WaterInfoCard,
@@ -19,11 +25,23 @@ import {
 
 import { bubbles } from '../../../../utils/bubbles';
 
-export const WaterInfo = ({ handleModal, waterConsumtion }) => {
-  const leftWaterIntake = 1500 - waterConsumtion;
+export const WaterInfo = ({ handleModal, waterConsumption }) => {
+  const user = useSelector(selectUser);
+
+  const dailyWaterIntake = user?.rateWater ? user.rateWater * 1000 : 0;
+
+  const leftWaterIntake = dailyWaterIntake - waterConsumption;
+
+  const water = useSelector(selectWaterIntake);
 
   const waterPercent =
-    waterConsumtion <= 1500 ? Math.round((waterConsumtion * 100) / 1500) : 100;
+    waterConsumption <= 1500
+      ? Math.round((waterConsumption * 100) / 1500)
+      : 100;
+
+  useEffect(() => {
+    console.log('Water Consumption in MainPage:', waterConsumption);
+  }, [waterConsumption]);
 
   const offset =
     waterPercent <= 84 ? Math.ceil((waterPercent / 100) * 176 + 10) : 88;
@@ -53,7 +71,7 @@ export const WaterInfo = ({ handleModal, waterConsumtion }) => {
           <InfoTitle>Water consumption</InfoTitle>
           <ValueWrap>
             <InfoNumber>
-              {waterConsumtion} <Unit>ml</Unit>
+              {waterConsumption} <Unit>ml</Unit>
             </InfoNumber>
             <LeftInfo>
               left:

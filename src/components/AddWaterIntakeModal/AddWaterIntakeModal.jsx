@@ -35,9 +35,10 @@ export const AddWaterIntakeModal = ({ handleModal }) => {
     };
   });
 
-  const handleSubmit = (values, { resetForm }) => {
+  const handleSubmit = async (values, { resetForm }) => {
     const { waterIntake } = values;
-    dispatch(addWaterIntake({ value: waterIntake }));
+    console.log('Olya', waterIntake);
+    dispatch(await addWaterIntake({ value: waterIntake }));
 
     resetForm();
     handleModal();
