@@ -6,7 +6,6 @@ import {
   updateWeight,
   updateGoal,
   refreshUser,
-  currentUser,
 } from './operations';
 
 const handlePending = (state) => {
@@ -98,13 +97,6 @@ export const handleRefreshUserPending = (state) => {
   state.isRefreshing = true;
 };
 
-export const handleFulfilledCurrent = (state, action) => {
-  state.user = action.payload[0];
-  state.isAuthenticated = true;
-  state.isLoading = false;
-  state.error = null;
-};
-
 export const handleFulfilledRefresh = (state, action) => {
   state.user = action.payload[0];
   state.isAuthenticated = true;
@@ -166,9 +158,6 @@ const authSlice = createSlice({
       .addCase(refreshUser.pending, handleRefreshUserPending)
       .addCase(refreshUser.fulfilled, handleFulfilledRefresh)
       .addCase(refreshUser.rejected, handleRejectedRefresh)
-      .addCase(currentUser.pending, handleRefreshUserPending)
-      .addCase(currentUser.fulfilled, handleFulfilledCurrent)
-      .addCase(currentUser.rejected, handleRejectedRefresh);
   },
 });
 
