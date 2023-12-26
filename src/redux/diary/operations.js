@@ -32,13 +32,7 @@ export const postFoodIntake = createAsyncThunk(
   'foodIntake/post',
   async (credentials, thunkAPI) => {
     try {
-      const state = thunkAPI.getState();
-      const persistToken = state.auth.token;
-      if (!persistToken) {
-        return thunkAPI.rejectWithValue('No token');
-      }
-      setAuthHeader(persistToken);
-      const response = await instance.post('api/user/food-intake', credentials);
+      const response = await axios.post('/api/user/food-intake', credentials);
 
       return response.data;
     } catch (error) {
