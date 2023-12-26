@@ -37,10 +37,11 @@ const MainPage = () => {
   const dailyCalories = user?.BMR || 0;
   const dailyWaterIntake = user?.rateWater ? user.rateWater * 1000 : 0;
 
-  const waterConsumption = useSelector((state) => {
-    console.log('SANYA', state);
-    return state.waterIntake?.water?.value || 1000;
-  });
+  const waterConsumption = useSelector(
+    (state) => state.waterIntake.water?.data?.water
+  );
+    console.log('SANYA', waterConsumption);
+
 
   const firstLoad = useSelector(getFirstLoad);
   const recomendFood = useSelector(getRecommendedFood);

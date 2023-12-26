@@ -27,16 +27,15 @@ import { bubbles } from '../../../../utils/bubbles';
 
 export const WaterInfo = ({ handleModal, waterConsumption }) => {
   const user = useSelector(selectUser);
-
   const dailyWaterIntake = user?.rateWater ? user.rateWater * 1000 : 0;
-
   const leftWaterIntake = dailyWaterIntake - waterConsumption;
-
-  const water = useSelector(selectWaterIntake);
+  console.log('DAILY', dailyWaterIntake);
+  console.log('CONSUM', waterConsumption);
+  console.log('LEFT PART', leftWaterIntake);
 
   const waterPercent =
-    waterConsumption <= 1500
-      ? Math.round((waterConsumption * 100) / 1500)
+    waterConsumption <= leftWaterIntake
+      ? Math.round((waterConsumption * 100) / leftWaterIntake)
       : 100;
 
   useEffect(() => {
@@ -75,9 +74,7 @@ export const WaterInfo = ({ handleModal, waterConsumption }) => {
             </InfoNumber>
             <LeftInfo>
               left:
-              <LeftNumber>
-                {leftWaterIntake > 0 ? leftWaterIntake : 0}
-              </LeftNumber>
+              <LeftNumber>{Math.max(leftWaterIntake, 0)}</LeftNumber>
               <Unit>ml</Unit>
             </LeftInfo>
           </ValueWrap>
@@ -90,3 +87,4 @@ export const WaterInfo = ({ handleModal, waterConsumption }) => {
     </div>
   );
 };
+
