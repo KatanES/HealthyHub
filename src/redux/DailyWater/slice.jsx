@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addWaterIntake, deletedWaterIntake } from './operations';
+import { addWaterIntake } from './operations';
 import { isAnyOf } from '@reduxjs/toolkit';
 
 const initialState = {
   water: {
-    number: null,
+    value: null,
   },
   isLoading: false,
   error: null,
@@ -14,7 +14,7 @@ export const waterIntakeSlice = createSlice({
   name: 'waterIntake',
   initialState,
   reducers: {
-    deletedWaterIntake(state) {
+    deletedWaterIntake() {
       return initialState;
     },
   },

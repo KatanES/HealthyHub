@@ -24,7 +24,7 @@ export const WaterInfo = ({ handleModal, waterConsumtion }) => {
 
   const waterPercent =
     waterConsumtion <= 1500 ? Math.round((waterConsumtion * 100) / 1500) : 100;
-
+  
   const offset =
     waterPercent <= 84 ? Math.ceil((waterPercent / 100) * 176 + 10) : 88;
   const percentColor = waterPercent <= 85 ? 'rgba(182, 195, 255, 1)' : 'green';
@@ -35,7 +35,7 @@ export const WaterInfo = ({ handleModal, waterConsumtion }) => {
       clearInterval(bubbleId);
     };
   }, []);
-
+ 
   return (
     <div>
       <WaterTitle>Water</WaterTitle>
