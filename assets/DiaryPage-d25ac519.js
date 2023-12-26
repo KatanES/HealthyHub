@@ -1,4 +1,4 @@
-import{u as a,j as i,L as x}from"./index-d0763665.js";import{B as p,L as s,D as d,S as t}from"./Snack-36a71b3b.js";import{s as n}from"./symbol-bc7d8e00.js";const e=a.div`
+import{u as a,j as i,L as x}from"./index-06fdc14f.js";import{B as p,L as s,D as d,S as t}from"./Snack-092a5b4e.js";import{s as n}from"./symbol-71ea3ff0.js";const e=a.div`
   max-width: 320px;
   padding: 10px;
 
