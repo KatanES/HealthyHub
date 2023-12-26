@@ -33,8 +33,8 @@ import { fetchFoodIntake } from '../../../redux/diary/operations.js';
 
 const MainPage = () => {
   const user = useSelector(selectUser);
-  const dailyCalories = user.BMR;
-  const dailyWaterIntake = user.rateWater * 1000;
+  const dailyCalories = user?.BMR || 0;;
+  const dailyWaterIntake = Math.ceil((user?.rateWater || 0) * 1000);
 
   const waterConsumtion = useSelector(selectWaterIntake);
 
@@ -89,7 +89,7 @@ const MainPage = () => {
           waterConsumtion={waterConsumtion}
           // waterGoal={dailyWaterIntake}
         />
-        <FoodInfo dailyCalories={dailyCalories} />
+        <FoodInfo dailyCalories={dailyCalories} user={user} />
       </ElementsWrapper>
 
       <DiaryAndRecommendFoodWrap>

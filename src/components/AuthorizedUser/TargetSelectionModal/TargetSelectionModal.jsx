@@ -2,8 +2,7 @@ import { Popover, useMediaQuery } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-import { fetchCaloriesIntake } from '../../../redux/dailyGoalsCalories/operations';
-import { updateGoal } from '../../../redux/auth/operations';
+import { currentUser, updateGoal } from '../../../redux/auth/operations';
 
 import sprite from '../../../assets/sprite.svg';
 
@@ -74,9 +73,8 @@ export const TargetSelectionModal = ({
     );
 
     setTimeout(() => {
-      dispatch(fetchCaloriesIntake());
+      dispatch(currentUser());
     }, 150);
-
 
     closeTargetSelectionModal();
   };
