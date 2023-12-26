@@ -87,7 +87,7 @@ const MainPage = () => {
         />
         <WaterInfo
              handleModal={toggleIsOpenModal}
-             waterConsumtion={waterConsumption}
+             waterConsumption={waterConsumption}
           // waterGoal={dailyWaterIntake}
         />
         <FoodInfo dailyCalories={dailyCalories} />
