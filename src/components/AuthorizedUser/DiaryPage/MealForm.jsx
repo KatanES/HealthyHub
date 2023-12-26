@@ -9,10 +9,11 @@ import {
   ButtonSolution,
   FormStyle,
 } from './DiaryPage.styled.jsx';
+import { postFoodIntake } from '../../../redux/diary/operations';
 import symbol from '../../../assets/Welcome/symbol.svg';
+import { useDispatch } from 'react-redux';
 
 const MealForm = ({
-  handleSubmit,
   mealName,
   setMealName,
   carbonohidrates,
@@ -23,6 +24,7 @@ const MealForm = ({
   setFat,
   closeModal,
 }) => {
+  const dispatch = useDispatch();
   const [showNewForm, setShowNewForm] = useState(false);
 
   const [newMealName, setNewMealName] = useState('');
@@ -30,31 +32,62 @@ const MealForm = ({
   const [newProtein, setNewProtein] = useState('');
   const [newFat, setNewFat] = useState('');
 
+  const handleMainFormSubmit = async () => {
+    try {
+      const formData = {
+        foodName: mealName,
+        carbohydrate: carbonohidrates,
+        protein,
+        fat,
+        calories: '0',
+        foodType: 'Breakfast',
+      };
+
+      dispatch(postFoodIntake(formData));
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
+
+    closeModal(); 
+  };
+
   const handleAddMore = () => {
+    // Збереження даних перед додаванням нової форми
+    handleMainFormSubmit();
     setShowNewForm(true);
   };
 
-  const handleNewFormSubmit = () => {
-    // Ваша логіка для обробки нової форми
-    // Наприклад, ви можете додати новий об'єкт до стейту або відправити його на сервер
-    // Залежно від вашої логіки додайте або замініть цей код
-    console.log('New Form Submitted:', {
-      name: newMealName,
-      carbonohidrates: newCarbonohidrates,
-      protein: newProtein,
-      fat: newFat,
-    });
+  const handleNewFormSubmit = async () => {
+    try {
+      const formData = {
+        foodName: newMealName,
+        carbohydrate: newCarbonohidrates,
+        protein: newProtein,
+        fat: newFat,
+      };
 
-    // Очищення полів і сховання форми
-    setNewMealName('');
-    setNewCarbonohidrates('');
-    setNewProtein('');
-    setNewFat('');
-    setShowNewForm(false);
+      // Очищення полів і сховання форми
+      setNewMealName('');
+      setNewCarbonohidrates('');
+      setNewProtein('');
+      setNewFat('');
+      setShowNewForm(false);
+
+      // Виклик функції для відправки formData на сервер
+      await postFoodIntake(formData);
+    } catch (error) {
+      // Обробка помилок, якщо потрібно
+      console.error('Error submitting new form:', error);
+    }
   };
 
   return (
-    <FormStyle onSubmit={handleSubmit}>
+    <FormStyle
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleMainFormSubmit();
+      }}
+    >
       <InputFlex>
         <InputMeal
           type="text"
@@ -95,7 +128,7 @@ const MealForm = ({
           required
           size="8"
         />
-        <ButtonDelete type="submit" onClick={handleSubmit}>
+        <ButtonDelete type="submit" onClick={handleMainFormSubmit}>
           <SVG>
             <use href={symbol + '#icon-trash-03'} />
           </SVG>
@@ -156,7 +189,7 @@ const MealForm = ({
       )}
 
       <ButtonFlex>
-        <ButtonSolution type="submit" onClick={handleSubmit}>
+        <ButtonSolution type="submit" onClick={handleMainFormSubmit}>
           Save
         </ButtonSolution>
         <ButtonSolution type="button" onClick={closeModal}>
