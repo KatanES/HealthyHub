@@ -14,7 +14,7 @@ export const waterIntakeSlice = createSlice({
   name: 'waterIntake',
   initialState,
   reducers: {
-    deletedWaterIntake() {
+    deleteWaterIntake() {
       return initialState;
     },
   },
@@ -38,11 +38,11 @@ export const waterIntakeSlice = createSlice({
         (state, action) => {
           state.isLoading = false;
           state.error = null;
-          state.water.value = action.payload.data.value;
+          state.water.value = action.payload.value;
         }
       );
   },
 });
 
-export const { deletedWaterIntake } = waterIntakeSlice.actions;
+export const { deleteWaterIntake } = waterIntakeSlice.actions;
 export const waterIntakeReducer = waterIntakeSlice.reducer;
