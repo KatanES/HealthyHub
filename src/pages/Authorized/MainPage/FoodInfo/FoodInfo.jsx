@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { DoughnutChart } from '../../../../components/DoughnutChart/DoughnutChart';
-import { calcElementsMacros } from '../../../../utils/calcElementsMacros';
+// import { calcElementsMacros } from '../../../../utils/calcElementsMacros';
 import { ChartCard } from './ChartCard/ChartCard';
 
 import {
@@ -18,7 +18,7 @@ const carbBcg = 'rgba(255, 196, 247, 1)';
 const proteinBcg = 'rgba(255, 243, 183, 1)';
 const fatBcg = 'rgba(182, 182, 182, 1)';
 
-export const FoodInfo = ({ dailyCalories }) => {
+export const FoodInfo = ({ dailyCalories, user }) => {
   const diaryInfo = useSelector(getFoodIntake);
   const diaryCalories = useSelector(getDiaryCalories);
 
@@ -49,7 +49,9 @@ export const FoodInfo = ({ dailyCalories }) => {
     carbonohidratesSum += carbonohidrates;
   }
 
-  const { carbs, protein, fat } = calcElementsMacros(dailyCalories, 'lose');
+  // const { carbs, protein, fat } = calcElementsMacros(dailyCalories, goal);
+
+  const { carbs, protein, fat } = user;
 
   return (
     <div>

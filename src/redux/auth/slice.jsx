@@ -84,13 +84,8 @@ const handleSignOutRejected = (state, action) => {
 const handleUpdateWeightFulfilled = (state, action) => {
   state.isLoading = false;
   state.error = null;
-  state.user.weight = action.meta.arg.weight;
-
-  if (action.payload && action.payload.length > 0) {
-    const lastEntry = action.payload[action.payload.length - 1];
-    // state.user.weight = lastEntry.weight;
-    state.lastWeightDate = lastEntry.date;
-  }
+  state.user.weight = action.payload.weight;
+  state.lastWeightDate = action.payload.lastWeightDate;
 };
 
 const handleUpdateGoalFulfilled = (state, action) => {

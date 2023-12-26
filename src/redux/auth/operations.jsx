@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { authenticate } from './slice';
 
-
 axios.defaults.baseURL = 'https://healthyhubserver.onrender.com';
 
 const setAuthHeader = (token) => {
@@ -90,9 +89,18 @@ export const updateWeight = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await axios.post('/api/user/weight', credentials);
-      return response.data;
+      const lastEntry =
+        response.data.length > 0
+          ? response.data[response.data.length - 1]
+          : null;
+
+      return {
+        weight: credentials.weight,
+        lastWeightDate: lastEntry ? lastEntry.date : null,
+      };
+
+      // return response.data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
