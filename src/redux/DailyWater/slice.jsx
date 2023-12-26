@@ -20,27 +20,19 @@ export const waterIntakeSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addMatcher(
-        isAnyOf(addWaterIntake.pending),
-        (state) => {
-          state.isLoading = true;
-        }
-      )
-      .addMatcher(
-        isAnyOf(addWaterIntake.rejected),
-        (state, action) => {
-          state.isLoading = false;
-          state.error = action.payload;
-        }
-      )
-      .addMatcher(
-        isAnyOf(addWaterIntake.fulfilled),
-        (state, action) => {
-          state.isLoading = false;
-          state.error = null;
-          state.water.value = action.payload.value;
-        }
-      );
+      .addMatcher(isAnyOf(addWaterIntake.pending), (state) => {
+        state.isLoading = true;
+      })
+      .addMatcher(isAnyOf(addWaterIntake.rejected), (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addMatcher(isAnyOf(addWaterIntake.fulfilled), (state, action) => {
+        state.isLoading = false;
+        console.log('Kate', action);
+        state.error = null;
+        state.water = action.payload;
+      });
   },
 });
 

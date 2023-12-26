@@ -22,7 +22,7 @@ import {
 } from './MainPage.styled';
 
 import { getRecommendedFood } from '../../../redux/recommendedFood/selectors';
-import {  selectWaterIntake } from '../../../redux/DailyWater/selectors.jsx';
+import { selectWaterIntake } from '../../../redux/DailyWater/selectors.jsx';
 import { getFirstLoad } from '../../../redux/diary/selectors.js';
 
 import { fetchRecommendedFood } from '../../../redux/recommendedFood/operations.js';
@@ -37,9 +37,10 @@ const MainPage = () => {
   const dailyCalories = user?.BMR || 0;
   const dailyWaterIntake = user?.rateWater ? user.rateWater * 1000 : 0;
 
-  const waterConsumption = useSelector((state) => state.waterIntake?.water?.value || 0);
-
-
+  const waterConsumption = useSelector((state) => {
+    console.log('SANYA', state);
+    return state.waterIntake?.water?.value || 1000;
+  });
 
   const firstLoad = useSelector(getFirstLoad);
   const recomendFood = useSelector(getRecommendedFood);
@@ -88,9 +89,8 @@ const MainPage = () => {
           dailyWaterIntake={dailyWaterIntake}
         />
         <WaterInfo
-             handleModal={toggleIsOpenModal}
-             waterConsumption={waterConsumption}
-          // waterGoal={dailyWaterIntake}
+          handleModal={toggleIsOpenModal}
+          waterConsumption={waterConsumption}
         />
         <FoodInfo dailyCalories={dailyCalories} user={user} />
       </ElementsWrapper>

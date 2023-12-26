@@ -15,6 +15,7 @@ import { recommendedFoodReducer } from '../../recommendedFood/slice';
 import { authReducer } from '../../auth/slice';
 
 import { forgotPasswordReducer } from '../../auth/forgotPasswordSlice';
+import { waterIntakeReducer } from '../../DailyWater/slice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -28,6 +29,7 @@ export const store = configureStore({
     diary: diaryReducer,
     forgotPassword: forgotPasswordReducer,
     recommendedFood: recommendedFoodReducer,
+    waterIntake: waterIntakeReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

@@ -1,6 +1,5 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 export const addWaterIntake = createAsyncThunk(
   'waterIntake/post',
@@ -20,7 +19,10 @@ export const deletedWaterIntake = createAsyncThunk(
   'waterIntake/deleteWaterIntake',
   async (waterIntake, thunkAPI) => {
     try {
-      const response = await axios.delete(`/api/user/water-intake`, waterIntake);
+      const response = await axios.delete(
+        `/api/user/water-intake`,
+        waterIntake
+      );
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
