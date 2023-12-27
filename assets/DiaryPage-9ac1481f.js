@@ -1,4 +1,4 @@
-import{u as a,j as i,L as x}from"./index-02f1e4a2.js";import{B as p,L as s,D as d,S as t}from"./Snack-41b66dad.js";import{s as n}from"./symbol-122f4874.js";const e=a.div`
+import{u as a,j as i,L as x}from"./index-3b55291f.js";import{B as p,L as s,D as d,S as t}from"./Snack-a8d1b6d5.js";import{s as n}from"./symbol-35362075.js";const e=a.div`
   max-width: 320px;
   padding: 10px;
 
@@ -31,10 +31,10 @@ import{u as a,j as i,L as x}from"./index-02f1e4a2.js";import{B as p,L as s,D as 
   }
 
   @media (min-width: 1200px) {
-    max-width: 1480px;
+    max-width: 1460px;
     padding: 34px;
-    display: flex;
-    flex-wrap: wrap;
+    /* display: flex;
+    flex-wrap: wrap; */
     gap: 20px;
     flex-basis: calc((100% - 20px) / 2);
   }
