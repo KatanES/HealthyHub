@@ -59,7 +59,7 @@ const settingsSchema = Yup.object().shape({
     .min(1, 'Must be a number from 1 to 500')
     .max(500, 'Must be a number from 1 to 500')
     .required('Weight is required'),
-  activity: Yup.string(),
+  activity: Yup.number(),
 });
 
 const SettingsPage = () => {
@@ -178,7 +178,7 @@ const SettingsPage = () => {
                 <WrapperSection>
                   <TitleRadio>Gender</TitleRadio>
                   <ContainerGender>
-                    <GenderLabel style={{ cursor: 'pointer' }}>
+                    <GenderLabel>
                       <RadioBtn
                         type="radio"
                         name="gender"
@@ -188,7 +188,7 @@ const SettingsPage = () => {
                       />
                       Male
                     </GenderLabel>
-                    <GenderLabel style={{ cursor: 'pointer' }}>
+                    <GenderLabel>
                       <RadioBtn
                         type="radio"
                         name="gender"
@@ -230,7 +230,7 @@ const SettingsPage = () => {
             <div>
               <TitleRadio>Your activity</TitleRadio>
               <ContainerActivity>
-                <ActivityLabel style={{ cursor: 'pointer' }}>
+                <ActivityLabel>
                   <RadioBtn
                     type="radio"
                     name="activity"
@@ -240,7 +240,7 @@ const SettingsPage = () => {
                   />
                   1.2 - if you do not have physical activity and sedentary work
                 </ActivityLabel>
-                <ActivityLabel style={{ cursor: 'pointer' }}>
+                <ActivityLabel>
                   <RadioBtn
                     type="radio"
                     name="activity"
@@ -251,7 +251,7 @@ const SettingsPage = () => {
                   1.375 - if you do short runs or light gymnastics 1-3 times a
                   week
                 </ActivityLabel>
-                <ActivityLabel style={{ cursor: 'pointer' }}>
+                <ActivityLabel>
                   <RadioBtn
                     type="radio"
                     name="activity"
@@ -261,7 +261,7 @@ const SettingsPage = () => {
                   />
                   1.55 - if you play sports with average loads 3-5 times a week
                 </ActivityLabel>
-                <ActivityLabel style={{ cursor: 'pointer' }}>
+                <ActivityLabel>
                   <RadioBtn
                     type="radio"
                     name="activity"
@@ -271,7 +271,7 @@ const SettingsPage = () => {
                   />
                   1.725 - if you train fully 6-7 times a week
                 </ActivityLabel>
-                <ActivityLabel style={{ cursor: 'pointer' }}>
+                <ActivityLabel>
                   <RadioBtn
                     type="radio"
                     name="activity"
