@@ -2,11 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { selectUser } from '../../../redux/auth/selectors';
-import {
-  currentUser,
-  updateUserInfo,
-  updAvatar,
-} from '../../../redux/auth/operations';
+import { currentUser, updateUserInfo } from '../../../redux/auth/operations';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -22,7 +18,6 @@ import {
   WrapperSection,
   ContainerAvatar,
   Avatar,
-  DefaultAvatarWrapper,
   AvatarUpload,
   InputFile,
   SvgUpload,
@@ -62,14 +57,14 @@ const settingsSchema = Yup.object().shape({
     .min(1, 'Must be a number from 1 to 500')
     .max(500, 'Must be a number from 1 to 500')
     .required('Weight is required'),
-  activity: Yup.number(),
+  activity: Yup.number().required('Activity is required'),
 });
 
 const SettingsPage = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
 
-  const [avatarUrl, setAvatarUrl] = useState(user.avatarURL);
+  const [avatarURL, setAvatarURL] = useState(null);
 
   const fileInputRef = useRef(null);
 
@@ -83,41 +78,22 @@ const SettingsPage = () => {
     }
   };
 
+  const handleAvatarChange = (event) => {
+    setAvatarURL(URL.createObjectURL(event.currentTarget.files[0]));
+  };
+
+  const handleSubmit = (values) => {
+    dispatch(updateUserInfo(values));
+  };
+
   const initialValues = {
     name: user.name ?? '',
-    avatar: user.avatarURL ?? null, // може видалити?
+    avatar: user.avatarURL ?? null,
     age: user.age ?? '',
     gender: user.gender ?? 'male',
     height: user.height ?? '',
     weight: user.weight ?? '',
-    activity: user.activity ?? '1',
-  };
-
-  // const handleAvatarChange = (event) => {
-  //   setAvatarUrl(URL.createObjectURL(event.currentTarget.files[0]));
-
-  //   try {
-  //     dispatch(updAvatar(event.currentTarget.files[0]));
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  const handleAvatarChange = (event) => {
-    setAvatarUrl(URL.createObjectURL(event.currentTarget.files[0]));
-  };
-
-  const handleSubmit = (values) => {
-    const formData = new FormData();
-    formData.append('name', values.name);
-    formData.append('avatarURL', values.avatar);
-    formData.append('age', values.age);
-    formData.append('gender', values.gender);
-    formData.append('height', values.height);
-    formData.append('weight', values.weight);
-    formData.append('activity', values.activity);
-
-    dispatch(updateUserInfo(values));
+    activity: String(user.activity) ?? '1',
   };
 
   return (
@@ -127,7 +103,7 @@ const SettingsPage = () => {
         onSubmit={handleSubmit}
         validationSchema={settingsSchema}
       >
-        {({ handleChange, values, onReset }) => (
+        {({ handleChange, values }) => (
           <FormStyle>
             <WrapperContainerBigScreen>
               <ContainerBigScreen>
@@ -145,12 +121,10 @@ const SettingsPage = () => {
                 <WrapperSection>
                   <FormLabel>Your photo</FormLabel>
                   <ContainerAvatar>
-                    {avatarUrl ? (
-                      <Avatar src={values.avatar} alt="User Avatar" />
+                    {avatarURL ? (
+                      <Avatar src={avatarURL} alt="User Avatar" />
                     ) : (
-                      <DefaultAvatarWrapper>
-                        <use href={`${sprite}#icon-profile-circle`} />
-                      </DefaultAvatarWrapper>
+                      <Avatar src={values.avatar} alt="User Avatar" />
                     )}
                     <AvatarUpload>
                       <InputFile
