@@ -22,14 +22,13 @@ import {
 } from './MainPage.styled';
 
 import { getRecommendedFood } from '../../../redux/recommendedFood/selectors';
-import { selectWaterIntake } from '../../../redux/DailyWater/selectors.jsx';
 import { getFirstLoad } from '../../../redux/diary/selectors.js';
-
 import { fetchRecommendedFood } from '../../../redux/recommendedFood/operations.js';
 import { fetchCaloriesIntake } from '../../../redux/dailyGoalsCalories/operations.js';
 import { addWaterIntake } from '../../../redux/DailyWater/operations.jsx';
 import { selectUser } from '../../../redux/auth/selectors.jsx';
 import { fetchFoodIntake } from '../../../redux/diary/operations.js';
+
 
 const MainPage = () => {
   const user = useSelector(selectUser);
@@ -70,6 +69,10 @@ const MainPage = () => {
     waterConsumption === null && dispatch(addWaterIntake());
   }, [dispatch, dailyCalories, waterConsumption, recomendFood]);
 
+  const handleResetWaterIntake = () => {
+    dispatch(deletedWaterIntake())
+  }
+
   return (
     <MainContainer>
       <TitleWrapper>
@@ -93,6 +96,7 @@ const MainPage = () => {
           handleModal={toggleIsOpenModal}
           waterConsumption={waterConsumption}
         />
+
         <FoodInfo dailyCalories={dailyCalories} user={user} />
       </ElementsWrapper>
 

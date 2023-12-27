@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { keyframes } from 'styled-components';
 import { ReactComponent as Icon } from '../../../../assets/icons/add.svg';
+import { globalColor } from '../../../../components/Header/root';
 
 const animate = keyframes` 
     0% {
@@ -36,6 +37,7 @@ export const WaterInfoCard = styled.div`
   width: 300px;
   height: 224px;
   border-radius: 12px;
+  position: relative;
   background-color: rgba(15, 15, 15, 1);
   margin-bottom: 20px;
 
@@ -208,4 +210,30 @@ export const Button = styled.button`
 
 export const AddIcon = styled(Icon)`
   stroke: rgba(15, 15, 15, 1);
+`;
+
+export const SVG = styled.svg`
+width: 20px;
+height: 20px;
+flex-shrink: 0;
+
+`;
+
+export const DelButton = styled.button`
+position: absolute;
+right: 12px;
+top: 12px;
+width: 24px;
+height: 24px;
+transform: translateY(50%);
+padding: 0;
+border: none;
+cursor: pointer;
+background-color: transparent;
+
+
+@media screen and (min-width: 834px) {
+  right: 24px;
+  top: 24px;
+}
 `;
