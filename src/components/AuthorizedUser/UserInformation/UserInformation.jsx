@@ -86,6 +86,11 @@ const SettingsPage = () => {
     dispatch(updateUserInfo(values));
   };
 
+  const handleCancel = () => {
+    setAvatarURL(null);
+    dispatch(currentUser(user));
+  };
+
   const initialValues = {
     name: user.name ?? '',
     avatar: user.avatarURL ?? null,
@@ -278,7 +283,9 @@ const SettingsPage = () => {
 
             <ContainerBtn>
               <FormSaveBtn type="submit">Save</FormSaveBtn>
-              <FormCancelBtn type="button">Cancel</FormCancelBtn>
+              <FormCancelBtn type="button" onClick={handleCancel}>
+                Cancel
+              </FormCancelBtn>
             </ContainerBtn>
           </FormStyle>
         )}
