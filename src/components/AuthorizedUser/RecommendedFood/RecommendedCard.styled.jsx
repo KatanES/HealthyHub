@@ -21,8 +21,6 @@ export const InfoWrap = styled.div`
   width: 186px;
   height: 46px;
   overflow: hidden;
-
-  font-family: Poppins;
   font-style: normal;
 `;
 

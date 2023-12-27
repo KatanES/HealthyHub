@@ -1,4 +1,3 @@
-import noImage from '../../../assets/RecommendedFood/noimage.png';
 import {
   Card,
   CardImage,

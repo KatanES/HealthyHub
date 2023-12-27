@@ -2,7 +2,7 @@ import { Popover, useMediaQuery } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-import { currentUser, updateGoal } from '../../../redux/auth/operations';
+import {  refreshUser, updateGoal } from '../../../redux/auth/operations';
 
 import sprite from '../../../assets/sprite.svg';
 
@@ -73,7 +73,7 @@ export const TargetSelectionModal = ({
     );
 
     setTimeout(() => {
-      dispatch(currentUser());
+      dispatch(refreshUser());
     }, 150);
 
     closeTargetSelectionModal();

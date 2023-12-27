@@ -2,7 +2,7 @@ import { Popover, useMediaQuery } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { currentUser, updateWeight } from '../../../redux/auth/operations';
+import { refreshUser, updateWeight } from '../../../redux/auth/operations';
 import { selectLastDate } from '../../../redux/auth/selectors';
 
 import { globalColor } from '../../Header/root';
@@ -75,7 +75,7 @@ export const СurrentWeightModal = ({
       dispatch(updateWeight({ weight: newWeight }));
 
       setTimeout(() => {
-        dispatch(currentUser());
+        dispatch(refreshUser());
       }, 150);
     }
   };
