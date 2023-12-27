@@ -5,7 +5,7 @@ import Dinner from '../../../components/AuthorizedUser/DiaryPage/Dinner';
 import Snack from '../../../components/AuthorizedUser/DiaryPage/Snack';
 import symbol from '../../../assets/Welcome/symbol.svg';
 import {
-  Container,
+  ContainerDiary,
   TitelPage,
   SVG,
   SectionDiaryPage,
@@ -13,7 +13,7 @@ import {
 
 const DiaryPage = () => {
   return (
-    <Container>
+    <ContainerDiary>
       <TitelPage>
         <Link to="/main">
           <SVG>
@@ -28,7 +28,7 @@ const DiaryPage = () => {
         <Dinner />
         <Snack />
       </SectionDiaryPage>
-    </Container>
+    </ContainerDiary>
   );
 };
 
