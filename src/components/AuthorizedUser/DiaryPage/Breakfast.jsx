@@ -41,6 +41,7 @@ const Breakfast = () => {
   useEffect(() => {
     dispatch(fetchFoodIntake());
   }, [dispatch]);
+  console.log(foodIntake);
 
   const openModal = () => {
     setModalOpen(true);
@@ -125,7 +126,10 @@ const Breakfast = () => {
             id="mealName"
             value={inputValues.mealName}
             onChange={(e) =>
-              setInputValues((prev) => ({ ...prev, mealName: e.target.value }))
+              setInputValues((prev) => ({
+                ...prev,
+                mealName: e.target.value,
+              }))
             }
             required
             placeholder="The name of the product or dish"

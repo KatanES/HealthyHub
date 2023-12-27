@@ -79,3 +79,4 @@ export const foodIntakeSlice = createSlice({
 });
 
 export const { clearDiary } = foodIntakeSlice.actions;
+

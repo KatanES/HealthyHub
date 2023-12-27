@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import diaryReducer from '/src/redux/slice/diarySlice.jsx';
+import { clearDiary } from '/src/redux/diary/slice';
 import {
   persistStore,
   persistReducer,
@@ -26,7 +26,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    diary: diaryReducer,
+    diary: clearDiary,
     forgotPassword: forgotPasswordReducer,
     recommendedFood: recommendedFoodReducer,
     waterIntake: waterIntakeReducer,

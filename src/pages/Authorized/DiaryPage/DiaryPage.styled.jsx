@@ -27,7 +27,7 @@ export const TitelPage = styled.div`
   margin-bottom: 19px;
 `;
 
-export const Section = styled.div`
+export const SectionDiaryPage = styled.div`
   max-width: 320px;
 
   @media (min-width: 768px) {
@@ -39,10 +39,10 @@ export const Section = styled.div`
   }
 
   @media (min-width: 1200px) {
-    max-width: 1480px;
+    max-width: 1460px;
     padding: 34px;
-    display: flex;
-    flex-wrap: wrap;
+    /* display: flex;
+    flex-wrap: wrap; */
     gap: 20px;
     flex-basis: calc((100% - 20px) / 2);
   }
