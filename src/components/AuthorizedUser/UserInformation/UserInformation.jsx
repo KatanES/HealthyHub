@@ -2,8 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { selectUser } from '../../../redux/auth/selectors';
-import { currentUser, updateUserInfo } from '../../../redux/auth/operations';
-// import { updAvatar } from 'redux/operations';
+import {
+  currentUser,
+  updateUserInfo,
+  updAvatar,
+} from '../../../redux/auth/operations';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -66,23 +69,13 @@ const SettingsPage = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
 
-  const [avatarUrl, setAvatarUrl] = useState(user.avatarUrl);
+  const [avatarUrl, setAvatarUrl] = useState(user.avatarURL);
 
   const fileInputRef = useRef(null);
 
   useEffect(() => {
     dispatch(currentUser(user));
   }, [dispatch, user]);
-
-  const handleAvatarChange = (event) => {
-    setAvatarUrl(URL.createObjectURL(event.currentTarget.files[0]));
-
-    try {
-      dispatch(updAvatar(event.currentTarget.files[0]));
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handleIconClick = () => {
     if (fileInputRef.current) {
@@ -92,15 +85,38 @@ const SettingsPage = () => {
 
   const initialValues = {
     name: user.name ?? '',
-    avatar: user.avatar ?? null,
+    avatar: user.avatarURL ?? null, // може видалити?
     age: user.age ?? '',
     gender: user.gender ?? 'male',
     height: user.height ?? '',
     weight: user.weight ?? '',
-    activity: user.activity ?? 1,
+    activity: user.activity ?? '1',
+  };
+
+  // const handleAvatarChange = (event) => {
+  //   setAvatarUrl(URL.createObjectURL(event.currentTarget.files[0]));
+
+  //   try {
+  //     dispatch(updAvatar(event.currentTarget.files[0]));
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const handleAvatarChange = (event) => {
+    setAvatarUrl(URL.createObjectURL(event.currentTarget.files[0]));
   };
 
   const handleSubmit = (values) => {
+    const formData = new FormData();
+    formData.append('name', values.name);
+    formData.append('avatarURL', values.avatar);
+    formData.append('age', values.age);
+    formData.append('gender', values.gender);
+    formData.append('height', values.height);
+    formData.append('weight', values.weight);
+    formData.append('activity', values.activity);
+
     dispatch(updateUserInfo(values));
   };
 
@@ -111,7 +127,7 @@ const SettingsPage = () => {
         onSubmit={handleSubmit}
         validationSchema={settingsSchema}
       >
-        {({ handleChange, values }) => (
+        {({ handleChange, values, onReset }) => (
           <FormStyle>
             <WrapperContainerBigScreen>
               <ContainerBigScreen>
@@ -130,7 +146,7 @@ const SettingsPage = () => {
                   <FormLabel>Your photo</FormLabel>
                   <ContainerAvatar>
                     {avatarUrl ? (
-                      <Avatar src={avatarUrl} alt="User Avatar" />
+                      <Avatar src={values.avatar} alt="User Avatar" />
                     ) : (
                       <DefaultAvatarWrapper>
                         <use href={`${sprite}#icon-profile-circle`} />
@@ -235,7 +251,7 @@ const SettingsPage = () => {
                     type="radio"
                     name="activity"
                     value="1"
-                    checked={values.activity === 1}
+                    checked={values.activity === '1'}
                     onChange={handleChange}
                   />
                   1.2 - if you do not have physical activity and sedentary work
@@ -245,7 +261,7 @@ const SettingsPage = () => {
                     type="radio"
                     name="activity"
                     value="2"
-                    checked={values.activity === 2}
+                    checked={values.activity === '2'}
                     onChange={handleChange}
                   />
                   1.375 - if you do short runs or light gymnastics 1-3 times a
@@ -256,7 +272,7 @@ const SettingsPage = () => {
                     type="radio"
                     name="activity"
                     value="3"
-                    checked={values.activity === 3}
+                    checked={values.activity === '3'}
                     onChange={handleChange}
                   />
                   1.55 - if you play sports with average loads 3-5 times a week
@@ -266,7 +282,7 @@ const SettingsPage = () => {
                     type="radio"
                     name="activity"
                     value="4"
-                    checked={values.activity === 4}
+                    checked={values.activity === '4'}
                     onChange={handleChange}
                   />
                   1.725 - if you train fully 6-7 times a week
@@ -276,7 +292,7 @@ const SettingsPage = () => {
                     type="radio"
                     name="activity"
                     value="5"
-                    checked={values.activity === 5}
+                    checked={values.activity === '5'}
                     onChange={handleChange}
                   />
                   1.9 - if your work is related to physical labor, you train 2

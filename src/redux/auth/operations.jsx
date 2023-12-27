@@ -130,13 +130,33 @@ export const currentUser = createAsyncThunk(
   }
 );
 
-
 export const updateUserInfo = createAsyncThunk(
-  'auth/params',
+  'auth/info',
   async (credentials, thunkAPI) => {
     try {
+      const formData = new FormData();
+      formData.append('avatar', credentials.file);
+
       const response = await axios.put('/api/auth/update', credentials);
       return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updAvatar = createAsyncThunk(
+  'auth/avatar',
+  async (cre, thunkAPI) => {
+    try {
+      const formData = new FormData();
+      formData.append('avatar', file);
+
+      const res = await axios.patch('/api/auth/avatars', formData, {
+        headers: { 'content-type': 'multipart/form-data' },
+      });
+
+      return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
