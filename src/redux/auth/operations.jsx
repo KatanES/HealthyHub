@@ -129,3 +129,16 @@ export const currentUser = createAsyncThunk(
     }
   }
 );
+
+
+export const updateUserInfo = createAsyncThunk(
+  'auth/params',
+  async (credentials, thunkAPI) => {
+    try {
+      const response = await axios.put('/api/auth/update', credentials);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
