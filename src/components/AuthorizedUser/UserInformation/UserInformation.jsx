@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-// import { updAvatar } from 'redux/operations';
 import { selectUser } from '../../../redux/auth/selectors';
 import { currentUser, updateUserInfo } from '../../../redux/auth/operations';
+// import { updAvatar } from 'redux/operations';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
