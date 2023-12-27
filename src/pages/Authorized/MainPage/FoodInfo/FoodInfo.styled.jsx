@@ -1,15 +1,15 @@
 import styled from 'styled-components';
+import {globalColor} from '../../../../components/Header/root';
 
 export const Title = styled.h2`
-  color: rgba(255, 255, 255, 1);
-  font-family: Poppins;
+  color:  ${globalColor.colorPrimaryWhite};
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
   margin-bottom: 6px;
 
-  @media screen and (min-width: 834px) {
+  @media (min-width: 834px) {
     font-size: 22px;
     line-height: 32px;
   }
@@ -24,13 +24,13 @@ export const FoodInfoCard = styled.div`
   width: 300px;
   height: 380px;
   border-radius: 12px;
-  background-color: rgba(15, 15, 15, 1);
+  background-color: ${globalColor.colorPrimaryBlack2};
   margin-bottom: 20px;
 
   font-family: Poppins;
   font-style: normal;
 
-  @media screen and (min-width: 834px) {
+  @media (min-width: 834px) {
     width: 780px;
     height: 240px;
     padding: 36px 40px;
@@ -38,8 +38,8 @@ export const FoodInfoCard = styled.div`
     column-gap: 40px;
   }
 
-  @media screen and (min-width: 1440px) {
-    width: 560px;
+  @media (min-width: 1440px) {
+    width: 510px;
     height: 240px;
   }
 `;
@@ -55,7 +55,7 @@ export const CaloriesChart = styled.div`
   line-height: 38px;
 
   p:last-child {
-    color: rgba(182, 182, 182, 1);
+    color:  ${globalColor.colorPrimaryGrey};
 
     font-size: 14px;
     font-weight: 400;
