@@ -1,4 +1,4 @@
-import{u as t,j as o}from"./index-8d1c09d5.js";const d=t.div`
+import{u as t,j as o}from"./index-6c5e21d6.js";const d=t.div`
   display: flex;
   column-gap: 20px;
   /* width: 300px; */
@@ -21,6 +21,7 @@ import{u as t,j as o}from"./index-8d1c09d5.js";const d=t.div`
   font-weight: 500;
   line-height: 24px;
   margin-bottom: 2px;
+ 
 `,h=t.div`
   display: flex;
   font-size: 14px;
