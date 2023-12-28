@@ -129,3 +129,26 @@ export const updateGoal = createAsyncThunk(
     }
   }
 );
+
+export const updateUserInfo = createAsyncThunk(
+  'auth/info',
+  async (credentials, thunkAPI) => {
+    try {
+      const formData = new FormData();
+      formData.append('name', credentials.name);
+      formData.append('avatarURL', credentials.avatar);
+      formData.append('age', Number(credentials.age));
+      formData.append('gender', credentials.gender);
+      formData.append('height', Number(credentials.height));
+      formData.append('weight', Number(credentials.weight));
+      formData.append('activity', Number(credentials.activity));
+
+      const response = await axios.put('/api/user/update', formData, {
+        headers: { 'content-type': 'multipart/form-data' },
+      });
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
