@@ -1,8 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
-import { Formik, useFormik } from 'formik';
+import { useSelector, useDispatch } from 'react-redux';
 
-import axios from 'axios';
+import { selectUser } from '../../../redux/auth/selectors';
+import { refreshUser, updateUserInfo } from '../../../redux/auth/operations';
+
+import { Formik } from 'formik';
 import * as Yup from 'yup';
+
 import {
   FormStyle,
   ContainerBigScreen,
@@ -25,7 +29,7 @@ import {
   ActivityLabel,
   ContainerBtn,
   FormSaveBtn,
-  FromCancelBtn,
+  FormCancelBtn,
 } from './UserInformation.styled';
 import sprite from '../../../assets/sprite.svg';
 
@@ -42,61 +46,31 @@ const settingsSchema = Yup.object().shape({
   gender: Yup.string().required('Choose one of these fields'),
   avatar: Yup.string(),
   height: Yup.number()
+    .positive('Must be a positive number')
     .label('Height')
     .min(1, 'Must be a number from 1 to 300')
     .max(300, 'Must be a number from 1 to 300')
     .required('Height is required'),
   weight: Yup.number()
+    .positive('Must be a positive number')
     .label('Weight')
     .min(1, 'Must be a number from 1 to 500')
     .max(500, 'Must be a number from 1 to 500')
     .required('Weight is required'),
-  activity: Yup.number(),
+  activity: Yup.number().required('Activity is required'),
 });
 
 const SettingsPage = () => {
-  const [userData, setUserData] = useState({});
-  const [avatarUrl, setAvatarUrl] = useState(null);
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+
+  const [avatarURL, setAvatarURL] = useState(null);
 
   const fileInputRef = useRef(null);
 
-  const fetchUserData = async () => {
-    try {
-      const response = await axios.get('/api/user/current');
-      setUserData(response.data[0]);
-      if (response.data[0].avatarURL) {
-        setAvatarUrl(URL.createObjectURL(response.data[0].avatarURL));
-      }
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-    }
-  };
-
   useEffect(() => {
-    fetchUserData();
-  }, []);
-
-  const handleSubmit = async (values) => {
-    const formData = new FormData();
-    formData.append('name', values.name);
-    formData.append('avatarURL', values.avatar);
-    formData.append('age', values.age);
-    formData.append('gender', values.gender);
-    formData.append('height', values.height);
-    formData.append('weight', values.weight);
-    formData.append('activity', values.activity);
-
-    await settingsSchema.validate(values, { abortEarly: false });
-    try {
-      const response = await axios.put('/api/user/update', formData);
-      setUserData(response.data[0]);
-      if (response.data[0].avatarUrl) {
-        setAvatarUrl(URL.createObjectURL(response.data[0].avatarUrl));
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+    dispatch(refreshUser(user));
+  }, [dispatch, user]);
 
   const handleIconClick = () => {
     if (fileInputRef.current) {
@@ -105,36 +79,37 @@ const SettingsPage = () => {
   };
 
   const handleAvatarChange = (event) => {
-    formik.setFieldValue('avatar', event.currentTarget.files[0]);
-    setAvatarUrl(URL.createObjectURL(event.currentTarget.files[0]));
+    setAvatarURL(URL.createObjectURL(event.currentTarget.files[0]));
+  };
+
+  const handleSubmit = (values) => {
+    dispatch(updateUserInfo(values));
+  };
+
+  const handleCancel = () => {
+    setAvatarURL(null);
+
+    dispatch(refreshUser(user));
+  };
+
+  const initialValues = {
+    name: user.name ?? '',
+    avatar: user.avatarURL ?? null,
+    age: user.age ?? '',
+    gender: user.gender ?? 'male',
+    height: user.height ?? '',
+    weight: user.weight ?? '',
+    activity: String(user.activity) ?? '1',
   };
 
   return (
     <SettingsContainer>
       <Formik
-        enableReinitialize
-        initialValues={{
-          name: userData.name ?? '',
-          avatar: userData.avatar ?? null,
-          age: userData.age ?? '',
-          gender: userData.gender ?? 'male',
-          height: userData.height ?? '',
-          weight: userData.weight ?? '',
-          activity: userData.activity ?? 1,
-        }}
+        initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={settingsSchema}
       >
-        {({
-          handleSubmit,
-          submitForm,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          isValid,
-          values,
-        }) => (
+        {({ handleChange, values }) => (
           <FormStyle>
             <WrapperContainerBigScreen>
               <ContainerBigScreen>
@@ -152,10 +127,15 @@ const SettingsPage = () => {
                 <WrapperSection>
                   <FormLabel>Your photo</FormLabel>
                   <ContainerAvatar>
-                    <Avatar src={avatarUrl} alt="User Avatar" />
+                    {avatarURL ? (
+                      <Avatar src={avatarURL} alt="User Avatar" />
+                    ) : (
+                      <Avatar src={values.avatar} alt="User Avatar" />
+                    )}
                     <AvatarUpload>
                       <InputFile
                         type="file"
+                        name="avatarUrl"
                         ref={fileInputRef}
                         accept="image/*"
                         onChange={handleAvatarChange}
@@ -304,7 +284,9 @@ const SettingsPage = () => {
 
             <ContainerBtn>
               <FormSaveBtn type="submit">Save</FormSaveBtn>
-              <FromCancelBtn type="button">Cancel</FromCancelBtn>
+              <FormCancelBtn type="button" onClick={handleCancel}>
+                Cancel
+              </FormCancelBtn>
             </ContainerBtn>
           </FormStyle>
         )}
