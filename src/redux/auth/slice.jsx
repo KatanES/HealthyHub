@@ -6,10 +6,8 @@ import {
   updateWeight,
   updateGoal,
   refreshUser,
-
   currentUser,
   updateUserInfo,
-
 } from './operations';
 
 const handlePending = (state) => {
@@ -175,9 +173,10 @@ const authSlice = createSlice({
       .addCase(updateUserInfo.pending, handlePending)
       .addCase(updateUserInfo.fulfilled, handleUpdateInfoFulfilled)
       .addCase(updateUserInfo.rejected, handleRejected);
-
   },
 });
 
 export const { authenticate } = authSlice.actions;
 export const authReducer = authSlice.reducer;
+
+// console
