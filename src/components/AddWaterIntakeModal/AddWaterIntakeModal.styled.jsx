@@ -60,13 +60,15 @@ export const WaterIntakeForm = styled(Form)`
   position: relative;
   display: flex;
   flex-direction: column;
+  width: 300px;
   padding: 0;
 
   @media (min-width: 834px) {
-    width: 258px;
-    padding-left: 23px;
-    padding-right: 23px;
+    width: 212px;
+  margin: auto;
   }
+ 
+  
 `;
 
 export const Title = styled.h3`
@@ -75,7 +77,7 @@ export const Title = styled.h3`
   line-height: 1.2;
   margin: 0;
 
-  @media screen and (min-width: 834px) {
+  @media (min-width: 834px) {
     font-size: 30px;
     line-height: 1.2;
     text-align: center;
@@ -93,7 +95,7 @@ export const WaterLable = styled.label`
   &::after {
     position: absolute;
     bottom: 50%;
-    right: -10%;
+    right: 5%;
     transform: translateY(50px);
     content: '';
     display: ${({ $showIcon }) => $showIcon};
@@ -102,15 +104,19 @@ export const WaterLable = styled.label`
     height: 16px;
     background-image: url('${errorIcon}');
   }
+  @media (min-width: 834px) {
+    margin: 24px 0 0 12px;
+    right: 5%;
+  }
 `;
 
 export const InputField = styled(Field)`
-width: 100%;
+weidth: 100%;
   padding: 8px 10px;
   background: transparent;
   border: 1px solid ${globalColor.colorPrimaryGreenLite};
   border-radius: 12px;
-  margin: 12px auto 0 24px;
+  margin: 12px 0 0 0;
   outline: none;
   font-size: 14px;
   line-height: 1.42;
@@ -120,8 +126,9 @@ width: 100%;
     line-height: 1.42;
     color: ${globalColor.colorPrimaryGrey};
   }
-
-
+  @media  (min-width: 834px) {
+    margin: 12px 0 0 0;
+  }
 `;
 
 export const ButtonWrapper = styled.div`
@@ -150,7 +157,7 @@ export const StyledButton = styled.button`
   line-height: 1.42;
   border: none;
   border-radius: 12px;
-  width: 276px;
+  width: 100%;
   text-transform: none;
   padding: 8px 10px;
   margin: 0;
@@ -181,9 +188,7 @@ export const ErrorText = styled.div`
   line-height: 14px;
   padding-left: 10px;
 
-  @media (min-width: 834px) {
-    margin-left: 42px;
-  }
+  
 `;
 
 export const CancelButton = styled.button`

@@ -31,8 +31,7 @@ export const WaterInfo = ({ handleModal, waterConsumption }) => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const dailyWaterIntake = user?.rateWater ? user.rateWater * 1000 : 0;
-  const leftWaterIntake = dailyWaterIntake || dailyWaterIntake - waterConsumption;
-
+  const leftWaterIntake = dailyWaterIntake - waterConsumption > 0 ? dailyWaterIntake - waterConsumption : 0;
 
   const waterPercent =
     waterConsumption <= leftWaterIntake
