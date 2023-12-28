@@ -25,6 +25,8 @@ import {
   ButtonFlex,
   ButtonSolution,
   FormStyle,
+  NumericalValue,
+  ItemMeal,
 } from './DiaryPage.styled.jsx';
 
 const Breakfast = () => {
@@ -197,8 +199,29 @@ const Breakfast = () => {
     );
   };
 
+  // Додайте обробник подій для закриття модалки
+  const handleKeyDown = (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  };
+
+  const handleOutsideClick = (e) => {
+    if (e.target === e.currentTarget) {
+      closeModal();
+    }
+  };
+
+  // Додаємо обробник подій при завантаженні та видаленні компоненту
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return (
-    <Section>
+    <Section onClick={handleOutsideClick}>
       <DeviceFlex>
         <TitelSection>
           <IconMeal src={BreakfastImage} alt="Breakfast"></IconMeal>
@@ -207,13 +230,20 @@ const Breakfast = () => {
 
         <NutrientsSection>
           <TitelNutrients>
-            Carbonohidrates: {totalNutrients.carbohydrate}
+            Carbonohidrates:{' '}
+            <NumericalValue>{totalNutrients.carbohydrate}</NumericalValue>
           </TitelNutrients>
-          <TitelNutrients>Protein: {totalNutrients.protein}</TitelNutrients>
-          <TitelNutrients>Fat: {totalNutrients.fat}</TitelNutrients>
+          <TitelNutrients>
+            Protein: <NumericalValue>{totalNutrients.protein}</NumericalValue>
+          </TitelNutrients>
+          <TitelNutrients>
+            Fat: <NumericalValue>{totalNutrients.fat}</NumericalValue>
+          </TitelNutrients>
         </NutrientsSection>
       </DeviceFlex>
-      <ButtonRecord onClick={openModal}>+ Record your meal</ButtonRecord>
+      <ItemMeal>
+        <ButtonRecord onClick={openModal}>+ Record your meal</ButtonRecord>
+      </ItemMeal>
       {modalOpen && (
         <ModalRecord>
           <TitelRecord>Record your meal</TitelRecord>

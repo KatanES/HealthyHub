@@ -25,6 +25,8 @@ import {
   ButtonFlex,
   ButtonSolution,
   FormStyle,
+  NumericalValue,
+  ItemMeal,
 } from './DiaryPage.styled.jsx';
 
 const Lunch = () => {
@@ -203,13 +205,20 @@ const Lunch = () => {
 
         <NutrientsSection>
           <TitelNutrients>
-            Carbonohidrates: {totalNutrients.carbohydrate}
+            Carbonohidrates:{' '}
+            <NumericalValue>{totalNutrients.carbohydrate}</NumericalValue>
           </TitelNutrients>
-          <TitelNutrients>Protein: {totalNutrients.protein}</TitelNutrients>
-          <TitelNutrients>Fat: {totalNutrients.fat}</TitelNutrients>
+          <TitelNutrients>
+            Protein: <NumericalValue>{totalNutrients.protein}</NumericalValue>
+          </TitelNutrients>
+          <TitelNutrients>
+            Fat: <NumericalValue>{totalNutrients.fat}</NumericalValue>
+          </TitelNutrients>
         </NutrientsSection>
       </DeviceFlex>
-      <ButtonRecord onClick={openModal}>+ Record your meal</ButtonRecord>
+      <ItemMeal>
+        <ButtonRecord onClick={openModal}>+ Record your meal</ButtonRecord>
+      </ItemMeal>
       {modalOpen && (
         <ModalRecord>
           <TitelRecord>Record your meal</TitelRecord>

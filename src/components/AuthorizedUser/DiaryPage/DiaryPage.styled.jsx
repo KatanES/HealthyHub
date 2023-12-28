@@ -2,14 +2,30 @@ import styled from 'styled-components';
 
 export const DeviceFlex = styled.div`
   @media (min-width: 768px) {
+    max-width: 780px;
+    /* padding: 27px; */
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     /* gap: 159px; */
+  }
+  @media (min-width: 1200px) {
+    max-width: 1460px;
   }
 `;
 
 export const Section = styled.div`
   margin-bottom: 27px;
+
+  @media (min-width: 768px) {
+    max-width: 780px;
+    /* padding: 27px; */
+    /* display: flex;
+    justify-content: space-around; */
+    /* gap: 159px; */
+  }
+  @media (min-width: 1200px) {
+    max-width: 1460px;
+  }
 `;
 
 export const FormStyle = styled.form`
@@ -45,6 +61,7 @@ export const TitelNutrients = styled.p`
   font-weight: 400;
   color: ${(totalNutrients) => (totalNutrients ? 'white' : '##B6B6B6')};
   margin: 0;
+  
 `;
 
 export const NutrientsSection = styled.div`
@@ -54,7 +71,10 @@ export const NutrientsSection = styled.div`
   align-items: center;
   margin: 0;
   margin-bottom: 15px;
-  
+
+  @media (min-width: 768px) {
+    margin-right: 100px;
+  }
 `;
 
 export const ButtonRecord = styled.button`
@@ -151,6 +171,7 @@ export const ModalRecord = styled.div`
     max-width: 708px;
     padding: 27px;
     top: 212px;
+    right: 30%;
   }
 
   @media (min-width: 1200px) {
@@ -209,6 +230,28 @@ export const ButtonSolution = styled.button`
   &:active {
     background-color: #e3ffa8;
     color: black;
+  }
+`;
+
+export const NumericalValue = styled.span`
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  color: #b6b6b6;
+`;
+
+export const ItemMeal = styled.div`
+  width: 300px;
+height: 232px;
+
+  @media (min-width: 780px) {
+    width: 780px;
+height: 240px;
+  }
+
+  @media (min-width: 1200px) {
+    width: 608px;
+height: 240px;
   }
 `;
 
