@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState,  useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { selectUser } from '../../../redux/auth/selectors';
-import { refreshUser, updateUserInfo } from '../../../redux/auth/operations';
+import { updateUserInfo } from '../../../redux/auth/operations';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -68,10 +68,6 @@ const SettingsPage = () => {
 
   const fileInputRef = useRef(null);
 
-  useEffect(() => {
-    dispatch(refreshUser(user));
-  }, [dispatch, user]);
-
   const handleIconClick = () => {
     if (fileInputRef.current) {
       fileInputRef.current.click();
@@ -86,13 +82,13 @@ const SettingsPage = () => {
     dispatch(updateUserInfo(values));
   };
 
-  const handleCancel = () => {
+  const handleCancel = (setValues) => {
     setAvatarURL(null);
-
-    dispatch(refreshUser(user));
+    setValues(user);
   };
 
   const initialValues = {
+    goal: user.goal ?? '',
     name: user.name ?? '',
     avatar: user.avatarURL ?? null,
     age: user.age ?? '',
@@ -109,8 +105,8 @@ const SettingsPage = () => {
         onSubmit={handleSubmit}
         validationSchema={settingsSchema}
       >
-        {({ handleChange, values }) => (
-          <FormStyle>
+        {({ handleChange, values, setValues, handleSubmit }) => (
+          <FormStyle onSubmit={handleSubmit}>
             <WrapperContainerBigScreen>
               <ContainerBigScreen>
                 <FormLabel>
@@ -284,7 +280,10 @@ const SettingsPage = () => {
 
             <ContainerBtn>
               <FormSaveBtn type="submit">Save</FormSaveBtn>
-              <FormCancelBtn type="button" onClick={handleCancel}>
+              <FormCancelBtn
+                type="button"
+                onClick={() => handleCancel(setValues)}
+              >
                 Cancel
               </FormCancelBtn>
             </ContainerBtn>
