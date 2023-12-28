@@ -2,12 +2,11 @@ import styled from 'styled-components';
 import { globalColor } from '../../../../components/Header/root';
 
 export const Title = styled.h2`
-  color: ${globalColor.colorPrimaryWhite};
   font-size: 18px;
-  font-style: normal;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 1.33;
   margin-bottom: 6px;
+  color: ${globalColor.colorPrimaryWhite};
 
   @media screen and (min-width: 834px) {
     font-size: 22px;
@@ -24,13 +23,13 @@ export const DailyInfoCard = styled.div`
   background-color: ${globalColor.colorPrimaryBlack2};
   margin-bottom: 20px;
 
-  @media screen and (min-width: 834px) {
+ @media (min-width: 834px) {
     width: 380px;
     height: 240px;
     padding: 24px 40px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media (min-width: 1440px) {
     width: 328px;
   }
 `;
@@ -42,7 +41,7 @@ export const InfoCardWrapper = styled.div`
   height: 180px;
   gap: 20px;
 
-  @media screen and (min-width: 834px) {
+  @media (min-width: 834px) {
     height: 192px;
     row-gap: 32px;
   }

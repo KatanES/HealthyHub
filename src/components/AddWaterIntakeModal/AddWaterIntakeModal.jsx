@@ -5,10 +5,11 @@ import * as Yup from 'yup';
 
 import {
   Backdrop,
-  CancelButton,
-  ConfirmButton,
+  ButtonWrapper,
+  Container,
   ErrorText,
   InputField,
+  StyledButton,
   Title,
   WaterIntakeForm,
   WaterIntakeModal,
@@ -44,7 +45,8 @@ export const AddWaterIntakeModal = ({ handleModal }) => {
     handleModal();
   };
   return (
-    <Backdrop onClick={handleCloseModal}>
+    <Container>
+       <Backdrop onClick={handleCloseModal}>
       <WaterIntakeModal>
         <Title>Add water intake</Title>
         <Formik
@@ -78,14 +80,19 @@ export const AddWaterIntakeModal = ({ handleModal }) => {
               <ErrorMessage name="waterIntake">
                 {(msg) => <ErrorText>{msg}</ErrorText>}
               </ErrorMessage>
-              <ConfirmButton type="submit">Confirm</ConfirmButton>
-              <CancelButton type="button" onClick={handleModal}>
+              <ButtonWrapper>
+                <StyledButton type="submit">Confirm</StyledButton>
+              <StyledButton type="button" onClick={handleModal}>
                 Cancel
-              </CancelButton>
+              </StyledButton>
+              </ButtonWrapper>
+              
             </WaterIntakeForm>
           )}
         </Formik>
       </WaterIntakeModal>
     </Backdrop>
+    </Container>
+   
   );
 };
