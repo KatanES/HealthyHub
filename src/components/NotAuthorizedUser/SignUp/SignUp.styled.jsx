@@ -216,6 +216,7 @@ export const SignUpNavLink = styled(NavLink)`
     margin: 0;
   }
 `;
+
 export const SVG = styled.svg`
   width: 16px;
   height: 16px;

@@ -132,6 +132,20 @@ export const Avatar = styled.img`
   object-fit: cover;
 `;
 
+export const DefaultAvatarWrapper = styled.svg`
+  margin-right: 10px;
+
+  width: 36px;
+  height: 36px;
+
+  stroke: ${globalColor.colorPrimaryWhite};
+
+  @media (min-width: 834px) {
+    width: 28px;
+    height: 28px;
+  }
+`;
+
 export const AvatarUpload = styled.div`
   display: flex;
   align-items: center;
@@ -196,6 +210,8 @@ export const GenderLabel = styled.label`
 
   font-size: 14px;
   line-height: 1.43;
+
+  cursor: pointer;
 `;
 
 export const RadioBtn = styled.input`
@@ -210,6 +226,8 @@ export const RadioBtn = styled.input`
 
   border: 0.11em solid ${globalColor.colorPrimaryGrey};
   border-radius: 50%;
+
+  cursor: pointer;
 
   &:checked {
     background: radial-gradient(
@@ -253,6 +271,8 @@ export const ActivityLabel = styled.label`
   line-height: 1.43;
 
   color: ${globalColor.colorPrimaryWhite};
+
+  cursor: pointer;
 
   @media (min-width: 834px) {
     width: 430px;
@@ -312,7 +332,7 @@ export const FormSaveBtn = styled.button`
   }
 `;
 
-export const FromCancelBtn = styled.button`
+export const FormCancelBtn = styled.button`
   width: 280px;
 
   font-family: Poppins, sans-serif;

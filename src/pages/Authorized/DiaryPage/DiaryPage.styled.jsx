@@ -7,8 +7,8 @@ export const ContainerDiary = styled.div`
   padding: 10px;
 
   @media (min-width: 768px) {
-    max-width: 768px;
-    padding: 27px;
+   width: 768px;
+   
   }
 
   @media (min-width: 1200px) {

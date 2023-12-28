@@ -6,6 +6,8 @@ import {
   updateWeight,
   updateGoal,
   refreshUser,
+  currentUser,
+  updateUserInfo,
 } from './operations';
 
 const handlePending = (state) => {
@@ -104,9 +106,22 @@ export const handleFulfilledRefresh = (state, action) => {
   state.error = null;
 };
 
+export const handleFulfilledCurrent = (state, action) => {
+  state.user = action.payload[0];
+  state.isAuthenticated = true;
+  state.isLoading = false;
+  state.error = null;
+};
+
 export const handleRejectedRefresh = (state) => {
   state.token = null;
   state.isRefreshing = false;
+};
+
+const handleUpdateInfoFulfilled = (state, action) => {
+  state.isLoading = false;
+  state.error = null;
+  state.user = action.payload;
 };
 
 export const initialState = {
@@ -157,9 +172,18 @@ const authSlice = createSlice({
       .addCase(updateGoal.rejected, handleRejected)
       .addCase(refreshUser.pending, handleRefreshUserPending)
       .addCase(refreshUser.fulfilled, handleFulfilledRefresh)
-      .addCase(refreshUser.rejected, handleRejectedRefresh);
+
+      .addCase(refreshUser.rejected, handleRejectedRefresh)
+      .addCase(currentUser.pending, handleRefreshUserPending)
+      .addCase(currentUser.fulfilled, handleFulfilledCurrent)
+      .addCase(currentUser.rejected, handleRejectedRefresh)
+      .addCase(updateUserInfo.pending, handlePending)
+      .addCase(updateUserInfo.fulfilled, handleUpdateInfoFulfilled)
+      .addCase(updateUserInfo.rejected, handleRejected);
   },
 });
 
 export const { authenticate } = authSlice.actions;
 export const authReducer = authSlice.reducer;
+
+

@@ -16,9 +16,9 @@ import {
   TitleWrapper,
   SVG,
   SectionDiary,
-  TitelFlex,
-  Text,
+  LinkWrapper,
   DiaryAndRecommendFoodWrap,
+  GoalLink,
 } from './MainPage.styled';
 
 import { getRecommendedFood } from '../../../redux/recommendedFood/selectors';
@@ -29,7 +29,6 @@ import { addWaterIntake } from '../../../redux/DailyWater/operations.jsx';
 import { selectUser } from '../../../redux/auth/selectors.jsx';
 import { fetchFoodIntake } from '../../../redux/diary/operations.js';
 
-
 const MainPage = () => {
   const user = useSelector(selectUser);
 
@@ -39,8 +38,6 @@ const MainPage = () => {
   const waterConsumption = useSelector(
     (state) => state.waterIntake.water?.data?.water
   );
-    console.log('SANYA', waterConsumption);
-
 
   const firstLoad = useSelector(getFirstLoad);
   const recomendFood = useSelector(getRecommendedFood);
@@ -69,22 +66,18 @@ const MainPage = () => {
     waterConsumption === null && dispatch(addWaterIntake());
   }, [dispatch, dailyCalories, waterConsumption, recomendFood]);
 
-  const handleResetWaterIntake = () => {
-    dispatch(deletedWaterIntake())
-  }
-
   return (
     <MainContainer>
       <TitleWrapper>
         <MainTitle>Today</MainTitle>
-        <Link to="/dashboard">
-          <TitelFlex>
-            <Text>On the way to the goal</Text>
+        <LinkWrapper>
+          <GoalLink to="/dashboard">
+            On the way to the goal
             <SVG>
               <use href={symbol + '#icon-arrow-right'} />
             </SVG>
-          </TitelFlex>
-        </Link>
+          </GoalLink>
+        </LinkWrapper>
       </TitleWrapper>
 
       <ElementsWrapper>

@@ -29,6 +29,7 @@ export const Title = styled.h3`
   font-weight: 500;
   line-height: 24px;
   margin-bottom: 2px;
+ 
 `;
 
 export const ValueWrap = styled.div`
