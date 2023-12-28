@@ -98,8 +98,8 @@ export const TitelPage = styled.div`
 export const DiaryAndRecommendFoodWrap = styled.div`
   @media (min-width: 1440px) {
     display: flex;
-    column-gap: 138px;
-    margin: 20px ;
+    column-gap: 20px;
+    margin: 20px 0 0 0;
   }
 `;
 
@@ -114,7 +114,7 @@ export const SectionDiary = styled.div`
 
   @media (min-width: 1440px) {
     display: flex;
-    margin-right: 220px;
+    margin-right: 167px;
   }
 `;
 

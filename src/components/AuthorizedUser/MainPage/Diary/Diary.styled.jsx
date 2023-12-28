@@ -5,8 +5,8 @@ export const SectionDiary = styled.div`
  width: 300px;
 
   @media (min-width: 834px) {
-    max-width: 558px;
-    padding: 27px;
+    width: 558px;
+  
   }
 `;
 

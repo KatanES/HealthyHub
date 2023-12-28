@@ -4,19 +4,19 @@ import { Link } from 'react-router-dom';
 export const RecommendedFoodSection = styled.div`
   display: none;
 
-  @media screen and (min-width: 834px) {
+  @media (min-width: 834px) {
     display: block;
   }
 `;
 
 export const Title = styled.h2`
-  font-family: Poppins;
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 32px;
-
+  font-size: 18px;
+  line-height: 1.33px;
   margin-bottom: 16px;
+  @media (min-width: 834px) {
+    font-size: 22px;
+    line-height: 1.45px;
+  }
 `;
 
 export const FoodCardsWrap = styled.div`
