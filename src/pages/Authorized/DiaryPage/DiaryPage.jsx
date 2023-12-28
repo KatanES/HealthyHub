@@ -4,7 +4,12 @@ import Lunch from '../../../components/AuthorizedUser/DiaryPage/Lunch';
 import Dinner from '../../../components/AuthorizedUser/DiaryPage/Dinner';
 import Snack from '../../../components/AuthorizedUser/DiaryPage/Snack';
 import symbol from '../../../assets/Welcome/symbol.svg';
-import { Container, TitelPage, SVG, Section } from './DiaryPage.styled';
+import {
+  Container,
+  TitelPage,
+  SVG,
+  SectionDiaryPage,
+} from './DiaryPage.styled';
 
 const DiaryPage = () => {
   return (
@@ -17,12 +22,12 @@ const DiaryPage = () => {
         </Link>
         <h2>Diary</h2>
       </TitelPage>
-      <Section>
+      <SectionDiaryPage>
         <Breakfast />
         <Lunch />
         <Dinner />
         <Snack />
-      </Section>
+      </SectionDiaryPage>
     </Container>
   );
 };

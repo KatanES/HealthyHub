@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { addWaterIntake } from './operations';
+import { addWaterIntake, deletedWaterIntake } from './operations';
 import { isAnyOf } from '@reduxjs/toolkit';
 
 const initialState = {
@@ -13,11 +13,7 @@ const initialState = {
 export const waterIntakeSlice = createSlice({
   name: 'waterIntake',
   initialState,
-  reducers: {
-    deleteWaterIntake() {
-      return initialState;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addMatcher(isAnyOf(addWaterIntake.pending), (state) => {
@@ -32,9 +28,23 @@ export const waterIntakeSlice = createSlice({
         console.log('Kate', action);
         state.error = null;
         state.water = action.payload;
+      })
+      .addMatcher(isAnyOf(deletedWaterIntake.fulfilled), (state, action) => {
+        state.isLoading = false;
+        console.log('Kate2', action);
+        state.error = null;
+        state.water = action.payload;
+      })
+      .addMatcher(isAnyOf(deletedWaterIntake.rejected), (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addMatcher(isAnyOf(deletedWaterIntake.pending), (state) => {
+        state.isLoading = true;
       });
   },
 });
+ 
 
-export const { deleteWaterIntake } = waterIntakeSlice.actions;
+
 export const waterIntakeReducer = waterIntakeSlice.reducer;

@@ -5,7 +5,6 @@ export const RecommendedFood = styled.section`
   color: rgba(255, 255, 255, 1);
   padding-top: 16px;
   padding-bottom: 40px;
-
   @media (min-width: 834px) {
     padding-top: 24px;
     padding-bottom: 290px;
@@ -13,20 +12,18 @@ export const RecommendedFood = styled.section`
   @media (min-width: 1440px) {
     padding-top: 20px;
     padding-bottom: 60px;
+   
   }
 `;
 export const Title = styled.h3`
-  font-family: 'Poppins';
+  font-size: 24px;
   font-weight: 500;
   font-style: sans-serif;
-  font-size: 24px;
   line-height: 1.25;
-
   @media (min-width: 834px) {
     font-size: 30px;
     line-height: 1.2;
   }
-
   @media (min-width: 1440px) {
     margin-bottom: 20px;
   }
@@ -34,7 +31,6 @@ export const Title = styled.h3`
 
 export const DesctopContainer = styled.div`
   padding-top: 16px;
-
   @media (min-width: 834px) {
     padding-top: 20px;
   }
@@ -50,7 +46,6 @@ export const StyledImg = styled.img`
   width: 300px;
   margin-left: auto;
   margin-right: auto;
-
   @media (min-width: 834px) {
     height: 396px;
     width: 380px;

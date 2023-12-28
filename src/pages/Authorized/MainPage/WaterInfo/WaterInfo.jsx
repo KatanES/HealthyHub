@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { WaterChart } from '../../../../components/WaterChart/WaterChart';
 import { selectUser } from '../../../../redux/auth/selectors';
 import { useSelector, useDispatch } from 'react-redux';
-import { addWaterIntake } from '../../../../redux/DailyWater/operations';
+
 import { deletedWaterIntake } from '../../../../redux/DailyWater/operations';
-import { selectWaterIntake } from '../../../../redux/DailyWater/selectors';
+import symbol from '../../../../assets/Welcome/symbol.svg'
 
 import {
   InfoTitle,
@@ -21,22 +21,22 @@ import {
   ValueWrap,
   WaterBar,
   WaterPercentage,
+  SVG,
+  DelButton,
 } from '../WaterInfo/WaterInfo.styled';
 
 import { bubbles } from '../../../../utils/bubbles';
 
 export const WaterInfo = ({ handleModal, waterConsumption }) => {
+  const dispatch = useDispatch();
   const user = useSelector(selectUser);
-
   const dailyWaterIntake = user?.rateWater ? user.rateWater * 1000 : 0;
+  const leftWaterIntake = dailyWaterIntake || dailyWaterIntake - waterConsumption;
 
-  const leftWaterIntake = dailyWaterIntake - waterConsumption;
-
-  const water = useSelector(selectWaterIntake);
 
   const waterPercent =
-    waterConsumption <= 1500
-      ? Math.round((waterConsumption * 100) / 1500)
+    waterConsumption <= leftWaterIntake
+      ? Math.round((waterConsumption * 100) / leftWaterIntake)
       : 100;
 
   useEffect(() => {
@@ -53,6 +53,10 @@ export const WaterInfo = ({ handleModal, waterConsumption }) => {
       clearInterval(bubbleId);
     };
   }, []);
+  const handleResetWaterIntake = () => {
+    console.log('Resetting water intake...');
+    dispatch(deletedWaterIntake(waterConsumption));
+  };
 
   return (
     <div>
@@ -75,9 +79,7 @@ export const WaterInfo = ({ handleModal, waterConsumption }) => {
             </InfoNumber>
             <LeftInfo>
               left:
-              <LeftNumber>
-                {leftWaterIntake > 0 ? leftWaterIntake : 0}
-              </LeftNumber>
+              <LeftNumber>{Math.max(leftWaterIntake, 0)}</LeftNumber>
               <Unit>ml</Unit>
             </LeftInfo>
           </ValueWrap>
@@ -85,8 +87,12 @@ export const WaterInfo = ({ handleModal, waterConsumption }) => {
             <AddIcon />
             Add water intake
           </Button>
+          <DelButton type="button" onClick={handleResetWaterIntake}> <SVG>
+                      <use href={symbol + '#icon-trash-03'} />
+                    </SVG></DelButton>
         </InfoWrapper>
       </WaterInfoCard>
     </div>
   );
 };
+
