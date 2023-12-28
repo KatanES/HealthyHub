@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { selectUser } from '../../../redux/auth/selectors';
-import { currentUser, updateUserInfo } from '../../../redux/auth/operations';
+import { refreshUser, updateUserInfo } from '../../../redux/auth/operations';
 
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -69,7 +69,7 @@ const SettingsPage = () => {
   const fileInputRef = useRef(null);
 
   useEffect(() => {
-    dispatch(currentUser(user));
+    dispatch(refreshUser(user));
   }, [dispatch, user]);
 
   const handleIconClick = () => {
@@ -88,7 +88,8 @@ const SettingsPage = () => {
 
   const handleCancel = () => {
     setAvatarURL(null);
-    dispatch(currentUser(user));
+
+    dispatch(refreshUser(user));
   };
 
   const initialValues = {

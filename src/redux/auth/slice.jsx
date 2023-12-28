@@ -6,10 +6,7 @@ import {
   updateWeight,
   updateGoal,
   refreshUser,
-
-  currentUser,
   updateUserInfo,
-
 } from './operations';
 
 const handlePending = (state) => {
@@ -167,15 +164,10 @@ const authSlice = createSlice({
       .addCase(updateGoal.rejected, handleRejected)
       .addCase(refreshUser.pending, handleRefreshUserPending)
       .addCase(refreshUser.fulfilled, handleFulfilledRefresh)
-
       .addCase(refreshUser.rejected, handleRejectedRefresh)
-      .addCase(currentUser.pending, handleRefreshUserPending)
-      .addCase(currentUser.fulfilled, handleFulfilledCurrent)
-      .addCase(currentUser.rejected, handleRejectedRefresh)
       .addCase(updateUserInfo.pending, handlePending)
       .addCase(updateUserInfo.fulfilled, handleUpdateInfoFulfilled)
       .addCase(updateUserInfo.rejected, handleRejected);
-
   },
 });
 
