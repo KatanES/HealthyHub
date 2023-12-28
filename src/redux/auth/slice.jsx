@@ -168,7 +168,7 @@ const authSlice = createSlice({
 
       .addCase(refreshUser.rejected, handleRejectedRefresh)
       .addCase(currentUser.pending, handleRefreshUserPending)
-      // .addCase(currentUser.fulfilled, handleFulfilledCurrent)
+      .addCase(currentUser.fulfilled, handleFulfilledCurrent)
       .addCase(currentUser.rejected, handleRejectedRefresh)
       .addCase(updateUserInfo.pending, handlePending)
       .addCase(updateUserInfo.fulfilled, handleUpdateInfoFulfilled)
