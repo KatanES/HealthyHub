@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const ContainerDiary = styled.div`
+  /* display: flex;
+  flex-wrap: wrap; */
   max-width: 320px;
   padding: 10px;
 
@@ -41,9 +43,12 @@ export const SectionDiaryPage = styled.div`
   @media (min-width: 1200px) {
     max-width: 1460px;
     padding: 34px;
-    /* display: flex;
-    flex-wrap: wrap; */
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
-    flex-basis: calc((100% - 20px) / 2);
+
+    > * {
+      flex-basis: calc((100% - 20px) / 2);
+    }
   }
 `;

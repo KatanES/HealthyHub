@@ -1,18 +1,41 @@
-import { Container } from './DashboardPage.styled';
-import Calories from './Calories/Calories';
-import Water from './Water/Water';
-// import DatePeriod from './GetPeriod/GetPeriod';
+import CaloriesDash from '../../../components/AuthorizedUser/DashboardPage/Calories/Calories';
+import WaterDash from '../../../components/AuthorizedUser/DashboardPage/Water/Water';
+import WeightDash from '../../../components/AuthorizedUser/DashboardPage/Weight/Weight';
+import {
+  getCurrentMonths,
+  getLastYearMonths,
+} from '../../../components/AuthorizedUser/DashboardPage/TimePeriod/GetMonth';
+import { useState } from 'react';
 
-const DashboardPage = () => {
+import {
+  DashboardContainer,
+  WeightContainerStyle,
+} from './DashboardPage.styled';
+import MonthsDash from '../../../components/AuthorizedUser/DashboardPage/TimePeriod/Months';
+
+const Dashboard = () => {
+  const [month, setMonth] = useState({
+    value: getCurrentMonths(),
+    label: getLastYearMonths()[getCurrentMonths()],
+  });
+
+  const onChange = (newMonth) => {
+    console.log(newMonth);
+    setMonth(newMonth);
+  };
+
   return (
-    <>
-      {/* <DatePeriod /> */}
-      <Container>
-        <Calories />
-        <Water />
-      </Container>
-    </>
+    <div>
+      <MonthsDash onChange={onChange} />
+      <DashboardContainer>
+        <CaloriesDash selectedMonth={month} />
+        <WaterDash selectedMonth={month} />
+      </DashboardContainer>
+      <WeightContainerStyle>
+        <WeightDash selectedMonth={month} />
+      </WeightContainerStyle>
+    </div>
   );
 };
 
-export default DashboardPage;
+export default Dashboard;
