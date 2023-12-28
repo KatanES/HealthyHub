@@ -1,8 +1,9 @@
-import{u as e,a as p,d as a,r as m,o as s,j as t}from"./index-46f6913b.js";import{g as x,r,R as c}from"./selectors-6aca065b.js";const o="/HealthyHub/assets/Ketogenic-f362ff99.png",h=e.section`
+import{u as i,a as p,d as a,r as m,m as s,j as t}from"./index-89a048ec.js";import{g as x,r,R as c}from"./selectors-a84fd08f.js";const o="/HealthyHub/assets/Ketogenic-f362ff99.png",h=i.section`
   background-color: rgba(5, 5, 5, 1);
   color: rgba(255, 255, 255, 1);
   padding-top: 16px;
   padding-bottom: 40px;
+
   @media (min-width: 834px) {
     padding-top: 24px;
     padding-bottom: 290px;
@@ -10,22 +11,25 @@ import{u as e,a as p,d as a,r as m,o as s,j as t}from"./index-46f6913b.js";impor
   @media (min-width: 1440px) {
     padding-top: 20px;
     padding-bottom: 60px;
-   
   }
-`,g=e.h3`
-  font-size: 24px;
+`,g=i.h3`
+  font-family: 'Poppins';
   font-weight: 500;
   font-style: sans-serif;
+  font-size: 24px;
   line-height: 1.25;
+
   @media (min-width: 834px) {
     font-size: 30px;
     line-height: 1.2;
   }
+
   @media (min-width: 1440px) {
     margin-bottom: 20px;
   }
-`,l=e.div`
+`,l=i.div`
   padding-top: 16px;
+
   @media (min-width: 834px) {
     padding-top: 20px;
   }
@@ -34,11 +38,12 @@ import{u as e,a as p,d as a,r as m,o as s,j as t}from"./index-46f6913b.js";impor
     display: flex;
     gap: 44px;
   }
-`,f=e.img`
+`,f=i.img`
   height: 312px;
   width: 300px;
   margin-left: auto;
   margin-right: auto;
+
   @media (min-width: 834px) {
     height: 396px;
     width: 380px;
@@ -49,7 +54,7 @@ import{u as e,a as p,d as a,r as m,o as s,j as t}from"./index-46f6913b.js";impor
     margin-right: 0;
     margin-left: 110px;
   }
-`,w=e.div`
+`,w=i.div`
   @media (min-width: 320px) {
     padding-top: 24px;
     display: flex;
@@ -70,4 +75,4 @@ import{u as e,a as p,d as a,r as m,o as s,j as t}from"./index-46f6913b.js";impor
     justify-content: center;
     flex-direction: row;
   }
-`,R=()=>{const n=p(),i=a(x);return m.useEffect(()=>{n(s())},[]),t.jsxs(h,{children:[t.jsx(g,{children:"Recommended Food"}),t.jsxs(l,{children:[t.jsx(f,{srcSet:`${o} 1x`,src:o,alt:"Profile Setting Photo"}),i&&t.jsx(w,{children:r(i,10).map(d=>t.jsx(c,{info:d},d.name))})]})]})};export{R as default};
+`,y=()=>{const n=p(),e=a(x);return m.useEffect(()=>{n(s())},[]),t.jsxs(h,{children:[t.jsx(g,{children:"Recommended Food"}),t.jsxs(l,{children:[t.jsx(f,{srcSet:`${o} 1x`,src:o,alt:"Profile Setting Photo"}),e&&t.jsx(w,{children:r(e,10).map(d=>t.jsx(c,{info:d},d.name))})]})]})};export{y as default};

@@ -36,8 +36,5 @@
 <path fill="none" stroke="#b6b6b6" style="stroke: var(--color1, #b6b6b6)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M15.853 6.733c0.573 3.68 3.56 6.493 7.267 6.867"></path>
 <path fill="none" stroke="#b6b6b6" style="stroke: var(--color1, #b6b6b6)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 29.333h24"></path>
 </symbol>
-<symbol id="icon-trashcan" viewBox="0 0 32 32">
-<path d="M8 26c0 1.656 1.343 3 3 3h10c1.656 0 3-1.344 3-3l2-16h-20l2 16zM19 13h2v13h-2v-13zM15 13h2v13h-2v-13zM11 13h2v13h-2v-13zM25.5 6h-6.5c0 0-0.448-2-1-2h-4c-0.553 0-1 2-1 2h-6.5c-0.829 0-1.5 0.671-1.5 1.5s0 1.5 0 1.5h22c0 0 0-0.671 0-1.5s-0.672-1.5-1.5-1.5z"></path>
-</symbol>
 </defs>
 </svg>
