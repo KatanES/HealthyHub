@@ -1,4 +1,4 @@
-import{u as e,a as p,d as a,r as m,o as s,j as t}from"./index-46f6913b.js";import{g as x,r,R as c}from"./selectors-6aca065b.js";const o="/HealthyHub/assets/Ketogenic-f362ff99.png",h=e.section`
+import{u as e,a as p,d as a,r as m,o as s,j as t}from"./index-37bb24a3.js";import{g as x,r,R as c}from"./selectors-691429d1.js";const o="/HealthyHub/assets/Ketogenic-f362ff99.png",h=e.section`
   background-color: rgba(5, 5, 5, 1);
   color: rgba(255, 255, 255, 1);
   padding-top: 16px;
