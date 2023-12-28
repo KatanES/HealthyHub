@@ -106,6 +106,13 @@ export const handleFulfilledRefresh = (state, action) => {
   state.error = null;
 };
 
+export const handleFulfilledCurrent = (state, action) => {
+  state.user = action.payload[0];
+  state.isAuthenticated = true;
+  state.isLoading = false;
+  state.error = null;
+};
+
 export const handleRejectedRefresh = (state) => {
   state.token = null;
   state.isRefreshing = false;
